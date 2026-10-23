@@ -1,0 +1,25 @@
+{
+  "entries": [
+    {
+      "name": "intake",
+      "description": "Intake",
+      "source": "social-motion-agent",
+      "path": "skills/intake/SKILL.md",
+      "kind": "skill"
+    },
+    {
+      "name": "production",
+      "description": "Production director",
+      "source": "social-motion-agent",
+      "path": "skills/production/SKILL.md",
+      "kind": "skill"
+    },
+    {
+      "name": "motion-design",
+      "description": "Motion design",
+      "source": "social-motion-agent",
+      "path": "skills/motion-design/SKILL.md",
+      "kind": "skill"
+    }
+  ]
+}

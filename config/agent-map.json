@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "routes": [
+    "showcase",
+    "tutorial",
+    "youtube",
+    "shorts",
+    "editing",
+    "repurpose",
+    "launch",
+    "explainer",
+    "data",
+    "maps",
+    "simulation",
+    "typography",
+    "broll",
+    "captions",
+    "audio",
+    "thumbnail",
+    "polish",
+    "motion",
+    "review"
+  ],
+  "primary_engine": "HyperFrames",
+  "publisher": "AI EVOLUTION POLSKA"
+}

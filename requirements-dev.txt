@@ -1,0 +1,3 @@
+ruff==0.14.2
+# Optional visual measurement tool:
+playwright>=1.55,<2

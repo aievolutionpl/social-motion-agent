@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920, height=1080">
+<title>Social Motion Agent | AI EVOLUTION POLSKA</title>
+<script src="./gsap.min.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:#08070e;color:#f2efe8;font-family:Arial,Helvetica,sans-serif}
+#root{position:relative;width:100%;height:100%;overflow:hidden}
+.brand{position:absolute;left:7.5%;top:8%;font-size:24px;letter-spacing:.16em;color:#bbb5ce}
+.rule{position:absolute;left:7.5%;right:7.5%;bottom:10%;height:2px;background:#393444}
+.progress{height:100%;width:100%;background:#9e86ff;transform-origin:left}
+.scene{position:absolute;inset:22% 7.5% 19%;display:flex;flex-direction:column;justify-content:center}
+.kicker{font-size:26px;letter-spacing:.12em;color:#b9a7ff;margin:0 0 28px}
+h1,h2{margin:0;font-size:126px;line-height:1.02;letter-spacing:-.065em;font-weight:600;max-width:1350px}
+em{font-family:Georgia,serif;font-weight:400;color:#b9a7ff}
+.steps{display:flex;gap:48px;margin-top:55px;font-size:38px}
+.step{border-top:2px solid #73628f;padding-top:20px}
+.step span{color:#b9a7ff;font-family:monospace;font-size:23px;display:block;margin-bottom:12px}
+.footer{position:absolute;bottom:5.5%;left:7.5%;right:7.5%;display:flex;justify-content:space-between;font-size:20px;color:#aaa4b9;letter-spacing:.08em}
+.orbit{position:absolute;width:470px;height:470px;border:2px solid #7b5cff;border-radius:50%;right:-150px;top:13%}
+.orbit:after{content:"";position:absolute;inset:42px;border:1px solid #4b3e72;border-radius:50%}
+@media(max-aspect-ratio:1/1){h1,h2{font-size:108px;line-height:1.08}.scene{inset:25% 9% 24%}.steps{flex-direction:column;gap:28px;font-size:42px}.step span{display:inline;margin-right:25px}.brand{font-size:25px;left:9%;top:12%}.footer{bottom:14%;left:9%;font-size:18px}.rule{bottom:18%;left:9%}.orbit{top:15%;right:-240px}.kicker{font-size:25px}}
+</style>
+</head>
+<body>
+<main id="root" data-composition-id="main" data-start="0" data-duration="8" data-width="1920" data-height="1080" data-fps="30">
+<div class="orbit" aria-hidden="true"></div>
+<div class="brand">AI EVOLUTION POLSKA / SOCIAL MOTION AGENT</div>
+<section id="idea" class="scene clip" data-start="0" data-duration="2.6" data-track-index="1">
+<p class="kicker">01 / THE IDEA</p><h1>From a clear idea.<br>To a film <em>worth watching.</em></h1>
+</section>
+<section id="workflow" class="scene clip" data-start="2.6" data-duration="2.6" data-track-index="1">
+<p class="kicker">02 / THE CRAFT</p><h2>Give your ideas<br>a <em>workflow.</em></h2>
+<div class="steps"><div class="step"><span>01</span>Brief</div><div class="step"><span>02</span>Compose</div><div class="step"><span>03</span>Review</div></div>
+</section>
+<section id="result" class="scene clip" data-start="5.2" data-duration="2.8" data-track-index="1">
+<p class="kicker">03 / YOUR NEXT FILM</p><h2>Make it<br><em>move.</em></h2>
+<div class="steps">Editable HTML. Local rendering.</div>
+</section>
+<div class="rule"><div class="progress"></div></div>
+<div class="footer"><span>BUILT FOR AI AGENTS</span><span>IDEA → FILM</span></div>
+</main>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.fromTo(".orbit",{rotation:-20,scale:.88},{rotation:25,scale:1.1,duration:8,ease:"none"},0);
+tl.fromTo(".progress",{scaleX:0},{scaleX:1,duration:8,ease:"none"},0);
+["#idea","#workflow","#result"].forEach((id,i)=>{
+ const t=[0,2.6,5.2][i];
+ tl.fromTo(id,{opacity:0,y:44},{opacity:1,y:0,duration:.55,ease:"power3.out"},t);
+ if(i<2)tl.to(id,{opacity:0,y:-24,duration:.25,ease:"power2.in"},t+2.35);
+});
+window.__timelines=window.__timelines||{};
+window.__timelines.main=tl;
+tl.seek(0);
+</script>
+</body>
+</html>

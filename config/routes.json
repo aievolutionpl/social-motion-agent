@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "routes": {
+    "showcase": {
+      "purpose": "Pokaz prawdziwej strony lub aplikacji: rezultat, kilka akcji, zbliżenia i callouty",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "nagranie właściwego okna",
+        "projekt .openscreen z mediami",
+        "MP4",
+        "telemetria kursora jeśli dostępna",
+        "raport QA"
+      ]
+    },
+    "tutorial": {
+      "purpose": "Tutorial krok po kroku: nauka narzędzia AI na prawdziwym interfejsie, lektor PL i napisy",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "scenariusz dydaktyczny",
+        "nagrania kroków",
+        "edytowalny projekt z mediami",
+        "MP4",
+        "napisy",
+        "rozdziały i opis"
+      ]
+    },
+    "youtube": {
+      "purpose": "Film YouTube: narracja, rozdziały, ilustracje i montaż",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "master MP4",
+        "miniatura",
+        "źródła",
+        "rozdziały i opis",
+        "napisy jeśli potrzebne"
+      ]
+    },
+    "shorts": {
+      "purpose": "Reels, Shorts, TikTok: hook, rytm, napisy i pionowa kompozycja",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "MP4 9:16",
+        "cover",
+        "opis",
+        "SRT jeśli potrzebne"
+      ]
+    },
+    "editing": {
+      "purpose": "Montaż istniejących nagrań, selekcja ujęć, audio i eksport",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "MP4",
+        "timeline",
+        "lista cięć",
+        "raport jakości"
+      ]
+    },
+    "repurpose": {
+      "purpose": "Długi film lub podcast do krótkich samodzielnych klipów",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "klipy z hookami",
+        "napisy",
+        "timecode źródeł",
+        "opisy"
+      ]
+    },
+    "launch": {
+      "purpose": "Premiera produktu, reklama, feature demo i motion branding",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "master",
+        "źródła",
+        "poster",
+        "warianty proporcji"
+      ]
+    },
+    "explainer": {
+      "purpose": "Wyjaśnienie techniczne, kurs, mechanizm i proces",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "film edukacyjny",
+        "sprawdzone fakty",
+        "diagramy",
+        "źródła"
+      ]
+    },
+    "data": {
+      "purpose": "Wykresy, infografiki i opowieść oparta na danych",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "film",
+        "dane źródłowe",
+        "jednostki i metodologia"
+      ]
+    },
+    "maps": {
+      "purpose": "Animowane mapy, trasy i explainery geograficzne",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "film mapowy",
+        "źródła danych",
+        "atrybucja"
+      ]
+    },
+    "simulation": {
+      "purpose": "Animacja kodem, symulacje i sceny 3D/WebGL",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "edytowalny HTML",
+        "MP4",
+        "klatki kontrolne"
+      ]
+    },
+    "typography": {
+      "purpose": "Kinetic typography, logo, tekst i animowane tytuły",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "film lub loop",
+        "źródła",
+        "sprawdzone holdy tekstu"
+      ]
+    },
+    "broll": {
+      "purpose": "Dobór prawdziwych materiałów i generowanie potrzebnych przebitek",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "lista ujęć",
+        "lokalne assety",
+        "prompty, źródła i request IDs"
+      ]
+    },
+    "captions": {
+      "purpose": "Transkrypcja, SRT, word timing i czytelne napisy",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "SRT/VTT",
+        "word timing",
+        "sprawdzone napisy"
+      ]
+    },
+    "audio": {
+      "purpose": "Narracja ElevenLabs, muzyka, SFX, miks i odsłuch",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "VO",
+        "cue sheet",
+        "master audio",
+        "raport loudness"
+      ]
+    },
+    "thumbnail": {
+      "purpose": "Miniatura YouTube, cover lub poster zgodny z filmem",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "lokalny plik miniatury",
+        "prompt",
+        "kontrola czytelności"
+      ]
+    },
+    "polish": {
+      "purpose": "Dopracowanie kodowanych ramek: HTML/CSS/React, napisy, dashboardy, UI mocki, bez wyglądu generowanego",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "scena HTML na tokenach",
+        "raport polish_check dla każdego formatu",
+        "zrzut do oględzin",
+        "decyzje o ostrzeżeniach w HANDOFF"
+      ]
+    },
+    "motion": {
+      "purpose": "Dobór ruchu do sceny z katalogu 637 efektów i 11 receptur; hooki, przejścia, napisy, wykresy",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "wybrane efekty z parametrami i uzasadnieniem",
+        "kroki receptury z czasem",
+        "scena zgodna z seek(t)"
+      ]
+    },
+    "review": {
+      "purpose": "Kontrola obrazu, czytelności, audio, faktów i eksportu",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md"
+      ],
+      "outputs": [
+        "technical.json",
+        "review.json",
+        "contact sheet",
+        "lista poprawek"
+      ]
+    }
+  },
+  "always_read": [
+    "AGENTS.md",
+    "START_HERE.md"
+  ],
+  "intake_skill": "skills/intake/SKILL.md"
+}

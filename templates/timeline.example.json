@@ -1,0 +1,8 @@
+{
+  "_note": "Przykład struktury; identyfikatory i czasy zastąp rzeczywistymi danymi produkcji.",
+  "clips": [
+    {"asset_id": "a-PIERWSZE_UJECIE", "duration_sec": 3, "in_sec": 0, "fit": "contain"},
+    {"asset_id": "a-DRUGIE_UJECIE", "duration_sec": 3, "in_sec": 1, "fit": "cover"}
+  ],
+  "audio": {"voice": "a-NARRACJA", "music": "a-MUZYKA", "music_gain": 0.12}
+}

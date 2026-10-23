@@ -1,0 +1,16 @@
+name: Bug report
+description: Report a reproducible problem
+body:
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Include commands, OS, Python and Node versions. Remove private paths and secrets.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true

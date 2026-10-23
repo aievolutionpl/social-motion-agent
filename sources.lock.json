@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "note": "Reference catalogue only. Not installed, vendored or claimed as tested.",
+  "sources": [
+    {
+      "id": "hypermotion",
+      "url": "https://github.com/psiddharthdesign/hypermotion.git",
+      "commit": "e510cd60c0d2632863b5a3f78dba71b905c75ff2",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "anatomy",
+      "url": "https://github.com/wheresryan22/anatomy.git",
+      "commit": "1482e8469b0a9e0d8cc18ea2740a01423d29ae80",
+      "license": "MIT"
+    },
+    {
+      "id": "open-design",
+      "url": "https://github.com/nexu-io/open-design.git",
+      "commit": "3b0df90f305c8279e748c292accf336d02b924ef",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "motion-anything",
+      "url": "https://github.com/nexu-io/motion-anything.git",
+      "commit": "b016900d9ee92fc2d3e4dc520359cc8999d2ed4e",
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "video-agent-skills",
+      "url": "https://github.com/Melvynx/video-agent-skills.git",
+      "commit": "480801ade3f64e722769bec98ef8f2c8339650ea",
+      "license": "MIT"
+    },
+    {
+      "id": "openclip-agent-skills",
+      "url": "https://github.com/OpenClip-App/agent-skills.git",
+      "commit": "ea02c98db69c437616df1db4a4400cde1f4a0832",
+      "license": "MIT"
+    },
+    {
+      "id": "claude-motion",
+      "url": "https://github.com/whaleyxbt/claude-motion.git",
+      "commit": "e627941543d9988b155dc610bb9cc0115a5e365e",
+      "license": "MIT"
+    },
+    {
+      "id": "claude-motion-design",
+      "url": "https://github.com/howseen-ai/claude-motion-design.git",
+      "commit": "3d90d349ef3fdde9b7e89de4df4a2159c9e8697f",
+      "license": "MIT"
+    },
+    {
+      "id": "motion-skills",
+      "url": "https://github.com/iart-ai/motion-skills.git",
+      "commit": "bb5a3ce666110855a3437de2f70e9968c408e005",
+      "license": "MIT"
+    },
+    {
+      "id": "awesome-motion-design-agent-skills",
+      "url": "https://github.com/frankxai/awesome-motion-design-agent-skills.git",
+      "commit": "b45d60fa5b0f7b7d07331572416b80e17dcfd203",
+      "license": "CC0-1.0"
+    },
+    {
+      "id": "awesome-opus5-5-videos",
+      "url": "https://github.com/yihui-dev/awesome-opus5-5-videos.git",
+      "commit": "92aee2f586ac0715cb3cbcb6384834f98a33383d",
+      "license": "MIT"
+    },
+    {
+      "id": "remotion-official-skills",
+      "url": "https://github.com/remotion-dev/skills.git",
+      "commit": "039e8a2fc78b67efc228d5645367838b85818a1c",
+      "license": "not_detected"
+    },
+    {
+      "id": "motion-video-skill",
+      "url": "https://github.com/farhan-syah/motion-video-skill.git",
+      "commit": "0a21eb76468f90ddcc04e7b689c1f6048218e296",
+      "license": "MIT"
+    },
+    {
+      "id": "openscreen",
+      "url": "https://github.com/getopenscreen/openscreen.git",
+      "commit": "1e91710962e44d16f7555b5e772f45a0c786045e",
+      "license": "MIT"
+    },
+    {
+      "id": "ux-ui-agent-skills",
+      "url": "https://github.com/plugin87/ux-ui-agent-skills.git",
+      "commit": "55156b40e3a9aafa52448bde76cdcb5147b958db",
+      "license": "MIT"
+    },
+    {
+      "id": "awesome-ai-motion",
+      "url": "https://github.com/gongnyang/awesome-ai-motion.git",
+      "commit": "1e3c249073c61b42ceb556d7800f628d565d9312",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-tiktok-video-skills",
+      "url": "https://github.com/iart-ai/tiktok-video-skills.git",
+      "commit": "2a775336b5a638cbf8a61dbd785f9a1b649be016",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-text-message-video-skills",
+      "url": "https://github.com/iart-ai/text-message-video-skills.git",
+      "commit": "3a800e1e9b9635fa196a07b0143c80f7e9648558",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-youtube-video-skills",
+      "url": "https://github.com/iart-ai/youtube-video-skills.git",
+      "commit": "f3df381d65abe5078f5ed410bbc3ed72e7cb92bd",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-ecommerce-video-skills",
+      "url": "https://github.com/iart-ai/ecommerce-video-skills.git",
+      "commit": "2bd0dd19c9b2df5230f5d8f7453861b9681e49b4",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-ad-video-skills",
+      "url": "https://github.com/iart-ai/ad-video-skills.git",
+      "commit": "0de0f2a1c1f42a98103fc0ec436509276428372c",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-data-animation-skills",
+      "url": "https://github.com/iart-ai/data-animation-skills.git",
+      "commit": "8ce2709c3992490251e8a991535b1945f01c6865",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-explainer-video-skills",
+      "url": "https://github.com/iart-ai/explainer-video-skills.git",
+      "commit": "3e2d411b725d9a72939cf8e5eb81579e751373e7",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-map-animation-skills",
+      "url": "https://github.com/iart-ai/map-animation-skills.git",
+      "commit": "390ca98bbcf2ea88a430a69c0dcbf423e43d075d",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-web-animation-skills",
+      "url": "https://github.com/iart-ai/web-animation-skills.git",
+      "commit": "b6dba3eb759726845a44163ff0bad70dd9e7fbb6",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-motion-design-skills",
+      "url": "https://github.com/iart-ai/motion-design-skills.git",
+      "commit": "3c129f769d90a1328c209c386492333c9ac62312",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-kinetic-typography-skills",
+      "url": "https://github.com/iart-ai/kinetic-typography-skills.git",
+      "commit": "fccc94bd325d824235ee9e715e65abde57b6513a",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-freelance-motion-skills",
+      "url": "https://github.com/iart-ai/freelance-motion-skills.git",
+      "commit": "d85c2b484693d0387333c778d9c95230fa1856ce",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-webgl-animation-skills",
+      "url": "https://github.com/iart-ai/webgl-animation-skills.git",
+      "commit": "50697d659fbf70152f48f9f8aadf1efe78bbdde1",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-manim-skills",
+      "url": "https://github.com/iart-ai/manim-skills.git",
+      "commit": "a15833c44de5108a3ee68f178a1fca126aa7c6d8",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-generative-illustration-skills",
+      "url": "https://github.com/iart-ai/generative-illustration-skills.git",
+      "commit": "e7d62437c875fc8ad5eff6e90fe0e25b30e43933",
+      "license": "not_detected"
+    },
+    {
+      "id": "iart-javascript-animation-skills",
+      "url": "https://github.com/iart-ai/javascript-animation-skills.git",
+      "commit": "f7d0882a313249cbd43f0e4e9e209b1622870253",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-lower-thirds-skills",
+      "url": "https://github.com/iart-ai/lower-thirds-skills.git",
+      "commit": "aa8ef7ed9fa59d0a79fc57701e493cfd8197b5d8",
+      "license": "MIT"
+    },
+    {
+      "id": "iart-b-roll-skills",
+      "url": "https://github.com/iart-ai/b-roll-skills.git",
+      "commit": "a51e34b0a8def533759373733bde1869c21075fb",
+      "license": "MIT"
+    }
+  ]
+}

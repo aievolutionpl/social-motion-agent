@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ramka startowa</title>
+<link rel="stylesheet" href="frame-tokens.css">
+<style>
+  /* Tylko układ tej sceny. Kolory, rozmiary i cienie pochodzą z frame-tokens.css. */
+  .row { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: var(--sp-16); align-items: center; }
+  .copy { display: grid; gap: var(--sp-6); justify-items: start; }
+  .hero { font-family: var(--font-display); font-size: var(--fs-hero); font-weight: 700; line-height: var(--lh-tight); letter-spacing: var(--tracking-display); }
+  .hero small { font-size: var(--fs-title); font-weight: 600; color: var(--ink-3); margin-inline-start: var(--sp-2); }
+  .stats { display: grid; gap: var(--sp-6); }
+  .stat { display: grid; gap: var(--sp-3); }
+  .stat header { display: flex; justify-content: space-between; align-items: baseline; gap: var(--sp-4); font-size: var(--fs-body); color: var(--ink-2); }
+  .stat b { color: var(--ink); font-weight: 650; }
+  .topline { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-6); }
+  /* Kwadrat: dwie kolumny, ale ciaśniejszy rytm, żeby całość mieściła się w polu bezpiecznym */
+  @container canvas (min-aspect-ratio: 9/10) and (max-aspect-ratio: 11/10) {
+    .stage { gap: var(--sp-6); }
+    .row { gap: var(--sp-8); }
+    .copy { gap: var(--sp-3); }
+    .hero { font-size: 14cqmin; }
+    .title { font-size: 5cqmin; }
+    .lead { font-size: var(--fs-body); }
+    .panel { padding: var(--sp-6); }
+  }
+  /* 4:5 i 9:16: jedna kolumna, ciaśniejszy rytm, żeby całość mieściła się w polu bezpiecznym */
+  @container canvas (max-aspect-ratio: 4/5) {
+    .stage { gap: var(--sp-8); }
+    .row { grid-template-columns: minmax(0, 1fr); gap: var(--sp-8); }
+    .copy { gap: var(--sp-4); }
+    .hero { font-size: 17cqmin; }
+    .title { font-size: 5.6cqmin; }
+    .panel { padding: var(--sp-6); }
+  }
+  @container canvas (max-aspect-ratio: 7/10) { .hero { font-size: 22cqmin; } }
+</style>
+</head>
+<body>
+<main class="canvas" id="canvas">
+  <div class="stage">
+    <div class="topline" data-in="0">
+      <span class="chip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Krok 1 z 3</span>
+      <span class="eyebrow">Nazwa marki</span>
+    </div>
+
+    <div class="row">
+      <div class="copy">
+        <p class="eyebrow" data-in="0.2">Wynik kwartału</p>
+        <div class="hero num" data-in="0.35"><span id="value" data-to="48">0</span><small>%</small></div>
+        <h1 class="title" data-in="0.55">Jedna rzecz prowadzi wzrok, reszta jest cicha.</h1>
+        <p class="lead" data-in="0.7">Krótkie zdanie wyjaśnienia pod spodem, bez ozdobników.</p>
+      </div>
+
+      <section class="panel stats" data-in="0.8" aria-label="Szczegóły">
+        <div class="stat"><header><span>Zasięg</span><b class="num">72%</b></header><div class="meter"><i style="transform: scaleX(.72)"></i></div></div>
+        <div class="stat"><header><span>Zaangażowanie</span><b class="num">41%</b></header><div class="meter"><i style="transform: scaleX(.41)"></i></div></div>
+        <div class="stat"><header><span>Retencja</span><b class="num">23%</b></header><div class="meter"><i style="transform: scaleX(.23)"></i></div></div>
+      </section>
+    </div>
+
+    <div class="pill-caption" data-in="1.1">Napis na dole mieści się w bezpiecznym polu</div>
+  </div>
+</main>
+
+<script>
+/* Kontrakt vstudio: obraz jest czystą funkcją czasu t. Bez timerów i Math.random w rysowaniu. */
+window.DURATION = 6;
+window.EV = [{t: 0.2, type: "whoosh"}, {t: 0.35, type: "hit"}, {t: 0.8, type: "tick"}];
+const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);   /* easeOutCubic */
+const nodes = [...document.querySelectorAll("[data-in]")];
+const value = document.getElementById("value");
+
+window.seek = (t) => {
+  for (const el of nodes) {
+    const p = ease((t - parseFloat(el.dataset.in)) / 0.6);
+    el.style.opacity = p;
+    el.style.transform = `translateY(calc((1 - ${p}) * var(--travel)))`;
+  }
+  const to = parseFloat(value.dataset.to);
+  value.textContent = Math.round(to * ease((t - 0.35) / 1.4));
+};
+window.TEXTS = () => [...document.querySelectorAll("h1,p,span,b,small")].filter((e) => e.offsetParent && e.textContent.trim()).map((e, i) => {
+  const r = e.getBoundingClientRect();
+  return {id: e.className || e.tagName.toLowerCase() + i, text: e.textContent.trim(), x0: r.left, x1: r.right, y0: r.top, y1: r.bottom};
+});
+window.__ready = document.fonts ? document.fonts.ready : Promise.resolve();
+/* Bez rendera pokaż stan końcowy, żeby plik oglądany w przeglądarce i sprawdzany bramkami był kompletny. */
+if (!window.__CAPTURE__) window.seek(window.DURATION - 0.5);
+</script>
+</body>
+</html>

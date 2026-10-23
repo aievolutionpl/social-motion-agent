@@ -1,0 +1,25 @@
+/node_modules/
+/output/
+/tools/repos/
+/tools/runtime/
+/assets/private/
+/SOUND EFFECTS/*
+!/SOUND EFFECTS/README.md
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.serena/
+.council/
+.atlas/
+.ruff_cache/
+.hyperframes/
+**/.hyperframes/
+**/renders/
+examples/**/gsap.min.js
+.DS_Store
+Thumbs.db

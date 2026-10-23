@@ -1,0 +1,9 @@
+{
+  "executable": "tools/openscreen/Openscreen.exe",
+  "user_data": "output/openscreen-user-data",
+  "defaults": {
+    "quality": "good",
+    "fps": 60,
+    "cursor": "editable-overlay"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "social-motion-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Agent-ready video production with HyperFrames. By AI EVOLUTION POLSKA.",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "preview": "node scripts/prepare-example.mjs && hyperframes preview examples/launch",
+    "lint:video": "node scripts/prepare-example.mjs && hyperframes lint examples/launch",
+    "test": "python -S -B -m unittest discover -s tests -v"
+  },
+  "dependencies": { "hyperframes": "0.8.188", "gsap": "3.15.0" }
+}
