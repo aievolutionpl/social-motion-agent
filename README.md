@@ -15,6 +15,12 @@ Social Motion Agent to narzędzie CLI i zestaw instrukcji dla agentów, a nie au
 
 *8-sekundowa, niema kompozycja HTML z repozytorium. GIF pokazuje rzeczywisty render; okładka i grafika procesu są ilustracjami koncepcyjnymi wygenerowanymi przez AI.*
 
+## Pobierz wszystko w jednej paczce
+
+**[Pobierz pełny ZIP — skille, 34 narzędzia i wszystkie assety](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.0.0/social-motion-agent-v1.0.0-full.zip)**
+
+Rozpakuj paczkę i otwórz folder `social-motion-agent`. Pełne źródła są już w środku: bez Git, submodułów i instalatora biblioteki. Integralność sprawdzisz poleceniem `python -S scripts/verify_bundle.py`. Do renderowania potrzebujesz opisanych niżej środowisk i `npm ci`; paczka nie zawiera binariów środowisk, cache ani zewnętrznych plików Git LFS, których nie było w oryginalnej kolekcji. Licencje narzędzi i zasady użycia mediów pozostają bez zmian.
+
 ## Kompletny warsztat w repozytorium
 
 Dołączamy **126 oryginalnych efektów dźwiękowych**, **9 teł WebP**, **3 fonty z licencjami OFL**, **7 lokalnych skilli** oraz katalog **913 wpisów z 34 repozytoriów narzędziowych**. Katalog obejmuje również recipes, szablony i fixture testowe.
@@ -30,7 +36,7 @@ python -S scripts/bootstrap_library.py --check
 python -S scripts/library_check.py
 ```
 
-**Pobrałeś ZIP lub masz już zwykły klon?** Uruchom `python -S scripts/bootstrap_library.py`. GitHub ZIP zawiera media, ale nie zawartość submodułów; instalator uzupełni wszystkie źródła. Nie instaluje automatycznie zależności 34 narzędzi ani nie uruchamia ich kodu.
+**Pobrałeś automatyczny GitHub „Source code (zip)” lub masz już zwykły klon?** Uruchom `python -S scripts/bootstrap_library.py`. Automatyczny GitHub ZIP (inny niż pełna paczka powyżej) zawiera media, ale nie zawartość submodułów; instalator uzupełni wszystkie źródła. Nie instaluje automatycznie zależności 34 narzędzi ani nie uruchamia ich kodu.
 
 [Zawartość i pobieranie biblioteki](docs/LIBRARY.md) · [Katalog skilli](skills/INDEX.md) · [Narzędzia](tools/INDEX.md) · [Prawa do mediów](docs/MEDIA_RIGHTS.md)
 

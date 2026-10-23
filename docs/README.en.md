@@ -6,6 +6,12 @@ Turn a brief into an editable film with agent instructions, HyperFrames/GSAP com
 
 ![Product cover](images/cover.png)
 
+## Download the complete bundle
+
+**[Download full ZIP: all skills, 34 tool sources and assets](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.0.0/social-motion-agent-v1.0.0-full.zip)**
+
+Extract and open `social-motion-agent`. No Git, submodule checkout or library bootstrap is needed. Verify with `python -S scripts/verify_bundle.py`. Rendering still requires the runtimes below and `npm ci`. Runtime binaries, caches and unavailable upstream Git LFS payloads are not bundled. Original licenses and media rights apply. This is separate from GitHub’s automatic Source code ZIP.
+
 ## Complete workshop
 
 The repository includes 126 original sound effects, 9 WebP backgrounds, 3 fonts with OFL texts, 7 local skills and a catalogue of 913 upstream entries. All 34 upstream repositories are pinned Git submodules.

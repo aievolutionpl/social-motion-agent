@@ -51,3 +51,7 @@ Read only the selected skill and its references. A downloaded repo is source cod
 See MEDIA_RIGHTS.md and THIRD_PARTY_NOTICES.md. Tools retain original licenses. Audio redistribution is based on the owner's explicit confirmation; license evidence is pending and unrestricted reuse is not claimed.
 
 Private portraits, avatars, customer campaigns, credentials, production output, dependency caches and machine-local application installations are deliberately excluded. Reproducible source code and shared production materials are included.
+
+## Complete standalone ZIP
+
+[Download the full v1.0.0 bundle](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.0.0/social-motion-agent-v1.0.0-full.zip). All 34 pinned source trees are expanded into ordinary folders. No Git or library bootstrap is required. Run `python -S scripts/verify_bundle.py` for integrity verification; `library_check.py` checks Git checkouts and is intended for the clone workflow. Install runtime dependencies separately as described in README.
