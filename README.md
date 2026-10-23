@@ -15,6 +15,25 @@ Social Motion Agent to narzędzie CLI i zestaw instrukcji dla agentów, a nie au
 
 *8-sekundowa, niema kompozycja HTML z repozytorium. GIF pokazuje rzeczywisty render; okładka i grafika procesu są ilustracjami koncepcyjnymi wygenerowanymi przez AI.*
 
+## Kompletny warsztat w repozytorium
+
+Dołączamy **126 oryginalnych efektów dźwiękowych**, **9 teł WebP**, **3 fonty z licencjami OFL**, **7 lokalnych skilli** oraz katalog **913 wpisów z 34 repozytoriów narzędziowych**. Katalog obejmuje również recipes, szablony i fixture testowe.
+
+Media są bezpośrednio w `SOUND EFFECTS/` i `assets/`. Pełne źródła narzędzi znajdują się w `tools/repos/` jako submoduły Git, z przypiętymi wersjami i oryginalnymi licencjami.
+
+```bash
+# Pełna instalacja źródeł i materiałów
+git clone --recurse-submodules https://github.com/aievolutionpl/social-motion-agent.git
+cd social-motion-agent
+npm ci
+python -S scripts/bootstrap_library.py --check
+python -S scripts/library_check.py
+```
+
+**Pobrałeś ZIP lub masz już zwykły klon?** Uruchom `python -S scripts/bootstrap_library.py`. GitHub ZIP zawiera media, ale nie zawartość submodułów; instalator uzupełni wszystkie źródła. Nie instaluje automatycznie zależności 34 narzędzi ani nie uruchamia ich kodu.
+
+[Zawartość i pobieranie biblioteki](docs/LIBRARY.md) · [Katalog skilli](skills/INDEX.md) · [Narzędzia](tools/INDEX.md) · [Prawa do mediów](docs/MEDIA_RIGHTS.md)
+
 ## Pierwszy film
 
 Wymagania: **Python 3.11+**, **Node.js 22+**, **FFmpeg i ffprobe** dostępne w PATH. Pythonowy rdzeń nie wymaga pakietów pip.
@@ -101,7 +120,7 @@ flowchart LR
 - `skills/`: lokalne instrukcje do briefu, produkcji i projektowania ruchu.
 - `examples/launch/`: działająca kompozycja do nauki i modyfikacji.
 - `templates/`: tokeny wizualne i pomocnicze szablony.
-- `sources.lock.json`: referencje do opcjonalnych bibliotek, bez ich kopiowania do repo.
+- `sources.lock.json` i `.gitmodules`: dokładne wersje pełnych źródeł narzędziowych.
 
 ## Prywatność i integracje
 
@@ -119,11 +138,11 @@ python -S scripts/smoke_test.py
 python -S scripts/release_check.py
 ```
 
-CI uruchamia testy na Pythonie 3.11 i 3.13, test montażu FFmpeg oraz rzeczywisty render HyperFrames. Opcjonalne testy bibliotek mediów i Playwright są pomijane, gdy nie ma tych zależności.
+CI uruchamia testy na Pythonie 3.11 i 3.13, test montażu FFmpeg oraz rzeczywisty render HyperFrames. Testy skatalogowanych bibliotek uruchamiają się po pobraniu źródeł. Testy Playwright są pomijane, gdy przeglądarka pomiarowa nie jest zainstalowana.
 
 - Demo i podstawowy montaż działają bez płatnych API.
 - Płatne generowanie głosu wymaga Twojego konta i jawnego `--execute`.
-- OpenScreen, katalog ruchu i dodatkowy adapter video-studio są opcjonalne.
+- Źródła OpenScreen i katalogu ruchu są dołączone przez submoduły; runtime OpenScreen i dodatkowy adapter video-studio wymagają osobnej instalacji.
 - Podgląd HyperFrames jest lokalnym edytorem; repo nie zawiera osobnej aplikacji SaaS.
 - Spójność renderu między systemami zależy m.in. od fontów i przeglądarki; dla ściśle powtarzalnego środowiska użyj oficjalnej ścieżki Docker HyperFrames.
 

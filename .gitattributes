@@ -4,3 +4,8 @@
 *.json text eol=lf
 *.png binary
 *.gif binary
+
+*.wav binary
+*.mp3 binary
+*.ttf binary
+*.webp binary

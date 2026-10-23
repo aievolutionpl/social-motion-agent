@@ -2,6 +2,8 @@
 from pathlib import Path
 import re
 import os
+import hashlib
+import json
 import subprocess
 import sys
 
@@ -21,6 +23,12 @@ def inspect(path, raw):
         problems.append("forbidden file")
     if raw[:4] in (b"\x89PNG", b"GIF8") or path.suffix in (".jpg", ".webp"):
         return problems
+    if path.suffix.lower() in {".wav", ".mp3", ".ttf"}:
+        manifest = json.loads((ROOT / "assets/media-manifest.json").read_text(encoding="utf-8"))
+        entry = next((p for p in manifest["files"] if p["path"] == rel.as_posix()), None)
+        if not entry or entry["sha256"] != hashlib.sha256(raw).hexdigest():
+            problems.append("media missing or different from integrity manifest")
+        return problems
     if len(raw) > 2_000_000:
         problems.append("unexpected large non-image file")
     try:
@@ -36,16 +44,36 @@ def main():
     indexed = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--show-toplevel"], capture_output=True, text=True)
     own_repo = indexed.returncode == 0 and Path(indexed.stdout.strip()).resolve() == ROOT.resolve()
     if own_repo:
-        result = subprocess.run(["git", "-C", str(ROOT), "ls-files", "-z"], capture_output=True, check=True)
-        paths = [ROOT / p.decode("utf-8") for p in result.stdout.split(b"\0") if p]
+        result = subprocess.run(["git", "-C", str(ROOT), "ls-files", "--stage", "-z"], capture_output=True, check=True)
+        paths = []
+        linked = []
+        for record in result.stdout.split(b"\0"):
+            if not record:
+                continue
+            metadata, name = record.decode("utf-8").split("\t", 1)
+            mode_bits, commit, _stage = metadata.split()
+            if mode_bits == "160000":
+                linked.append((name, commit))
+            else:
+                paths.append(ROOT / name)
         mode = "git-index"
     else:
         paths = []
         for directory, dirs, files in os.walk(ROOT):
             dirs[:] = [d for d in dirs if d not in SKIP]
+            if Path(directory) == ROOT / "tools":
+                dirs[:] = [d for d in dirs if d != "repos"]
             paths.extend(Path(directory) / name for name in files if name != "gsap.min.js")
+        linked = []
         mode = "source-tree"
     failures = []
+    if linked:
+        lock_data = subprocess.run(["git", "-C", str(ROOT), "show", ":sources.lock.json"],
+                                   capture_output=True, check=True).stdout
+        expected = {s["path"]: s["commit"] for s in json.loads(lock_data)["sources"]}
+        for name, commit in linked:
+            if expected.get(name) != commit:
+                failures.append((name, ["submodule differs from pinned source manifest"]))
     for path in paths:
         if path.is_symlink():
             failures.append((path.relative_to(ROOT), ["symlinks are not publishable"]))

@@ -10,5 +10,5 @@ Never fabricate user answers, research, asset rights, review evidence or provide
 Do not run paid generation or publish a film without explicit authorization.
 No API keys, private client material, account IDs or production outputs in Git.
 Run python -S -B -m unittest discover -s tests -v after relevant changes.
-Use python -S scripts/release_check.py before committing. Do not vendor upstream repos.
+Use python -S scripts/release_check.py before committing. Keep upstream sources as pinned Git submodules; restore them with scripts/bootstrap_library.py. Do not relabel their licenses. Media rights are in docs/MEDIA_RIGHTS.md.
 The bundled demo is synthetic and must never be represented as an approved client production.

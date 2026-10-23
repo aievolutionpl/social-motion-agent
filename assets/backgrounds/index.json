@@ -1,0 +1,213 @@
+{
+  "generated_at": "2026-10-21T18:11:22.344188+00:00",
+  "count": 9,
+  "items": [
+    {
+      "file": "bg-01-silk-purple-orange.webp",
+      "path": "assets/backgrounds/bg-01-silk-purple-orange.webp",
+      "about": "Błyszczący jedwab: fiolet, magenta i pomarańcz na czerni, bardzo energiczny.",
+      "tags": [
+        "energia",
+        "premium",
+        "hook",
+        "kolorowy"
+      ],
+      "use": "hook, tytuł otwierający, przebitka między scenami; tekst na pille lub panelu",
+      "width": 1024,
+      "height": 1792,
+      "brightness": 0.15,
+      "saturation": 0.911,
+      "busy": 0.183,
+      "calm_zones": [
+        "bottom-left",
+        "top-center",
+        "bottom-center"
+      ],
+      "text": "napis w spokojnych strefach albo na pille (tło barwne)"
+    },
+    {
+      "file": "bg-02-navy-glow.webp",
+      "path": "assets/backgrounds/bg-02-navy-glow.webp",
+      "about": "Prawie pusty ciemny granat z miękką niebieską poświatą u góry. Najspokojniejsze tło.",
+      "tags": [
+        "spokojne",
+        "neutralne",
+        "tekst",
+        "tech"
+      ],
+      "use": "domyślne tło pod napisy, liczby, wykresy i dłuższy tekst; każda marka",
+      "width": 1024,
+      "height": 1792,
+      "brightness": 0.083,
+      "saturation": 0.489,
+      "busy": 0.009,
+      "calm_zones": [
+        "bottom-right",
+        "bottom-center",
+        "bottom-left"
+      ],
+      "text": "napis wprost na tle w spokojnych strefach"
+    },
+    {
+      "file": "bg-03-amber-arc.webp",
+      "path": "assets/backgrounds/bg-03-amber-arc.webp",
+      "about": "Prawie czerń z ciepłym bursztynowym łukiem światła w prawym dolnym rogu.",
+      "tags": [
+        "spokojne",
+        "ciepłe",
+        "premium",
+        "kinowe"
+      ],
+      "use": "cytat, tytuł, lektor z jednym zdaniem; tekst w górnej i lewej części",
+      "width": 1024,
+      "height": 1792,
+      "brightness": 0.082,
+      "saturation": 0.571,
+      "busy": 0.027,
+      "calm_zones": [
+        "top-left",
+        "middle-left",
+        "top-center"
+      ],
+      "text": "napis wprost na tle w spokojnych strefach"
+    },
+    {
+      "file": "bg-04-blue-wires-orange.webp",
+      "path": "assets/backgrounds/bg-04-blue-wires-orange.webp",
+      "about": "Granat z półprzezroczystymi falami niebieskimi i fioletowymi, kropkami i siatką; pomarańczowy akcent w rogu. Środek pusty.",
+      "tags": [
+        "tech",
+        "AI",
+        "spokojne",
+        "wielowarstwowe"
+      ],
+      "use": "explainer AI i technologii, slajd z tekstem na środku, tło sceny z dashboardem",
+      "width": 1024,
+      "height": 1792,
+      "brightness": 0.064,
+      "saturation": 0.93,
+      "busy": 0.139,
+      "calm_zones": [
+        "middle-center",
+        "top-right",
+        "middle-right"
+      ],
+      "text": "napis w spokojnych strefach albo na pille (tło barwne)"
+    },
+    {
+      "file": "bg-05-gold-glow-silk.webp",
+      "path": "assets/backgrounds/bg-05-gold-glow-silk.webp",
+      "about": "Czerń ze złotą miękką poświatą na środku i cienkimi złotymi krzywymi.",
+      "tags": [
+        "luksus",
+        "spokojne",
+        "ciepłe",
+        "premium"
+      ],
+      "use": "wynik, liczba lub hasło na środku, marki premium i finanse",
+      "width": 1024,
+      "height": 1792,
+      "brightness": 0.077,
+      "saturation": 0.508,
+      "busy": 0.037,
+      "calm_zones": [
+        "top-left",
+        "top-right",
+        "bottom-left"
+      ],
+      "text": "napis wprost na tle w spokojnych strefach"
+    },
+    {
+      "file": "bg-06-gold-ring.webp",
+      "path": "assets/backgrounds/bg-06-gold-ring.webp",
+      "about": "Czerń ze złotymi koncentrycznymi pierścieniami i pustym kołem na środku.",
+      "tags": [
+        "luksus",
+        "kadr",
+        "logo",
+        "premium"
+      ],
+      "use": "logo, liczba, portret lub ikona w pustym kole; reflektor na jedną rzecz",
+      "width": 1024,
+      "height": 1792,
+      "brightness": 0.055,
+      "saturation": 0.53,
+      "busy": 0.097,
+      "calm_zones": [
+        "bottom-left",
+        "top-right",
+        "bottom-center"
+      ],
+      "text": "napis wprost na tle w spokojnych strefach"
+    },
+    {
+      "file": "bg-07-neon-shard-burst.webp",
+      "path": "assets/backgrounds/bg-07-neon-shard-burst.webp",
+      "about": "Wybuch neonowych szklanych odłamków: niebieski, magenta, pomarańcz, rozchodzące się od środka. Bardzo gęste.",
+      "tags": [
+        "energia",
+        "wybuch",
+        "gęste",
+        "hook"
+      ],
+      "use": "krótki hook, przejście, flash, akcent na uderzenie dźwiękowe; tekst tylko na panelu",
+      "width": 1024,
+      "height": 1792,
+      "brightness": 0.142,
+      "saturation": 0.901,
+      "busy": 0.621,
+      "calm_zones": [
+        "top-right",
+        "bottom-left",
+        "bottom-center"
+      ],
+      "text": "napis tylko na panelu lub pille (tło zbyt gęste lub jasne)"
+    },
+    {
+      "file": "bg-08-iridescent-glass-swirl.webp",
+      "path": "assets/backgrounds/bg-08-iridescent-glass-swirl.webp",
+      "about": "Opalizujący szklany wir: cyjan, fiolet, pomarańcz. Nasycony i dynamiczny.",
+      "tags": [
+        "kolorowy",
+        "płynne",
+        "gęste",
+        "kreatywne"
+      ],
+      "use": "tło przejścia, intro kreatywne i AI, krótki hook; tekst na pille",
+      "width": 1024,
+      "height": 1792,
+      "brightness": 0.295,
+      "saturation": 0.812,
+      "busy": 0.252,
+      "calm_zones": [
+        "bottom-left",
+        "top-left",
+        "middle-left"
+      ],
+      "text": "napis tylko na panelu lub pille (tło zbyt gęste lub jasne)"
+    },
+    {
+      "file": "bg-09-blue-orange-glitch.webp",
+      "path": "assets/backgrounds/bg-09-blue-orange-glitch.webp",
+      "about": "Czerń z niebieskimi i pomarańczowymi diagonalnymi odłamkami i pikselowym glitchem. Agresywne.",
+      "tags": [
+        "glitch",
+        "cyber",
+        "gęste",
+        "kontrast"
+      ],
+      "use": "przejście glitch, cyberbezpieczeństwo, awaria, mocny hook; tekst na panelu",
+      "width": 1024,
+      "height": 1792,
+      "brightness": 0.124,
+      "saturation": 0.863,
+      "busy": 0.543,
+      "calm_zones": [
+        "bottom-right",
+        "top-left",
+        "top-center"
+      ],
+      "text": "napis tylko na panelu lub pille (tło zbyt gęste lub jasne)"
+    }
+  ]
+}

@@ -6,6 +6,14 @@ Turn a brief into an editable film with agent instructions, HyperFrames/GSAP com
 
 ![Product cover](images/cover.png)
 
+## Complete workshop
+
+The repository includes 126 original sound effects, 9 WebP backgrounds, 3 fonts with OFL texts, 7 local skills and a catalogue of 913 upstream entries. All 34 upstream repositories are pinned Git submodules.
+
+Clone with `git clone --recurse-submodules https://github.com/aievolutionpl/social-motion-agent.git`. Existing clones and ZIP users can run `python -S scripts/bootstrap_library.py` to restore every pinned source. Media is stored directly in this repository. GitHub ZIPs omit submodule contents; bootstrap restores them.
+
+[Full library](LIBRARY.md) · [Media rights](MEDIA_RIGHTS.md). Audio inclusion follows the owner's explicit redistribution authorization; supporting documents are pending and the code license does not relicense audio.
+
 ## Quickstart
 
 Requires Python 3.11+, Node.js 22+, FFmpeg and ffprobe in PATH.

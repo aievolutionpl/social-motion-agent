@@ -1,0 +1,971 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "SOUND EFFECTS/6 camera shutter sound effects_NYHzq7VnUJE.mp3",
+      "bytes": 416895,
+      "sha256": "dc2484caab3a72ba2c08e425cf08b00d2bc7a9e52a49a7b2731a10bec08a60bc",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/awww.mp3",
+      "bytes": 37803,
+      "sha256": "e6b70e73d0cf8b26d9a0870b4d98fa3d2d8aecbc6f4e175950c155283ece3d4a",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Camera Clicks.WAV",
+      "bytes": 61484,
+      "sha256": "e0dd2a2803f933a231f31966b229cbe2dd55ec71f8e34d51d56375b23669548c",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Camera Riser.wav",
+      "bytes": 709066,
+      "sha256": "21451ccc5bef0ef19e43e6c40666c5483026b39228d2521f4879efe7de9f8d62",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Camera Shutter.WAV",
+      "bytes": 61484,
+      "sha256": "1e6da3f669d6261c11ccecefd2896e01d3825185b98410a062264dbe4b213b2a",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/camera-13695.mp3",
+      "bytes": 13374,
+      "sha256": "2cfb785eb275971c91c25e9775b1a6ea728be16296feef821541c9dcd99cf77e",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/chaching.mp3",
+      "bytes": 33131,
+      "sha256": "7878ab2fa1f112274ada704aaca9b809837414357c850a69a3ee7cd0f4de0d00",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Cinematic Impact.WAV",
+      "bytes": 405548,
+      "sha256": "68bda7603985933d928339fc235b088fca9300274d0fa821817c3fcd01294587",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Click - Sound Effect (HD).mp3",
+      "bytes": 152734,
+      "sha256": "c09d48397aed8fa6f9774d104cbe00a0fe0f7b1362791aec4d7a01840672da61",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/click-1.mp3",
+      "bytes": 19729,
+      "sha256": "89d20c8c905492e753cd33077811734b540fad294abcdc70f2713db3b612d5d1",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/click-10.mp3",
+      "bytes": 19729,
+      "sha256": "1529d09b94a764e9a7fffb3921698aa07462523c95880aa5b50f4ae24cfd80da",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/click-2.mp3",
+      "bytes": 19729,
+      "sha256": "aec417febd538be157af785c9325bb78ea04e0b32f2df890fb81ab6ef0e38506",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/click-3.mp3",
+      "bytes": 19729,
+      "sha256": "533f11a4a7408664fb5f2038a83f0fc1b220c895839b84db198245bcd25ec04b",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/click-4.mp3",
+      "bytes": 19729,
+      "sha256": "4d363f82ff3a9cd6a9e10ad5e6c8f73a48ac318b78e649694d202b9de9fb533e",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/click-5.mp3",
+      "bytes": 19729,
+      "sha256": "300d054ab13ebf8e8842c4119f61f82368f8b7f3080944b569b0036df4d30760",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/click-6.mp3",
+      "bytes": 19729,
+      "sha256": "e62687d655bcc78906fe720cbd28f32d806215484bf833f181a16956a627dafb",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/click-7.mp3",
+      "bytes": 19729,
+      "sha256": "8be585002689a44a31b795f3801fa15a8b4ccf63afa800902a29be38b14a494c",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/click-8.mp3",
+      "bytes": 20305,
+      "sha256": "bbfeaf7a58df46007682744fd49ca1615e155fea9de1e47e4fb8933fb7060ee0",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/click-9.mp3",
+      "bytes": 19729,
+      "sha256": "23b8aeb8a0700847ad12fdfdaa7f7836917278600965aa68d541e3393117589e",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Click.wav",
+      "bytes": 341922,
+      "sha256": "587c4a0adc06f7c9e8bab5bcd4d67475d3b5a30e7a746150d1aa92ed5b3d889a",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Clock Tick.wav",
+      "bytes": 1295822,
+      "sha256": "5e28fe37123ab01cc6922c931ca3d10cac823b68d521ca1659b81c9f8fc0d740",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Cloud Sweep.wav",
+      "bytes": 6108044,
+      "sha256": "9b98af55b72cbaec3eaca86241c0ecdf1639d52171b49256d0821d88ca51fdb5",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Cool Whip A.wav",
+      "bytes": 577104,
+      "sha256": "d19747764b69ddea9ee2002cb86cb8d5d88aa56eaa28cb802b68a5d2ed41f868",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Cool Whip B.wav",
+      "bytes": 577870,
+      "sha256": "a9fb0d5ab74d9603babf85bddf446f0660f3e76744fc7abc7406dd7b59a7ba0d",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Delay swoosh.wav",
+      "bytes": 958352,
+      "sha256": "b23842ca94f3ce6c345080d1fb44bf03a255f023e3ba0e439a10464dfb03a5f0",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Delay woosh.wav",
+      "bytes": 600878,
+      "sha256": "97d8529f9d571baea47f7a3cd0fe07798d52a80ad0abafb7534998d58124623f",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/digital count.wav",
+      "bytes": 909457,
+      "sha256": "de988697c98d8d0ee814a107bb8c8ad76953b0ba00ec96cd52e3da5feefb5432",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Digital Shutter.wav",
+      "bytes": 258704,
+      "sha256": "cfed7e10e093fc498615585ddfaf27bcb6e1ae716608d3a297f615db0e028e34",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Ding.mp3",
+      "bytes": 28852,
+      "sha256": "1fadcade4b960f01d1325e7c16082019a557513583027bfa9d920020908325fb",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Ding.WAV",
+      "bytes": 356396,
+      "sha256": "8f7e04db4d3fa1c3daba8211b2d11daf75b7314ab34f7b00efab06c2cb9d79f0",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Door.wav",
+      "bytes": 131204,
+      "sha256": "deb3e65c520a0dede9457332d9db52451e882e313ef6f068c2ad03a9ce7552ef",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Double Swipe.mp3",
+      "bytes": 68545,
+      "sha256": "855d0796a6c10cea3ef09e137409d8a9a50791bda2959b6f0fd9eb47f3c598c9",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Download.wav",
+      "bytes": 1332150,
+      "sha256": "1edd33397a6e0bf895cf0fac22cdef4df84c33a0f23d553605540eb73a049cbc",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/DSGNRise_Distorted Low Motor Launch, Airy Rising, Medium Reverb 1_Ocular Sounds_Tense Risers_The Complete Whooshes Collection.wav",
+      "bytes": 2259830,
+      "sha256": "b5c38ed06dfdff3f5431df6fbbbdb3d776875cf657ae403672e7129492a5756d",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/DSGNRise_Distorted, Reverse Sandfall Rising, Sub Flanger_Ocular Sounds_Tense Risers_The Complete Whooshes Collection.wav",
+      "bytes": 3854012,
+      "sha256": "55fcb9829e77acde0ac0e22439d758d64f09de78d3ea6d879c87460086fed846",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/DSGNWhsh_Medium Whoosh, Dark, Filtered_Ocular Sounds_Short Whooshes_The Complete Whooshes Collection.wav",
+      "bytes": 1435562,
+      "sha256": "efaeeee7985dc2a56c3a7b93dff835b68b9567d3002cbe03ed178dd2451476ed",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/DSGNWhsh_Quick Whoosh, Soft Snow, Small Tremelo_Ocular Sounds_Short Whooshes_The Complete Whooshes Collection.wav",
+      "bytes": 894614,
+      "sha256": "14dd8e2996262296d60cd2aa84afc92a200c6427f48f043fa3d5c40320eafbec",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/DSGNWhsh_Quick Whoosh, Windy, Left to Right_Ocular Sounds_Short Whooshes_The Complete Whooshes Collection.wav",
+      "bytes": 379100,
+      "sha256": "b12ee7fd056fcf205f8f80d22debfc5474f6750c59453520fa57b51bf4e55044",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Echo impact.mp3",
+      "bytes": 133440,
+      "sha256": "4471624dcea986995dd33932211f934b243f8058d3a0dc2ff70faa910417792f",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Egg crack.mp3",
+      "bytes": 25344,
+      "sha256": "3a01bcf52c22f44ab07476ab0ce8f3066aa65bd1295858c1485f8e1bf807a2c1",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Erased Data.wav",
+      "bytes": 1154630,
+      "sha256": "fd080b4ba737d408f1394711728918b751b71f5a29bd4c3057b93bc4e75b02a7",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/ES_Riser Flange - SFX Producer.mp3",
+      "bytes": 82851,
+      "sha256": "ad87e2f6067c95b2761d43b94040f61e4c09dae486bad7d069e19d9a295faf9e",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/fart.mp3",
+      "bytes": 16775,
+      "sha256": "a4fac13cb91303242c918217e8313fbafc1e637954f522f260507dbda004a3ed",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/fast-whoosh-118248.mp3",
+      "bytes": 38452,
+      "sha256": "64c4ea6f62da8f7f7e05b0c47dd43276bdde692af755daec87c75fbebf64dbd2",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Fire Woosh.wav",
+      "bytes": 974914,
+      "sha256": "39e6ec5c156efa56b57afae1a6cbb0f7ce1c425d5e616b73ff1527b5dc715c70",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Gear.WAV",
+      "bytes": 114732,
+      "sha256": "75260f7c29e0624e50271174a1aa5924738b7d50a1965842a03a39a8b8d6c2f1",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Glass break 01.mp3",
+      "bytes": 61824,
+      "sha256": "94322b290d771a0991e92c2cc342c6aaa1fdf3f363afe8d64cde25f077287c61",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Glass break 01.wav",
+      "bytes": 268852,
+      "sha256": "afb670fa1befb0e535fb118ba5ced3cadad3423fe4f8ace751be0d70e1e2259c",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Glass break 02, high.mp3",
+      "bytes": 44468,
+      "sha256": "bfdb5442ab6a78fa64046ddcef5edd8542cc86cbfd93794ae5d4ded02ebd62df",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Glass break 02, high.wav",
+      "bytes": 186376,
+      "sha256": "ee99e8abc8b9b5c22a929f2f3dd155fb96d08d8fc6d9a0b33432339ef0203e35",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/glitch 1.mp3",
+      "bytes": 46530,
+      "sha256": "4c8c90706a9a41b598323a6274220fbc4074de1a5b6c98a986494039fdf89231",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Glitch 2.mp3",
+      "bytes": 81408,
+      "sha256": "4373be4ba26af4c04c90507d15a6023c5ebdb9fd428bb4215586d80ed2b35ab7",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Glitch 3.mp3",
+      "bytes": 129567,
+      "sha256": "faf737e16ffa3b6e559b7e5b1c2940d41c997d6be9b486f46b4bf09d184ebd25",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Glitch 4.mp3",
+      "bytes": 12480,
+      "sha256": "7a3f5a61e8237645f408d70ef755896c7b34d23bfc50b22955f3f77eb6ae8303",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Heartbeat.mp3",
+      "bytes": 625268,
+      "sha256": "5421e2bd3b832ef3b8af90a27b477458b4fcda481c1ed0ba1da4b6e2a1e5c5ca",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Heartbeat3.wav",
+      "bytes": 45484,
+      "sha256": "56e334be61761ce13619754f70fc4ed7930e5e18b4b023a8548726e803e4fd3a",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/HeartGet.wav",
+      "bytes": 99180,
+      "sha256": "376f5950592c5bff5ac445c3d200c2a18b1d5974b17a2766000629e070df281a",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Ice crackling 01, thin ice.mp3",
+      "bytes": 180788,
+      "sha256": "7ad594f8e33aeb31acf33cb19d2742f421a01b36ecd292e2e7b2016d087fa577",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Impt_Deep Pre Shifted Bass Drop_Ocular Sounds_Deep Impacts_The Complete Impacts Collection.wav",
+      "bytes": 3378776,
+      "sha256": "051d281b1291c3709d5a152fd3638e39ad663d947dacbb5530beb4840e12d1d6",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Impt_Explosion with Hammer, Long Reverb_Ocular Sounds_Epic Hits Vol 2_The Complete Impacts Collection.wav",
+      "bytes": 6516610,
+      "sha256": "f7d6d835690deb5f71b6890c84a12a4bcd6415d9590cbe0a5d90cc785fdb8b64",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Impt_Small Hit, Drum, Deep, Short_Ocular Sounds_Deep Impacts_The Complete Impacts Collection.wav",
+      "bytes": 1152044,
+      "sha256": "8b2107b4eab1f313678ddead6f6db33bece6a335f8f17c7cc7c6832263309ef4",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Iphone Capture.mp3",
+      "bytes": 12480,
+      "sha256": "e6d1acc2ac8b66b4bf63f4263137f99f87ae39c4844934b39369d06def2baaca",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/iPhone Charging.WAV",
+      "bytes": 176172,
+      "sha256": "882dc69b889a7f788d6b6781082dca1caae2f3e9f87f4277b4fc806311f51336",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/IPhone Notification Sound Spam.mp3",
+      "bytes": 511092,
+      "sha256": "5455e4706625d6522cf4c40c3fb0f81b7a89f14cebee5fe92d69167f534298ac",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Iphone Receive.wav",
+      "bytes": 76064,
+      "sha256": "025ef9d99ba450dd5217ca47d6ecde255badb5f00acdb28691fd7f8686cb2570",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Key.wav",
+      "bytes": 68012,
+      "sha256": "dd0bbdb0f70334396b117715c36325912af43a8b453c6f759a1b456920dbd1ef",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/keyboard 1.mp3",
+      "bytes": 351405,
+      "sha256": "f285a951eab609d71bf456afa533fa9187bed1ecf0bd4d89b56945d14732cc1c",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Keyboard Key Typing.mp3",
+      "bytes": 1857930,
+      "sha256": "813e314695796c8e268e7e5d83b81442c7302254c02b5864301ee7f62a7e9233",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Keyboard Typing Slow.mp3",
+      "bytes": 32971,
+      "sha256": "34bec492faf50c298a7259cfd6c9d0928a20c84fad8e3f2a84131edb0790fd69",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Keyboard Typing.mp3",
+      "bytes": 312000,
+      "sha256": "ac74e5a22d87e2617f5545d29d605774e4ddaca6de4551e61d004d3c0be80054",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Keyboard.mp3",
+      "bytes": 257280,
+      "sha256": "fcf1386bf53125a8f97907d35a12f527453f6a211066819200b48103b2e95298",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/KeyGet.wav",
+      "bytes": 98732,
+      "sha256": "d6da8606fba88b057701bd4adf6fd0664e7df6ae57f7277a9a2eb04ab01bf82d",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/kids yeyy.mp3",
+      "bytes": 88061,
+      "sha256": "f4a1c66a1566eea3d22cdeb3218b9445f3193ba51e597579b01edbcfd86570eb",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Laptop Keyboard 1.mp3",
+      "bytes": 174605,
+      "sha256": "99c59a87800228591bf8fb14bc20b2d1a045d18f58058314b6666cf510a93fc1",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Line Break.wav",
+      "bytes": 2130692,
+      "sha256": "116fa578f8b4f4fb8ca9cfe7b23fef9a132d1c24c8a253f1bfd97073cb06a144",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Liquid filling up, echo, sewer.mp3",
+      "bytes": 507188,
+      "sha256": "4c142e989ef432cf1e790b6381a26f625414af7cb2e40061aa4b264a64d7c314",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Mac Typing.WAV",
+      "bytes": 196652,
+      "sha256": "cc7daca86dedc4143ed9af3c0efb3a87d556661586c4d33e30b1f9f46b4cff5a",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Metallic Riser.WAV",
+      "bytes": 290860,
+      "sha256": "3c0751f0deb89620ddc1faa22136d492897e5ffaff3aab1d5db2b4395d1afa9b",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Mouse Click.mp3",
+      "bytes": 163004,
+      "sha256": "99ad7a049957bced75c4b9d8a9fd743ce9be8b9bb652a7fc86907b4484ffe0ca",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Mouse Click.WAV",
+      "bytes": 90156,
+      "sha256": "33827aeec6bc8d2e46d23cc0c5e67506c26c4fab17256493e94a66d3c026cc3c",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Network Connect.wav",
+      "bytes": 2130692,
+      "sha256": "d9fa000ff71198ffb0335035bb7124b4fcb680129ac5d098c46d6afcdeae31ee",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Noise.wav",
+      "bytes": 88244,
+      "sha256": "bfcc64da364279ee33e2b3a7e43f268ca4634c90e045d8cba61c938d555be3de",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Paper Crumble 1.wav",
+      "bytes": 983346,
+      "sha256": "542453c33e03db5ccb8063bf775ea77bfbedf2ecde01deff9107e239822861c8",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Paper Crumble 2.wav",
+      "bytes": 1233204,
+      "sha256": "18c23af587defe819c007fc8ea9feeb6993feef228452219109ba10554ebe019",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Plastic Crunch.mp3",
+      "bytes": 12480,
+      "sha256": "f80b5a0aff51bad92fb16d0dcfc66808416ef46f04124f92ecb6b80a107e7c17",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/pop.mp3",
+      "bytes": 62880,
+      "sha256": "930c6f2204b7e616e38f849955f719881fba8238c058e793895ecf5e1a9a1044",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Pop.wav",
+      "bytes": 127380,
+      "sha256": "0e059520c2a7b3a1e213b6d8d0b20ec197d0f8b2dba1609853f3e2e2eba1cbce",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Portal Hop.wav",
+      "bytes": 1346888,
+      "sha256": "424c2f7b344c0e363b26dba79e932c82185b465f18ac1145ce29acc4dfecf252",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Power down swoosh.mp3",
+      "bytes": 171840,
+      "sha256": "2ec432864bb20a41b690bc73ab5b2216f7632efd7ce11ab7fd456d9265bfdf2b",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Punch Stop Riser.WAV",
+      "bytes": 143404,
+      "sha256": "68f393fd56fa6dbedb131552abff3ffb1b288871c371c9815b8e8d8b0febedfc",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/punch.mp3",
+      "bytes": 24064,
+      "sha256": "1fffdc5ff07824dbe5e0bbd9e91bced947a9972b1bf9ed8dd38707e8fa17c0f7",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Punch_01.wav",
+      "bytes": 100104,
+      "sha256": "c876174a488ea90523b4d35db5675ca7d9da766fe60690c595e480afb3c193e2",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Radio snow 2.wav",
+      "bytes": 1930292,
+      "sha256": "9ae248ab5f6fb14eb8059e2fc1ea6ebf290daaf6281a5814fda910b590a0b27b",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Rain loud.wav",
+      "bytes": 1921076,
+      "sha256": "e391045edd616001a89ff7c979c92cdec2dd4f1a998438e8d78e68319807b3fa",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Reboot Failure.wav",
+      "bytes": 4260260,
+      "sha256": "39d98357c0662eb323f36bcffa03ce313ec797ba9a23af53c661e3a150e1e210",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Restart Switch.wav",
+      "bytes": 666614,
+      "sha256": "ea5f045a55384ba089ab28ecf7651e298f6fa0d43992bb3c1ff86ec75204dd8b",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Rewinding.wav",
+      "bytes": 1346888,
+      "sha256": "c91f809624d42fa1568a544b47a6feaa7c83d8b03a85f0c4847b4d9b1ea1acf2",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Rifle_Shot_01.wav",
+      "bytes": 364968,
+      "sha256": "8138df2d33c86826a3fa9b4a529548e3fa0e16900007fa9dde30af5326c028fb",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Rise_Distorted Low Motor Launch, Airy Rising, Medium Reverb 1_Ocular Sounds_Tense Risers_The Complete Whooshes Collection.wav",
+      "bytes": 2259830,
+      "sha256": "b5c38ed06dfdff3f5431df6fbbbdb3d776875cf657ae403672e7129492a5756d",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Rise_Distorted, Reverse Sandfall Rising, Sub Flanger_Ocular Sounds_Tense Risers_The Complete Whooshes Collection.wav",
+      "bytes": 3854012,
+      "sha256": "55fcb9829e77acde0ac0e22439d758d64f09de78d3ea6d879c87460086fed846",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Sci-Fi Riser.wav",
+      "bytes": 1063530,
+      "sha256": "b43d0e16d2cb0b776f884a4ef2d073fb408ee2906c83007759bb196dfa2876fd",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/sfx_pop.mp3",
+      "bytes": 8821,
+      "sha256": "533056a550cf6078ca762048ae3b61a9ad71ed98008996dc1d864fad732ae9a7",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/sfx_riser.mp3",
+      "bytes": 48945,
+      "sha256": "96125cd29df3f753e2242507eac499f21eb67e91f863f4af986c96ed0d57f20d",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/sfx_swoosh.mp3",
+      "bytes": 13836,
+      "sha256": "142104017ff86ae7f664cef71adb785cad4596f2bffd527f91d3e28e53fa9c32",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/sfx_whoosh.mp3",
+      "bytes": 17180,
+      "sha256": "ca514de89423569e5f7b28338220da2fa043a16ce256abe955c2bef64c5d0395",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Sharp Riser.wav",
+      "bytes": 886298,
+      "sha256": "0834ac3231226392e6ce3f6a3b02592e47262d73e7d57abd3c8a2b9be6f854ce",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Space Woosh.wav",
+      "bytes": 753378,
+      "sha256": "57c7f54ffc7c3bed8db31eed2a5fe23784df3f886ae53b08175d63765cdffc2d",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Speed swoosh.wav",
+      "bytes": 1857356,
+      "sha256": "8098eea6d20cdf507216277731f6cef44ca8eef8228927865b970422a415b70d",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/StabOut.wav",
+      "bytes": 70524,
+      "sha256": "d91df92fba7a634600377c711b630b1a0e80ce77da291736159f9c5ae99f14d4",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Sudden Riser.wav",
+      "bytes": 974914,
+      "sha256": "49fc9540fa8ff922e26571cf0773b6b7350a039bff00064d1ef897f684b7c2ce",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/suspense meme sfx.mp3",
+      "bytes": 78765,
+      "sha256": "2d8590cdb649f1263b796e21977e195a8c66db916ea4468449683d82c86a2bf2",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/swipes.mp3",
+      "bytes": 163933,
+      "sha256": "b7924948ce1d58fa476db6c5574fc26c051f74c98b15eb1a840da67239af9588",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Sword Draw Sound Effect.mp3",
+      "bytes": 13720,
+      "sha256": "46edcae52fe769c647c7600f186abd4a26a95e7e6e420a19e6cca565c034a50c",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Teleport swish.mp3",
+      "bytes": 123188,
+      "sha256": "d78560221a19646c1d2430bc2da85f285c04cf44c11991a17932d4f6786fe6d7",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Teleporting.wav",
+      "bytes": 561692,
+      "sha256": "d3307638bf05eca7ed1d6e4440163d9e41c3049f82cd38bac6f5a968f79b8fe2",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Termainal Glitch.wav",
+      "bytes": 2529990,
+      "sha256": "80c11fdcffe2ba5d14150c8692b611d64457745f9ed9729c78e32d53a024c4af",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/tickingbuzzer-75859.mp3",
+      "bytes": 563040,
+      "sha256": "3de0113928047dbcc5f4b6fabf9b0fb0b60f928f4ca3537ed8786d6b52e3e950",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Whoosh Cinematic.mp3",
+      "bytes": 96966,
+      "sha256": "16f60afb18924c9c444741e0ccf06ebbab2921192c33a93747a036c015d3b119",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Whsh_Medium Whoosh, Dark, Filtered_Ocular Sounds_Short Whooshes_The Complete Whooshes Collection.wav",
+      "bytes": 1435562,
+      "sha256": "efaeeee7985dc2a56c3a7b93dff835b68b9567d3002cbe03ed178dd2451476ed",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Whsh_Quick Whoosh, Soft Snow, Small Tremelo_Ocular Sounds_Short Whooshes_The Complete Whooshes Collection.wav",
+      "bytes": 894614,
+      "sha256": "14dd8e2996262296d60cd2aa84afc92a200c6427f48f043fa3d5c40320eafbec",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Whsh_Quick Whoosh, Windy, Left to Right_Ocular Sounds_Short Whooshes_The Complete Whooshes Collection.wav",
+      "bytes": 379100,
+      "sha256": "b12ee7fd056fcf205f8f80d22debfc5474f6750c59453520fa57b51bf4e55044",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Wind.wav",
+      "bytes": 4615166,
+      "sha256": "2b3c8bea2650738d14095da91573e9db9b69a37cfe05b3f11e895751faa4e87c",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Woosh (1).mp3",
+      "bytes": 37694,
+      "sha256": "e8a7fd96aa749ba4f04522ed28ddb30fc6af350ed29cea9a927e89b2033237ac",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Woosh (1).wav",
+      "bytes": 476398,
+      "sha256": "4a474ebee09ae50b60a8866925ea5ba9503469bd1d22e11f304263a85b5e1205",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Woosh (2).mp3",
+      "bytes": 226850,
+      "sha256": "1aad4eee16957c4c11c26afceaa845dc66b917dec9b7b740393d1f77ef30329a",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "SOUND EFFECTS/Zoom by.wav",
+      "bytes": 2851010,
+      "sha256": "e4ba540f5ffe90b91dc161b41f8f61b76aad722e4b9304bf6f75f84eadf743d1",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/backgrounds/bg-01-silk-purple-orange.webp",
+      "bytes": 170808,
+      "sha256": "42c8d65c73dca8b4301c9ff9912683cd8c1cec4fc69e3785a18abbc9293d8661",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/backgrounds/bg-02-navy-glow.webp",
+      "bytes": 11318,
+      "sha256": "27e4b15e6dab2b0342bef693af39508529f10c6fc805174abdac0801e82cac8f",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/backgrounds/bg-03-amber-arc.webp",
+      "bytes": 28850,
+      "sha256": "4f8164d460b9636b9e0155994c58276869c6ffb025fad5e5c77dc18d468646ef",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/backgrounds/bg-04-blue-wires-orange.webp",
+      "bytes": 125624,
+      "sha256": "5b6a741b70ea1cee67c878c43b67a5ddd99afec20a539610e567f208a1dd2f3d",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/backgrounds/bg-05-gold-glow-silk.webp",
+      "bytes": 36392,
+      "sha256": "77f33acbc80992c309d77575f9dcf478f962df4434ae53f99c68f10d99d2e1c7",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/backgrounds/bg-06-gold-ring.webp",
+      "bytes": 79704,
+      "sha256": "19237db27c8ee56ab8888a0f3334e1250f5fb677f75fb504c63bbb28df30e82f",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/backgrounds/bg-07-neon-shard-burst.webp",
+      "bytes": 446876,
+      "sha256": "77b3651feddc3982cf578f9073b67f24e6d22f7d485e5006ae8183a96632ad92",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/backgrounds/bg-08-iridescent-glass-swirl.webp",
+      "bytes": 191434,
+      "sha256": "c17bfd386cd7bfde1cbaee973ed35a030518d0241b35ce2cf9e1f685f7ee1db2",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/backgrounds/bg-09-blue-orange-glitch.webp",
+      "bytes": 426404,
+      "sha256": "73c80e81d8add459be903db140fa068d38838645e15107f9775fbd3993b5749f",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/fonts/Jersey10-Regular.ttf",
+      "bytes": 77732,
+      "sha256": "db9cbd091617048a145d249daa2b815fe7083be6ab66ac26626e21a4e01c3e82",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/fonts/PressStart2P-Regular.ttf",
+      "bytes": 118204,
+      "sha256": "034c77f1f05ec89421e4a63f0e3a4ca1ecf852cc6d2bf611f126f275728e017d",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "assets/fonts/Silkscreen-Bold.ttf",
+      "bytes": 30632,
+      "sha256": "768476aa712d4f5c3e18d3bce80f980a8bd3f72b7094d22ec5e768df3acfed61",
+      "provenance": "owner_supplied",
+      "rights": "see docs/MEDIA_RIGHTS.md"
+    }
+  ]
+}

@@ -27,6 +27,14 @@ jobs:
           ffmpeg -version | head -n 1
       - run: npm ci --ignore-scripts
       - run: python -S -B -m unittest discover -s tests -v
+      - name: Restore complete source library
+        if: matrix.python == '3.13'
+        run: python -S scripts/bootstrap_library.py
+      - name: Validate complete library and rerun extended tests
+        if: matrix.python == '3.13'
+        run: |
+          python -S scripts/library_check.py
+          python -S -B -m unittest discover -s tests -v
       - run: python -S scripts/smoke_test.py
       - run: python -S scripts/release_check.py
       - run: python -S studio.py demo --render

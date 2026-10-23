@@ -1,0 +1,169 @@
+[submodule "hypermotion"]
+	path = tools/repos/hypermotion
+	url = https://github.com/psiddharthdesign/hypermotion.git
+	shallow = true
+
+[submodule "anatomy"]
+	path = tools/repos/anatomy
+	url = https://github.com/wheresryan22/anatomy.git
+	shallow = true
+
+[submodule "open-design"]
+	path = tools/repos/open-design
+	url = https://github.com/nexu-io/open-design.git
+	shallow = true
+
+[submodule "motion-anything"]
+	path = tools/repos/motion-anything
+	url = https://github.com/nexu-io/motion-anything.git
+	shallow = true
+
+[submodule "video-agent-skills"]
+	path = tools/repos/video-agent-skills
+	url = https://github.com/Melvynx/video-agent-skills.git
+	shallow = true
+
+[submodule "openclip-agent-skills"]
+	path = tools/repos/openclip-agent-skills
+	url = https://github.com/OpenClip-App/agent-skills.git
+	shallow = true
+
+[submodule "claude-motion"]
+	path = tools/repos/claude-motion
+	url = https://github.com/whaleyxbt/claude-motion.git
+	shallow = true
+
+[submodule "claude-motion-design"]
+	path = tools/repos/claude-motion-design
+	url = https://github.com/howseen-ai/claude-motion-design.git
+	shallow = true
+
+[submodule "motion-skills"]
+	path = tools/repos/motion-skills
+	url = https://github.com/iart-ai/motion-skills.git
+	shallow = true
+
+[submodule "awesome-motion-design-agent-skills"]
+	path = tools/repos/awesome-motion-design-agent-skills
+	url = https://github.com/frankxai/awesome-motion-design-agent-skills.git
+	shallow = true
+
+[submodule "awesome-opus5-5-videos"]
+	path = tools/repos/awesome-opus5-5-videos
+	url = https://github.com/yihui-dev/awesome-opus5-5-videos.git
+	shallow = true
+
+[submodule "remotion-official-skills"]
+	path = tools/repos/remotion-official-skills
+	url = https://github.com/remotion-dev/skills.git
+	shallow = true
+
+[submodule "motion-video-skill"]
+	path = tools/repos/motion-video-skill
+	url = https://github.com/farhan-syah/motion-video-skill.git
+	shallow = true
+
+[submodule "openscreen"]
+	path = tools/repos/openscreen
+	url = https://github.com/getopenscreen/openscreen.git
+	shallow = true
+
+[submodule "ux-ui-agent-skills"]
+	path = tools/repos/ux-ui-agent-skills
+	url = https://github.com/plugin87/ux-ui-agent-skills.git
+	shallow = true
+
+[submodule "awesome-ai-motion"]
+	path = tools/repos/awesome-ai-motion
+	url = https://github.com/gongnyang/awesome-ai-motion.git
+	shallow = true
+
+[submodule "iart-tiktok-video-skills"]
+	path = tools/repos/iart-tiktok-video-skills
+	url = https://github.com/iart-ai/tiktok-video-skills.git
+	shallow = true
+
+[submodule "iart-text-message-video-skills"]
+	path = tools/repos/iart-text-message-video-skills
+	url = https://github.com/iart-ai/text-message-video-skills.git
+	shallow = true
+
+[submodule "iart-youtube-video-skills"]
+	path = tools/repos/iart-youtube-video-skills
+	url = https://github.com/iart-ai/youtube-video-skills.git
+	shallow = true
+
+[submodule "iart-ecommerce-video-skills"]
+	path = tools/repos/iart-ecommerce-video-skills
+	url = https://github.com/iart-ai/ecommerce-video-skills.git
+	shallow = true
+
+[submodule "iart-ad-video-skills"]
+	path = tools/repos/iart-ad-video-skills
+	url = https://github.com/iart-ai/ad-video-skills.git
+	shallow = true
+
+[submodule "iart-data-animation-skills"]
+	path = tools/repos/iart-data-animation-skills
+	url = https://github.com/iart-ai/data-animation-skills.git
+	shallow = true
+
+[submodule "iart-explainer-video-skills"]
+	path = tools/repos/iart-explainer-video-skills
+	url = https://github.com/iart-ai/explainer-video-skills.git
+	shallow = true
+
+[submodule "iart-map-animation-skills"]
+	path = tools/repos/iart-map-animation-skills
+	url = https://github.com/iart-ai/map-animation-skills.git
+	shallow = true
+
+[submodule "iart-web-animation-skills"]
+	path = tools/repos/iart-web-animation-skills
+	url = https://github.com/iart-ai/web-animation-skills.git
+	shallow = true
+
+[submodule "iart-motion-design-skills"]
+	path = tools/repos/iart-motion-design-skills
+	url = https://github.com/iart-ai/motion-design-skills.git
+	shallow = true
+
+[submodule "iart-kinetic-typography-skills"]
+	path = tools/repos/iart-kinetic-typography-skills
+	url = https://github.com/iart-ai/kinetic-typography-skills.git
+	shallow = true
+
+[submodule "iart-freelance-motion-skills"]
+	path = tools/repos/iart-freelance-motion-skills
+	url = https://github.com/iart-ai/freelance-motion-skills.git
+	shallow = true
+
+[submodule "iart-webgl-animation-skills"]
+	path = tools/repos/iart-webgl-animation-skills
+	url = https://github.com/iart-ai/webgl-animation-skills.git
+	shallow = true
+
+[submodule "iart-manim-skills"]
+	path = tools/repos/iart-manim-skills
+	url = https://github.com/iart-ai/manim-skills.git
+	shallow = true
+
+[submodule "iart-generative-illustration-skills"]
+	path = tools/repos/iart-generative-illustration-skills
+	url = https://github.com/iart-ai/generative-illustration-skills.git
+	shallow = true
+
+[submodule "iart-javascript-animation-skills"]
+	path = tools/repos/iart-javascript-animation-skills
+	url = https://github.com/iart-ai/javascript-animation-skills.git
+	shallow = true
+
+[submodule "iart-lower-thirds-skills"]
+	path = tools/repos/iart-lower-thirds-skills
+	url = https://github.com/iart-ai/lower-thirds-skills.git
+	shallow = true
+
+[submodule "iart-b-roll-skills"]
+	path = tools/repos/iart-b-roll-skills
+	url = https://github.com/iart-ai/b-roll-skills.git
+	shallow = true

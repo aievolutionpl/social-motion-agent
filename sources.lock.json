@@ -1,210 +1,479 @@
 {
-  "schema_version": 1,
-  "note": "Reference catalogue only. Not installed, vendored or claimed as tested.",
+  "schema_version": 2,
+  "note": "Full original source library pinned as Git submodules. Bootstrap also supports GitHub ZIP downloads. Upstream licenses apply. LFS payloads were not present in the original collection.",
   "sources": [
     {
       "id": "hypermotion",
       "url": "https://github.com/psiddharthdesign/hypermotion.git",
+      "path": "tools/repos/hypermotion",
       "commit": "e510cd60c0d2632863b5a3f78dba71b905c75ff2",
-      "license": "Apache-2.0"
+      "license": "Apache-2.0",
+      "license_files": [
+        "LICENSE",
+        "NOTICE"
+      ],
+      "tracked_files": 847,
+      "tracked_bytes": 9198949,
+      "skill_md_files": 2,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "anatomy",
       "url": "https://github.com/wheresryan22/anatomy.git",
+      "path": "tools/repos/anatomy",
       "commit": "1482e8469b0a9e0d8cc18ea2740a01423d29ae80",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 173,
+      "tracked_bytes": 27648351,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "open-design",
       "url": "https://github.com/nexu-io/open-design.git",
+      "path": "tools/repos/open-design",
       "commit": "3b0df90f305c8279e748c292accf336d02b924ef",
-      "license": "Apache-2.0"
+      "license": "Apache-2.0",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 13561,
+      "tracked_bytes": 305288352,
+      "skill_md_files": 549,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "motion-anything",
       "url": "https://github.com/nexu-io/motion-anything.git",
+      "path": "tools/repos/motion-anything",
       "commit": "b016900d9ee92fc2d3e4dc520359cc8999d2ed4e",
-      "license": "Apache-2.0"
+      "license": "Apache-2.0",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 1405,
+      "tracked_bytes": 34230031,
+      "skill_md_files": 230,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "video-agent-skills",
       "url": "https://github.com/Melvynx/video-agent-skills.git",
+      "path": "tools/repos/video-agent-skills",
       "commit": "480801ade3f64e722769bec98ef8f2c8339650ea",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 518,
+      "tracked_bytes": 12270385,
+      "skill_md_files": 13,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "openclip-agent-skills",
       "url": "https://github.com/OpenClip-App/agent-skills.git",
+      "path": "tools/repos/openclip-agent-skills",
       "commit": "ea02c98db69c437616df1db4a4400cde1f4a0832",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 18,
+      "tracked_bytes": 68809,
+      "skill_md_files": 10,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "claude-motion",
       "url": "https://github.com/whaleyxbt/claude-motion.git",
+      "path": "tools/repos/claude-motion",
       "commit": "e627941543d9988b155dc610bb9cc0115a5e365e",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 66,
+      "tracked_bytes": 15720742,
+      "skill_md_files": 4,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "claude-motion-design",
       "url": "https://github.com/howseen-ai/claude-motion-design.git",
+      "path": "tools/repos/claude-motion-design",
       "commit": "3d90d349ef3fdde9b7e89de4df4a2159c9e8697f",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 24,
+      "tracked_bytes": 4307166,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "motion-skills",
       "url": "https://github.com/iart-ai/motion-skills.git",
+      "path": "tools/repos/motion-skills",
       "commit": "bb5a3ce666110855a3437de2f70e9968c408e005",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 9,
+      "tracked_bytes": 3686312,
+      "skill_md_files": 0,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "awesome-motion-design-agent-skills",
       "url": "https://github.com/frankxai/awesome-motion-design-agent-skills.git",
+      "path": "tools/repos/awesome-motion-design-agent-skills",
       "commit": "b45d60fa5b0f7b7d07331572416b80e17dcfd203",
-      "license": "CC0-1.0"
+      "license": "CC0-1.0",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 49,
+      "tracked_bytes": 1068442,
+      "skill_md_files": 5,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "awesome-opus5-5-videos",
       "url": "https://github.com/yihui-dev/awesome-opus5-5-videos.git",
+      "path": "tools/repos/awesome-opus5-5-videos",
       "commit": "92aee2f586ac0715cb3cbcb6384834f98a33383d",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 707,
+      "tracked_bytes": 1703011,
+      "skill_md_files": 0,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "remotion-official-skills",
       "url": "https://github.com/remotion-dev/skills.git",
+      "path": "tools/repos/remotion-official-skills",
       "commit": "039e8a2fc78b67efc228d5645367838b85818a1c",
-      "license": "not_detected"
+      "license": "not_detected",
+      "license_files": [],
+      "tracked_files": 293,
+      "tracked_bytes": 2433388,
+      "skill_md_files": 12,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "motion-video-skill",
       "url": "https://github.com/farhan-syah/motion-video-skill.git",
+      "path": "tools/repos/motion-video-skill",
       "commit": "0a21eb76468f90ddcc04e7b689c1f6048218e296",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 83,
+      "tracked_bytes": 1546694,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "openscreen",
       "url": "https://github.com/getopenscreen/openscreen.git",
+      "path": "tools/repos/openscreen",
       "commit": "1e91710962e44d16f7555b5e772f45a0c786045e",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 2064,
+      "tracked_bytes": 76880171,
+      "skill_md_files": 2,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "ux-ui-agent-skills",
       "url": "https://github.com/plugin87/ux-ui-agent-skills.git",
+      "path": "tools/repos/ux-ui-agent-skills",
       "commit": "55156b40e3a9aafa52448bde76cdcb5147b958db",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 649,
+      "tracked_bytes": 11376119,
+      "skill_md_files": 27,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "awesome-ai-motion",
       "url": "https://github.com/gongnyang/awesome-ai-motion.git",
+      "path": "tools/repos/awesome-ai-motion",
       "commit": "1e3c249073c61b42ceb556d7800f628d565d9312",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 2088,
+      "tracked_bytes": 87576215,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-tiktok-video-skills",
       "url": "https://github.com/iart-ai/tiktok-video-skills.git",
+      "path": "tools/repos/iart-tiktok-video-skills",
       "commit": "2a775336b5a638cbf8a61dbd785f9a1b649be016",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 23,
+      "tracked_bytes": 3919566,
+      "skill_md_files": 4,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-text-message-video-skills",
       "url": "https://github.com/iart-ai/text-message-video-skills.git",
+      "path": "tools/repos/iart-text-message-video-skills",
       "commit": "3a800e1e9b9635fa196a07b0143c80f7e9648558",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 14,
+      "tracked_bytes": 3654071,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-youtube-video-skills",
       "url": "https://github.com/iart-ai/youtube-video-skills.git",
+      "path": "tools/repos/iart-youtube-video-skills",
       "commit": "f3df381d65abe5078f5ed410bbc3ed72e7cb92bd",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 16,
+      "tracked_bytes": 3040689,
+      "skill_md_files": 2,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-ecommerce-video-skills",
       "url": "https://github.com/iart-ai/ecommerce-video-skills.git",
+      "path": "tools/repos/iart-ecommerce-video-skills",
       "commit": "2bd0dd19c9b2df5230f5d8f7453861b9681e49b4",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 23,
+      "tracked_bytes": 4129550,
+      "skill_md_files": 3,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-ad-video-skills",
       "url": "https://github.com/iart-ai/ad-video-skills.git",
+      "path": "tools/repos/iart-ad-video-skills",
       "commit": "0de0f2a1c1f42a98103fc0ec436509276428372c",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 21,
+      "tracked_bytes": 5698298,
+      "skill_md_files": 3,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-data-animation-skills",
       "url": "https://github.com/iart-ai/data-animation-skills.git",
+      "path": "tools/repos/iart-data-animation-skills",
       "commit": "8ce2709c3992490251e8a991535b1945f01c6865",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 21,
+      "tracked_bytes": 6897431,
+      "skill_md_files": 3,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-explainer-video-skills",
       "url": "https://github.com/iart-ai/explainer-video-skills.git",
+      "path": "tools/repos/iart-explainer-video-skills",
       "commit": "3e2d411b725d9a72939cf8e5eb81579e751373e7",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 28,
+      "tracked_bytes": 3518157,
+      "skill_md_files": 5,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-map-animation-skills",
       "url": "https://github.com/iart-ai/map-animation-skills.git",
+      "path": "tools/repos/iart-map-animation-skills",
       "commit": "390ca98bbcf2ea88a430a69c0dcbf423e43d075d",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 14,
+      "tracked_bytes": 5404450,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-web-animation-skills",
       "url": "https://github.com/iart-ai/web-animation-skills.git",
+      "path": "tools/repos/iart-web-animation-skills",
       "commit": "b6dba3eb759726845a44163ff0bad70dd9e7fbb6",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 42,
+      "tracked_bytes": 5954682,
+      "skill_md_files": 9,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-motion-design-skills",
       "url": "https://github.com/iart-ai/motion-design-skills.git",
+      "path": "tools/repos/iart-motion-design-skills",
       "commit": "3c129f769d90a1328c209c386492333c9ac62312",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 47,
+      "tracked_bytes": 4397463,
+      "skill_md_files": 9,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-kinetic-typography-skills",
       "url": "https://github.com/iart-ai/kinetic-typography-skills.git",
+      "path": "tools/repos/iart-kinetic-typography-skills",
       "commit": "fccc94bd325d824235ee9e715e65abde57b6513a",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 13,
+      "tracked_bytes": 3739856,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-freelance-motion-skills",
       "url": "https://github.com/iart-ai/freelance-motion-skills.git",
+      "path": "tools/repos/iart-freelance-motion-skills",
       "commit": "d85c2b484693d0387333c778d9c95230fa1856ce",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 36,
+      "tracked_bytes": 3796758,
+      "skill_md_files": 5,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-webgl-animation-skills",
       "url": "https://github.com/iart-ai/webgl-animation-skills.git",
+      "path": "tools/repos/iart-webgl-animation-skills",
       "commit": "50697d659fbf70152f48f9f8aadf1efe78bbdde1",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 20,
+      "tracked_bytes": 9375235,
+      "skill_md_files": 3,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-manim-skills",
       "url": "https://github.com/iart-ai/manim-skills.git",
+      "path": "tools/repos/iart-manim-skills",
       "commit": "a15833c44de5108a3ee68f178a1fca126aa7c6d8",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 15,
+      "tracked_bytes": 2700419,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-generative-illustration-skills",
       "url": "https://github.com/iart-ai/generative-illustration-skills.git",
+      "path": "tools/repos/iart-generative-illustration-skills",
       "commit": "e7d62437c875fc8ad5eff6e90fe0e25b30e43933",
-      "license": "not_detected"
+      "license": "not_detected",
+      "license_files": [],
+      "tracked_files": 7,
+      "tracked_bytes": 3018941,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-javascript-animation-skills",
       "url": "https://github.com/iart-ai/javascript-animation-skills.git",
+      "path": "tools/repos/iart-javascript-animation-skills",
       "commit": "f7d0882a313249cbd43f0e4e9e209b1622870253",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 30,
+      "tracked_bytes": 5456940,
+      "skill_md_files": 2,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-lower-thirds-skills",
       "url": "https://github.com/iart-ai/lower-thirds-skills.git",
+      "path": "tools/repos/iart-lower-thirds-skills",
       "commit": "aa8ef7ed9fa59d0a79fc57701e493cfd8197b5d8",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 17,
+      "tracked_bytes": 1185084,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     },
     {
       "id": "iart-b-roll-skills",
       "url": "https://github.com/iart-ai/b-roll-skills.git",
+      "path": "tools/repos/iart-b-roll-skills",
       "commit": "a51e34b0a8def533759373733bde1869c21075fb",
-      "license": "MIT"
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "tracked_files": 21,
+      "tracked_bytes": 3182478,
+      "skill_md_files": 1,
+      "distribution": "pinned_git_submodule"
     }
   ]
 }

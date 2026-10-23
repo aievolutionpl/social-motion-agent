@@ -152,6 +152,8 @@ def main():
             route = dict(core.routes()[args.kind])
             route["read_first"] = core.read(core.ROOT / "config/routes.json")["always_read"]
             route["resolved_skills"] = [{"path": str(core.resolve_ref(p)), "exists": core.resolve_ref(p).is_file()} for p in route["skills"]]
+            route["resolved_optional_skills"] = [{"path": str(core.resolve_ref(p)), "exists": core.resolve_ref(p).is_file()}
+                                                for p in route.get("optional_skills", [])]
             emit(route)
         elif args.command == "find":
             tokens = args.query.casefold().split()

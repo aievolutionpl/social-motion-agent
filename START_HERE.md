@@ -1,5 +1,7 @@
 # Start here
 
+For the complete workshop, first run `python -S scripts/bootstrap_library.py`, then `python -S scripts/library_check.py`. Read docs/LIBRARY.md.
+
 1. Run `python -S studio.py doctor`. Python 3.11+, Node 22+ and FFmpeg/ffprobe are required for the full workflow.
 2. Install pinned Node dependencies with `npm ci`.
 3. Run `python -S studio.py demo --render` for a synthetic 8-second film. No paid AI APIs are used; the first render may download Chrome.

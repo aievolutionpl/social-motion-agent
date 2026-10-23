@@ -6,7 +6,8 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/screen-tutorials/SKILL.md"
       ],
       "outputs": [
         "nagranie właściwego okna",
@@ -14,6 +15,9 @@
         "MP4",
         "telemetria kursora jeśli dostępna",
         "raport QA"
+      ],
+      "optional_skills": [
+        "tools/repos/openscreen/plugin/skills/openscreen-demo/SKILL.md"
       ]
     },
     "tutorial": {
@@ -21,7 +25,8 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/screen-tutorials/SKILL.md"
       ],
       "outputs": [
         "scenariusz dydaktyczny",
@@ -30,6 +35,10 @@
         "MP4",
         "napisy",
         "rozdziały i opis"
+      ],
+      "optional_skills": [
+        "tools/repos/openscreen/plugin/skills/openscreen-demo/SKILL.md",
+        "tools/repos/video-agent-skills/skills/studio-script/SKILL.md"
       ]
     },
     "youtube": {
@@ -37,7 +46,9 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/motion-ui-polish/SKILL.md",
+        ".agents/skills/motion-effect-picker/SKILL.md"
       ],
       "outputs": [
         "master MP4",
@@ -45,6 +56,12 @@
         "źródła",
         "rozdziały i opis",
         "napisy jeśli potrzebne"
+      ],
+      "optional_skills": [
+        "tools/repos/hypermotion/skills/hypermotion-explainer-director/SKILL.md",
+        "tools/repos/remotion-official-skills/skills/remotion-best-practices/SKILL.md",
+        "tools/repos/video-agent-skills/skills/studio-script/SKILL.md",
+        "tools/repos/iart-youtube-video-skills/skills/youtube-intro-outro/SKILL.md"
       ]
     },
     "shorts": {
@@ -52,13 +69,22 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        "assets/backgrounds/README.md",
+        "SOUND EFFECTS/README.md",
+        ".agents/skills/motion-ui-polish/SKILL.md",
+        ".agents/skills/motion-effect-picker/SKILL.md"
       ],
       "outputs": [
         "MP4 9:16",
         "cover",
         "opis",
         "SRT jeśli potrzebne"
+      ],
+      "optional_skills": [
+        "tools/repos/iart-tiktok-video-skills/skills/short-form-video/SKILL.md",
+        "tools/repos/iart-tiktok-video-skills/skills/caption-animation/SKILL.md",
+        "tools/repos/video-agent-skills/skills/short-editing/SKILL.md"
       ]
     },
     "editing": {
@@ -66,13 +92,19 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        "SOUND EFFECTS/README.md"
       ],
       "outputs": [
         "MP4",
         "timeline",
         "lista cięć",
         "raport jakości"
+      ],
+      "optional_skills": [
+        "tools/repos/video-agent-skills/skills/editing/SKILL.md",
+        "tools/repos/video-agent-skills/skills/broll/SKILL.md",
+        "tools/repos/openclip-agent-skills/skills/openclip-video-editing/SKILL.md"
       ]
     },
     "repurpose": {
@@ -87,6 +119,11 @@
         "napisy",
         "timecode źródeł",
         "opisy"
+      ],
+      "optional_skills": [
+        "tools/repos/video-agent-skills/skills/clips/SKILL.md",
+        "tools/repos/openclip-agent-skills/skills/openclip-repurpose/SKILL.md",
+        "tools/repos/iart-b-roll-skills/skills/talking-head-b-roll/SKILL.md"
       ]
     },
     "launch": {
@@ -94,13 +131,21 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/motion-ui-polish/SKILL.md",
+        ".agents/skills/motion-effect-picker/SKILL.md"
       ],
       "outputs": [
         "master",
         "źródła",
         "poster",
         "warianty proporcji"
+      ],
+      "optional_skills": [
+        "tools/repos/hypermotion/skills/hypermotion-brand-profile/SKILL.md",
+        "tools/repos/hypermotion/skills/hypermotion-explainer-director/SKILL.md",
+        "tools/repos/iart-ad-video-skills/skills/launch-video/SKILL.md",
+        "tools/repos/motion-video-skill/SKILL.md"
       ]
     },
     "explainer": {
@@ -108,13 +153,20 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/motion-ui-polish/SKILL.md",
+        ".agents/skills/motion-effect-picker/SKILL.md"
       ],
       "outputs": [
         "film edukacyjny",
         "sprawdzone fakty",
         "diagramy",
         "źródła"
+      ],
+      "optional_skills": [
+        "tools/repos/anatomy/SKILL.md",
+        "tools/repos/iart-explainer-video-skills/skills/explainer-video/SKILL.md",
+        "tools/repos/iart-explainer-video-skills/skills/diagram-animation/SKILL.md"
       ]
     },
     "data": {
@@ -122,12 +174,17 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/motion-ui-polish/SKILL.md"
       ],
       "outputs": [
         "film",
         "dane źródłowe",
         "jednostki i metodologia"
+      ],
+      "optional_skills": [
+        "tools/repos/iart-data-animation-skills/skills/chart-animation/SKILL.md",
+        "tools/repos/iart-data-animation-skills/skills/animated-infographic/SKILL.md"
       ]
     },
     "maps": {
@@ -141,6 +198,10 @@
         "film mapowy",
         "źródła danych",
         "atrybucja"
+      ],
+      "optional_skills": [
+        "tools/repos/iart-map-animation-skills/skills/map-animation/SKILL.md",
+        "tools/repos/remotion-official-skills/skills/remotion-maps/SKILL.md"
       ]
     },
     "simulation": {
@@ -154,6 +215,10 @@
         "edytowalny HTML",
         "MP4",
         "klatki kontrolne"
+      ],
+      "optional_skills": [
+        "tools/repos/claude-motion/.claude/skills/web-sims/SKILL.md",
+        "tools/repos/iart-javascript-animation-skills/skills/javascript-animation/SKILL.md"
       ]
     },
     "typography": {
@@ -161,12 +226,19 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/motion-ui-polish/SKILL.md",
+        ".agents/skills/motion-effect-picker/SKILL.md"
       ],
       "outputs": [
         "film lub loop",
         "źródła",
         "sprawdzone holdy tekstu"
+      ],
+      "optional_skills": [
+        "tools/repos/iart-motion-design-skills/skills/animation-principles/SKILL.md",
+        "tools/repos/claude-motion-design/skill/motion-design/SKILL.md",
+        "tools/repos/motion-anything/skills/motion-anything/SKILL.md"
       ]
     },
     "broll": {
@@ -180,6 +252,10 @@
         "lista ujęć",
         "lokalne assety",
         "prompty, źródła i request IDs"
+      ],
+      "optional_skills": [
+        "tools/repos/video-agent-skills/skills/broll/SKILL.md",
+        "tools/repos/iart-b-roll-skills/skills/talking-head-b-roll/SKILL.md"
       ]
     },
     "captions": {
@@ -193,6 +269,11 @@
         "SRT/VTT",
         "word timing",
         "sprawdzone napisy"
+      ],
+      "optional_skills": [
+        "tools/repos/remotion-official-skills/skills/remotion-captions/SKILL.md",
+        "tools/repos/openclip-agent-skills/skills/openclip-transcription/SKILL.md",
+        "tools/repos/iart-tiktok-video-skills/skills/caption-animation/SKILL.md"
       ]
     },
     "audio": {
@@ -200,13 +281,18 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        "SOUND EFFECTS/README.md"
       ],
       "outputs": [
         "VO",
         "cue sheet",
         "master audio",
         "raport loudness"
+      ],
+      "optional_skills": [
+        "tools/repos/claude-motion/.claude/skills/sound-design/SKILL.md",
+        "tools/repos/iart-motion-design-skills/skills/beat-sync-editing/SKILL.md"
       ]
     },
     "thumbnail": {
@@ -220,20 +306,26 @@
         "lokalny plik miniatury",
         "prompt",
         "kontrola czytelności"
-      ]
+      ],
+      "optional_skills": []
     },
     "polish": {
       "purpose": "Dopracowanie kodowanych ramek: HTML/CSS/React, napisy, dashboardy, UI mocki, bez wyglądu generowanego",
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/motion-ui-polish/SKILL.md"
       ],
       "outputs": [
         "scena HTML na tokenach",
         "raport polish_check dla każdego formatu",
         "zrzut do oględzin",
         "decyzje o ostrzeżeniach w HANDOFF"
+      ],
+      "optional_skills": [
+        "tools/repos/ux-ui-agent-skills/taste/design-taste.md",
+        "tools/repos/ux-ui-agent-skills/.claude/agents/design-critic.md"
       ]
     },
     "motion": {
@@ -241,12 +333,17 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/motion-effect-picker/SKILL.md"
       ],
       "outputs": [
         "wybrane efekty z parametrami i uzasadnieniem",
         "kroki receptury z czasem",
         "scena zgodna z seek(t)"
+      ],
+      "optional_skills": [
+        "tools/repos/awesome-ai-motion/SKILL.md",
+        "tools/repos/awesome-ai-motion/references/decision-tables.md"
       ]
     },
     "review": {
@@ -261,6 +358,10 @@
         "review.json",
         "contact sheet",
         "lista poprawek"
+      ],
+      "optional_skills": [
+        "tools/repos/claude-motion/.claude/skills/review-loop/SKILL.md",
+        "tools/repos/awesome-motion-design-agent-skills/skills/web-motion-auditor/SKILL.md"
       ]
     }
   },
