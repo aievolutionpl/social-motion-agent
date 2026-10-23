@@ -38,6 +38,20 @@ def build(destination):
                         raw = tree.read(info)
                         output.writestr('social-motion-agent/' + name, raw)
                         files.append({'path': name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
+        # Upstream export-ignore attributes must not remove workshop materials.
+        for source in sources:
+            repo = ROOT / source['path']
+            names = git(repo, 'ls-tree', '-r', '--name-only', '-z', source['commit']).decode().split('\0')
+            for relative in filter(None, names):
+                name = source['path'] + '/' + relative
+                if name in seen:
+                    continue
+                if '..' in PurePosixPath(name).parts or '.git' in PurePosixPath(name).parts:
+                    raise ValueError('Unsafe source path: ' + name)
+                raw = git(repo, 'show', source['commit'] + ':' + relative)
+                output.writestr('social-motion-agent/' + name, raw)
+                seen.add(name)
+                files.append({'path': name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
         manifest = {'schema_version': 1, 'commit': commit, 'sources': sources, 'files': files}
         output.writestr('social-motion-agent/bundle-manifest.json', json.dumps(manifest, indent=2))
     with zipfile.ZipFile(destination) as bundle:
