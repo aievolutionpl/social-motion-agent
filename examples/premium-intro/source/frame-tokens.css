@@ -1,0 +1,131 @@
+/* Tokeny ramki wideo: jedno źródło wyglądu dla każdej sceny HTML (16:9, 9:16, 4:5, 1:1).
+   Wszystko w cqmin (1 cqmin = 1% krótszego boku płótna), więc ta sama scena skaluje się
+   między formatami. Zasada: nie wpisuj w scenach kolorów, rozmiarów ani cieni na sztywno,
+   sięgaj po zmienne poniżej. Zmiana marki = zmiana bloku "Marka". */
+
+:root {
+  /* Marka: nadpisz jednym blokiem (kolory z Agents/<MARKA>/CONFIG.md) */
+  --accent: oklch(0.83 0.16 152);
+  --accent-ink: oklch(0.22 0.04 152);
+  --warm: oklch(0.80 0.14 70);
+
+  /* Powierzchnie i tekst: ciemny, lekko przefarbowany granat zamiast czystej czerni */
+  --bg-0: #0a0d13;
+  --bg-1: #10141c;
+  --surface: #151a24;
+  --surface-hi: #1b2230;
+  --ink: #f2f4f8;
+  --ink-2: rgb(242 244 248 / 0.72);
+  --ink-3: rgb(242 244 248 / 0.52);
+  --hairline: rgb(255 255 255 / 0.09);
+  --hairline-hi: rgb(255 255 255 / 0.16);
+
+  /* Typografia: skala 1.25, wyświetlacz co najmniej 2,5 razy większy od tekstu */
+  --font: "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Inter Tight", "Inter", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", ui-monospace, monospace;
+  --fs-label: 2.1cqmin;   /* minimum czytelności w filmie, nie schodź niżej */
+  --fs-body: 2.8cqmin;
+  --fs-lead: 3.6cqmin;
+  --fs-title: 6.4cqmin;
+  --fs-display: 9cqmin;
+  --fs-hero: 17cqmin;
+  --lh-tight: 1.04;
+  --lh-snug: 1.2;
+  --lh-body: 1.45;
+  --tracking-display: -0.035em;
+  --tracking-label: 0.08em;
+
+  /* Rytm odstępów: wielokrotności 0,37 cqmin (około 4 px przy 1080) */
+  --sp-1: 0.37cqmin;
+  --sp-2: 0.74cqmin;
+  --sp-3: 1.11cqmin;
+  --sp-4: 1.48cqmin;
+  --sp-6: 2.22cqmin;
+  --sp-8: 2.96cqmin;
+  --sp-12: 4.44cqmin;
+  --sp-16: 5.92cqmin;
+  --sp-24: 8.88cqmin;
+
+  /* Promienie: kilka różnych, każdy do swojej roli */
+  --r-chip: 1cqmin;
+  --r-panel: 2.4cqmin;
+  --r-card: 3.2cqmin;
+  --r-pill: 99rem;
+
+  /* Cienie z dwóch warstw: ostry kontakt plus miękki rozrzut */
+  --sh-1: 0 0.1cqmin 0.2cqmin rgb(0 0 0 / 0.35), 0 0.6cqmin 1.4cqmin rgb(0 0 0 / 0.22);
+  --sh-2: 0 0.2cqmin 0.4cqmin rgb(0 0 0 / 0.38), 0 1.6cqmin 3.6cqmin rgb(0 0 0 / 0.34);
+  --sh-3: 0 0.4cqmin 0.8cqmin rgb(0 0 0 / 0.4), 0 4cqmin 8cqmin rgb(0 0 0 / 0.46);
+  --inner-light: inset 0 0.1cqmin 0 rgb(255 255 255 / 0.08);
+
+  /* Ruch (używany w seek(t) jako te same wartości): wejście szybkie, lądowanie miękkie */
+  --dur-in: 0.6;
+  --dur-hold: 1.2;
+  --travel: 2.4cqmin;
+
+  /* Bezpieczne pole platform: pasek interfejsu Reels/Shorts zasłania górę i dół */
+  --safe-x: 5.6cqmin;
+  --safe-top: 5.6cqmin;
+  --safe-bottom: 5.6cqmin;
+}
+/* Zapytania kontenerowe stylizują tylko potomków płótna, dlatego zmienne ustawiamy na .stage.
+   9:16: pasek i opis platformy zasłaniają górę oraz dół; 4:5 w feedzie wymaga mniej. */
+@container canvas (max-aspect-ratio: 7/10) {
+  .stage { --safe-top: 17cqmin; --safe-bottom: 30cqmin; }
+}
+@container canvas (min-aspect-ratio: 7/10) and (max-aspect-ratio: 4/5) {
+  .stage { --safe-top: 8cqmin; --safe-bottom: 10cqmin; }
+}
+
+html, body { margin: 0; background: var(--bg-0); }
+body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+
+.canvas {
+  position: relative; inline-size: 100vw; block-size: 100vh; overflow: hidden;
+  container: canvas / size;
+  background:
+    radial-gradient(120% 90% at 82% 8%, rgb(255 255 255 / 0.05), transparent 55%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-0));
+}
+.canvas::after { /* delikatne ziarno, żeby gradient nie robił pasów po kompresji */
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.stage {
+  position: absolute; inset: var(--safe-top) var(--safe-x) var(--safe-bottom);
+  display: grid; gap: var(--sp-12); align-content: center;
+}
+
+/* Napisy i etykiety */
+.eyebrow { font-size: var(--fs-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--ink-3); }
+.display { font-family: var(--font-display); font-size: var(--fs-display); font-weight: 700; line-height: var(--lh-tight); letter-spacing: var(--tracking-display); margin: 0; text-wrap: balance; }
+.title { font-family: var(--font-display); font-size: var(--fs-title); font-weight: 650; line-height: var(--lh-snug); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.lead { font-size: var(--fs-lead); line-height: var(--lh-snug); color: var(--ink-2); margin: 0; max-inline-size: 28ch; text-wrap: pretty; }
+.body { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--ink-2); margin: 0; max-inline-size: 38ch; }
+.num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+.accent { color: var(--accent); }
+
+/* Elementy */
+.panel {
+  background: linear-gradient(180deg, var(--surface-hi), var(--surface));
+  border: 0.14cqmin solid var(--hairline); border-radius: var(--r-panel);
+  box-shadow: var(--inner-light), var(--sh-2); padding: var(--sp-8);
+}
+.chip {
+  display: inline-flex; align-items: center; gap: var(--sp-3); padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--r-chip); border: 0.14cqmin solid var(--hairline-hi); background: rgb(255 255 255 / 0.04);
+  font-size: var(--fs-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--ink-2);
+}
+.chip svg, .icon { inline-size: 1.15em; block-size: 1.15em; flex: none; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.pill-caption {
+  justify-self: center; padding: var(--sp-3) var(--sp-8); border-radius: var(--r-pill);
+  background: rgb(10 13 19 / 0.72); backdrop-filter: blur(1.6cqmin); border: 0.14cqmin solid var(--hairline);
+  box-shadow: var(--sh-1); font-size: var(--fs-lead); font-weight: 600; line-height: var(--lh-snug); text-align: center; max-inline-size: 90%;
+}
+.lower-third { display: grid; gap: var(--sp-1); padding: var(--sp-4) var(--sp-8); border-radius: var(--r-card); background: var(--surface); border: 0.14cqmin solid var(--hairline); box-shadow: var(--sh-2); inline-size: max-content; max-inline-size: 100%; }
+.lower-third .name { font-size: var(--fs-lead); font-weight: 650; line-height: var(--lh-snug); }
+.lower-third .role { font-size: var(--fs-label); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+.meter { block-size: 1.1cqmin; border-radius: var(--r-pill); background: rgb(255 255 255 / 0.08); overflow: hidden; }
+.meter > i { display: block; block-size: 100%; border-radius: inherit; background: var(--accent); transform-origin: left; }
+.btn { display: inline-flex; align-items: center; gap: var(--sp-3); padding: var(--sp-4) var(--sp-8); border-radius: var(--r-pill); background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: var(--fs-body); box-shadow: var(--sh-1), var(--inner-light); }

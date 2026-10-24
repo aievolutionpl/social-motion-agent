@@ -17,3 +17,7 @@ Jersey 10, Press Start 2P and Silkscreen are accompanied by their official Googl
 ## Integrity and exclusions
 
 assets/media-manifest.json records the exact path, byte size and SHA-256 of every included media file. Private portraits/avatars, client campaigns, credentials, caches, generated production history and account connections are excluded. The code's MIT license applies to original code, not to third-party media or trademarks.
+
+## Premium intro (v1.1.0)
+
+On 2026-10-24 the owner explicitly requested publication of the new intro and all its sources on GitHub. The example contains two OpenAI imagegen backgrounds, actual Codex screenshots of public skill documents, ElevenLabs-generated narration and instrumental music, and Inter under its bundled SIL OFL. Only rendered audio is shared; no voice model, voice/account identifiers or credentials are included. The authorization records the owner's publication decision, not independent verification of their provider plan or a blanket sublicense to clone their voice. Generated media, voice, music and trademarks are not automatically licensed MIT. No external SFX are used in this intro. See examples/premium-intro/provenance.json.

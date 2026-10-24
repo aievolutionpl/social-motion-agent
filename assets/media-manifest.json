@@ -966,6 +966,69 @@
       "sha256": "768476aa712d4f5c3e18d3bce80f980a8bd3f72b7094d22ec5e768df3acfed61",
       "provenance": "owner_supplied",
       "rights": "see docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "examples/premium-intro/source/media/codex-clean.jpg",
+      "bytes": 151150,
+      "sha256": "ee09085660810e41ac2b95ad9c0fb0d3c04a23268a0812c0d224e36138fd0cc9",
+      "provenance": "premium_intro_owner_authorized",
+      "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "examples/premium-intro/source/media/codex-motion.jpg",
+      "bytes": 168572,
+      "sha256": "c241c3501a91e622f0bac644ce5361e852f8dbd766ea227d458804abf6218285",
+      "provenance": "premium_intro_owner_authorized",
+      "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "examples/premium-intro/source/media/desert.png",
+      "bytes": 1901151,
+      "sha256": "6af7ccf58f55079e921868011ed0115070540dbf82d7899986097ec02718bc4c",
+      "provenance": "premium_intro_owner_authorized",
+      "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "examples/premium-intro/source/media/hero.png",
+      "bytes": 2094174,
+      "sha256": "5d33e69368f93e930718c04bebebd35887df45c33316f4a82766034d9f17721b",
+      "provenance": "premium_intro_owner_authorized",
+      "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "examples/premium-intro/source/media/Inter.ttf",
+      "bytes": 876576,
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031",
+      "provenance": "premium_intro_owner_authorized",
+      "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "examples/premium-intro/audio/mix.wav",
+      "bytes": 8640102,
+      "sha256": "c45104f1b6bd4a10325eb8f4ba21192abaf3d728f5678097507dc40ce563962c",
+      "provenance": "premium_intro_owner_authorized",
+      "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "examples/premium-intro/audio/music.mp3",
+      "bytes": 720620,
+      "sha256": "076a6efb2fe13681ef05afa804cb00c6d32869908c47efca68987be13e537129",
+      "provenance": "premium_intro_owner_authorized",
+      "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "examples/premium-intro/audio/voice.mp3",
+      "bytes": 410478,
+      "sha256": "941d2576b2dad980ef8dbcf8da727a2405e8dbe0efa62e47a502d2147c0316ba",
+      "provenance": "premium_intro_owner_authorized",
+      "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "docs/media/premium-intro.mp4",
+      "bytes": 16280487,
+      "sha256": "ffc69b5c8c5646536de3653d6c010255ab7d4140684b10cebe1c930bd629d6bd",
+      "provenance": "premium_intro_owner_authorized",
+      "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
     }
   ]
 }

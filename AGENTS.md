@@ -12,3 +12,5 @@ No API keys, private client material, account IDs or production outputs in Git.
 Run python -S -B -m unittest discover -s tests -v after relevant changes.
 Use python -S scripts/release_check.py before committing. Keep upstream sources as pinned Git submodules; restore them with scripts/bootstrap_library.py. Do not relabel their licenses. Media rights are in docs/MEDIA_RIGHTS.md.
 The bundled demo is synthetic and must never be represented as an approved client production.
+
+Exception authorized by owner on 2026-10-24: docs/media/premium-intro.mp4 and examples/premium-intro/ are public showcase deliverables, including approved generated narration. Other production outputs, voice models, account IDs and credentials remain excluded.

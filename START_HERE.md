@@ -4,7 +4,8 @@ For the complete workshop, first run `python -S scripts/bootstrap_library.py`, t
 
 1. Run `python -S studio.py doctor`. Python 3.11+, Node 22+ and FFmpeg/ffprobe are required for the full workflow.
 2. Install pinned Node dependencies with `npm ci`.
-3. Run `python -S studio.py demo --render` for a synthetic 8-second film. No paid AI APIs are used; the first render may download Chrome.
+3. Run `python -S scripts/premium_intro.py --render` for the published 30-second landscape intro, including Polish voice, captions, music and actual Codex screenshots. No generation API credentials required. See `examples/premium-intro/README.md`.
+   Run `python -S studio.py demo --render` for a synthetic 8-second film. No paid AI APIs are used; the first render may download Chrome.
    For the 36-second portrait showcase with product photography, CSS 3D, kinetic type and local SFX, run `python -S scripts/showcase.py --render`. Read `examples/showcase/README.md` for provenance and review requirements.
 4. For your own film, read `skills/intake/SKILL.md` and create a job using `studio.py new`.
 5. Edit its JSON planning files and `source/index.html`; read `docs/PRODUCTION.md` and `docs/HYPERFRAMES.md`.

@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/images/cover.png" alt="Social Motion Agent. Produkt AI EVOLUTION POLSKA." width="100%"></p>
+[![Obejrzyj premium intro: 30 sekund, polski lektor](docs/images/premium-intro.png)](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/premium-intro.mp4)
 
 <h1 align="center">Social Motion Agent</h1>
 <p align="center"><strong>Od pomysłu do filmu. Z agentem AI, HyperFrames i kontrolą jakości.</strong></p>
@@ -9,18 +9,38 @@
 
 Social Motion Agent to narzędzie CLI i zestaw instrukcji dla agentów, a nie autonomiczny generator „jednym kliknięciem”. Działa z agentami potrafiącymi czytać pliki i wykonywać polecenia, np. Codex, Claude Code lub Cursor. Model AI wybierasz w swoim środowisku.
 
-## Pokazówka: jeden pomysł, różne style
+## Zobacz, co dostaje Twój agent
 
-**36 sekund w pionie:** fotografia produktu, geometryczny obrót 3D, kinetic type, pixel art i dane rzeczywistej produkcji. To edytowalny przykład z dołączonym assetem AI, lokalnymi fontami i efektami dźwiękowymi.
+**[▶ Odtwórz / pobierz film · 30 sekund · 16:9 · polski lektor i napisy](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/premium-intro.mp4)** · [Wszystkie edytowalne źródła](examples/premium-intro/README.md)
 
-![Siedem scen nowej pokazówki: produkt, 3D, typografia, retro, proces, assety i zakończenie](docs/images/showcase.jpg)
+Generowana filmowa scenografia, dynamiczna typografia, autentyczne widoki skilli w Codexie, polska narracja i muzyka. Ten film jest zbudowany z lokalnego HTML/GSAP. Wszystkie wykorzystane materiały są w repozytorium, więc możesz odtworzyć go bez płatnych API:
 
-```powershell
+```bash
 npm ci
-python -S scripts/showcase.py --render
+python -S scripts/premium_intro.py --render
 ```
 
-Wynik: `output/jobs/<id>/renders/showcase.mp4`, 1080 × 1920, 30 FPS. Odtworzenie nie wymaga kluczy API. [Sceny, edycja i pochodzenie materiałów](examples/showcase/README.md). Przed publikacją sprawdź obraz, odsłuch i prawa do dźwięków; skrypt nie wpisuje fikcyjnej akceptacji.
+Wynik: `output/jobs/<id>/renders/premium-intro.mp4`, **1920 × 1080, 30 FPS, 30 sekund, stereo**. Skrypt tworzy nową produkcję i wykonuje kontrolę techniczną. Pierwszy render może pobrać Chromium. Zrzuty Codexa są prawdziwe, a ich najazdy animowane; film nie jest nagraniem całego wykonania zadania przez agenta.
+
+Starszy przykład 36-sekundowy w pionie, z produktem, geometrycznym 3D i pixel artem, pozostaje dostępny: [showcase](examples/showcase/README.md), `python -S scripts/showcase.py --render`.
+
+## Co ten warsztat daje Codexowi?
+
+Otwierasz przygotowane repozytorium w Codexie i opisujesz film. Agent otrzymuje instrukcje prowadzenia produkcji, bibliotekę efektów, szablony kompozycji, narzędzia renderowania i sprawdzania wyniku. Skille pomagają dobrać proces do zadania, a pliki projektu pozwalają wrócić do konkretnej sceny i poprawić ją bez zaczynania od zera.
+
+| Chcesz zrobić | Co jest w środku |
+| --- | --- |
+| Intro YouTube, reklamę produktu, explainer, rolkę | Brief w pięciu pytaniach, research, scenariusz i storyboard |
+| Animowane tytuły, napisy, plansze i dane | HyperFrames + GSAP, tokeny wyglądu, motion design i edytowalny HTML |
+| Montaż własnych ujęć z głosem i muzyką | FFmpeg, oś czasu, kadrowanie, miks, ducking i biblioteka dźwięków |
+| Pokaz aplikacji lub tutorial | Skill screen-tutorials i integracja OpenScreen; runtime instalujesz osobno |
+| Różne style: cinematic, kinetic type, retro, przestrzenne kompozycje | Katalog ruchu, przykłady i źródła skilli 3D/WebGL/Manim; ich dodatkowe środowiska nie uruchamiają się automatycznie |
+| Materiały AI dopasowane do sceny | Workflow imagegen, opcjonalny ElevenLabs i fal H3 Max; nowe generacje wymagają własnego dostępu do usług |
+| Materiał, który można poprawiać i przekazać dalej | Osobna karta produkcji, źródła, assety, napisy, SHA i HANDOFF.md |
+
+**Siedem lokalnych punktów wejścia:** `social-motion-studio` prowadzi produkcję, `intake` zbiera brief, `production` pilnuje procesu, `motion-design` określa zasady animacji, `motion-effect-picker` dobiera ruch, `motion-ui-polish` sprawdza ramki, a `screen-tutorials` pomaga przy pokazach ekranu. [Pełny indeks i ścieżki](skills/INDEX.md).
+
+Katalog źródeł to biblioteka instrukcji, recipes i szablonów. Nie oznacza setek aktywnych połączeń API ani automatycznie zainstalowanych silników. Render dołączonego intro działa lokalnie; tworzenie nowych obrazów i głosu zależy od usług dostępnych w Twoim środowisku.
 
 ## Krótkie demo techniczne
 
@@ -30,15 +50,15 @@ Wynik: `output/jobs/<id>/renders/showcase.mp4`, 1080 × 1920, 30 FPS. Odtworzeni
 
 ## Pobierz bibliotekę w jednej paczce
 
-**[Pobierz pełny ZIP — skille, 34 narzędzia i wszystkie assety](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.0.0/social-motion-agent-v1.0.0-full.zip)**
+**[Pobierz pełny ZIP — skille, 34 narzędzia i wszystkie assety](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.1.0/social-motion-agent-v1.1.0-full.zip)**
 
-Paczka v1.0.0 jest historycznym snapshotem biblioteki i zawiera stare 8-sekundowe demo. Nowa pokazówka jest w bieżących źródłach repozytorium; do jej uruchomienia pobierz aktualny klon. Nie mieszaj instrukcji nowego przykładu ze starszym wydaniem ZIP.
+Wydanie **v1.1.0** zawiera nowe intro 30 s, jego pełne źródła, wcześniejsze przykłady oraz wszystkie 34 przypięte repozytoria biblioteki. Gotowy film jest w `docs/media/premium-intro.mp4`, a materiały do edycji w `examples/premium-intro/`.
 
 Rozpakuj paczkę i otwórz folder `social-motion-agent`. Pełne źródła są już w środku: bez Git, submodułów i instalatora biblioteki. Integralność sprawdzisz poleceniem `python -S scripts/verify_bundle.py`. Do renderowania potrzebujesz opisanych niżej środowisk i `npm ci`; paczka nie zawiera binariów środowisk, cache ani zewnętrznych plików Git LFS, których nie było w oryginalnej kolekcji. Licencje narzędzi i zasady użycia mediów pozostają bez zmian.
 
 ## Kompletny warsztat w repozytorium
 
-Dołączamy **126 oryginalnych efektów dźwiękowych**, **9 teł WebP**, **3 fonty z licencjami OFL**, **7 lokalnych skilli** oraz katalog **913 wpisów z 34 repozytoriów narzędziowych**. Katalog obejmuje również recipes, szablony i fixture testowe.
+Dołączamy **126 oryginalnych efektów dźwiękowych**, **9 teł WebP**, **4 rodziny fontów z licencjami OFL**, **7 lokalnych skilli** oraz katalog **913 wpisów z 34 repozytoriów narzędziowych**. Katalog obejmuje również recipes, szablony i fixture testowe.
 
 Media są bezpośrednio w `SOUND EFFECTS/` i `assets/`. Pełne źródła narzędzi znajdują się w `tools/repos/` jako submoduły Git, z przypiętymi wersjami i oryginalnymi licencjami.
 
@@ -139,13 +159,14 @@ flowchart LR
 - `scripts/studio_core.py`: stan produkcji, pochodzenie materiałów, kontrola i pakiet.
 - `scripts/hyperframes_adapter.py`: lokalny lint, render, log i probe.
 - `skills/`: lokalne instrukcje do briefu, produkcji i projektowania ruchu.
-- `examples/launch/`: działająca kompozycja do nauki i modyfikacji.
+- `examples/premium-intro/`: główna pokazówka 30 s, komplet materiałów i instrukcja odtworzenia.
+- `examples/launch/` i `examples/showcase/`: wcześniejsze przykłady techniczne i stylistyczne.
 - `templates/`: tokeny wizualne i pomocnicze szablony.
 - `sources.lock.json` i `.gitmodules`: dokładne wersje pełnych źródeł narzędziowych.
 
 ## Prywatność i integracje
 
-Repozytorium zawiera kod, neutralne przykłady i publiczne oznaczenie autora produktu. Nie zawiera materiałów klientów, historii kampanii, prywatnych głosów ani połączeń kont.
+Repozytorium zawiera kod, neutralne przykłady i publiczne oznaczenie autora produktu. Nie zawiera materiałów klientów, historii kampanii, modeli głosu, identyfikatorów kont ani połączeń kont. Pokazówka zawiera zatwierdzoną przez właściciela gotową narrację audio; nie zawiera modelu ani danych dostępu do jego głosu.
 
 Sekrety ustawiasz we własnym środowisku. `doctor` nie czyta kluczy i nie testuje kont w sieci. Dane produkcji pozostają w ignorowanym przez Git katalogu `output/`. Polecenia rdzenia nie publikują filmów.
 
