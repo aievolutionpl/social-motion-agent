@@ -10,7 +10,7 @@ Reproduce the 1920x1080 intro with Polish narration, captions, music, generated 
 
 ## Download the complete bundle
 
-**[Download full ZIP: all skills, 34 tool sources and assets](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.1.0/social-motion-agent-v1.1.0-full.zip)**
+**[Download full ZIP: all skills, 34 tool sources and assets](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.1.1/social-motion-agent-v1.1.1-full.zip)**
 
 Extract and open `social-motion-agent`. No Git, submodule checkout or library bootstrap is needed. Verify with `python -S scripts/verify_bundle.py`. Rendering still requires the runtimes below and `npm ci`. Runtime binaries, caches and unavailable upstream Git LFS payloads are not bundled. Original licenses and media rights apply. This is separate from GitHubâ€™s automatic Source code ZIP.
 

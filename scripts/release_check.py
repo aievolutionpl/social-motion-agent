@@ -40,6 +40,21 @@ def inspect(path, raw):
             problems.append(label)
     return problems
 
+def source_files():
+    paths = []
+    for directory, dirs, files in os.walk(ROOT):
+        dirs[:] = [d for d in dirs if d not in SKIP]
+        if Path(directory) == ROOT / "tools":
+            dirs[:] = [d for d in dirs if d != "repos"]
+        for name in files:
+            path = Path(directory) / name
+            # Generated archive inventory contains upstream fixture filenames;
+            # verify_bundle.py checks it and every payload, not the source scanner.
+            if name == "gsap.min.js" or path == ROOT / "bundle-manifest.json":
+                continue
+            paths.append(path)
+    return paths
+
 def main():
     indexed = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "--show-toplevel"], capture_output=True, text=True)
     own_repo = indexed.returncode == 0 and Path(indexed.stdout.strip()).resolve() == ROOT.resolve()
@@ -58,12 +73,7 @@ def main():
                 paths.append(ROOT / name)
         mode = "git-index"
     else:
-        paths = []
-        for directory, dirs, files in os.walk(ROOT):
-            dirs[:] = [d for d in dirs if d not in SKIP]
-            if Path(directory) == ROOT / "tools":
-                dirs[:] = [d for d in dirs if d != "repos"]
-            paths.extend(Path(directory) / name for name in files if name != "gsap.min.js")
+        paths = source_files()
         linked = []
         mode = "source-tree"
     failures = []
