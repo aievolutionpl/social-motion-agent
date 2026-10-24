@@ -1,0 +1,63 @@
+1
+00:00:00,600 --> 00:00:02,472
+Twój Codex może tworzyć filmy.
+
+2
+00:00:02,515 --> 00:00:03,834
+Daj mu odpowiedni warsztat.
+
+3
+00:00:03,919 --> 00:00:05,366
+Social Motion Agent.
+
+4
+00:00:05,536 --> 00:00:08,004
+Skille do scenariusza, animacji, montażu i
+
+5
+00:00:08,047 --> 00:00:08,685
+napisów.
+
+6
+00:00:08,855 --> 00:00:10,302
+Otwórz projekt w Codexie.
+
+7
+00:00:10,416 --> 00:00:11,409
+Opisz pomysł.
+
+8
+00:00:11,522 --> 00:00:13,196
+Agent dobiera narzędzia.
+
+9
+00:00:13,252 --> 00:00:14,217
+Ty wybierasz styl.
+
+10
+00:00:14,345 --> 00:00:15,962
+Kinowa scenografia.
+
+11
+00:00:15,999 --> 00:00:17,111
+Dynamiczna typografia.
+
+12
+00:00:17,179 --> 00:00:18,557
+Polski lektor i napisy.
+
+13
+00:00:18,699 --> 00:00:21,536
+Od pierwszego pomysłu do edytowalnego filmu.
+
+14
+00:00:21,664 --> 00:00:23,834
+Daj swojemu agentowi warsztat filmowy.
+
+15
+00:00:23,955 --> 00:00:26,132
+Social Motion Agent.
+
+16
+00:00:26,331 --> 00:00:27,834
+AI Evolution Polska.

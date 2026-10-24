@@ -1,0 +1,36 @@
+{
+  "publication_authorized": "2026-10-24: owner requested new film and all sources on GitHub",
+  "images": [
+    {
+      "path": "source/media/hero.png",
+      "provider": "OpenAI imagegen",
+      "prompt": "Create a visually extraordinary premium software launch film background, ultra-wide cinematic 16:9 composition. A physically plausible sculptural continuous brushed platinum ribbon folds through three elegant rectangular portal frames, suspended in a vast dark graphite architectural studio. The sculpture occupies the RIGHT 60 percent of the frame; LEFT 40 percent is very clean nearly black negative space reserved for oversized typography. Macro-quality anisotropic silver reflections, one restrained icy cyan edge-light, atmospheric soft haze, glossy black floor with subtle reflections, long horizontal shafts of white light. Cinematic product photography meets contemporary architectural installation. Rich depth, tactile real materials, beautifully controlled dramatic lighting, sober and expensive, no purple, no multicolor gradients, no particles, no circles, no planets, no phones, no text, no logo, no UI, no watermark. Wide hero wallpaper for a premium AI filmmaking application advertisement. Render with exquisite fine detail and photographic realism."
+    },
+    {
+      "path": "source/media/desert.png",
+      "provider": "OpenAI imagegen",
+      "prompt": "Premium cinematic 16:9 landscape key visual for a luxury creative studio showreel, an impossible but photorealistic monumental polished chrome arch standing in sculpted terracotta desert dunes at sunset, angled architectural composition, enormous warm apricot sun low on the horizon, hard long shadows, beautiful ripples of sand, tiny dark human silhouette for scale far from foreground, atmospheric distant mountains, sophisticated luxury fashion editorial campaign photographed on large format. Restrained amber and graphite palette with silver reflections, highly tactile detail, no text no logos no UI no watermark. Composition has the arch on right half, darker clean sand on left half for later typography. A stunning contrasting example of creative visual output, not a software screenshot."
+    }
+  ],
+  "screenshots": "Actual public project skill documents displayed in Codex; animated stills, not a live execution recording.",
+  "narration": {
+    "provider": "ElevenLabs",
+    "model": "eleven_v3",
+    "text_file": "narration.txt",
+    "tempo": 0.94,
+    "delay_seconds": 0.6,
+    "voice_credentials": "Not included; reproduction uses supplied audio"
+  },
+  "music": {
+    "model_id": "music_v2_5",
+    "music_length_ms": 30000,
+    "force_instrumental": true,
+    "prompt": "Exactly 30 second instrumental premium creative software launch advertisement. 120 BPM, sophisticated cinematic electronica, tight warm bass pulse, crisp syncopated percussion, tactile plucked analog synth motif, luminous restrained piano accents, luxurious confident forward energy, spacious voiceover-friendly midrange. Immediate engaging opening, elegant lift at 5 seconds, precise rhythmic cuts at 10 and 15 seconds, energized wide reveal at 20 seconds, satisfying final brand resolution at 27 seconds and clean tail to 30. No vocals, no speech, no choir, no trailer booms, no EDM drop, no cheesy corporate ukulele. Modern, beautifully produced, polished and alive."
+  },
+  "font": {
+    "name": "Inter",
+    "license": "SIL OFL",
+    "source": "https://github.com/google/fonts/tree/main/ofl/inter"
+  },
+  "review": "Technical decode, duration, dimensions, layout and ASR checked. Publication explicitly requested by owner. No invented human listening approval."
+}

@@ -9,3 +9,6 @@
 *.mp3 binary
 *.ttf binary
 *.webp binary
+
+*.jpg binary
+*.mp4 binary

@@ -41,6 +41,11 @@ jobs:
       - run: python -S studio.py demo --render
         env:
           DO_NOT_TRACK: '1'
+      - name: Reproduce premium intro with supplied soundtrack
+        if: matrix.python == '3.13'
+        run: python -S scripts/premium_intro.py --render
+        env:
+          DO_NOT_TRACK: '1'
       - uses: actions/upload-artifact@v7.0.2
         if: always()
         with:

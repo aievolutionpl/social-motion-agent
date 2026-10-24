@@ -23,7 +23,7 @@ def inspect(path, raw):
         problems.append("forbidden file")
     if raw[:4] in (b"\x89PNG", b"GIF8") or path.suffix in (".jpg", ".webp"):
         return problems
-    if path.suffix.lower() in {".wav", ".mp3", ".ttf"}:
+    if path.suffix.lower() in {".wav", ".mp3", ".ttf", ".mp4"}:
         manifest = json.loads((ROOT / "assets/media-manifest.json").read_text(encoding="utf-8"))
         entry = next((p for p in manifest["files"] if p["path"] == rel.as_posix()), None)
         if not entry or entry["sha256"] != hashlib.sha256(raw).hexdigest():
