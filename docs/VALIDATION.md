@@ -1,5 +1,24 @@
 # Release validation
 
+## Premium intro release, 2026-10-24
+
+Fresh GitHub clone of `ba6d8e1` on Windows, without copying node_modules or upstream checkouts from the workshop:
+
+- `npm ci --ignore-scripts`: 74 packages, zero reported vulnerabilities.
+- `bootstrap_library.py`: all 34 pinned sources downloaded successfully.
+- `library_check.py`: 920 catalogue entries and 147 media files passed integrity checks.
+- `unittest discover`: 68 tests, 66 passed and two optional Playwright skips.
+- All five FFmpeg smoke scenarios passed; packaging without review was rejected.
+- `doctor`: all required tools present, no missing skill paths. External accounts were not probed.
+- `premium_intro.py --render`: complete 900-frame render from supplied media, without generation API calls. Technical probe passed: 1920x1080, 30 FPS, exactly 30 seconds, H.264 and stereo 48 kHz AAC.
+- Fresh render SHA-256 `ffc69b5c8c5646536de3653d6c010255ab7d4140684b10cebe1c930bd629d6bd` exactly matches the published master on this machine. Cross-platform byte identity is not promised.
+- Both the downloaded master and fresh render decoded fully without errors. A contact sheet from the fresh render was inspected: scenes, captions, generated backgrounds and genuine Codex skill screenshots are visible.
+- Publication scan: 270 source files, zero findings. Media hashes include the MP4 and audio; a test rejects a modified MP4.
+
+CI now reproduces the full intro on Linux/Python 3.13 in addition to existing Python 3.11/3.13 checks. Release archive integrity and downloaded-archive verification results are recorded in the v1.1.0 release notes. The complete bundle is built from committed Git trees, including all pinned upstream files.
+
+The test does not claim that every upstream runtime, desktop capture or paid provider connection is configured. The intro uses animated genuine screenshots, not continuous desktop capture. Technical and frame review do not constitute a human listening review. The owner explicitly requested publication of this film and its source media.
+
 ## Fresh Windows download audit, 2026-10-24
 
 Independently cloned GitHub commit `d4cdd31f84492e6c79e99e3f2fe9b356932dd12b` into a new directory, without reusing the workshop's node_modules or tool checkouts.
