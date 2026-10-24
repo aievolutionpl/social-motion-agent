@@ -82,12 +82,13 @@ Wymagania: **Python 3.11+**, **Node.js 22+**, **FFmpeg i ffprobe** dostępne w P
 ```bash
 git clone https://github.com/aievolutionpl/social-motion-agent.git
 cd social-motion-agent
-npm ci
-python -S studio.py doctor
+python -S studio.py setup
 python -S studio.py demo --render
 ```
 
-Komenda zwraca katalog produkcji, ścieżkę MP4 i wynik kontroli technicznej. Pierwszy render może pobrać Chrome. Render demo nie wymaga kluczy API ani płatnej generacji.
+`setup` sprawdza wymagane środowiska i instaluje przypięte zależności Node poleceniem `npm ci --ignore-scripts`. Przy brakującym narzędziu pokazuje, co trzeba uzupełnić. Nie instaluje globalnie Pythona, Node ani FFmpeg. Do pierwszego demo nie potrzebujesz pełnej biblioteki 34 narzędzi.
+
+Render zwraca katalog produkcji, ścieżkę MP4 i wynik kontroli technicznej. Pierwszy render może pobrać Chrome. Render demo nie wymaga kluczy API ani płatnej generacji.
 
 ```bash
 # Wersja pionowa: 1080 × 1920
@@ -95,9 +96,15 @@ python -S studio.py demo --format 9:16 --render
 
 # Podgląd edytowalnego przykładu w HyperFrames Studio
 npm run preview
+
+# Sprawdzenie gotowości bez pobierania plików
+python -S studio.py doctor
+
+# Opcjonalnie: przygotowanie także pełnej biblioteki źródeł (wymaga Git)
+python -S studio.py setup --with-library
 ```
 
-Pliki powstają w `output/jobs/<id>/`. Kolejne uruchomienie demo tworzy nową produkcję.
+`doctor` zwraca kod błędu, jeśli brakuje wymaganych narzędzi, odpowiedniej wersji środowiska lub zależności do renderowania. Pliki powstają w `output/jobs/<id>/`. Kolejne uruchomienie demo tworzy nową produkcję.
 
 ## Co dostajesz
 
@@ -180,7 +187,7 @@ python -S scripts/smoke_test.py
 python -S scripts/release_check.py
 ```
 
-CI uruchamia testy na Pythonie 3.11 i 3.13, test montażu FFmpeg oraz rzeczywisty render HyperFrames. Testy skatalogowanych bibliotek uruchamiają się po pobraniu źródeł. Testy Playwright są pomijane, gdy przeglądarka pomiarowa nie jest zainstalowana.
+CI uruchamia testy na Pythonie 3.11 i 3.13, test montażu FFmpeg oraz rzeczywisty render HyperFrames. Testy skatalogowanych bibliotek uruchamiają się po pobraniu źródeł. Osobny job przeglądarkowy instaluje Playwright i Chromium oraz wymaga wykonania testów układu bez pominięć. Dodatkowy job Windows sprawdza rdzeń i montaż FFmpeg. Lokalna seria uruchamiana z `-S` pozostaje niezależna od pakietów pip; instrukcje testów przeglądarkowych są w [CONTRIBUTING.md](CONTRIBUTING.md).
 
 - Demo i podstawowy montaż działają bez płatnych API.
 - Płatne generowanie głosu wymaga Twojego konta i jawnego `--execute`.

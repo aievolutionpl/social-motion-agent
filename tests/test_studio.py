@@ -1,5 +1,6 @@
 import json
 import math
+import shutil
 import sys
 import tempfile
 import unittest
@@ -113,7 +114,7 @@ class ProductionTests(unittest.TestCase):
         job = core.read(self.folder / "job.json")
         job["render"] = "renders/fixture.mp4"
         core.write(self.folder / "job.json", job)
-        core.write(self.folder / "technical.json", {"passed": True, "render_sha256": core.sha(render), "fingerprint": core.fingerprint(self.folder)})
+        core.write(self.folder / "technical.json", {"passed": True, "render": "renders/fixture.mp4", "render_sha256": core.sha(render), "fingerprint": core.fingerprint(self.folder)})
         core.write(self.folder / "review.json", {"render_sha256": core.sha(render), "reviewer": "unit fixture",
                    "evidence": ["renders/fixture.mp4"],
                    "checks": {area: {"status": "pass", "notes": "unit fixture only"} for area in core.REVIEW_AREAS}})
@@ -132,6 +133,91 @@ class ProductionTests(unittest.TestCase):
         self.assertTrue((package / "source/script.md").is_file())
         self.assertTrue((package / "review.json").is_file())
         self.assertEqual(core.read(package / "job.json")["state"], "packaged")
+        self.assertEqual(core.read(package / "preview.json")["path"], "master.mp4")
+        self.assertEqual(core.read(package / "review.json")["evidence"], ["master.mp4"])
+        self.assertEqual(core.check_job(package, "final"), [])
+
+    def test_delivery_is_complete_after_move_without_original_job(self):
+        render = self.review_fixture()
+        asset = core.register_asset(self.folder, render, "fixture", "test-only", "test asset")
+        preview_file = self.folder / "previews/draft.mp4"
+        preview_file.write_bytes(b"synthetic preview fixture")
+        preview = core.read(self.folder / "preview.json")
+        preview.update(path="previews/draft.mp4", sha256=core.sha(preview_file))
+        core.write(self.folder / "preview.json", preview)
+        for name in ("previews/contact-sheet.jpg", "notes/audio-review.txt"):
+            (self.folder / name).write_bytes(b"synthetic review evidence")
+        review = core.read(self.folder / "review.json")
+        review["evidence"] = ["renders/fixture.mp4", "previews/contact-sheet.jpg", "notes/audio-review.txt",
+                              "source/script.md", asset["path"], "renders/fixture.mp4"]
+        core.write(self.folder / "review.json", review)
+        excluded = ("source/.env", "source/.env.local", "source/.venv/fixture.txt",
+                    "source/node_modules/fixture.txt", "source/.hyperframes/fixture.txt")
+        for name in excluded:
+            path = self.folder / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("synthetic excluded fixture", encoding="utf-8")
+        technical = core.read(self.folder / "technical.json")
+        technical["fingerprint"] = core.fingerprint(self.folder)
+        core.write(self.folder / "technical.json", technical)
+        originals = {name: (self.folder / name).read_bytes()
+                     for name in ("preview.json", "review.json", "technical.json")}
+        original_job = core.read(self.folder / "job.json")
+
+        package = core.package_job(self.folder)
+        for name, content in originals.items():
+            self.assertEqual((self.folder / name).read_bytes(), content)
+        updated_job = core.read(self.folder / "job.json")
+        self.assertEqual(updated_job["render"], original_job["render"])
+        self.assertEqual(updated_job["history"][:-1], original_job["history"])
+        self.assertEqual(updated_job["history"][-1]["event"], "packaged")
+        delivery = self.base / "moved-delivery"
+        shutil.move(package, delivery)
+        shutil.rmtree(self.folder)
+
+        self.assertEqual(core.check_job(delivery, "final"), [])
+        self.assertEqual(core.read(delivery / "job.json")["render"], "master.mp4")
+        delivered_technical = core.read(delivery / "technical.json")
+        self.assertEqual(delivered_technical["render"], "master.mp4")
+        self.assertEqual(delivered_technical["render_sha256"], core.sha(delivery / "master.mp4"))
+        self.assertEqual(delivered_technical["fingerprint"], core.fingerprint(delivery))
+        self.assertEqual(delivered_technical["source_fingerprint"], technical["fingerprint"])
+        self.assertEqual(core.read(delivery / "preview.json"), preview)
+        self.assertEqual(core.sha(delivery / preview["path"]), preview["sha256"])
+        evidence = core.read(delivery / "review.json")["evidence"]
+        self.assertEqual(evidence, ["master.mp4", *review["evidence"][1:-1], "master.mp4"])
+        self.assertTrue(all((delivery / value).is_file() for value in evidence))
+        self.assertEqual(core.sha(delivery / asset["path"]), asset["sha256"])
+        self.assertTrue(all(not (delivery / value).exists() for value in excluded))
+
+    def test_package_rejects_unsafe_or_colliding_evidence(self):
+        (self.base / "outside.txt").write_text("synthetic outside fixture", encoding="utf-8")
+        (self.folder / ".env").write_text("synthetic excluded fixture", encoding="utf-8")
+        (self.folder / "master.mp4").write_bytes(b"different synthetic evidence")
+        for evidence in ("../outside.txt", str(self.base / "outside.txt"), ".env", "job.json", "master.mp4"):
+            with self.subTest(evidence=evidence):
+                self.review_fixture()
+                review = core.read(self.folder / "review.json")
+                review["evidence"].append(evidence)
+                core.write(self.folder / "review.json", review)
+                original_job = core.read(self.folder / "job.json")
+                with self.assertRaises(ValueError):
+                    core.package_job(self.folder)
+                self.assertEqual(core.read(self.folder / "job.json"), original_job)
+                self.assertEqual(list((self.folder / "final").iterdir()), [])
+
+    def test_package_does_not_follow_source_directory_symlinks(self):
+        outside = self.base / "outside"
+        outside.mkdir()
+        (outside / "fixture.txt").write_text("synthetic outside fixture", encoding="utf-8")
+        try:
+            (self.folder / "source/linked").symlink_to(outside, target_is_directory=True)
+        except OSError as exc:
+            self.skipTest("Directory symlinks unavailable: " + str(exc))
+        self.review_fixture()
+        with self.assertRaises(ValueError):
+            core.package_job(self.folder)
+        self.assertEqual(list((self.folder / "final").iterdir()), [])
 
     def test_generated_assets_require_provenance(self):
         source = self.base / "asset.bin"

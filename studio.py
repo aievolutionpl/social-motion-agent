@@ -3,7 +3,6 @@
 import argparse
 import json
 import shlex
-import shutil
 import subprocess
 import sys
 from datetime import date, datetime, timezone
@@ -21,6 +20,7 @@ import backgrounds_catalog
 import bg_video
 import motion_catalog
 import sfx_catalog
+import environment
 
 
 def emit(value):
@@ -37,15 +37,7 @@ def job_path(value):
 
 
 def doctor():
-    from hyperframes_adapter import cli_path
-    missing = [{"route": key, "path": path} for key, route in core.routes().items()
-               for path in route["skills"] if not core.resolve_ref(path).is_file()]
-    tools = {name: bool(shutil.which(name)) for name in ("python", "git", "ffmpeg", "ffprobe", "node")}
-    report = {"checked_at": core.now(), "missing_skill_paths": missing, "tools": tools,
-              "local_assembly_ready": tools["ffmpeg"] and tools["ffprobe"],
-              "hyperframes_installed": cli_path().is_file(),
-              "external_connections": "Not tested. No credentials read or network calls made.",
-              "next": "npm ci, then python -S studio.py demo --render (first render may download Chrome)"}
+    report = environment.inspect()
     core.write(core.ROOT / "output/system/doctor.json", report)
     return report
 
@@ -62,6 +54,8 @@ def main():
     p.add_argument("--quality", choices=("draft", "standard", "high"), default="standard")
     sub.add_parser("map", help="Krótka mapa dostępnych ścieżek")
     sub.add_parser("doctor", help="Sprawdź lokalne narzędzia i ścieżki, bez sekretów i sieci")
+    p = sub.add_parser("setup", help="Sprawdź środowisko i zainstaluj przypięte zależności lokalnie")
+    p.add_argument("--with-library", action="store_true", help="Pobierz także pełną bibliotekę przypiętych źródeł i sprawdź jej integralność")
     p = sub.add_parser("route", help="Pokaż wybrane skille i oczekiwane wyniki")
     p.add_argument("kind", choices=core.routes())
     p = sub.add_parser("find", help="Szukaj w katalogu bez czytania wszystkich SKILL.md")
@@ -147,7 +141,11 @@ def main():
         elif args.command == "doctor":
             report = doctor()
             emit(report)
-            return int(bool(report["missing_skill_paths"]))
+            return int(not report["ready"])
+        elif args.command == "setup":
+            report = environment.setup(with_library=args.with_library)
+            emit(report)
+            return int(not report["setup"]["passed"])
         elif args.command == "route":
             route = dict(core.routes()[args.kind])
             route["read_first"] = core.read(core.ROOT / "config/routes.json")["always_read"]

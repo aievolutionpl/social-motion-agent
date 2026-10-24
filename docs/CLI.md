@@ -4,7 +4,8 @@ Run `python -S studio.py --help` for the complete parser and subcommand help.
 
 | Command | Purpose |
 | --- | --- |
-| doctor | Local dependency detection; no credentials or account requests |
+| setup [--with-library] | Check prerequisites and install pinned Node dependencies; optionally restore the full source library |
+| doctor | Offline readiness and version checks; nonzero exit when required render dependencies are missing |
 | demo [--format 9:16] [--render] | New synthetic editable HyperFrames example |
 | new TITLE --kind KIND --duration SECONDS | Create a job; no generation |
 | map / route KIND / find QUERY | Select production guidance |
@@ -26,3 +27,9 @@ JOB must be inside output/jobs. --render paths are relative to that job. Paid na
 `python -S scripts/voiceover.py --help`.
 
 Optional video-studio edit operations require VSTUDIO_SCRIPT. Optional browser measurements require Playwright and its Chromium installation; upstream heuristic gates require their separate source installation. No optional dependency is reported as connected just because its instructions exist.
+
+## First run
+
+Run `python -S studio.py setup`, then `python -S studio.py demo --render`. Setup uses `npm ci --ignore-scripts` inside this repository. Python 3.11+, Node 22+ with npm, FFmpeg and ffprobe must already be installed; missing prerequisites produce actionable diagnostics and a nonzero exit. Git is needed only when restoring the optional source library with `--with-library`.
+
+`doctor` checks local executables, versions, required skill paths and the bundled Node runtime dependencies without reading credentials or contacting external accounts. Its JSON report includes `ready`, `prerequisites_ready`, `issues` and `next_steps`. Read `ready` or the process exit code before attempting a render. Browser download availability and paid provider accounts are not checked.
