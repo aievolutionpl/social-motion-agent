@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import os
 import re
 import shutil
 import subprocess
@@ -284,18 +285,80 @@ def package_job(folder: Path) -> Path:
     package = folder / "final" / ("delivery-" + uuid.uuid4().hex[:8])
     package.mkdir(exist_ok=False)
     render = local(folder, job["render"])
-    shutil.copy2(render, package / ("master" + render.suffix))
-    for name in ("job.json", "brief.json", "intake.json", "research.json", "storyboard.json", "timeline.json", "assets.json", "technical.json", "review.json", "HANDOFF.md"):
-        shutil.copy2(folder / name, package / name)
-    shutil.copytree(folder / "source", package / "source", ignore=shutil.ignore_patterns("node_modules", ".git", ".venv", "__pycache__", ".env", ".env.*"))
-    # Keep original relative asset paths usable by the supplied timeline.
-    for asset in read(folder / "assets.json")["items"]:
-        target = local(package, asset["path"], exists=False)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(local(folder, asset["path"]), target)
-    (package / "README.md").write_text("# Pakiet filmu\n\nMaster jest powiązany z technical.json i review.json. Źródła oraz assety zachowują ścieżki względem katalogu pakietu. Wymagania wybranego silnika sprawdź w brief.engine i HANDOFF.md. Publikacja wymaga osobnej zgody.\n", encoding="utf-8")
+    master = "master" + render.suffix
+    excluded = {"node_modules", ".git", ".venv", ".hyperframes", "__pycache__"}
+    rewritten = {"job.json", "technical.json", "preview.json", "review.json", "README.md"}
+
+    def omitted(path: Path) -> bool:
+        return any(part in excluded or part == ".env" or part.startswith(".env.") for part in path.parts)
+
+    def checked_reference(value: str) -> tuple[Path, Path]:
+        if not isinstance(value, str) or not value or Path(value).is_absolute():
+            raise ValueError("Pakiet wymaga ścieżek względnych: " + str(value))
+        relative = Path(os.path.normpath(value))
+        source = local(folder, relative.as_posix())
+        if omitted(relative) or omitted(source.relative_to(folder.resolve())):
+            raise ValueError("Pakiet nie zawiera sekretów ani cache: " + value)
+        return relative, source
+
+    def copy_file(value: str, destination: str | None = None) -> str:
+        relative, source = checked_reference(value)
+        name = destination or relative.as_posix()
+        target = local(package, name, exists=False)
+        if target.exists():
+            if not target.is_file() or sha(target) != sha(source):
+                raise ValueError("Kolizja plików w pakiecie: " + name)
+        else:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
+        return name
+
+    def copy_evidence(value: str) -> str:
+        relative, source = checked_reference(value)
+        if source == render:
+            return master
+        if relative.as_posix() in rewritten:
+            raise ValueError("Dowód wskazuje metadane zmieniane przy eksporcie: " + value)
+        return copy_file(value)
+
+    event = {"at": now(), "event": "packaged", "path": package.relative_to(folder).as_posix()}
+    try:
+        copy_file(job["render"], master)
+        for name in ("brief.json", "intake.json", "research.json", "storyboard.json", "timeline.json", "assets.json", "HANDOFF.md"):
+            copy_file(name)
+        # Copy only inspected source files; never follow directory symlinks.
+        for source in sorted((folder / "source").rglob("*")):
+            relative = source.relative_to(folder)
+            if omitted(relative):
+                continue
+            if source.is_symlink() and source.is_dir():
+                raise ValueError("Katalog źródeł zawiera dowiązanie katalogu: " + relative.as_posix())
+            if source.is_file():
+                copy_file(relative.as_posix())
+        # Retain asset paths used by the timeline and local composition.
+        for asset in read(folder / "assets.json")["items"]:
+            copy_file(asset["path"])
+        preview, review = read(folder / "preview.json"), read(folder / "review.json")
+        preview["path"] = copy_evidence(preview["path"])
+        review["evidence"] = [copy_evidence(value) for value in review["evidence"]]
+        write(package / "preview.json", preview)
+        write(package / "review.json", review)
+        write(package / "job.json", {**job, "render": master, "state": "packaged", "history": [*job["history"], event]})
+        technical = read(folder / "technical.json")
+        technical["render"] = master
+        delivery_fingerprint = fingerprint(package)
+        if delivery_fingerprint != technical["fingerprint"]:
+            technical.setdefault("source_fingerprint", technical["fingerprint"])
+            technical["fingerprint"] = delivery_fingerprint
+        write(package / "technical.json", technical)
+        (package / "README.md").write_text("# Pakiet filmu\n\nMaster jest powiązany z technical.json i review.json. Podgląd, dowody recenzji, źródła oraz assety mają lokalne ścieżki w pakiecie. Sekrety i cache są pominięte; source_fingerprint, jeśli obecny, zachowuje fingerprint oryginalnej produkcji. Wymagania wybranego silnika sprawdź w brief.engine i HANDOFF.md. Publikacja wymaga osobnej zgody.\n", encoding="utf-8")
+        errors = check_job(package, "final")
+        if errors:
+            raise ValueError("Niekompletny pakiet: " + "\n".join(errors))
+    except Exception:
+        shutil.rmtree(package, ignore_errors=True)
+        raise
     job["state"] = "packaged"
-    job["history"].append({"at": now(), "event": "packaged", "path": package.relative_to(folder).as_posix()})
+    job["history"].append(event)
     write(folder / "job.json", job)
-    shutil.copy2(folder / "job.json", package / "job.json")
     return package

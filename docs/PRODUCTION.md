@@ -47,4 +47,6 @@ Original footage is preserved.
 4. Run probe again after changes. Source changes invalidate earlier technical evidence.
 5. Run `check JOB --stage final`, then `pack JOB`.
 
-Pack creates a local delivery folder with the master and source/evidence files. It does not upload or publish anything. Review packages for private content before sharing them.
+Pack creates a local delivery folder with the master and source/evidence files. The exported `job.json` and `technical.json` point to the packaged master. `preview.json`, the reviewed preview and files listed in `review.evidence` travel with the package, preserving usable relative paths. The original production keeps its render paths. The delivery folder can be moved as a whole without relying on the original job directory.
+
+Pack does not upload or publish anything. Review packages for private content before sharing them.

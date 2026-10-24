@@ -55,3 +55,83 @@ jobs:
             output/jobs/**/notes/hyperframes-*.log
             output/jobs/**/renders/*.mp4
           retention-days: 7
+
+  browser-layout:
+    name: Browser layout
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python -m playwright install --with-deps chromium
+      - name: Run browser layout tests without skips
+        # Playwright lives in site-packages, so this gate intentionally omits -S.
+        run: |
+          python -B - <<'PY'
+          import sys
+          import unittest
+          from pathlib import Path
+
+          sys.path.insert(0, str(Path("tests").resolve()))
+          suite = unittest.defaultTestLoader.loadTestsFromName("test_polish.StarterTests")
+          result = unittest.TextTestRunner(verbosity=2).run(suite)
+          if not result.wasSuccessful() or result.skipped or result.testsRun == 0:
+              raise SystemExit(1)
+          PY
+
+  windows-smoke:
+    name: Windows core and FFmpeg
+    runs-on: windows-2022
+    timeout-minutes: 15
+    env:
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.13'
+      - name: Ensure FFmpeg is available
+        shell: pwsh
+        run: |
+          if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue) -or
+              -not (Get-Command ffprobe -ErrorAction SilentlyContinue)) {
+            choco install ffmpeg --yes --no-progress --limit-output
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            $env:Path += ";$env:ChocolateyInstall\bin"
+            "$env:ChocolateyInstall\bin" >> $env:GITHUB_PATH
+          }
+          ffmpeg -version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          ffprobe -version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Test core records, delivery gates and environment setup
+        shell: python -S -B {0}
+        run: |
+          import sys
+          import unittest
+          from pathlib import Path
+
+          sys.path.insert(0, str(Path("tests").resolve()))
+          suites = [unittest.defaultTestLoader.loadTestsFromName(name)
+                    for name in ("test_studio", "test_environment")]
+          if any(suite.countTestCases() == 0 for suite in suites):
+              raise SystemExit("A required Windows test module contains no tests")
+          result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(suites))
+          if not result.wasSuccessful():
+              raise SystemExit(1)
+      - name: Render and probe synthetic FFmpeg scenarios
+        run: python -S scripts/smoke_test.py
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: windows-smoke-evidence
+          path: |
+            output/system/smoke-latest.json
+            output/system/**/technical.json
+            output/system/**/ffmpeg.log
+          retention-days: 7
