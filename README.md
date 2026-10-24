@@ -50,9 +50,9 @@ Katalog źródeł to biblioteka instrukcji, recipes i szablonów. Nie oznacza se
 
 ## Pobierz bibliotekę w jednej paczce
 
-**[Pobierz pełny ZIP — skille, 34 narzędzia i wszystkie assety](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.1.0/social-motion-agent-v1.1.0-full.zip)**
+**[Pobierz pełny ZIP — skille, 34 narzędzia i wszystkie assety](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.1.1/social-motion-agent-v1.1.1-full.zip)**
 
-Wydanie **v1.1.0** zawiera nowe intro 30 s, jego pełne źródła, wcześniejsze przykłady oraz wszystkie 34 przypięte repozytoria biblioteki. Gotowy film jest w `docs/media/premium-intro.mp4`, a materiały do edycji w `examples/premium-intro/`.
+Wydanie **v1.1.1** zawiera nowe intro 30 s, jego pełne źródła, wcześniejsze przykłady oraz wszystkie 34 przypięte repozytoria biblioteki. Gotowy film jest w `docs/media/premium-intro.mp4`, a materiały do edycji w `examples/premium-intro/`.
 
 Rozpakuj paczkę i otwórz folder `social-motion-agent`. Pełne źródła są już w środku: bez Git, submodułów i instalatora biblioteki. Integralność sprawdzisz poleceniem `python -S scripts/verify_bundle.py`. Do renderowania potrzebujesz opisanych niżej środowisk i `npm ci`; paczka nie zawiera binariów środowisk, cache ani zewnętrznych plików Git LFS, których nie było w oryginalnej kolekcji. Licencje narzędzi i zasady użycia mediów pozostają bez zmian.
 

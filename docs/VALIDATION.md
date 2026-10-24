@@ -1,5 +1,9 @@
 # Release validation
 
+## Full ZIP publication scan correction, 2026-10-24
+
+The downloaded v1.1.0 ZIP exposed a false positive in the source-tree publication scanner: its generated bundle-manifest.json contains upstream fixture paths and exceeds the source-file size limit. v1.1.1 excludes only this generated root inventory from source scanning. verify_bundle.py remains responsible for the inventory and payload integrity; Git-index scanning still checks any staged inventory. Two regression tests cover this boundary. The film and its media are unchanged.
+
 ## Premium intro release, 2026-10-24
 
 Fresh GitHub clone of `ba6d8e1` on Windows, without copying node_modules or upstream checkouts from the workshop:
