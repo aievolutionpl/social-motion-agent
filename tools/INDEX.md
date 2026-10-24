@@ -42,3 +42,6 @@
 Instrukcje instalacji i licencje są zachowane wewnątrz źródeł. `not_detected` oznacza brak wykrytej licencji w pierwotnym katalogu, a nie zgodę na dowolne wykorzystanie. Nie kopiujemy tych projektów pod własną licencję.
 
 Nie są dołączone node_modules, cache, konta ani instalatory systemowe. Skrypty źródłowe i skille są kompletne w przypiętych checkoutach. Binaria OpenScreen pobierz z oficjalnego wydania.
+# Reproducible showcase
+
+`scripts/showcase.py` is the local adapter for `examples/showcase/`: a 36-second portrait composition with a bundled generated product image, CSS cylinder geometry, kinetic typography, pixel art and a process view derived from actual job fields. It uses the existing pinned HyperFrames adapter and FFmpeg. No generation API calls. Source and usage: `examples/showcase/README.md`; validation: `docs/VALIDATION.md`. Audio review and commercial licensing are separate from technical rendering.
