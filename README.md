@@ -9,15 +9,30 @@
 
 Social Motion Agent to narzędzie CLI i zestaw instrukcji dla agentów, a nie autonomiczny generator „jednym kliknięciem”. Działa z agentami potrafiącymi czytać pliki i wykonywać polecenia, np. Codex, Claude Code lub Cursor. Model AI wybierasz w swoim środowisku.
 
-## Zobacz prawdziwy render
+## Pokazówka: jeden pomysł, różne style
+
+**36 sekund w pionie:** fotografia produktu, geometryczny obrót 3D, kinetic type, pixel art i dane rzeczywistej produkcji. To edytowalny przykład z dołączonym assetem AI, lokalnymi fontami i efektami dźwiękowymi.
+
+![Siedem scen nowej pokazówki: produkt, 3D, typografia, retro, proces, assety i zakończenie](docs/images/showcase.jpg)
+
+```powershell
+npm ci
+python -S scripts/showcase.py --render
+```
+
+Wynik: `output/jobs/<id>/renders/showcase.mp4`, 1080 × 1920, 30 FPS. Odtworzenie nie wymaga kluczy API. [Sceny, edycja i pochodzenie materiałów](examples/showcase/README.md). Przed publikacją sprawdź obraz, odsłuch i prawa do dźwięków; skrypt nie wpisuje fikcyjnej akceptacji.
+
+## Krótkie demo techniczne
 
 ![Fragment demonstracyjnego filmu wyrenderowanego przez HyperFrames](docs/images/demo.gif)
 
 *8-sekundowa, niema kompozycja HTML z repozytorium. GIF pokazuje rzeczywisty render; okładka i grafika procesu są ilustracjami koncepcyjnymi wygenerowanymi przez AI.*
 
-## Pobierz wszystko w jednej paczce
+## Pobierz bibliotekę w jednej paczce
 
 **[Pobierz pełny ZIP — skille, 34 narzędzia i wszystkie assety](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.0.0/social-motion-agent-v1.0.0-full.zip)**
+
+Paczka v1.0.0 jest historycznym snapshotem biblioteki i zawiera stare 8-sekundowe demo. Nowa pokazówka jest w bieżących źródłach repozytorium; do jej uruchomienia pobierz aktualny klon. Nie mieszaj instrukcji nowego przykładu ze starszym wydaniem ZIP.
 
 Rozpakuj paczkę i otwórz folder `social-motion-agent`. Pełne źródła są już w środku: bez Git, submodułów i instalatora biblioteki. Integralność sprawdzisz poleceniem `python -S scripts/verify_bundle.py`. Do renderowania potrzebujesz opisanych niżej środowisk i `npm ci`; paczka nie zawiera binariów środowisk, cache ani zewnętrznych plików Git LFS, których nie było w oryginalnej kolekcji. Licencje narzędzi i zasady użycia mediów pozostają bez zmian.
 

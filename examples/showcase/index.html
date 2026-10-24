@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=1920">
+<title>Social Motion Agent • Showcase</title>
+<link rel="stylesheet" href="frame-tokens.css"><script src="gsap.min.js"></script>
+<style>
+:root{--accent:#bcff45;--orange:#fb7819;--blue:#1649e5;--paper:#f2eee5;--dark:#121514;--muted:#bac0b8;--fs-big:14cqmin;--fs-xl:17cqmin;--fs-small:3cqmin;--fs-code:3.2cqmin;--can-w:28cqmin;--can-h:52cqmin}
+*{box-sizing:border-box}html,body{width:1080px;height:1920px;overflow:hidden}.canvas{width:1080px;height:1920px;background:var(--dark)}.canvas:after{display:none}
+.scene{position:absolute;inset:0;overflow:hidden;background:var(--dark);visibility:hidden}.scene.active{visibility:visible}
+.scene .stage{inset:19cqmin 7cqmin 32cqmin;display:block;align-content:start}.label{font-size:var(--fs-small);letter-spacing:.12em;font-weight:650;margin:0 0 var(--sp-8)}
+h1,h2,p{margin:0}h1,h2{font-size:10.5cqmin;line-height:1.2;letter-spacing:-.055em;font-weight:800}.small{font-size:var(--fs-lead);line-height:1.3}.caption{position:absolute;bottom:0;left:0;font-size:var(--fs-lead)}
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.photo-title{color:var(--dark)}.photo-title h1{font-size:var(--fs-big)}.credit{position:absolute;bottom:0;font-size:var(--fs-small);background:var(--dark);color:var(--paper);padding:var(--sp-3) var(--sp-4)}
+.light{background:var(--paper);color:var(--dark)}.lime{background:var(--accent);color:var(--dark)}.blue{background:var(--blue);color:var(--paper)}
+.linebox{overflow:hidden}.linebox span{display:block}.accent{color:var(--accent)}
+.can-space{position:absolute;left:50%;top:57%;perspective:1600px;width:0;height:0}.can{position:absolute;transform-style:preserve-3d;width:var(--can-w);height:var(--can-h);left:calc(var(--can-w) / -2);top:calc(var(--can-h) / -2)}
+.facet{position:absolute;top:0;left:50%;width:2cqmin;height:100%;backface-visibility:hidden;background:var(--facet);border-top:1.1cqmin solid var(--muted);border-bottom:1.1cqmin solid var(--muted)}
+.lid{position:absolute;left:0;width:var(--can-w);height:var(--can-w);border-radius:50%;background:repeating-radial-gradient(ellipse at center,#b8c1c7 0 4%,#e7eaec 5% 7%,#7b858c 8% 9%);transform:translateY(-50%) rotateX(90deg)}
+.lid.bottom{top:100%}.tab{position:absolute;left:39%;top:35%;width:22%;height:36%;border-radius:45%;border:.9cqmin solid #6b747b;background:#c1cbd2}
+.can-shadow{position:absolute;top:78%;left:24%;width:52%;height:5%;border-radius:50%;background:var(--dark);filter:blur(28px);opacity:.18}.ring{position:absolute;border:2cqmin solid var(--blue);border-radius:50%;width:72cqmin;height:72cqmin;left:14cqmin;top:56cqmin;transform:rotateX(68deg)}
+.giant{font-size:var(--fs-xl);line-height:.94;letter-spacing:-.07em}.kinetic{position:absolute;inset:38cqmin 7cqmin auto}.kinetic div{overflow:hidden}.kinetic b{display:block}.sticker{position:absolute;left:7cqmin;bottom:37cqmin;border: .3cqmin solid currentColor;padding:var(--sp-4) var(--sp-6);font-size:var(--fs-lead);transform:rotate(-5deg)}
+@font-face{font-family:Pixel;src:url(pixel.ttf)}.retro{font-family:Pixel,monospace}.retro h2{font-size:10cqmin;line-height:1.35;letter-spacing:0}.pixel-art{position:absolute;top:60cqmin;left:26cqmin;display:grid;grid-template-columns:repeat(12,4cqmin);grid-auto-rows:4cqmin;transform:rotate(-8deg)}.pixel{background:var(--pixel)}
+.editor{position:absolute;top:56cqmin;left:7cqmin;right:7cqmin;border:.15cqmin solid var(--muted);padding:var(--sp-8);background:var(--dark);color:var(--paper);border-radius:var(--r-panel)}.editor header{font-size:var(--fs-small);padding-bottom:var(--sp-6);border-bottom:.12cqmin solid var(--muted)}.code{font-family:var(--font-mono);font-size:var(--fs-code);line-height:1.35;white-space:pre-wrap;padding-top:var(--sp-8)}.file{color:var(--accent)}.workflow-row{margin-top:var(--sp-8);font-size:var(--fs-lead);border-bottom:.15cqmin solid var(--hairline-hi);padding-bottom:var(--sp-4)}
+#s5 h2{font-size:9cqmin}.gallery{position:absolute;top:64cqmin;left:7cqmin;right:7cqmin;height:60cqmin;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:var(--sp-4)}.gallery img{min-height:0;min-width:0;width:100%;height:100%;object-fit:cover;border-radius:var(--r-card)}.tile{min-height:0;min-width:0;background:var(--accent);color:var(--dark);display:flex;align-items:center;justify-content:center;font-size:9cqmin;font-weight:900;border-radius:var(--r-card);text-align:center}
+.end-title{margin-top:18cqmin}.end-title h2{font-size:13cqmin}.cta{margin-top:var(--sp-24);display:inline-block;background:var(--accent);color:var(--dark);font-size:var(--fs-lead);padding:var(--sp-6) var(--sp-8);border-radius:var(--r-pill)}.url{font-family:var(--font-mono);font-size:var(--fs-small);line-height:1.6;margin-top:var(--sp-8)}
+.rail{position:absolute;bottom:27cqmin;left:7cqmin;right:7cqmin;height:.4cqmin;background:#7778}.rail i{display:block;background:var(--accent);width:100%;height:100%;transform-origin:left}
+</style></head><body>
+<main class="canvas" data-composition-id="main" data-start="0" data-duration="36" data-width="1080" data-height="1920" data-fps="30">
+<section id="s0" class="scene"><img class="photo" src="citrus.png" alt="Fikcyjny napój cytrusowy"><div class="stage photo-title"><p class="label">SOCIAL MOTION AGENT</p><h1><div class="linebox"><span>Twój pomysł.</span></div><div class="linebox"><span>Taki efekt.</span></div></h1><p class="credit">Koncepcja reklamowa • obraz AI</p></div></section>
+<section id="s1" class="scene light"><div class="stage"><p class="label">01 / PRZESTRZEŃ</p><h2>Dodaj<br>nowy wymiar.</h2><p class="caption">Obrót 3D. Światło. Perspektywa.</p></div><div class="ring"></div><div class="can-shadow"></div><div class="can-space"><div class="can" id="can"><div class="lid"><div class="tab"></div></div><div class="lid bottom"></div></div></div></section>
+<section id="s2" class="scene lime"><div class="stage"><p class="label">02 / KINETIC TYPE</p></div><div class="kinetic giant"><div><b>STOP.</b></div><div><b>PATRZ.</b></div><div><b>TWÓRZ.</b></div></div><div class="sticker">Typografia w rytmie ruchu</div></section>
+<section id="s3" class="scene blue retro"><div class="stage"><p class="label">03 / ZMIANA STYLU</p><h2>NOWY<br>POZIOM.</h2><p class="caption">Ten sam pomysł. Inny charakter.</p></div><div class="pixel-art" id="pixels"></div></section>
+<section id="s4" class="scene"><div class="stage"><p class="label">04 / POD MASKĄ</p><h2><span>Tak powstaje</span><br><span class="accent">ten film.</span></h2><p class="caption">Widok danych tej produkcji</p></div><div class="editor"><header>job.json + storyboard.json</header><div class="code" id="plan">__PLAN__</div><div class="workflow-row">brief.json → storyboard.json</div><div class="workflow-row">source/index.html → MP4</div></div></section>
+<section id="s5" class="scene light"><div class="stage"><p class="label">05 / TWÓJ WARSZTAT</p><h2>Assety.<br>Motion.<br>Twój styl.</h2><p class="caption">Edytowalne źródła. Lokalny render.</p></div><div class="gallery"><img src="citrus.png" alt="Asset reklamy"><div class="tile">MAKE<br>IT<br>MOVE</div></div></section>
+<section id="s6" class="scene"><div class="stage"><p class="label">AI EVOLUTION POLSKA</p><div class="end-title"><h2><span>SOCIAL</span><br><span>MOTION</span><br><span class="accent">AGENT.</span></h2></div><div class="cta">Pobierz. Otwórz w Codexie. Twórz.</div><p class="url">github.com/aievolutionpl/<br>social-motion-agent</p><p class="caption">Ten przykład odtworzysz bez API.</p></div></section>
+<div class="rail"><i></i></div>
+</main><script>
+const starts=[0,5,10,14,18,25,30],ends=[5,10,14,18,25,30,36];
+const can=document.getElementById('can');
+for(let i=0;i<48;i++){const f=document.createElement('i');f.className='facet';const a=i*7.5;f.style.transform=`translateX(-50%) rotateY(${a}deg) translateZ(14cqmin)`;f.style.setProperty('--facet',`hsl(224 82% ${25+30*Math.pow((Math.cos(a*Math.PI/180)+1)/2,3)}%)`);can.append(f)}
+const pattern=['000011110000','000111111000','000111111000','000111111000','000111111000','000111111000','000111111000','000111111000','000111111000','000111111000','000111111000','000011110000'];
+pattern.forEach((row,y)=>[...row].forEach((v,x)=>{const p=document.createElement('i');p.className='pixel';p.style.setProperty('--pixel',v==='0'?'transparent':y===0||y===11?'#d5e1e6':x<5?'#bbff45':'#6d9b27');document.getElementById('pixels').append(p)}));
+const tl=gsap.timeline({paused:true});
+starts.forEach((s,i)=>{tl.set('#s'+i,{visibility:'visible'},s);tl.set('#s'+i,{visibility:'hidden'},ends[i]);});
+tl.fromTo('#s0 .photo',{scale:1.13},{scale:1,duration:5,ease:'power2.out'},0);
+tl.fromTo('#s0 .linebox span',{yPercent:110},{yPercent:0,duration:.7,stagger:.18,ease:'power3.out'},.15);
+tl.fromTo('.can',{rotationX:-12,rotationY:-110,rotationZ:18,scale:.6},{rotationX:12,rotationY:250,rotationZ:-12,scale:1,duration:5,ease:'power2.inOut'},5);
+tl.fromTo('.ring',{rotationZ:0,scale:.7},{rotationZ:120,scale:1,duration:5,ease:'none'},5);
+tl.fromTo('.kinetic b',{yPercent:110},{yPercent:0,duration:.45,stagger:.45,ease:'power3.out'},10);
+tl.fromTo('.sticker',{scale:0,rotation:12},{scale:1,rotation:-5,duration:.5,ease:'back.out(1.4)'},11.7);
+tl.fromTo('.pixel-art',{y:120,rotation:-15},{y:-20,rotation:8,duration:4,ease:'steps(8)'},14);
+tl.fromTo('.editor',{y:100,opacity:0},{y:0,opacity:1,duration:.6,ease:'power3.out'},18.3);
+tl.fromTo('.workflow-row',{opacity:0,x:30},{opacity:1,x:0,duration:.5,stagger:1.8,ease:'power3.out'},21);
+tl.fromTo('.gallery',{rotationX:65,y:120,opacity:0},{rotationX:0,y:0,opacity:1,duration:.7,ease:'power3.out'},25.3);
+tl.fromTo('.end-title',{y:90,opacity:0},{y:0,opacity:1,duration:.7,ease:'power3.out'},30);
+tl.fromTo('.cta',{y:30,opacity:0},{y:0,opacity:1,duration:.6,ease:'power3.out'},31.1);
+tl.fromTo('.rail i',{scaleX:0},{scaleX:1,duration:36,ease:'none'},0);
+function visibility(t){starts.forEach((s,i)=>document.getElementById('s'+i).classList.toggle('active',t>=s&&t<ends[i]));}
+tl.eventCallback('onUpdate',()=>visibility(tl.time()));
+window.__timelines={main:tl};window.DURATION=36;window.seek=t=>{tl.seek(Math.min(t,35.999),false);visibility(t)};
+window.__ready=document.fonts.ready;window.seek(2);
+</script></body></html>
