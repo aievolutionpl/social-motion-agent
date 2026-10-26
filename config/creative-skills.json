@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "entrypoint": "skills/creative-director/SKILL.md",
+  "modes": {
+    "video": {
+      "purpose": "Art direction, storyboard, motion, sound and reviewed MP4 delivery",
+      "sources": ["hypermotion", "ai-design-skills"],
+      "upstream": [
+        "tools/repos/hypermotion/skills/hypermotion-brand-profile/SKILL.md",
+        "tools/repos/hypermotion/skills/hypermotion-explainer-director/SKILL.md",
+        "tools/repos/ai-design-skills/skills/design-to-motion/SKILL.md"
+      ],
+      "runtime": "HyperFrames + GSAP and FFmpeg are the local render path. Hypermotion .hype export additionally needs its desktop application and CLI; downloading skills does not install or verify them."
+    },
+    "website": {
+      "purpose": "Conversion strategy, distinctive visual design, real content and browser review",
+      "sources": ["ai-design-skills", "taste-skill"],
+      "upstream": [
+        "tools/repos/ai-design-skills/skills/landing-page-design/SKILL.md",
+        "tools/repos/taste-skill/skills/taste-skill/SKILL.md"
+      ],
+      "runtime": "Reuse the target project's framework and browser tools. No video renderer required. Taste's scripts are optional and require their documented Node/browser prerequisites."
+    },
+    "ui-motion": {
+      "purpose": "Faithful static UI reconstruction, meaningful motion and a website or film output",
+      "sources": ["ai-design-skills", "taste-skill", "hypermotion"],
+      "upstream": [
+        "tools/repos/ai-design-skills/skills/design-to-motion/SKILL.md",
+        "tools/repos/taste-skill/skills/taste-skill/SKILL.md",
+        "tools/repos/hypermotion/skills/hypermotion-explainer-director/SKILL.md"
+      ],
+      "runtime": "Choose website interaction or deterministic film export from the brief. A website animation is not automatically a request for an MP4. Hypermotion runtime is checked separately when selected."
+    }
+  },
+  "precedence": "User brief, existing brand and accessibility take priority over upstream aesthetic defaults. Read only the selected upstream sections; never merge every source into the prompt."
+}

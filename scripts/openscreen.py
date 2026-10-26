@@ -125,10 +125,10 @@ def main():
         if args.command == "help":
             print(text)
         else:
-            print(json.dumps(dict(executable=str(executable()),version=config()["version"],
+            print(json.dumps(dict(executable=str(executable()),version=None,version_verified=False,
                  cli_help_verified="record" in text and "export" in text and "mcp" in text,
                  ffmpeg=bool(shutil.which("ffmpeg")),ffprobe=bool(shutil.which("ffprobe")),
-                 mcp_registered=False,capture_tested="see output/system/openscreen/verification.json"),indent=2))
+                 mcp_registration_checked=False,capture_tested=False),indent=2))
     elif args.command == "sources":
         value = sources()
         if args.output:

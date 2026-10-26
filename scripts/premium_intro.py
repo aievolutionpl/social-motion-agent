@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
-from studio_core import ROOT, create_job, now, read, write, register_asset, probe_job
+from studio_core import ROOT, create_job, fingerprint, now, read, record_render, write, register_asset, probe_job
 
 EXAMPLE = ROOT / 'examples/premium-intro'
 
@@ -53,10 +53,12 @@ def render(folder):
     from hyperframes_adapter import render as render_html
     render_html(folder, 'premium-picture', 'high')
     target = folder / 'renders/premium-intro.mp4'
+    source_fingerprint = fingerprint(folder)
     subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-nostdin','-n',
         '-i',str(folder/'renders/premium-picture.mp4'),'-i',str(folder/'audio/mix.wav'),
         '-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','320k','-t','30',
         '-movflags','+faststart',str(target)],check=True,timeout=180)
+    record_render(folder,'renders/premium-intro.mp4',source_fingerprint,'premium-intro-audio-mix')
     return probe_job(folder,'renders/premium-intro.mp4')
 
 def main():

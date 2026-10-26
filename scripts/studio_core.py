@@ -88,8 +88,8 @@ def create_job(title: str, kind: str, aspect: str, duration: float, language: st
         ("Jak prowadzimy dźwięk?", ["Lektor i subtelna muzyka", "Głos z nagrania", "Muzyka i tekst na ekranie", "Bez dźwięku"]),
         ("Jaki jest najważniejszy priorytet produkcji?", ["Jakość i dopracowanie", "Tempo realizacji", "Mały koszt generacji", "Kilka wersji do porównania"]),
     ]
-    write(folder / "intake.json", {"skill": "5-pytan", "instruction":
-          "Dostosuj dokładnie 5 pytań do briefu. Nie pytaj ponownie o znane decyzje. Każde ma 3–5 opcji i odpowiedź własną. Zapisz rzeczywiste odpowiedzi użytkownika.",
+    write(folder / "intake.json", {"skill": "skills/intake/SKILL.md", "instruction":
+          "Uzupełnij 5 kategorii briefu rzeczywistymi odpowiedziami użytkownika, także podanymi wcześniej. Pytaj tylko o brakujące decyzje; nie wymagaj 5 nowych pytań. Gdy pytasz, podaj 3–5 opcji i odpowiedź własną. user_waiver może zawierać wyłącznie rzeczywistą, jawną prośbę użytkownika o pominięcie pytań, zapisaną w jego języku.",
           "questions": [{"id": i + 1, "question": q, "options": options,
                          "allow_free_text": True, "answer": None} for i, (q, options) in enumerate(questions)],
           "user_waiver": None})
@@ -124,6 +124,42 @@ def fingerprint(folder: Path) -> str:
     return hashlib.sha256(b"".join(parts)).hexdigest()
 
 
+def record_render(folder: Path, render_path: str, source_fingerprint: str, producer: str) -> dict:
+    """Called by renderers after success with the fingerprint captured before rendering.
+
+    A probe measures an existing file; it cannot establish which sources produced it.
+    Keep this receipt next to the render so independent render names never overwrite it.
+    """
+    render = local(folder, render_path)
+    if not producer.strip() or source_fingerprint != fingerprint(folder):
+        raise ValueError("Źródła zmieniły się podczas renderowania; wykonaj nowy render")
+    for asset in read(folder / "assets.json").get("items", []):
+        if sha(local(folder, asset["path"])) != asset["sha256"]:
+            raise ValueError("Asset zmienił się podczas renderowania: " + asset["id"])
+    receipt = {"schema_version": 1, "render_sha256": sha(render),
+               "fingerprint": source_fingerprint, "producer": producer, "recorded_at": now()}
+    write(render.with_name(render.name + ".provenance.json"), receipt)
+    return receipt
+
+
+def render_provenance(folder: Path, render_path: str) -> dict:
+    render = local(folder, render_path)
+    receipt = render.with_name(render.name + ".provenance.json")
+    return read(receipt) if receipt.is_file() else {}
+
+
+def video_duration(stream: dict) -> float:
+    """Return stream duration, never the audio-dominated container duration."""
+    try:
+        duration = float(stream.get("duration", "nan"))
+        if not math.isfinite(duration) and stream.get("duration_ts") is not None:
+            num, den = stream["time_base"].split("/")
+            duration = float(stream["duration_ts"]) * float(num) / float(den)
+        return duration if math.isfinite(duration) and duration > 0 else 0
+    except (KeyError, TypeError, ValueError, ZeroDivisionError):
+        return 0
+
+
 def check_job(folder: Path, stage: str) -> list[str]:
     """Validate recorded evidence; this does not certify the truth of human review."""
     errors = []
@@ -133,10 +169,12 @@ def check_job(folder: Path, stage: str) -> list[str]:
     try:
         job, intake, brief = (read(folder / name) for name in ("job.json", "intake.json", "brief.json"))
         questions = intake.get("questions", [])
-        waiver = str(intake.get("user_waiver") or "").casefold()
-        waived = any(phrase in waiver for phrase in ("pomiń pytania", "bez pytań", "start od razu"))
+        waiver = intake.get("user_waiver")
+        # This record layer checks that explicit evidence is present; the agent
+        # must preserve the user's actual request, regardless of its language.
+        waived = isinstance(waiver, str) and bool(waiver.strip())
         if not waived and (len(questions) != 5 or any(not str(q.get("answer") or "").strip() for q in questions)):
-            errors.append("Najpierw dokładnie 5 pytań i rzeczywiste odpowiedzi użytkownika (intake.json)")
+            errors.append("Uzupełnij 5 pytań/kategorii briefu rzeczywistymi odpowiedziami lub zapisz jawną prośbę użytkownika o pominięcie pytań (intake.json)")
         for key in ("goal", "audience", "direction"):
             if not str(brief.get(key, "")).strip():
                 errors.append("Uzupełnij brief." + key)
@@ -199,6 +237,9 @@ def check_job(folder: Path, stage: str) -> list[str]:
             checksum = sha(render)
             if not technical.get("passed") or technical.get("render_sha256") != checksum or technical.get("fingerprint") != fingerprint(folder):
                 errors.append("Brak aktualnej pozytywnej kontroli technicznej tego renderu i dokumentów")
+            provenance = render_provenance(folder, job["render"])
+            if provenance.get("render_sha256") != checksum or provenance.get("fingerprint") != fingerprint(folder):
+                errors.append("Brak zgodnego zapisu pochodzenia renderu; wykonaj nowy render")
             if review.get("render_sha256") != checksum or not review.get("reviewer") or not review.get("evidence"):
                 errors.append("Review wymaga SHA renderu, recenzenta oraz lokalnych dowodów oględzin")
             for value in review.get("evidence", []):
@@ -244,6 +285,7 @@ def probe_job(folder: Path, render_path: str) -> dict:
     video = next((s for s in info["streams"] if s.get("codec_type") == "video"), {})
     audio = [s for s in info["streams"] if s.get("codec_type") == "audio"]
     duration = float(info.get("format", {}).get("duration", 0))
+    picture_duration = video_duration(video)
     num, den = video.get("avg_frame_rate", "0/1").split("/")
     fps = float(num) / float(den) if float(den) else 0
     failures = []
@@ -251,14 +293,22 @@ def probe_job(folder: Path, render_path: str) -> dict:
         failures.append("Nieprawidłowe wymiary")
     if abs(duration - job["duration_sec"]) > max(0.15, 2 / job["fps"]):
         failures.append("Nieprawidłowy czas filmu")
+    if not picture_duration or abs(picture_duration - job["duration_sec"]) > max(0.15, 2 / job["fps"]):
+        failures.append("Nieprawidłowy czas strumienia wideo; dźwięk nie może zastępować brakujących klatek")
     if abs(fps - job["fps"]) > 0.1:
         failures.append("Nieprawidłowy FPS")
     if brief.get("audio_required") and not audio:
         failures.append("Brak wymaganej ścieżki audio")
-    payload = {"checked_at": now(), "render": render_path, "render_sha256": sha(render),
-               "fingerprint": fingerprint(folder), "passed": not failures, "failures": failures,
+    checksum = sha(render)
+    provenance = render_provenance(folder, render_path)
+    if not provenance:
+        failures.append("Brak zapisu pochodzenia renderu; użyj adaptera rejestrującego źródła podczas renderowania")
+    elif provenance.get("render_sha256") != checksum or provenance.get("fingerprint") != fingerprint(folder):
+        failures.append("Render nie odpowiada zapisanym źródłom; wykonaj nowy render")
+    payload = {"checked_at": now(), "render": render_path, "render_sha256": checksum,
+               "fingerprint": provenance.get("fingerprint"), "passed": not failures, "failures": failures,
                "width": video.get("width"), "height": video.get("height"), "fps": fps,
-               "duration_sec": duration, "audio_streams": len(audio), "ffprobe": info}
+               "duration_sec": duration, "video_duration_sec": picture_duration, "audio_streams": len(audio), "ffprobe": info}
     write(folder / "technical.json", payload)
     job["render"] = render_path
     write(folder / "job.json", job)
@@ -346,10 +396,14 @@ def package_job(folder: Path) -> Path:
         write(package / "job.json", {**job, "render": master, "state": "packaged", "history": [*job["history"], event]})
         technical = read(folder / "technical.json")
         technical["render"] = master
+        provenance = render_provenance(folder, job["render"])
         delivery_fingerprint = fingerprint(package)
         if delivery_fingerprint != technical["fingerprint"]:
             technical.setdefault("source_fingerprint", technical["fingerprint"])
             technical["fingerprint"] = delivery_fingerprint
+            provenance.setdefault("source_fingerprint", provenance["fingerprint"])
+            provenance["fingerprint"] = delivery_fingerprint
+        write(package / (master + ".provenance.json"), provenance)
         write(package / "technical.json", technical)
         (package / "README.md").write_text("# Pakiet filmu\n\nMaster jest powiązany z technical.json i review.json. Podgląd, dowody recenzji, źródła oraz assety mają lokalne ścieżki w pakiecie. Sekrety i cache są pominięte; source_fingerprint, jeśli obecny, zachowuje fingerprint oryginalnej produkcji. Wymagania wybranego silnika sprawdź w brief.engine i HANDOFF.md. Publikacja wymaga osobnej zgody.\n", encoding="utf-8")
         errors = check_job(package, "final")

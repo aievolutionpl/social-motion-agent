@@ -22,5 +22,11 @@
     "review"
   ],
   "primary_engine": "HyperFrames",
-  "publisher": "AI EVOLUTION POLSKA"
+  "publisher": "AI EVOLUTION POLSKA",
+  "creative_entrypoint": "skills/creative-director/SKILL.md",
+  "creative_modes": [
+    "video",
+    "website",
+    "ui-motion"
+  ]
 }

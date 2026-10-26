@@ -369,5 +369,7 @@
     "AGENTS.md",
     "START_HERE.md"
   ],
-  "intake_skill": "skills/intake/SKILL.md"
+  "intake_skill": "skills/intake/SKILL.md",
+  "creative_entrypoint": "skills/creative-director/SKILL.md",
+  "creative_modes_config": "config/creative-skills.json"
 }

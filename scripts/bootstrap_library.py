@@ -29,7 +29,7 @@ def sources():
 
 def run(*args, cwd=None):
     env = dict(os.environ, GIT_TERMINAL_PROMPT="0", GIT_LFS_SKIP_SMUDGE="1")
-    result = subprocess.run(["git", *args], cwd=cwd, env=env, capture_output=True,
+    result = subprocess.run(["git", "-c", "core.longpaths=true", *args], cwd=cwd, env=env, capture_output=True,
                             text=True, encoding="utf-8", errors="replace", timeout=300)
     if result.returncode:
         raise ValueError(result.stderr[-1200:].strip() or "Git failed")
@@ -60,6 +60,9 @@ def install(entry, check=False):
     staging.mkdir(parents=True)
     # Fetch the recorded revision itself, never silently upgrade to default HEAD.
     run("init", str(staging))
+    # Repository-local setting keeps later Git inspections usable on Windows too.
+    # It does not alter the user's global Git configuration.
+    run("config", "core.longpaths", "true", cwd=staging)
     run("remote", "add", "origin", entry["url"], cwd=staging)
     run("fetch", "--depth", "1", "origin", entry["commit"], cwd=staging)
     run("checkout", "--detach", entry["commit"], cwd=staging)

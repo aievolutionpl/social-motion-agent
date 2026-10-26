@@ -7,7 +7,7 @@ description: Create or edit YouTube videos, social shorts, screen tutorials, app
 
 Use the project root three levels above this skill folder. Read START_HERE.md, AGENTS.md and docs/PRODUCTION.md there.
 
-For every new film invoke the local **skills/intake/SKILL.md** instructions: exactly five tailored questions with options in one message; wait for answers, summarize and produce. Location: config/routes.json → intake_skill. Respect an explicit user request to skip. Small revisions reuse the current brief.
+For a new film read **skills/creative-director/SKILL.md**, then its video guidance and local **skills/intake/SKILL.md**. Reuse actual supplied answers across the five brief categories and ask only missing material questions with options. Respect an explicit request to skip; small revisions reuse the current brief. Run `studio.py skills plan --mode video`, then `skills setup --mode video` if the selected sources are missing.
 
 Research before production. Record read sources and verified on-screen facts. Select only relevant instructions through studio.py route/find. Read the user-provided brand brief when applicable. Keep each production under output/jobs/ with a current HANDOFF.md.
 

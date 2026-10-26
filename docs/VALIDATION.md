@@ -1,5 +1,19 @@
 # Release validation
 
+## Creative Director development verification, 2026-10-26
+
+The development checkout adds the portable compound skill, pinned Elaya/Taste sources, selected-source preparation, agent installers and native Hypermotion adapter. It is not included in the archived v1.1.1 ZIP.
+
+- Local Python suite: 118 tests, 116 passed; two Playwright cases skipped under `-S`. Browser tests run separately in CI.
+- Full library: all 36 sources, 924 catalogue entries and 147 media hashes passed `library_check.py`. Windows long-path checkout failures were resolved by scoped Git configuration, not a global setting.
+- Portrait HyperFrames demo: actual 1080x1920 render passed technical and source-provenance checks.
+- Five synthetic FFmpeg assembly modes passed. Regression tests reject short source excerpts, audio-masked missing frames and re-probing stale renders against edited sources.
+- Native Hypermotion adapter: nine simulated process/validation/provenance/cleanup tests passed. No native desktop export, MCP connection or platform build is claimed verified.
+- Portable skill frontmatter and relative links validated. Installer tests cover complete copies, unchanged reinstallation, preservation of user edits, profile selection and failed staging. Manifest-bundle tests cover source pins, hashes and refusal to overwrite mismatches.
+- Independent behavioral evaluation produced two Polish planning responses: a workshop website retaining the user's gradient and Inter, and a 20-second `.hype` brief retaining its requested engine with no paid services. They preserved supplied answers and reported missing runtime honestly. This evaluated planning behavior, not a finished site or native video. The observed missing native export workflow was addressed with the adapter and documentation.
+
+No paid media requests, publication or external account configuration were used for these checks. Live execution in Claude Code/Hermes, native Hypermotion and subjective listening review remain separate environment/production checks.
+
 ## Full ZIP publication scan correction, 2026-10-24
 
 The downloaded v1.1.0 ZIP exposed a false positive in the source-tree publication scanner: its generated bundle-manifest.json contains upstream fixture paths and exceeds the source-file size limit. v1.1.1 excludes only this generated root inventory from source scanning. verify_bundle.py remains responsible for the inventory and payload integrity; Git-index scanning still checks any staged inventory. Two regression tests cover this boundary. The film and its media are unchanged.

@@ -474,6 +474,34 @@
       "tracked_bytes": 3182478,
       "skill_md_files": 1,
       "distribution": "pinned_git_submodule"
+    },
+    {
+      "id": "ai-design-skills",
+      "url": "https://github.com/elayadesign/ai-design-skills.git",
+      "commit": "eabf86665588de0eb4c9e2fbf5fc9d3ae807e9f1",
+      "tracked_files": 5,
+      "tracked_bytes": 63639,
+      "skill_md_files": 2,
+      "path": "tools/repos/ai-design-skills",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "distribution": "pinned_git_submodule"
+    },
+    {
+      "id": "taste-skill",
+      "url": "https://github.com/Leonxlnx/taste-skill.git",
+      "commit": "12af471f627f866411b4bd785b19646d3672784c",
+      "tracked_files": 72,
+      "tracked_bytes": 3093372,
+      "skill_md_files": 1,
+      "path": "tools/repos/taste-skill",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "distribution": "pinned_git_submodule"
     }
   ]
 }

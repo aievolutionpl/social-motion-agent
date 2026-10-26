@@ -43,7 +43,11 @@ def render(image: Path, out: Path, duration: float, fmt: str = "9:16", motion: s
     if not 0 <= amount <= 0.5:
         raise ValueError("amount (siła najazdu lub dryfu) musi być w zakresie 0 do 0.5")
     out.parent.mkdir(parents=True, exist_ok=True)
-    result = subprocess.run(build_command(image, out, duration, fmt, motion, amount, fps), capture_output=True, text=True, timeout=900)
+    try:
+        result = subprocess.run(build_command(image, out, duration, fmt, motion, amount, fps), capture_output=True, text=True, timeout=900)
+    except subprocess.TimeoutExpired:
+        out.unlink(missing_ok=True)
+        raise
     if result.returncode:
         out.unlink(missing_ok=True)
         raise ValueError("FFmpeg: " + result.stderr[-1500:])

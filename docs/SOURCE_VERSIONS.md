@@ -44,3 +44,12 @@ Tabela opisuje pobrane źródła. Stan uruchomienia i testów: VALIDATION.md.
 Pliki SKILL.md obejmują skille, przepisy animacji, szablony i fixture testowe. Liczba nie oznacza liczby zainstalowanych skilli. Podział oraz kolizje nazw: `skills/catalog.json`.
 
 Zachowano oryginalne pliki licencji. Zewnętrzne media i odsyłacze mogą mieć odrębne warunki; klasyfikacja tabeli dotyczy licencji głównej repozytorium.
+
+## Creative Director additions (2026-10-26)
+
+| Source | Exact commit | License | Tracked files | SKILL.md files |
+| --- | --- | --- | --- | --- |
+| [Elaya AI Design Skills](https://github.com/elayadesign/ai-design-skills) | `eabf86665588de0eb4c9e2fbf5fc9d3ae807e9f1` | MIT | 5 | 2 |
+| [Taste Skill](https://github.com/Leonxlnx/taste-skill) | `12af471f627f866411b4bd785b19646d3672784c` | MIT | 72 | 1 |
+
+The local compound skill is authored separately, with source notes and preserved MIT notices in `skills/creative-director/`. Hypermotion retains its existing pinned commit.

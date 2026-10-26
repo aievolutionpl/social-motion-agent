@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 import fx
-from studio_core import WORKSPACE, contact_sheet, local, now, probe_job, read, sha, write
+from studio_core import WORKSPACE, contact_sheet, fingerprint, local, now, probe_job, read, record_render, sha, write
 
 VSTUDIO = Path(os.environ.get("VSTUDIO_SCRIPT", str(WORKSPACE / "tools/video-studio/vstudio.py")))
 VSTUDIO_OPS = ("trim", "concat", "speed", "reframe", "subs", "loudnorm", "cut-silence")
@@ -35,6 +35,7 @@ def edit(folder: Path, op: str, asset_ids: list[str], name: str, spec: str | Non
     if out.exists():
         raise ValueError("Render o tej nazwie już istnieje; użyj nowej nazwy")
     log = {"op": op, "assets": asset_ids, "source_sha256": [sha(s) for s in sources], "started_at": now()}
+    source_fingerprint = fingerprint(folder)
     if op == "fx":
         if len(sources) != 1:
             raise ValueError("fx przyjmuje dokładnie jeden asset")
@@ -57,6 +58,7 @@ def edit(folder: Path, op: str, asset_ids: list[str], name: str, spec: str | Non
             out.unlink(missing_ok=True)
             raise ValueError("vstudio: " + (result.stderr or result.stdout)[-1500:])
     relative = out.relative_to(folder).as_posix()
+    record_render(folder, relative, source_fingerprint, "edit-" + op)
     technical = probe_job(folder, relative)
     sheet = contact_sheet(folder, relative)
     log.update(render=relative, render_sha256=sha(out), probe_passed=technical["passed"],

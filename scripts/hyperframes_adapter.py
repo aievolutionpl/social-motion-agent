@@ -6,7 +6,7 @@ import shutil
 import subprocess
 import uuid
 from pathlib import Path
-from studio_core import ROOT, check_job, local, now, probe_job, read, sha, write
+from studio_core import ROOT, check_job, fingerprint, local, now, probe_job, read, record_render, sha, write
 
 NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$")
 
@@ -42,6 +42,7 @@ def render(folder: Path, name: str = "hyperframes", quality: str = "standard") -
     log = folder / "notes" / ("hyperframes-" + name + ".log")
     env = os.environ.copy()
     env["DO_NOT_TRACK"] = "1"
+    source_fingerprint = fingerprint(folder)
     try:
         with handle:
             handle.write(str(os.getpid()))
@@ -58,6 +59,7 @@ def render(folder: Path, name: str = "hyperframes", quality: str = "standard") -
         if not staging.is_file() or staging.stat().st_size == 0:
             raise ValueError("HyperFrames did not produce a non-empty video.")
         staging.rename(target)
+        record_render(folder, target.relative_to(folder).as_posix(), source_fingerprint, "hyperframes")
     finally:
         staging.unlink(missing_ok=True)
         lock.unlink(missing_ok=True)

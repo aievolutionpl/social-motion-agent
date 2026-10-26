@@ -7,10 +7,14 @@ This distribution includes the original sound library, backgrounds, fonts, local
 | Sound effects, original WAV/MP3 | 126 files |
 | Backgrounds, original WebP | 9 files |
 | Fonts, with OFL license texts | 3 files |
-| Upstream repositories | 34 pinned Git submodules |
-| Catalogue entries | 920 (913 upstream + 7 local) |
+| Upstream repositories | 36 pinned Git submodules |
+| Catalogue entries | 924 (916 upstream + 8 local) |
 
-Catalogue entries include skills, recipes, templates and test fixtures. They are not 920 independently installed integrations.
+Catalogue entries include skills, recipes, templates and test fixtures. They are not 924 independently installed integrations.
+
+## Focused preparation
+
+Use `python -S studio.py skills plan --mode video` and `skills setup --mode video` for Hypermotion + Elaya. Mode `website` selects Elaya + Taste, and `ui-motion` selects all three. Full source download below remains optional. `skills check` verifies sources, never runtime or account readiness.
 
 ## Download everything
 
@@ -54,4 +58,4 @@ Private portraits, avatars, customer campaigns, credentials, production output, 
 
 ## Complete standalone ZIP
 
-[Download the full v1.0.0 bundle](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.0.0/social-motion-agent-v1.0.0-full.zip). All 34 pinned source trees are expanded into ordinary folders. No Git or library bootstrap is required. Run `python -S scripts/verify_bundle.py` for integrity verification; `library_check.py` checks Git checkouts and is intended for the clone workflow. Install runtime dependencies separately as described in README.
+[Archived v1.1.1 bundle](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.1.1/social-motion-agent-v1.1.1-full.zip). It predates Creative Director and the current fixes; use the current checkout for the new workflow. All 34 pinned source trees are expanded into ordinary folders. No Git or library bootstrap is required. Run `python -S scripts/verify_bundle.py` for integrity verification; `library_check.py` checks Git checkouts and is intended for the clone workflow. Install runtime dependencies separately as described in README.

@@ -1,10 +1,12 @@
 # Pełna biblioteka skilli
 
-Uruchom `python -S scripts/bootstrap_library.py`, aby pobrać wszystkie 34 przypięte źródła. Lokalny rdzeń działa również bez rozszerzeń. Katalog zawiera oryginalne skille, recipes, szablony i fixtures, nie tylko samodzielne integracje.
+Uruchom `python -S scripts/bootstrap_library.py`, aby pobrać wszystkie 36 przypięte źródła. Lokalny rdzeń działa również bez rozszerzeń. Katalog zawiera oryginalne skille, recipes, szablony i fixtures, nie tylko samodzielne integracje.
 
 ## Punkty wejścia agenta
 
-Lokalny skill wejściowy: `.agents/skills/social-motion-studio/SKILL.md`. Mapę zadań pokaże `studio.py map`; właściwe ścieżki wybierze `studio.py route TYP`. Dodatkowo pobrano `remotion-official-skills` i `motion-video-skill`; sprawdzono renderowanie HTML. Stałe reguły 5 pytań i researchu są w AGENTS.md.
+Nadrzędny skill: `skills/creative-director/SKILL.md` (film, strona, UI motion; 10 modułów czytanych na żądanie). Dobór i przygotowanie źródeł: `studio.py skills plan/setup/check --mode video|website|ui-motion`.
+
+Dotychczasowy skill filmowy: `.agents/skills/social-motion-studio/SKILL.md`. Mapę zadań pokaże `studio.py map`; właściwe ścieżki wybierze `studio.py route TYP`. Dodatkowo pobrano `remotion-official-skills` i `motion-video-skill`; sprawdzono renderowanie HTML. Brief ma pięć kategorii; pytaj tylko o brakujące decyzje. Reguły są w skills/intake/SKILL.md.
 
 | Zadanie | Źródło i ścieżka od `tools/repos/` |
 |---|---|
