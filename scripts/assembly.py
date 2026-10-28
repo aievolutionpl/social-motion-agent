@@ -8,7 +8,7 @@ import subprocess
 import uuid
 from pathlib import Path
 
-from studio_core import local, now, read, write
+from studio_core import fingerprint, local, now, read, record_render, video_duration, write
 
 
 def run(args: list[str], log: Path) -> None:
@@ -43,18 +43,32 @@ def assemble(folder: Path) -> Path:
     gain = float(audio.get("music_gain", 0.12))
     if not math.isfinite(gain) or not 0 <= gain <= 1:
         raise ValueError("music_gain musi być w zakresie 0–1")
-    work = folder / "renders" / ("work-" + uuid.uuid4().hex[:10])
-    work.mkdir(parents=True, exist_ok=False)
-    log = work / "ffmpeg.log"
     clip_audio = []
+    media_info = {}
     for clip in clips:
         source = assets[clip["asset_id"]]
         image = source.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp", ".bmp")
-        if image or not clip.get("keep_audio", True):
+        if image:
             clip_audio.append(False)
         else:
-            probe = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries", "stream=index", "-of", "json", str(source)], capture_output=True, text=True, check=True, timeout=60)
-            clip_audio.append(bool(json.loads(probe.stdout).get("streams")))
+            if source not in media_info:
+                probe = subprocess.run(["ffprobe", "-v", "error", "-show_streams", "-show_format", "-of", "json", str(source)], capture_output=True, text=True, check=True, timeout=60)
+                media_info[source] = json.loads(probe.stdout)
+            info = media_info[source]
+            picture = next((s for s in info.get("streams", []) if s.get("codec_type") == "video"), None)
+            if picture is None:
+                raise ValueError("Klip nie zawiera obrazu: " + clip["asset_id"])
+            # Some inputs (e.g. Matroska) omit stream duration; final MP4 is
+            # additionally checked for actual video duration by probe_job.
+            available = video_duration(picture) or float(info.get("format", {}).get("duration", 0))
+            end = float(clip.get("in_sec", 0)) + float(clip["duration_sec"])
+            if not math.isfinite(available) or end > available + 1 / fps:
+                raise ValueError("Klip wykracza poza czas źródłowego wideo: " + clip["asset_id"])
+            clip_audio.append(bool(clip.get("keep_audio", True)) and any(s.get("codec_type") == "audio" for s in info.get("streams", [])))
+    source_fingerprint = fingerprint(folder)
+    work = folder / "renders" / ("work-" + uuid.uuid4().hex[:10])
+    work.mkdir(parents=True, exist_ok=False)
+    log = work / "ffmpeg.log"
     preserve_audio = any(clip_audio)
     for index, clip in enumerate(clips):
         source = assets[clip["asset_id"]]
@@ -103,6 +117,7 @@ def assemble(folder: Path) -> Path:
              "-movflags", "+faststart", str(target)], log)
     else:
         shutil.copy2(joined, target)
+    record_render(folder, target.relative_to(folder).as_posix(), source_fingerprint, "ffmpeg-assembly")
     job["render"] = target.relative_to(folder).as_posix()
     job["state"] = "rendered_unreviewed"
     job["history"].append({"at": now(), "event": "assembly_rendered", "path": job["render"], "log": log.relative_to(folder).as_posix()})

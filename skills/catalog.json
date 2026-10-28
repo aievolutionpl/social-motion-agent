@@ -9324,6 +9324,37 @@
       "kind": "skill",
       "name": "social-motion-studio",
       "description": "Local production workflow"
+    },
+    {
+      "name": "design-to-motion",
+      "description": "Turns a static design (a Figma frame, dashboard, card set, app screen, or a UI on a photo background) into a pixel exact HTML replica that loads in from an empty state, then has every visual act out what it does (a chart being read, a list receiving items, a prompt being typed) in a seamless loop, and exports an MP4 for X, a website GIF, and an 800×500 GIF. Use this skill whenever the user asks to animate a design, a Figma link, a screenshot, UI cards, a dashboard, or a hero image, to make a loading or appear animation, a showcase loop, a motion mockup, or a video or GIF of a design, even when they only say \\\"animate this\\\". Also use it on landing pages and websites for bento and feature cards that pair text with a visual, and for product or dashboard mockups. Always consult it before exporting layers, choosing what moves, building the intro, writing the visual story loops, or encoding video and GIFs.",
+      "source": "ai-design-skills",
+      "path": "tools/repos/ai-design-skills/skills/design-to-motion/SKILL.md",
+      "kind": "skill",
+      "sha256": "f006f47463c54894368909fd225cf18f0af07d1a90eeb134fe12c145d2ad5648"
+    },
+    {
+      "name": "landing-page-design",
+      "description": "Complete system for building high converting landing pages: intake questions, page structure, layout selection, conversion copywriting, SEO, plus strict visual rules for typography, spacing, corner radius, backgrounds, hero layout, icons, and motion. Use this skill whenever building, editing, styling, reviewing, or writing copy for ANY landing page, marketing site, web UI, page section, component, or prototype, even when the user does not mention design, conversion, tokens, or a design system. Always consult it before choosing page sections, headlines, CTAs, fonts, font sizes, spacing values, border radii, background colors, icons, or transitions.",
+      "source": "ai-design-skills",
+      "path": "tools/repos/ai-design-skills/skills/landing-page-design/SKILL.md",
+      "kind": "skill",
+      "sha256": "203569792660ab6d71dcb2e4fa673c0c7a0df7c99801d04ab419a4cb08aceb2c"
+    },
+    {
+      "name": "design-taste-frontend",
+      "description": ">-",
+      "source": "taste-skill",
+      "path": "tools/repos/taste-skill/skills/taste-skill/SKILL.md",
+      "kind": "skill",
+      "sha256": "3435ed963b15a1b6447746ec8844ab2cd38d8d2e8ead3451937f42df01e408c4"
+    },
+    {
+      "name": "creative-director",
+      "description": "Compound direction for video, websites and UI motion, with brief, taste, anti-slop and humanizer modules.",
+      "source": "social-motion-agent",
+      "path": "skills/creative-director/SKILL.md",
+      "kind": "skill"
     }
   ]
 }

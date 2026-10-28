@@ -1,56 +1,65 @@
 # Social Motion Agent
 
-**An AI-assisted video production toolkit by AI EVOLUTION POLSKA.**
+**From brief to a crafted video, website or animated product interface.** An open-source workshop by AI EVOLUTION POLSKA for coding agents with file and tool access.
 
-Turn a brief into an editable film with agent instructions, HyperFrames/GSAP compositions, FFmpeg assembly, provenance records and review gates. This is a CLI workflow for coding agents, not a hosted SaaS or an autonomous one-click generator.
+Start with [Creative Director](../skills/creative-director/SKILL.md), the portable compound skill. Its 10 reference modules cover brief/art direction, video direction, websites, UI motion, visual recipes, anti-slop, a Polish/English humanizer, engines, review and source provenance. It reuses known answers and asks only missing material questions. Directions describe real section/shot placements before a substantial build.
 
-[![Watch the 30-second Polish premium intro](images/premium-intro.png)](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/premium-intro.mp4)
+## Three modes
 
-Reproduce the 1920x1080 intro with Polish narration, captions, music, generated scenery and genuine Codex screenshots: `npm ci`, then `python -S scripts/premium_intro.py --render`. All source media is bundled; no generation API credentials are needed. [Editable sources and provenance](../examples/premium-intro/README.md). Screenshots are animated stills, not a continuous recording of agent execution.
+- **video:** storyboard, local composition, audio/captions, render evidence and delivery.
+- **website:** conversion strategy, distinctive composition, existing stack and browser review.
+- **ui-motion:** faithful static UI first, then meaningful interaction or film export according to the brief.
 
-## Download the complete bundle
+A website with subtle motion does not automatically require a video. A product video does not authorize redesigning the product. Brand choices and factual accuracy override upstream aesthetic defaults.
 
-**[Download full ZIP: all skills, 34 tool sources and assets](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.1.1/social-motion-agent-v1.1.1-full.zip)**
-
-Extract and open `social-motion-agent`. No Git, submodule checkout or library bootstrap is needed. Verify with `python -S scripts/verify_bundle.py`. Rendering still requires the runtimes below and `npm ci`. Runtime binaries, caches and unavailable upstream Git LFS payloads are not bundled. Original licenses and media rights apply. This is separate from GitHubâ€™s automatic Source code ZIP.
-
-## Complete workshop
-
-The repository includes 126 original sound effects, 9 WebP backgrounds, 4 font families with OFL texts, 7 local skills and a catalogue of 913 upstream entries. All 34 upstream repositories are pinned Git submodules.
-
-Clone with `git clone --recurse-submodules https://github.com/aievolutionpl/social-motion-agent.git`. Existing clones and ZIP users can run `python -S scripts/bootstrap_library.py` to restore every pinned source. Media is stored directly in this repository. GitHub ZIPs omit submodule contents; bootstrap restores them.
-
-[Full library](LIBRARY.md) Â· [Media rights](MEDIA_RIGHTS.md). Audio inclusion follows the owner's explicit redistribution authorization; supporting documents are pending and the code license does not relicense audio.
-
-## Quickstart
-
-Requires Python 3.11+, Node.js 22+, FFmpeg and ffprobe in PATH.
+## Prepare selected sources
 
 ```bash
 git clone https://github.com/aievolutionpl/social-motion-agent.git
 cd social-motion-agent
-npm ci
-python -S studio.py doctor
-python -S studio.py demo --render
+python -S studio.py skills plan --mode video
+python -S studio.py skills setup --mode video
+python -S studio.py skills check --mode video
 ```
 
-The demo is an 8-second silent HTML film. No paid AI API calls are needed. The first render may download Chrome.
-Use --format 9:16 for portrait. Run npm run preview to open the editable example.
+Modes: `video`, `website`, `ui-motion`. Video selects Hypermotion + Elaya AI Design Skills. Website selects Elaya + Taste Skill v2. UI motion selects all three. Setup fetches pinned sources without running upstream code. Check verifies source integrity offline, including full manifest bundles; it never certifies a renderer or account.
 
-![Real demo render](images/demo.gif)
+The extended catalogue contains 924 entries (916 upstream + 8 local) from 36 upstream repositories. Entries include recipes/templates/test fixtures, not 924 working integrations. Read only relevant files. Use `scripts/bootstrap_library.py` for the optional full collection.
 
-## Workflow
+## Install and render
 
-Brief â†’ research â†’ storyboard â†’ compose â†’ review â†’ export.
+```bash
+python -S scripts/install_skill.py --agent codex
+python -S scripts/install_skill.py --agent codex --execute
+# Alternatives: --agent claude, --agent hermes, or --dest CUSTOM_SKILL_PARENT
+```
 
-Open the repository in Codex, Claude Code or another file/terminal-capable agent. Ask it to read AGENTS.md and START_HERE.md before creating your film. The agent can create a job, write HTML scenes, render, inspect and record evidence.
+The package is self-contained and existing modified installations are preserved. [Agent setup](AGENT_SETUP.md) explains profile paths and the distinction between a readable GitHub repository and an execution environment.
 
-The core tracks SHA-256 hashes and blocks delivery without the required records. A source change invalidates technical evidence. Human judgment is still required for aesthetics, audio, facts and licensing.
+For local video rendering install Python 3.11+, Node 22+, FFmpeg and ffprobe, then:
 
-[Production guide](PRODUCTION.md) Â· [HyperFrames](HYPERFRAMES.md) Â· [CLI](CLI.md) Â· [Providers](PROVIDERS.md) Â· [Validation](VALIDATION.md)
+```bash
+python -S studio.py setup
+python -S studio.py demo --format 9:16 --render
+python -S scripts/premium_intro.py --render
+```
 
-## Privacy and licensing
+Setup uses locked Node dependencies. The first render may download Chromium. Supplied examples do not make paid generation requests. [Intro source](../examples/premium-intro/README.md) contains Polish narration and actual animated Codex screenshots; it is not continuous agent screen capture.
 
-No client assets, personal voice IDs, account connections or production histories are bundled. Production stays in ignored output folders. Secrets come from your own environment. Publishing and paid generation require explicit authorization.
+HyperFrames/GSAP is the default HTML renderer. Hypermotion is a separate desktop/CLI/MCP product with native `.hype` scenes; downloading its skills does not install the app. Verify its platform/runtime and a small export before production. Do not silently substitute an explicitly requested engine. [Hypermotion setup](HYPERMOTION.md).
 
-Original code: MIT. Dependencies retain their own licenses. An independent product of [AI EVOLUTION POLSKA](https://www.aievolutionpolska.pl/), not affiliated with HeyGen.
+## Verification and limits
+
+Render receipts bind a generated MP4 to its source fingerprint. Source edits require re-rendering; probing an old file cannot reapprove it. Video stream duration is checked independently of container/audio duration. Packaging still requires actual visual/audio review evidence.
+
+```bash
+python -S -B -m unittest discover -s tests -v
+python -S scripts/smoke_test.py
+python -S scripts/release_check.py
+```
+
+The [archived v1.1.1 full ZIP](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.1.1/social-motion-agent-v1.1.1-full.zip) has 34 source trees and predates this compound skill and fixes. Use the current checkout for the new workflow; no newer full release is claimed here.
+
+[Production](PRODUCTION.md) · [CLI](CLI.md) · [Media rights](MEDIA_RIGHTS.md) · [Third-party notices](../THIRD_PARTY_NOTICES.md) · [Validation](VALIDATION.md)
+
+Code is MIT. Media and third-party tools retain separate terms. The SFX library has owner redistribution authorization; supporting license evidence is still pending. No private client assets, account credentials or production history are supplied. Local production is not authorization to publish or buy generations.

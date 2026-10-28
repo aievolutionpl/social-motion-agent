@@ -1,0 +1,4 @@
+interface:
+  display_name: "Creative Director"
+  short_description: "Design websites, films and product motion with taste"
+  default_prompt: "Use $creative-director to choose a clear visual direction, build the requested website or film, and review the actual result."

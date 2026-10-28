@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
-from studio_core import ROOT, create_job, now, read, register_asset, write, probe_job
+from studio_core import ROOT, create_job, fingerprint, now, read, record_render, register_asset, write, probe_job
 
 SCENES = [
     ("product", 5, "Photographic citrus concept and mask reveal"),
@@ -82,9 +82,11 @@ def mix(folder: Path, silent: Path):
         filters.append(f"[{i}:a]atrim=0:2.3,asetpts=PTS-STARTPTS,volume={gain},afade=t=out:st=2.1:d=0.2,adelay={round(start*1000)}:all=1[a{i}]")
     filters.append("".join(f"[a{i}]" for i in range(1,len(cues)+1))+f"amix=inputs={len(cues)}:normalize=0,apad,atrim=0:36,alimiter=limit=0.89:level=0[mix]")
     command += ["-filter_complex",";".join(filters),"-map","0:v:0","-map","[mix]","-c:v","copy","-c:a","aac","-b:a","192k","-t","36","-movflags","+faststart",str(output)]
+    source_fingerprint=fingerprint(folder)
     result=subprocess.run(command,capture_output=True,text=True,timeout=180)
     (folder / "notes/audio-mix.log").write_text(result.stderr,encoding="utf-8")
     result.check_returncode()
+    record_render(folder,"renders/showcase.mp4",source_fingerprint,"showcase-audio-mix")
     write(folder / "notes/audio-cues.json", {"cues":[{"file":n,"time":t,"gain":g} for n,t,g in cues], "listened":False})
     return probe_job(folder,"renders/showcase.mp4")
 

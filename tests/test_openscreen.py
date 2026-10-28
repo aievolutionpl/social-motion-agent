@@ -1,3 +1,6 @@
+import contextlib
+import io
+import json
 import subprocess
 import sys
 import tempfile
@@ -10,6 +13,21 @@ import openscreen
 
 
 class CaptureAdapterTests(unittest.TestCase):
+    def test_doctor_reports_verified_help_without_assuming_a_runtime_version(self):
+        output = io.StringIO()
+        with patch.object(sys, "argv", ["openscreen.py", "doctor"]), patch.object(
+                openscreen, "invoke", return_value=("record export mcp", [])) as invoke, patch.object(
+                openscreen, "executable", return_value=Path("OpenScreen.exe")), patch.object(
+                openscreen.shutil, "which", return_value=None), contextlib.redirect_stdout(output):
+            self.assertEqual(openscreen.main(), 0)
+        report = json.loads(output.getvalue())
+        self.assertTrue(report["cli_help_verified"])
+        self.assertIsNone(report["version"])
+        self.assertFalse(report["version_verified"])
+        self.assertFalse(report["mcp_registration_checked"])
+        self.assertFalse(report["capture_tested"])
+        invoke.assert_called_once_with(["help"], timeout=45)
+
     def test_ambiguous_and_missing_windows_never_select_desktop(self):
         available={"windows":[{"name":"Demo - one"},{"name":"Demo - two"}],"displays":[{"name":"Desktop"}]}
         for selector in ("demo","missing"):

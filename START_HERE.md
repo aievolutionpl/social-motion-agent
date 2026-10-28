@@ -1,16 +1,14 @@
 # Start here
 
-Start with the bundled demo. The complete upstream source library is optional for this first render.
+1. Read `AGENTS.md` and `skills/creative-director/SKILL.md`. Choose video, website or ui-motion. Narrow revisions reuse the existing brief and tools.
+2. Inspect the project and supplied references. Reuse known answers; ask missing material questions. Show two or three distinct directions with concrete scene/section placements when undecided. Do not treat silence as approval.
+3. Run `python -S studio.py skills plan --mode MODE`. Prepare missing sources with `skills setup --mode MODE`, then `skills check --mode MODE`. Source preparation does not install or test upstream runtimes.
+4. For websites, preserve the target project's stack. Read website, anti-slop and humanizer modules. Check the actual page and existing project tests; no video job or renderer is needed.
+5. For films, install Python 3.11+, Node 22+ with npm, FFmpeg/ffprobe. Run `python -S studio.py setup`, then `python -S studio.py doctor`. Setup installs locked Node dependencies, not system runtimes. Doctor is offline and does not inspect accounts.
+6. Try `python -S studio.py demo --format 9:16 --render` or `python -S scripts/premium_intro.py --render`. These use supplied materials, not paid generation. First render may download Chromium.
+7. For original films, use `studio.py new`, fill real intake/research/storyboard and follow `docs/PRODUCTION.md`. HyperFrames is the local HTML renderer. Native Hypermotion requires verified desktop/CLI and a short export test; see `docs/HYPERMOTION.md`. Never silently substitute a requested engine.
+8. Review actual frames and audio or the running website. New video sources require a new render receipt. Probe, review and package the same file. A successful encoder is not creative approval.
 
-1. Install Python 3.11+, Node 22+ with npm, and FFmpeg/ffprobe on your system.
-2. Run `python -S studio.py setup`. It checks these prerequisites, installs pinned Node dependencies with `npm ci --ignore-scripts`, and reports any remaining blockers. It does not install system tools or call paid services. Run `python -S studio.py doctor` for an offline readiness check; a nonzero exit means the default render workflow is not ready.
-3. Run `python -S scripts/premium_intro.py --render` for the published 30-second landscape intro, including Polish voice, captions, music and actual Codex screenshots. No generation API credentials required. See `examples/premium-intro/README.md`.
-   Run `python -S studio.py demo --render` for a synthetic 8-second film. No paid AI APIs are used; the first render may download Chrome.
-   For the 36-second portrait showcase with product photography, CSS 3D, kinetic type and local SFX, run `python -S scripts/showcase.py --render`. Read `examples/showcase/README.md` for provenance and review requirements.
-4. For your own film, read `skills/intake/SKILL.md` and create a job using `studio.py new`.
-5. Edit its JSON planning files and `source/index.html`; read `docs/PRODUCTION.md` and `docs/HYPERFRAMES.md`.
-6. Review the actual render, then record evidence and package it. A successful encoder exit is not creative approval.
+Use `studio.py resume JOB` for incomplete film stages. Films stay in `output/jobs/<id>/`; websites stay in their target project. Never fabricate answers, rights, connectivity or review.
 
-Use `studio.py resume <job>` to find missing evidence and continue a job. Outputs are local and ignored by Git.
-
-For the complete workshop, install Git and run `python -S studio.py setup --with-library`, then `python -S scripts/library_check.py`. This also downloads the 34 pinned upstream source repositories without installing or running their runtimes. Read docs/LIBRARY.md.
+Portable installation: `docs/AGENT_SETUP.md`. All 36 upstream sources: `scripts/bootstrap_library.py`; the full collection is optional for the first render and focused skill paths.

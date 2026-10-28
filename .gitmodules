@@ -167,3 +167,9 @@
 	path = tools/repos/iart-b-roll-skills
 	url = https://github.com/iart-ai/b-roll-skills.git
 	shallow = true
+[submodule "ai-design-skills"]
+	path = tools/repos/ai-design-skills
+	url = https://github.com/elayadesign/ai-design-skills.git
+[submodule "taste-skill"]
+	path = tools/repos/taste-skill
+	url = https://github.com/Leonxlnx/taste-skill.git

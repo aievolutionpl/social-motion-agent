@@ -21,6 +21,7 @@ import bg_video
 import motion_catalog
 import sfx_catalog
 import environment
+import creative_skills
 
 
 def emit(value):
@@ -52,10 +53,17 @@ def main():
     p.add_argument("job")
     p.add_argument("--name", default="hyperframes")
     p.add_argument("--quality", choices=("draft", "standard", "high"), default="standard")
+    p = sub.add_parser("render-hype", help="Renderuj jawny projekt .hype przez zainstalowany Hypermotion")
+    p.add_argument("job")
+    p.add_argument("--scene", default="source/index.hype")
+    p.add_argument("--name", default="hypermotion")
     sub.add_parser("map", help="Krótka mapa dostępnych ścieżek")
     sub.add_parser("doctor", help="Sprawdź lokalne narzędzia i ścieżki, bez sekretów i sieci")
     p = sub.add_parser("setup", help="Sprawdź środowisko i zainstaluj przypięte zależności lokalnie")
     p.add_argument("--with-library", action="store_true", help="Pobierz także pełną bibliotekę przypiętych źródeł i sprawdź jej integralność")
+    p = sub.add_parser("skills", help="Dobierz i przygotuj przypięte skille do filmu, strony lub animacji UI")
+    p.add_argument("action", choices=("plan", "setup", "check"))
+    p.add_argument("--mode", choices=creative_skills.MODES, required=True)
     p = sub.add_parser("route", help="Pokaż wybrane skille i oczekiwane wyniki")
     p.add_argument("kind", choices=core.routes())
     p = sub.add_parser("find", help="Szukaj w katalogu bez czytania wszystkich SKILL.md")
@@ -153,6 +161,13 @@ def main():
             route["resolved_optional_skills"] = [{"path": str(core.resolve_ref(p)), "exists": core.resolve_ref(p).is_file()}
                                                 for p in route.get("optional_skills", [])]
             emit(route)
+        elif args.command == "skills":
+            if args.action == "plan":
+                emit(creative_skills.plan(args.mode))
+            else:
+                report = creative_skills.prepare(args.mode, check=args.action == "check")
+                emit(report)
+                return int(not report["passed"])
         elif args.command == "find":
             tokens = args.query.casefold().split()
             entries = core.read(core.ROOT / "skills/catalog.json")["entries"]
@@ -190,7 +205,7 @@ def main():
             return result.returncode
         elif args.command == "new":
             folder = core.create_job(args.title, args.kind, args.format, args.duration, args.language)
-            emit({"job": str(folder), "next": "Przeczytaj 5-pytan; dostosuj 5 pytań i zbierz odpowiedzi. Potem research."})
+            emit({"job": str(folder), "next": "Przeczytaj skills/intake/SKILL.md; wykorzystaj znane odpowiedzi i zapytaj o brakujące decyzje. Potem research."})
         else:
             folder = job_path(args.job)
             if args.command == "check":
@@ -221,6 +236,11 @@ def main():
                 if errors:
                     raise ValueError("\n".join(errors))
                 emit({"render": str(assemble(folder)), "reviewed": False})
+            elif args.command == "render-hype":
+                from hypermotion_adapter import render
+                result = render(folder, args.name, args.scene)
+                emit(result)
+                return int(not result["probe_passed"])
             elif args.command == "edit":
                 result = run_edit(folder, args.op, args.asset, args.name, args.spec, args.effect,
                                   shlex.split(args.vstudio_args))

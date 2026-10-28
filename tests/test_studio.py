@@ -49,6 +49,21 @@ class ProductionTests(unittest.TestCase):
         core.write(self.folder / "intake.json", data)
         self.assertTrue(core.check_job(self.folder, "brief"))
 
+    def test_explicit_english_waiver_accepts_unanswered_intake(self):
+        complete_plan(self.folder)
+        intake = core.read(self.folder / "intake.json")
+        self.assertEqual(intake["skill"], "skills/intake/SKILL.md")
+        for question in intake["questions"]:
+            question["answer"] = None
+        intake["user_waiver"] = "Skip the questions and use the brief I supplied."
+        core.write(self.folder / "intake.json", intake)
+        self.assertEqual(core.check_job(self.folder, "brief"), [])
+        for missing in (None, "", "  ", False):
+            with self.subTest(missing=missing):
+                intake["user_waiver"] = missing
+                core.write(self.folder / "intake.json", intake)
+                self.assertTrue(core.check_job(self.folder, "brief"))
+
     def test_research_is_required_before_assets(self):
         complete_plan(self.folder)
         self.assertEqual(core.check_job(self.folder, "assets"), [])
@@ -114,6 +129,7 @@ class ProductionTests(unittest.TestCase):
         job = core.read(self.folder / "job.json")
         job["render"] = "renders/fixture.mp4"
         core.write(self.folder / "job.json", job)
+        core.record_render(self.folder, "renders/fixture.mp4", core.fingerprint(self.folder), "synthetic-unit-fixture")
         core.write(self.folder / "technical.json", {"passed": True, "render": "renders/fixture.mp4", "render_sha256": core.sha(render), "fingerprint": core.fingerprint(self.folder)})
         core.write(self.folder / "review.json", {"render_sha256": core.sha(render), "reviewer": "unit fixture",
                    "evidence": ["renders/fixture.mp4"],
@@ -159,6 +175,7 @@ class ProductionTests(unittest.TestCase):
             path.write_text("synthetic excluded fixture", encoding="utf-8")
         technical = core.read(self.folder / "technical.json")
         technical["fingerprint"] = core.fingerprint(self.folder)
+        core.record_render(self.folder, "renders/fixture.mp4", core.fingerprint(self.folder), "synthetic-unit-fixture")
         core.write(self.folder / "technical.json", technical)
         originals = {name: (self.folder / name).read_bytes()
                      for name in ("preview.json", "review.json", "technical.json")}

@@ -5,6 +5,9 @@ Run `python -S studio.py --help` for the complete parser and subcommand help.
 | Command | Purpose |
 | --- | --- |
 | setup [--with-library] | Check prerequisites and install pinned Node dependencies; optionally restore the full source library |
+| skills plan --mode video\|website\|ui-motion | Read-only selection of relevant pinned instructions and actual missing paths |
+| skills setup --mode MODE | Fetch only the selected source repositories; never run their code or install runtimes |
+| skills check --mode MODE | Offline source integrity check, including manifest-based full bundles |
 | doctor | Offline readiness and version checks; nonzero exit when required render dependencies are missing |
 | demo [--format 9:16] [--render] | New synthetic editable HyperFrames example |
 | new TITLE --kind KIND --duration SECONDS | Create a job; no generation |
@@ -13,6 +16,7 @@ Run `python -S studio.py --help` for the complete parser and subcommand help.
 | check JOB --stage STAGE | Evidence checks for brief/research/storyboard/assets/preview/final |
 | asset-add JOB --file FILE --source SOURCE --rights RIGHTS --purpose PURPOSE | Copy and hash an asset |
 | render-html JOB --name NAME | Lint, render with HyperFrames and probe |
+| render-hype JOB --scene source/index.hype --name NAME | Validate and render with the installed Hypermotion desktop/CLI, record provenance and probe |
 | render-assembly JOB | Assemble registered footage/stills with FFmpeg |
 | edit JOB fx --asset ID --name NAME --effect SPEC | Apply local FFmpeg effects |
 | probe JOB --render PATH | Check dimensions, duration, FPS and audio |
@@ -20,7 +24,7 @@ Run `python -S studio.py --help` for the complete parser and subcommand help.
 | pack JOB | Create delivery only when evidence passes |
 | background IMAGE OUTPUT --duration SECONDS | Animate an image into a clip |
 | sfx build/find/check | Index and search your own licensed audio |
-| motion find/show/recipe | Optional external catalogue, not bundled |
+| motion find/show/recipe | Extended catalogue, fetched as a pinned source or expanded in a full bundle |
 | polish HTML | Optional Playwright layout measurements |
 
 JOB must be inside output/jobs. --render paths are relative to that job. Paid narration is separate:
