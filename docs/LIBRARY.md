@@ -7,8 +7,8 @@ This distribution includes the original sound library, backgrounds, fonts, local
 | Sound effects, original WAV/MP3 | 126 files |
 | Backgrounds, original WebP | 9 files |
 | Fonts, with OFL license texts | 3 files |
-| Upstream repositories | 36 pinned Git submodules |
-| Catalogue entries | 924 (916 upstream + 8 local) |
+| Upstream repositories | 38 pinned Git submodules |
+| Catalogue entries | 926 (917 upstream + 9 local) |
 
 Catalogue entries include skills, recipes, templates and test fixtures. They are not 924 independently installed integrations.
 
@@ -43,6 +43,10 @@ Some upstreams use Git LFS. The original source collection did not include those
 python -S studio.py find typography --limit 8
 python -S studio.py route shorts
 python -S studio.py motion find reveal --limit 5
+python -S studio.py styles list
+python -S studio.py styles recipe productui
+python -S studio.py styles find "spring" --style typography --limit 5
+python -S studio.py unslop-story output/story.html --ramp graphite
 python -S studio.py sfx find whoosh --limit 5
 python -S studio.py sfx check
 ```

@@ -36,6 +36,14 @@ class JudgeTests(unittest.TestCase):
         errors, _ = polish.judge([text("duch", 100, 100, 400, 160, opacity=0.0)], "16:9", 1920, 1080)
         self.assertTrue(any("Brak widocznego tekstu" in e for e in errors))
 
+    def test_unslop_flags_gradient_text_and_hype_copy(self):
+        grad_item = {**text("Gradient Headline", 120, 200, 900, 280, size=64), "gradient_text": True}
+        slop_item = {**text("Supercharge your seamless AI workflow!!", 120, 340, 900, 390, size=28), "weight": 800}
+        errors, warnings = polish.judge([grad_item, slop_item], "16:9", 1920, 1080)
+        self.assertTrue(any("Gradientowy tekst" in e for e in errors))
+        self.assertTrue(any("unslop" in w for w in warnings))
+        self.assertTrue(any("Zbyt gruby font" in w for w in warnings))
+
 
 @unittest.skipUnless(HAVE_CATALOG, "brak tools/repos/awesome-ai-motion")
 class CatalogTests(unittest.TestCase):
@@ -97,7 +105,7 @@ class StarterTests(unittest.TestCase):
 class RoutesTests(unittest.TestCase):
     def test_new_routes_point_to_existing_files(self):
         routes = core.routes()
-        for key in ("polish", "motion"):
+        for key in ("polish", "styles", "motion"):
             self.assertIn(key, routes)
             for ref in routes[key]["skills"]:
                 self.assertTrue(core.resolve_ref(ref).is_file(), ref)

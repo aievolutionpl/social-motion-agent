@@ -1,6 +1,6 @@
 # Wszystkie narzędzia i źródła
 
-36 oryginalne repozytoria, przypięte jako submoduły w `tools/repos/`. `python -S scripts/bootstrap_library.py` pobiera dokładnie zapisane wersje i nie uruchamia instalatorów ani skryptów upstream.
+38 oryginalnych repozytoriów, przypiętych jako submoduły w `tools/repos/`. `python -S scripts/bootstrap_library.py` pobiera dokładnie zapisane wersje i nie uruchamia instalatorów ani skryptów upstream.
 
 | Źródło | Pliki SKILL.md | Licencja według manifestu | Commit |
 |---|---:|---|---|
@@ -50,5 +50,8 @@ Nie są dołączone node_modules, cache, konta ani instalatory systemowe. Skrypt
 
 - `ai-design-skills`: Elaya landing page and design-to-motion, MIT.
 - `taste-skill`: design-taste-frontend (Taste v2), MIT.
+- `unslop`: 4-pass redline audit, tinted neutral ramps, offscreen-baked canvas effects and Before->After transformation stories (`@heydamir`, CC BY 4.0).
+- `awesome-opus-5-5-video-styles`: 12 canonical video styles and 425 prompt recipes (`HiAPI`, CC BY 4.0).
+- `awesome-opus5-5-videos`: 703 categorized Opus 5.5 video prompts and closed-form spring/canvas patterns (`yihui-dev`, MIT).
 
-These are pinned source libraries; use `studio.py skills plan --mode website` to load only selected entrypoints.
+These are pinned source libraries; use `studio.py skills plan --mode website` or `studio.py styles` to load only selected entrypoints.

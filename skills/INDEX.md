@@ -1,6 +1,6 @@
 # Pełna biblioteka skilli
 
-Uruchom `python -S scripts/bootstrap_library.py`, aby pobrać wszystkie 36 przypięte źródła. Lokalny rdzeń działa również bez rozszerzeń. Katalog zawiera oryginalne skille, recipes, szablony i fixtures, nie tylko samodzielne integracje.
+Uruchom `python -S scripts/bootstrap_library.py`, aby pobrać wszystkie 38 przypiętych źródeł. Lokalny rdzeń działa również bez rozszerzeń. Katalog zawiera oryginalne skille, recipes, szablony i fixtures, nie tylko samodzielne integracje.
 
 ## Punkty wejścia agenta
 
@@ -10,7 +10,8 @@ Dotychczasowy skill filmowy: `.agents/skills/social-motion-studio/SKILL.md`. Map
 
 | Zadanie | Źródło i ścieżka od `tools/repos/` |
 |---|---|
-| Dopracowanie kodowanych ramek (wygląd nie-generowany, bezpieczne pola, bramka pomiarowa) | Lokalnie `.agents/skills/motion-ui-polish/SKILL.md`; doktryna upstream `ux-ui-agent-skills/taste/design-taste.md`; trasa `polish`; komenda `studio.py polish` |
+| Dopracowanie kodowanych ramek (wygląd nie-generowany, 4-etapowy audyt Unslop, bezpieczne pola, bramka pomiarowa) | Lokalnie `.agents/skills/motion-ui-polish/SKILL.md`; upstream `unslop/skills/unslop/SKILL.md` i `ux-ui-agent-skills/taste/design-taste.md`; trasa `polish`; komendy `studio.py polish` oraz `studio.py unslop-story` |
+| Atlas 12 stylów wideo i 1128 promptów Opus 5.5 + szkielet podagenta `<inputs>/<direction>/<structure>/<build>/<gotchas>` | Lokalnie `.agents/skills/style-atlas/SKILL.md`; upstream `awesome-opus-5-5-video-styles/styles/` i `awesome-opus5-5-videos/data/videos.json`; trasa `styles`; komenda `studio.py styles list/recipe/find/show` |
 | Dobór efektów ruchu z katalogu 637 efektów i 11 receptur | Lokalnie `.agents/skills/motion-effect-picker/SKILL.md`; upstream `awesome-ai-motion/SKILL.md`; trasa `motion`; komenda `studio.py motion find/show/recipe` |
 | Nagrania stron/aplikacji i tutoriale AI | Lokalnie `.agents/skills/screen-tutorials/SKILL.md`; upstream `openscreen/plugin/skills/openscreen-demo/SKILL.md`; trasy `showcase` i `tutorial` |
 | Profil marki dla Hypermotion | `hypermotion/skills/hypermotion-brand-profile/SKILL.md` |

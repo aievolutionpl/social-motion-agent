@@ -9355,6 +9355,23 @@
       "source": "social-motion-agent",
       "path": "skills/creative-director/SKILL.md",
       "kind": "skill"
+    },
+    {
+      "name": "style-atlas",
+      "description": "12 canonical Opus 5.5 video styles, 1128 prompt exemplars, and the 5-part <inputs>/<direction>/<structure>/<build>/<gotchas> subagent blueprint.",
+      "source": "social-motion-agent",
+      "path": ".agents/skills/style-atlas/SKILL.md",
+      "kind": "skill"
+    },
+    {
+      "name": "unslop",
+      "description": "Remove AI-generated slop from websites and web UIs, or create websites from scratch that don't look AI-generated. 4-pass redline audit (Spacing, Color and icons, Type and copy, Details), offscreen-baked canvas effects, and Before->After transformation stories.",
+      "source": "unslop",
+      "path": "tools/repos/unslop/skills/unslop/SKILL.md",
+      "source_commit": "4652254daff586ff4739849395a127b56f7f8cc7",
+      "sha256": "162c09b0223fc5203f8d41cd2cf12e82a9b8d77afe42e0e12efe458e5fcecc54",
+      "kind": "skill",
+      "activation": "catalogued_only"
     }
   ]
 }
