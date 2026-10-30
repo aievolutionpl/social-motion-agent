@@ -47,7 +47,7 @@
   --sp-16: 5.92cqmin;
   --sp-24: 8.88cqmin;
 
-  /* Promienie: kilka różnych, każdy do swojej roli */
+  /* Promienie: kilka różnych, każdy do swojej roli (nested radius: inner = outer - padding) */
   --r-chip: 1cqmin;
   --r-panel: 2.4cqmin;
   --r-card: 3.2cqmin;
@@ -69,6 +69,34 @@
   --safe-top: 5.6cqmin;
   --safe-bottom: 5.6cqmin;
 }
+
+/* Rampy neutralne z unslop (Damir Sokolovsky @heydamir, CC BY 4.0):
+   ustaw data-ramp="graphite|warm|ink" oraz opcjonalnie data-theme="light" na <html> lub .canvas */
+[data-ramp="graphite"] {
+  --bg-0: #141415; --bg-1: #0f0f10; --surface: #19191b; --surface-hi: #232325;
+  --ink: #ededed; --ink-2: #a1a1a6; --ink-3: #85858b; --hairline: rgb(237 237 237 / 0.08);
+}
+[data-ramp="warm"] {
+  --bg-0: #161513; --bg-1: #12110f; --surface: #1c1a18; --surface-hi: #262421;
+  --ink: #efe9de; --ink-2: #aaa398; --ink-3: #8a847a; --hairline: rgb(239 233 222 / 0.08);
+}
+[data-ramp="ink"] {
+  --bg-0: #0b0d14; --bg-1: #07080d; --surface: #11141c; --surface-hi: #1a1e28;
+  --ink: #eef0f5; --ink-2: #a3a9b8; --ink-3: #7a8296; --hairline: rgb(238 240 245 / 0.08);
+}
+[data-theme="light"], [data-ramp="graphite"][data-theme="light"] {
+  --bg-0: #fafafa; --bg-1: #f4f4f5; --surface: #ffffff; --surface-hi: #f4f4f5;
+  --ink: #171717; --ink-2: #525252; --ink-3: #737373; --hairline: rgb(23 23 23 / 0.08);
+}
+[data-ramp="warm"][data-theme="light"] {
+  --bg-0: #f7f4ee; --bg-1: #efe9df; --surface: #fdfbf7; --surface-hi: #efe9df;
+  --ink: #1f1b16; --ink-2: #5e554a; --ink-3: #7b7266; --hairline: rgb(31 27 22 / 0.08);
+}
+[data-ramp="ink"][data-theme="light"] {
+  --bg-0: #f5f7fa; --bg-1: #eceff4; --surface: #ffffff; --surface-hi: #eceff4;
+  --ink: #111827; --ink-2: #4b5565; --ink-3: #6b7487; --hairline: rgb(17 24 39 / 0.08);
+}
+
 /* Zapytania kontenerowe stylizują tylko potomków płótna, dlatego zmienne ustawiamy na .stage.
    9:16: pasek i opis platformy zasłaniają górę oraz dół; 4:5 w feedzie wymaga mniej. */
 @container canvas (max-aspect-ratio: 7/10) {

@@ -133,7 +133,8 @@
         "skills/production/SKILL.md",
         "skills/motion-design/SKILL.md",
         ".agents/skills/motion-ui-polish/SKILL.md",
-        ".agents/skills/motion-effect-picker/SKILL.md"
+        ".agents/skills/motion-effect-picker/SKILL.md",
+        ".agents/skills/style-atlas/SKILL.md"
       ],
       "outputs": [
         "master",
@@ -145,7 +146,8 @@
         "tools/repos/hypermotion/skills/hypermotion-brand-profile/SKILL.md",
         "tools/repos/hypermotion/skills/hypermotion-explainer-director/SKILL.md",
         "tools/repos/iart-ad-video-skills/skills/launch-video/SKILL.md",
-        "tools/repos/motion-video-skill/SKILL.md"
+        "tools/repos/motion-video-skill/SKILL.md",
+        "tools/repos/unslop/skills/unslop/SKILL.md"
       ]
     },
     "explainer": {
@@ -155,7 +157,8 @@
         "skills/production/SKILL.md",
         "skills/motion-design/SKILL.md",
         ".agents/skills/motion-ui-polish/SKILL.md",
-        ".agents/skills/motion-effect-picker/SKILL.md"
+        ".agents/skills/motion-effect-picker/SKILL.md",
+        ".agents/skills/style-atlas/SKILL.md"
       ],
       "outputs": [
         "film edukacyjny",
@@ -209,7 +212,8 @@
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
-        "skills/motion-design/SKILL.md"
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/style-atlas/SKILL.md"
       ],
       "outputs": [
         "edytowalny HTML",
@@ -228,7 +232,8 @@
         "skills/production/SKILL.md",
         "skills/motion-design/SKILL.md",
         ".agents/skills/motion-ui-polish/SKILL.md",
-        ".agents/skills/motion-effect-picker/SKILL.md"
+        ".agents/skills/motion-effect-picker/SKILL.md",
+        ".agents/skills/style-atlas/SKILL.md"
       ],
       "outputs": [
         "film lub loop",
@@ -315,7 +320,8 @@
       "skills": [
         "skills/production/SKILL.md",
         "skills/motion-design/SKILL.md",
-        ".agents/skills/motion-ui-polish/SKILL.md"
+        ".agents/skills/motion-ui-polish/SKILL.md",
+        "skills/creative-director/SKILL.md"
       ],
       "outputs": [
         "scena HTML na tokenach",
@@ -324,8 +330,27 @@
         "decyzje o ostrzeżeniach w HANDOFF"
       ],
       "optional_skills": [
+        "tools/repos/unslop/skills/unslop/SKILL.md",
         "tools/repos/ux-ui-agent-skills/taste/design-taste.md",
         "tools/repos/ux-ui-agent-skills/.claude/agents/design-critic.md"
+      ]
+    },
+    "styles": {
+      "purpose": "Dobór stylu wideo z 12 kanonicznych receptur Opus 5.5 i wyszukiwanie w 1128 promptach referencyjnych",
+      "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
+      "skills": [
+        "skills/production/SKILL.md",
+        "skills/motion-design/SKILL.md",
+        ".agents/skills/style-atlas/SKILL.md",
+        "skills/creative-director/SKILL.md"
+      ],
+      "outputs": [
+        "wybrany styl z tokenami i kontraktem renderowania",
+        "szkielet <inputs>/<direction>/<structure>/<build>/<gotchas> dla podagenta",
+        "scena HTML zgodna z window.seek(t) i polish_check"
+      ],
+      "optional_skills": [
+        "tools/repos/unslop/skills/unslop/SKILL.md"
       ]
     },
     "motion": {

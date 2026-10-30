@@ -11,4 +11,4 @@
 
 Use `studio.py resume JOB` for incomplete film stages. Films stay in `output/jobs/<id>/`; websites stay in their target project. Never fabricate answers, rights, connectivity or review.
 
-Portable installation: `docs/AGENT_SETUP.md`. All 36 upstream sources: `scripts/bootstrap_library.py`; the full collection is optional for the first render and focused skill paths.
+Portable installation: `docs/AGENT_SETUP.md`. All 38 upstream sources: `scripts/bootstrap_library.py`; the full collection is optional for the first render and focused skill paths. Use `python -S studio.py styles list` and `python -S studio.py unslop-story` for Opus 5.5 video styles and Before->After UI transformation stories.

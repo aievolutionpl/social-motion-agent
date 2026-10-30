@@ -1,0 +1,17 @@
+Attribution Notice for heydamir/unslop (CC BY 4.0)
+Creator: Damir Sokolovsky (@heydamir)
+Source: https://github.com/heydamir/unslop/tree/4652254daff586ff4739849395a127b56f7f8cc7
+License: Creative Commons Attribution 4.0 International (https://creativecommons.org/licenses/by/4.0/)
+Modifications: Adapted into Social Motion Agent's 4-pass redline audit (references/anti-slop.md, scripts/polish_check.py), tinted neutral ramps (templates/frame-tokens.css), offscreen-baked canvas effects (templates/motion-helpers.js), and deterministic window.seek(t) transformation story generator (scripts/unslop_story.py).
+
+Attribution Notice for HiAPIAI/awesome-opus-5-5-video-styles (CC BY 4.0)
+Creator: HiAPI (https://hiapi.ai)
+Source: https://github.com/HiAPIAI/awesome-opus-5-5-video-styles/tree/b1a796c438863e80bd343aa5cd355de0b87fd2c4
+License: Creative Commons Attribution 4.0 International (https://creativecommons.org/licenses/by/4.0/)
+Modifications: Adapted into Social Motion Agent's 12 canonical video style recipes and <inputs>/<direction>/<structure>/<build>/<gotchas> subagent blueprint (scripts/style_atlas.py, .agents/skills/style-atlas/SKILL.md, skills/creative-director/references/visual-recipes.md).
+
+Attribution Notice for yihui-dev/awesome-opus5-5-videos (MIT)
+Creator: Yihui Dev
+Source: https://github.com/yihui-dev/awesome-opus5-5-videos/tree/92aee2f586ac0715cb3cbcb6384834f98a33383d
+License: MIT License
+Modifications: Adapted closed-form spring helpers and category taxonomy into templates/motion-helpers.js and scripts/style_atlas.py.

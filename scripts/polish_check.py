@@ -1,8 +1,9 @@
-"""Kontrola dopracowania ramki HTML (scena wideo): pomiary w Chrome plus bramki UX z ux-ui-agent-skills.
+"""Kontrola dopracowania ramki HTML (scena wideo): pomiary w Chrome, reguły unslop (@heydamir, CC BY 4.0) plus bramki UX z ux-ui-agent-skills.
 
 Uruchamiaj przez `python -I` (potrzebny Playwright z site-packages), np. z studio.py polish.
 Mierzy tekst w docelowym formacie: poza kadrem, poza bezpiecznym polem platform, za mały,
-nakładające się napisy, emoji. Potem odpala slop_tells i taste_audit z tools/repos/ux-ui-agent-skills.
+nakładające się napisy, emoji, gradientowy tekst i sygnały slopu (hype copy, !!).
+Potem odpala slop_tells i taste_audit z tools/repos/ux-ui-agent-skills.
 Heurystyki upstreamu są sygnałem, nie wyrokiem; kod wyjścia 1 tylko dla błędów pomiarowych i wyników HIGH.
 """
 from __future__ import annotations
@@ -20,6 +21,10 @@ ROOT = Path(__file__).resolve().parents[1]
 UX = ROOT / "tools/repos/ux-ui-agent-skills"
 FORMATS = {"16:9": (1920, 1080), "9:16": (1080, 1920), "4:5": (1080, 1350), "1:1": (1080, 1080)}
 EMOJI = re.compile("[\U0001F300-\U0001FAFF☀-➿⭐⭕✅❌✨]")
+SLOP_COPY = re.compile(
+    r"(?:!!|\b(?:supercharge|revolutionize|game-changing|seamless|unlock\s+the\s+magic|welcome\s+back,)\b)",
+    re.IGNORECASE,
+)
 
 MEASURE = """() => {
   const out = [];
@@ -34,8 +39,14 @@ MEASURE = """() => {
     if (cs.display === 'none' || cs.visibility === 'hidden' || r.width === 0 || r.height === 0) continue;
     let opacity = 1;
     for (let n = el; n; n = n.parentElement) opacity *= parseFloat(getComputedStyle(n).opacity);
+    const bgClip = (cs.webkitBackgroundClip || cs.backgroundClip || '').toLowerCase();
+    const fillColor = (cs.webkitTextFillColor || '').toLowerCase();
+    const gradientText = bgClip === 'text' && (fillColor === 'transparent' || fillColor === 'rgba(0, 0, 0, 0)');
     out.push({text: text.slice(0, 60), tag: el.tagName.toLowerCase() + (el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : ''),
       x0: r.left, y0: r.top, x1: r.right, y1: r.bottom, size: parseFloat(cs.fontSize), opacity,
+      weight: parseInt(cs.fontWeight, 10) || 400,
+      tracking: parseFloat(cs.letterSpacing) || 0,
+      gradient_text: gradientText,
       clipped: el.scrollWidth > el.clientWidth + 1 && cs.overflow !== 'visible', node: null});
   }
   return out;
@@ -73,6 +84,14 @@ def judge(items: list[dict], fmt: str, width: int, height: int) -> tuple[list[st
         label = f'"{i["text"][:28]}" ({i["tag"]})'
         if EMOJI.search(i["text"]):
             errors.append(f"Emoji w tekście {label}: użyj ikony SVG albo słów")
+        if i.get("gradient_text"):
+            errors.append(f"Gradientowy tekst (slop): {label} — użyj jednolitego koloru z rampy")
+        if SLOP_COPY.search(i["text"]):
+            warnings.append(f"Hasło z listy unslop (hype lub !!): {label}")
+        if i.get("weight", 400) >= 800 and i["size"] < 0.08 * short:
+            warnings.append(f"Zbyt gruby font ({i['weight']}) zamiast hierarchii rozmiarem: {label}")
+        if i.get("tracking", 0) < -0.5 and i["size"] < 16:
+            warnings.append(f"Ujemny tracking na małym tekście (<16px): {label}")
         if i["x0"] < -1 or i["y0"] < -1 or i["x1"] > width + 1 or i["y1"] > height + 1:
             errors.append(f"Tekst poza kadrem: {label}")
         elif i["x0"] < side - 1 or i["x1"] > width - side + 1 or i["y0"] < top - 1 or i["y1"] > height - bottom + 1:

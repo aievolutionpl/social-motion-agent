@@ -173,3 +173,13 @@
 [submodule "taste-skill"]
 	path = tools/repos/taste-skill
 	url = https://github.com/Leonxlnx/taste-skill.git
+
+[submodule "unslop"]
+	path = tools/repos/unslop
+	url = https://github.com/heydamir/unslop.git
+	shallow = true
+
+[submodule "awesome-opus-5-5-video-styles"]
+	path = tools/repos/awesome-opus-5-5-video-styles
+	url = https://github.com/HiAPIAI/awesome-opus-5-5-video-styles.git
+	shallow = true

@@ -20,6 +20,8 @@ import backgrounds_catalog
 import bg_video
 import motion_catalog
 import sfx_catalog
+import style_atlas
+import unslop_story
 import environment
 import creative_skills
 
@@ -79,6 +81,19 @@ def main():
     p.add_argument("--level")
     p.add_argument("--rendered", action="store_true", help="tylko efekty z gotowym klipem i szablonem HTML")
     p.add_argument("--limit", type=int, default=12)
+    p = sub.add_parser("styles", help="Atlas 12 stylów wideo i 1128 promptów Opus 5.5: list, recipe, find, show")
+    p.add_argument("action", choices=("list", "recipe", "find", "show"))
+    p.add_argument("query", nargs="?", default="", help="recipe: slug stylu; find: fraza; show: ID promptu")
+    p.add_argument("--style", help="Filtruj po slugu z 12 kanonicznych stylów")
+    p.add_argument("--category", help="Filtruj po kategorii z awesome-opus5-5-videos")
+    p.add_argument("--tech", help="Filtruj po technologii: canvas-2d, html-css, svg, three-js, webgl-shader")
+    p.add_argument("--remake", action="store_true", help="Pokaż szkielet <inputs>/<direction>/<structure>/<build>/<gotchas> dla podagenta")
+    p.add_argument("--limit", type=int, default=12)
+    p = sub.add_parser("unslop-story", help="Wygeneruj deterministyczną 4-etapową scenę Before->After Redline Story (window.seek(t))")
+    p.add_argument("output", type=Path, help="Ścieżka wyjściowa pliku HTML wewnątrz repozytorium")
+    p.add_argument("--title", default="UI Transformation Story", help="Tytuł sceny")
+    p.add_argument("--ramp", choices=unslop_story.RAMPS, default="graphite", help="Rampa neutralna z tokenów")
+    p.add_argument("--duration", type=float, default=12.0, help="Czas trwania sceny w sekundach")
     p = sub.add_parser("sfx", help="Biblioteka SOUND EFFECTS: find, check, build (efekty nigdy powyżej 0.5 głośności)")
     p.add_argument("action", choices=("find", "check", "build"))
     p.add_argument("query", nargs="?", default="")
@@ -181,6 +196,17 @@ def main():
                 emit(motion_catalog.show(args.query))
             else:
                 emit(motion_catalog.recipe(args.query or None))
+        elif args.command == "styles":
+            if args.action == "list":
+                emit(style_atlas.list_styles())
+            elif args.action == "recipe":
+                emit(style_atlas.recipe(args.query or args.style or None))
+            elif args.action == "find":
+                emit(style_atlas.find(args.query, style=args.style, category=args.category, tech=args.tech, remake_only=args.remake, limit=args.limit))
+            else:
+                emit(style_atlas.show(args.query, remake=args.remake))
+        elif args.command == "unslop-story":
+            emit(unslop_story.write_story(args.output, title=args.title, ramp=args.ramp, duration=args.duration))
         elif args.command == "sfx":
             if args.action == "find":
                 emit(sfx_catalog.find(args.query, args.category, args.max_duration, args.limit))

@@ -51,5 +51,7 @@ Zachowano oryginalne pliki licencji. Zewnętrzne media i odsyłacze mogą mieć 
 | --- | --- | --- | --- | --- |
 | [Elaya AI Design Skills](https://github.com/elayadesign/ai-design-skills) | `eabf86665588de0eb4c9e2fbf5fc9d3ae807e9f1` | MIT | 5 | 2 |
 | [Taste Skill](https://github.com/Leonxlnx/taste-skill) | `12af471f627f866411b4bd785b19646d3672784c` | MIT | 72 | 1 |
+| [Unslop](https://github.com/heydamir/unslop) | `4652254daff586ff4739849395a127b56f7f8cc7` | CC-BY-4.0 | 20 | 1 |
+| [Awesome Opus 5.5 Video Styles](https://github.com/HiAPIAI/awesome-opus-5-5-video-styles) | `b1a796c438863e80bd343aa5cd355de0b87fd2c4` | CC-BY-4.0 | 456 | 0 |
 
-The local compound skill is authored separately, with source notes and preserved MIT notices in `skills/creative-director/`. Hypermotion retains its existing pinned commit.
+The local compound skill is authored separately, with source notes and preserved MIT and CC BY 4.0 notices in `skills/creative-director/`. Hypermotion and `awesome-opus5-5-videos` retain their existing pinned commits.

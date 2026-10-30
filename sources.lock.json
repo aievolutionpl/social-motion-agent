@@ -502,6 +502,34 @@
         "LICENSE"
       ],
       "distribution": "pinned_git_submodule"
+    },
+    {
+      "id": "unslop",
+      "url": "https://github.com/heydamir/unslop.git",
+      "commit": "4652254daff586ff4739849395a127b56f7f8cc7",
+      "tracked_files": 20,
+      "tracked_bytes": 1519360,
+      "skill_md_files": 1,
+      "path": "tools/repos/unslop",
+      "license": "CC-BY-4.0",
+      "license_files": [
+        "LICENSE"
+      ],
+      "distribution": "pinned_git_submodule"
+    },
+    {
+      "id": "awesome-opus-5-5-video-styles",
+      "url": "https://github.com/HiAPIAI/awesome-opus-5-5-video-styles.git",
+      "commit": "b1a796c438863e80bd343aa5cd355de0b87fd2c4",
+      "tracked_files": 456,
+      "tracked_bytes": 6285554,
+      "skill_md_files": 0,
+      "path": "tools/repos/awesome-opus-5-5-video-styles",
+      "license": "CC-BY-4.0",
+      "license_files": [
+        "LICENSE"
+      ],
+      "distribution": "pinned_git_submodule"
     }
   ]
 }
