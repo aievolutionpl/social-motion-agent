@@ -77,3 +77,20 @@ CI tests Python 3.11 and 3.13 on Linux, performs FFmpeg smoke tests and renders 
 All 34 exact commits were fetched successfully from their public upstream sources. The original 126 audio files, nine backgrounds and three fonts were copied without modification; SHA-256 values are recorded in assets/media-manifest.json. Seven local skills and 913 upstream catalogue entries are included. Media rights are documented separately.
 
 Complete-library verification: 63 tests, 61 passed and 2 optional Playwright skips. All 920 catalogue files and 138 media hashes validated; all 34 source commits matched. Original audio index check and motion catalogue search passed.
+
+## Kinetic Film integration validation
+
+The `kinetic-launch` integration was exercised locally on Windows with the pinned external package,
+Node 26.12.1, Python 3.13, NumPy 2.2.3, OpenCV 5.0.0 and Playwright 1.59.1. A full 30-second reproduction
+through `studio.py render-kinetic` produced 1280×720, 60 FPS, 1800 frames, H.264/AAC and -14.0 LUFS.
+Motion gates passed: 15.9% still frames, median flow about 4.8 px/frame, longest hold 0.55 s before the
+actual Logo block. Full FFmpeg decode, source receipt and probe passed. Sampled render frames were inspected.
+
+15 focused unit tests cover source integrity, allowlisted copying, preservation, path/lock guards,
+optional audio, motion rejection, source changes during rendering and memory limits. The complete local
+suite passed 142 tests with seven optional browser tests skipped in that environment. Synthetic FFmpeg
+smoke scenarios passed. Windows CI includes test_kinetic; Linux suites discover it automatically.
+
+The external engine is not downloaded by CI or included under MIT. Actual native exports on Linux/macOS,
+complete 1080p/4K exports, destination-device playback and independent full listening review are not claimed.
+The README film has owner publication authorization, recorded separately from review and asset terms.

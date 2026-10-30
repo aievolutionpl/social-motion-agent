@@ -2,7 +2,7 @@
   "name": "social-motion-agent",
   "version": "1.1.1",
   "private": true,
-  "description": "Agent-ready video production with HyperFrames. By AI EVOLUTION POLSKA.",
+  "description": "AI agent toolkit for films, websites and UI motion with Kinetic Film and HyperFrames. By AI EVOLUTION POLSKA.",
   "license": "MIT",
   "engines": {
     "node": ">=22"
@@ -13,7 +13,8 @@
     "test": "python -S -B -m unittest discover -s tests -v"
   },
   "dependencies": {
+    "gsap": "3.15.0",
     "hyperframes": "0.8.188",
-    "gsap": "3.15.0"
+    "playwright": "1.59.1"
   }
 }

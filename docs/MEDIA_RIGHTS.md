@@ -1,5 +1,14 @@
 # Media and redistribution
 
+## Kinetic Film showcase (2026-10-30)
+
+The owner explicitly requested publication of docs/media/kinetic-launch.mp4 and its source example,
+replacing the previous README film. The supplied mix reuses the published premium-intro instrumental
+and owner-provided SOUND EFFECTS, with no new generation. The exact provenance, source gains and review
+limits are in examples/kinetic-launch/provenance.json; hashes are in assets/media-manifest.json.
+Publication authorization is recorded separately from independent verification of source licenses.
+The separately obtained Scenario engine is not included here and is not covered by this repository's MIT license.
+
 ## Original audio library
 
 126 original audio files were supplied by the project owner. On 2026-10-23 the owner explicitly confirmed the right to public redistribution and requested inclusion of the complete library. Supporting license documents/source references have not yet been provided. This is an owner authorization statement, not an independent license verification.

@@ -1,0 +1,83 @@
+{
+  "bpm": 128,
+  "beat_seconds": 0.46875,
+  "scenes": [
+    {
+      "id": 1,
+      "start_sec": 0.0,
+      "end_sec": 3.75,
+      "duration_sec": 3.75,
+      "purpose": "Hook",
+      "text": "POMYSŁ. BRIEF. A POTEM? CAŁY FILM. ZOBACZ JAK.",
+      "engine_block": "Words",
+      "visual": "Blok Words rzeczywistego silnika Scenario",
+      "audio": "Istniejąca muzyka i wybrane lokalne SFX"
+    },
+    {
+      "id": 2,
+      "start_sec": 3.75,
+      "end_sec": 7.5,
+      "duration_sec": 3.75,
+      "purpose": "Brief",
+      "text": "Zrób film. 30 sekund.",
+      "engine_block": "MovingPrompt",
+      "visual": "Blok MovingPrompt rzeczywistego silnika Scenario",
+      "audio": "Istniejąca muzyka i wybrane lokalne SFX"
+    },
+    {
+      "id": 3,
+      "start_sec": 7.5,
+      "end_sec": 13.125,
+      "duration_sec": 5.625,
+      "purpose": "Plan",
+      "text": "RESEARCH. STORYBOARD. MATERIAŁY. TEKST. ANIMACJA. DO RYTMU. RENDER. KONTROLA.",
+      "engine_block": "MovingWords",
+      "visual": "Blok MovingWords rzeczywistego silnika Scenario",
+      "audio": "Istniejąca muzyka i wybrane lokalne SFX"
+    },
+    {
+      "id": 4,
+      "start_sec": 13.125,
+      "end_sec": 18.75,
+      "duration_sec": 5.625,
+      "purpose": "Workflow",
+      "text": "BRIEF → SCENY → FILM; cel, odbiorca, format; tekst, obraz, rytm; render, oględziny, odsłuch.",
+      "engine_block": "Chain",
+      "visual": "Blok Chain rzeczywistego silnika Scenario",
+      "audio": "Istniejąca muzyka i wybrane lokalne SFX"
+    },
+    {
+      "id": 5,
+      "start_sec": 18.75,
+      "end_sec": 22.03125,
+      "duration_sec": 3.28125,
+      "purpose": "Ruch",
+      "text": "TEKST. KAMERA. RUCH.",
+      "engine_block": "Fly",
+      "visual": "Blok Fly rzeczywistego silnika Scenario",
+      "audio": "Istniejąca muzyka i wybrane lokalne SFX"
+    },
+    {
+      "id": 6,
+      "start_sec": 22.03125,
+      "end_sec": 25.3125,
+      "duration_sec": 3.28125,
+      "purpose": "Kontrola",
+      "text": "OBRAZ. DŹWIĘK. KOREKTA. NAJPIERW SPRAWDŹ.",
+      "engine_block": "MovingWords",
+      "visual": "Blok MovingWords rzeczywistego silnika Scenario",
+      "audio": "Istniejąca muzyka i wybrane lokalne SFX"
+    },
+    {
+      "id": 7,
+      "start_sec": 25.3125,
+      "end_sec": 30.0,
+      "duration_sec": 4.6875,
+      "purpose": "Produkt",
+      "text": "SOCIAL MOTION AGENT. Od briefu do sprawdzonego filmu. github.com/aievolutionpl/social-motion-agent",
+      "engine_block": "Logo",
+      "visual": "Blok Logo rzeczywistego silnika Scenario",
+      "audio": "Istniejąca muzyka i wybrane lokalne SFX"
+    }
+  ]
+}

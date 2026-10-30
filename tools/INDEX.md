@@ -46,6 +46,15 @@ Nie są dołączone node_modules, cache, konta ani instalatory systemowe. Skrypt
 
 `scripts/showcase.py` is the local adapter for `examples/showcase/`: a 36-second portrait composition with a bundled generated product image, CSS cylinder geometry, kinetic typography, pixel art and a process view derived from actual job fields. It uses the existing pinned HyperFrames adapter and FFmpeg. No generation API calls. Source and usage: `examples/showcase/README.md`; validation: `docs/VALIDATION.md`. Audio review and commercial licensing are separate from technical rendering.
 
+## Kinetic Film runtime
+
+`scripts/kinetic_adapter.py` integrates the separately obtained [Scenario Kinetic Film](https://www.scenario.com/explorations/kinetic-film/)
+package. `config/kinetic-source.json` pins file hashes; `studio.py kinetic setup --source PATH` verifies and
+caches the engine under ignored tools/runtime/. The engine is not redistributed or relicensed MIT.
+The `kinetic-launch` route retains production records, native temporal motion blur, numeric motion checks
+and source-bound render receipts. NumPy/OpenCV and local Playwright are required. No provider account is connected.
+Commands and actual verification boundaries: `docs/KINETIC_FILM.md` and `examples/kinetic-launch/provenance.json`.
+
 ## Design expansion
 
 - `ai-design-skills`: Elaya landing page and design-to-motion, MIT.

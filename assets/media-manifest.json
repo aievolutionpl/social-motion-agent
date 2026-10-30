@@ -1024,11 +1024,25 @@
       "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
     },
     {
-      "path": "docs/media/premium-intro.mp4",
-      "bytes": 16280487,
-      "sha256": "ffc69b5c8c5646536de3653d6c010255ab7d4140684b10cebe1c930bd629d6bd",
-      "provenance": "premium_intro_owner_authorized",
-      "rights": "See examples/premium-intro/README.md and docs/MEDIA_RIGHTS.md"
+      "path": "docs/media/kinetic-launch.mp4",
+      "bytes": 14758075,
+      "sha256": "895eaa5b5a7d99fc280acc023e8012668c1a9e45b05b3096f6255bb32333d64c",
+      "provenance": "owner_authorized_kinetic_demo_2026_10_30",
+      "rights": "See examples/kinetic-launch/provenance.json and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "examples/kinetic-launch/mix.wav",
+      "bytes": 5760078,
+      "sha256": "75442f53572fc10fb684462b47b5fbc8616955e91e44356fe999503142bf70b6",
+      "provenance": "owner_authorized_kinetic_demo_2026_10_30",
+      "rights": "See examples/kinetic-launch/provenance.json and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "docs/images/kinetic-launch.jpg",
+      "bytes": 50972,
+      "sha256": "9f6ee795319b47145365875d8a85207038fc9b20219dfcd2e92448a0c5fd2dec",
+      "provenance": "owner_authorized_kinetic_demo_2026_10_30",
+      "rights": "See examples/kinetic-launch/provenance.json and docs/MEDIA_RIGHTS.md"
     }
   ]
 }

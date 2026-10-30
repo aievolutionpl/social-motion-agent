@@ -1,14 +1,20 @@
-[![Social Motion Agent — obejrzyj film](docs/images/premium-intro.png)](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/premium-intro.mp4)
+[![Social Motion Agent: Kinetic Film, 30 sekund](docs/images/kinetic-launch.jpg)](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)
+
+**[Obejrzyj film: 30 s · PL · 16:9 · muzyka i SFX](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)** · [Źródła i odtworzenie demo](examples/kinetic-launch/README.md)
 
 # Social Motion Agent
 
 **Od briefu do dopracowanego filmu, strony lub animacji produktu.**
 
-Warsztat [AI EVOLUTION POLSKA](https://www.aievolutionpolska.pl/) dla agentów, którzy potrafią czytać pliki, pisać kod i uruchamiać narzędzia. Jeden nadrzędny skill dobiera specjalistyczne instrukcje, pomaga ustalić kierunek wizualny i prowadzi do sprawdzonego rezultatu.
+Warsztat [AI EVOLUTION POLSKA](https://www.aievolutionpolska.pl/) dla agentów, którzy potrafią czytać pliki, pisać kod i uruchamiać narzędzia. Jeden nadrzędny skill prowadzi brief, kierunek, kompozycję i recenzję. **Kinetic Film** tworzy premiery produktów i teasery do rytmu muzyki; **HyperFrames** renderuje HTML/GSAP, a natywny **Hypermotion** ma osobny adapter. Style Atlas i Unslop pomagają dobrać wygląd oraz sprawdzić rezultat.
 
 [![CI](https://github.com/aievolutionpl/social-motion-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/aievolutionpl/social-motion-agent/actions/workflows/ci.yml) · [English](docs/README.en.md) · [Skill](skills/creative-director/SKILL.md) · [Konfiguracja agentów](docs/AGENT_SETUP.md) · [MIT — kod](LICENSE)
 
 ## Daj zadanie agentowi
+
+> Przeczytaj AGENTS.md i skills/kinetic-launch/SKILL.md. Chcę 30-sekundowy teaser w stylu Kinetic Film. Użyj trasy kinetic-launch, zachowaj mój brief i przygotuj sceny na siatce beatów. Wyrenderuj podgląd, sprawdź ruch, obraz i dźwięk. Bez publikacji ani płatnych generacji bez zgody.
+
+Film na górze pokazuje workflow od briefu do kontroli: duża typografia, kamera CSS 3D, motion blur i lokalny miks. To animowana ilustracja procesu, nie nagranie wykonania agenta. Odtworzenie używa dostarczonego audio. [Konfiguracja Kinetic Film](docs/KINETIC_FILM.md).
 
 Otwórz repo w Codexie, Claude Code, Hermesie lub innym agencie z plikami i terminalem:
 
@@ -16,11 +22,12 @@ Otwórz repo w Codexie, Claude Code, Hermesie lub innym agencie z plikami i term
 
 Dla strony podaj ofertę, odbiorcę i główną akcję. Dla animacji UI wskaż interfejs oraz to, czy ma działać na stronie, czy trafić do MP4. Samo połączenie GitHub udostępnia źródła; wykonanie projektu wymaga środowiska pracy z odpowiednimi narzędziami.
 
-## Jeden skill, trzy ścieżki
+## Jeden skill i dobór ścieżki
 
 | Zadanie | Proces | Wynik |
 | --- | --- | --- |
 | **Film**: Reels, Shorts, premiera, explainer, tutorial | Brief → kierunek → storyboard → kompozycja → render → recenzja | MP4, źródła, materiały i dowody kontroli |
+| **Kinetic launch**: teaser i premiera z dużą typografią | Brief → beat sheet → spec.js → motion blur → kontrola ruchu i recenzja | MP4 16:9, edytowalna kompozycja, audio i dowody renderu |
 | **Strona**: landing page, produkt, poprawa istniejącego projektu | Oferta → układ → typografia i obrazy → implementacja → przegląd w przeglądarce | Działający projekt w jego obecnym stacku |
 | **UI motion**: pokaz produktu, animowana makieta, sekcja strony | Zgodność statyczna → akcja i rezultat → ruch → kontrola formatu | Animacja na stronie albo film zgodnie z briefem |
 
@@ -39,6 +46,7 @@ Dla strony podaj ofertę, odbiorcę i główną akcję. Dla animacji UI wskaż i
 | [Elaya AI Design Skills](https://github.com/elayadesign/ai-design-skills) | Strategia landing page, zgodność statycznego UI i znaczący motion |
 | [Taste Skill v2](https://github.com/Leonxlnx/taste-skill) | Art direction, typografia, kompozycja i ocena screenshotów |
 | [Hypermotion](https://github.com/psiddharthdesign/hypermotion) | Profil marki, reżyseria explainera, edytowalne sceny `.hype` |
+| [Scenario Kinetic Film](https://www.scenario.com/explorations/kinetic-film/) | Osobny, weryfikowany pakiet silnika: sceny na beat gridzie, kamera CSS 3D i motion blur; trasa `kinetic-launch` |
 | [Unslop](https://github.com/heydamir/unslop) | 4-etapowy audyt redline (`Spacing`, `Color & icons`, `Type & copy`, `Details`), tinted neutral ramps, efekty Canvas i sceny Before→After (`unslop-story`) |
 | [Opus 5.5 Video Styles](https://github.com/HiAPIAI/awesome-opus-5-5-video-styles) + [Opus 5.5 Videos](https://github.com/yihui-dev/awesome-opus5-5-videos) | 12 kanonicznych stylów wideo, 1128 promptów referencyjnych, fizyka sprężyn (`stepSpring`, `liquidSpan`) i kontrakt podagenta `<inputs>/<direction>/<structure>/<build>/<gotchas>` |
 | Dotychczasowa biblioteka motion | Kinetic type, audio, mapy, wykresy, 3D, tutoriale i montaż |
@@ -91,17 +99,22 @@ Wymagania: **Python 3.11+, Node.js 22+, FFmpeg i ffprobe**. Pythonowy rdzeń nie
 python -S studio.py setup
 python -S studio.py demo --format 9:16 --render
 
-# Intro z polskim lektorem i dostarczoną muzyką
-python -S scripts/premium_intro.py --render
+# Kinetic Film: najpierw oficjalny pakiet silnika i opcjonalne zależności
+python -S studio.py kinetic setup --source /path/to/scenario-kinetic-film
+python -m pip install -r requirements-kinetic.txt
+python -S studio.py kinetic doctor
+python -S studio.py kinetic demo --render --res 720 --samples 2
 ```
 
 `setup` instaluje przypięte zależności przez `npm ci --ignore-scripts`. Pierwszy render może pobrać Chromium. Przykłady korzystają z dołączonych materiałów, bez płatnej generacji.
+
+Kinetic Film jest opcjonalnym silnikiem pobieranym osobno od autora. `kinetic setup` sprawdza sumy plików i tworzy lokalny cache, a `render-kinetic` zachowuje karty produkcji, kontrolę dynamiki i dowody zgodności źródeł z MP4. Bieżące kompozycje Kinetic są poziome 16:9; pion wymaga osobnego układu. [Pełny workflow](docs/KINETIC_FILM.md).
 
 **HyperFrames** renderuje lokalne HTML/GSAP. **Hypermotion** jest osobną aplikacją z projektami `.hype`, CLI i MCP. Agent pobiera jego skille, a przed natywnym eksportem sprawdza runtime i krótki render. Nie zamienia po cichu silnika wskazanego przez użytkownika. [Hypermotion — konfiguracja](docs/HYPERMOTION.md).
 
 ![Rzeczywisty fragment demonstracyjnego renderu](docs/images/demo.gif)
 
-[Intro 30 s ze źródłami](examples/premium-intro/README.md) · [Showcase 36 s](examples/showcase/README.md) · [HyperFrames](docs/HYPERFRAMES.md)
+[Kinetic Film 30 s ze źródłami](examples/kinetic-launch/README.md) · [Showcase 36 s](examples/showcase/README.md) · [HyperFrames](docs/HYPERFRAMES.md)
 
 ## Jakość jako część procesu
 

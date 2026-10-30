@@ -388,6 +388,22 @@
         "tools/repos/claude-motion/.claude/skills/review-loop/SKILL.md",
         "tools/repos/awesome-motion-design-agent-skills/skills/web-motion-auditor/SKILL.md"
       ]
+    },
+    "kinetic-launch": {
+      "purpose": "Premiera produktu lub teaser z duza typografia, kamera 3D i cieciami na siatce beatow",
+      "engine": "kinetic-film: pinned optional Scenario Kinetic Film; local Chromium and FFmpeg with temporal motion blur",
+      "skills": [
+        "skills/creative-director/SKILL.md",
+        "skills/kinetic-launch/SKILL.md",
+        "skills/production/SKILL.md"
+      ],
+      "outputs": [
+        "editable source/kinetic/spec.js",
+        "premixed score and asset provenance",
+        "MP4 with motion QA and source receipt",
+        "frames and listening review"
+      ],
+      "optional_skills": []
     }
   },
   "always_read": [

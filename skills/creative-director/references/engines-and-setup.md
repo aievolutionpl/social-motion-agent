@@ -34,6 +34,7 @@ This downloads sources and skills, not a working desktop application. Do not equ
 | Engine or capability | Use | Readiness evidence |
 | --- | --- | --- |
 | HyperFrames + GSAP | Authored HTML motion and deterministic local film output | `studio.py doctor`, successful bundled demo render, inspected frames |
+| Kinetic Film | Explicit typography-led teaser or launch on a musical beat grid | `studio.py kinetic setup --source PATH`, optional NumPy/OpenCV, `kinetic doctor`, actual `kinetic demo --render` and review; see `docs/KINETIC_FILM.md` |
 | FFmpeg | Existing footage, trims, crop, concatenation, audio and effects | Local `ffmpeg`/`ffprobe`, a small representative assembly and probe |
 | Hypermotion | Explicit native `.hype` scene/editor work | Pinned skills plus verified desktop/CLI, reopened scene and short inspected export |
 | Browser app stack | Responsive sites and live UI motion | Existing project build/tests and actual browser interaction/screenshots |

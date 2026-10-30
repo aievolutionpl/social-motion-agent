@@ -1,5 +1,14 @@
 # Social Motion Agent
 
+[![Social Motion Agent: Kinetic Film workflow demo](images/kinetic-launch.jpg)](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)
+
+**[Watch the 30-second Kinetic Film demo](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)** · [Editable source](../examples/kinetic-launch/README.md)
+
+The permanent `kinetic-launch` route creates typography-led launch films with Scenario's separately obtained,
+hash-verified Kinetic Film engine. Beat-timed scenes, CSS 3D camera motion and temporal motion blur stay inside
+the existing brief → research → storyboard → render → review workflow. Style Atlas, Unslop and the other renderers
+remain available. See [setup and production commands](KINETIC_FILM.md).
+
 **From brief to a crafted video, website or animated product interface.** An open-source workshop by AI EVOLUTION POLSKA for coding agents with file and tool access.
 
 Start with [Creative Director](../skills/creative-director/SKILL.md), the portable compound skill. Its 10 reference modules cover brief/art direction, video direction, websites, UI motion, visual recipes, anti-slop, a Polish/English humanizer, engines, review and source provenance. It reuses known answers and asks only missing material questions. Directions describe real section/shot placements before a substantial build.
@@ -44,7 +53,7 @@ python -S studio.py demo --format 9:16 --render
 python -S scripts/premium_intro.py --render
 ```
 
-Setup uses locked Node dependencies. The first render may download Chromium. Supplied examples do not make paid generation requests. [Intro source](../examples/premium-intro/README.md) contains Polish narration and actual animated Codex screenshots; it is not continuous agent screen capture.
+Setup uses locked Node dependencies. The first render may need Chromium. Supplied examples do not make paid generation requests. The current [Kinetic Film source](../examples/kinetic-launch/README.md) contains Polish typography, a supplied music/SFX mix and a beat-timed composition; it is a workflow illustration, not a recording of agent execution.
 
 HyperFrames/GSAP is the default HTML renderer. Hypermotion is a separate desktop/CLI/MCP product with native `.hype` scenes; downloading its skills does not install the app. Verify its platform/runtime and a small export before production. Do not silently substitute an explicitly requested engine. [Hypermotion setup](HYPERMOTION.md).
 

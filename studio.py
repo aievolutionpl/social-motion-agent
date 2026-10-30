@@ -24,6 +24,7 @@ import style_atlas
 import unslop_story
 import environment
 import creative_skills
+import kinetic_adapter
 
 
 def emit(value):
@@ -59,6 +60,24 @@ def main():
     p.add_argument("job")
     p.add_argument("--scene", default="source/index.hype")
     p.add_argument("--name", default="hypermotion")
+    p = sub.add_parser("render-kinetic", help="Render the selected Kinetic Film composition, verify motion and record provenance")
+    p.add_argument("job")
+    p.add_argument("--name", default="kinetic")
+    p.add_argument("--res", choices=kinetic_adapter.SIZES, default="1080")
+    p.add_argument("--samples", type=int, choices=(2, 4, 8), default=4)
+    p.add_argument("--audio", help="Premixed score asset ID registered with asset-add")
+    p = sub.add_parser("kinetic", help="Prepare the pinned optional Kinetic Film engine and local compositions")
+    ks = p.add_subparsers(dest="kinetic_action", required=True)
+    kp = ks.add_parser("setup", help="Verify and cache an explicitly supplied official engine package")
+    kp.add_argument("--source", type=Path, required=True)
+    ks.add_parser("doctor", help="Offline optional-engine readiness; no provider or browser-export claim")
+    kp = ks.add_parser("prepare", help="Create an editable composition without overwriting source")
+    kp.add_argument("job")
+    kp.add_argument("--example", choices=("starter", "social-motion-agent"), default="starter")
+    kp = ks.add_parser("demo", help="Reproduce the owner's kinetic-launch demo without paid generation")
+    kp.add_argument("--render", action="store_true")
+    kp.add_argument("--res", choices=kinetic_adapter.SIZES, default="720")
+    kp.add_argument("--samples", type=int, choices=(2, 4, 8), default=2)
     sub.add_parser("map", help="Krótka mapa dostępnych ścieżek")
     sub.add_parser("doctor", help="Sprawdź lokalne narzędzia i ścieżki, bez sekretów i sieci")
     p = sub.add_parser("setup", help="Sprawdź środowisko i zainstaluj przypięte zależności lokalnie")
@@ -159,6 +178,22 @@ def main():
                 result.update(render(folder, "demo", "draft"))
             emit(result)
             return int(args.render and not result["probe_passed"])
+        elif args.command == "kinetic":
+            if args.kinetic_action == "setup":
+                emit(kinetic_adapter.setup(args.source))
+            elif args.kinetic_action == "doctor":
+                report = kinetic_adapter.doctor()
+                emit(report)
+                return int(not report["ready"])
+            elif args.kinetic_action == "prepare":
+                emit(kinetic_adapter.prepare(job_path(args.job), args.example))
+            else:
+                folder = kinetic_adapter.demo()
+                result = {"job": str(folder), "reviewed": False, "paid_generation": False}
+                if args.render:
+                    result.update(kinetic_adapter.render(folder, "kinetic-demo", args.res, args.samples))
+                emit(result)
+                return int(args.render and not result["probe_passed"])
         elif args.command == "map":
             emit({key: value["purpose"] for key, value in core.routes().items()})
         elif args.command == "doctor":
@@ -186,6 +221,7 @@ def main():
         elif args.command == "find":
             tokens = args.query.casefold().split()
             entries = core.read(core.ROOT / "skills/catalog.json")["entries"]
+            entries = [*entries, kinetic_adapter.catalog_entry()]
             found = [item for item in entries if item["kind"] != "fixture" and (not args.source or item["source"] == args.source) and
                      all(token in " ".join(str(item.get(key, "")) for key in ("name", "description", "source", "path")).casefold() for token in tokens)]
             emit({"total_matches": len(found), "entries": found[:max(1, min(args.limit, 100))]})
@@ -255,6 +291,10 @@ def main():
             elif args.command == "render-html":
                 from hyperframes_adapter import render
                 result = render(folder, args.name, args.quality)
+                emit(result)
+                return int(not result["probe_passed"])
+            elif args.command == "render-kinetic":
+                result = kinetic_adapter.render(folder, args.name, args.res, args.samples, args.audio)
                 emit(result)
                 return int(not result["probe_passed"])
             elif args.command == "render-assembly":
