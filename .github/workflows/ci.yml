@@ -118,7 +118,7 @@ jobs:
 
           sys.path.insert(0, str(Path("tests").resolve()))
           suites = [unittest.defaultTestLoader.loadTestsFromName(name)
-                    for name in ("test_studio", "test_environment")]
+                    for name in ("test_studio", "test_environment", "test_kinetic")]
           if any(suite.countTestCases() == 0 for suite in suites):
               raise SystemExit("A required Windows test module contains no tests")
           result = unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(suites))

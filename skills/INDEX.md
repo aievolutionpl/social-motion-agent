@@ -6,6 +6,12 @@ Uruchom `python -S scripts/bootstrap_library.py`, aby pobrać wszystkie 38 przyp
 
 Nadrzędny skill: `skills/creative-director/SKILL.md` (film, strona, UI motion; 10 modułów czytanych na żądanie). Dobór i przygotowanie źródeł: `studio.py skills plan/setup/check --mode video|website|ui-motion`.
 
+Premiery typograficzne: **`skills/kinetic-launch/SKILL.md`**, trasa `kinetic-launch`.
+`studio.py kinetic setup/doctor/prepare/demo` i `studio.py render-kinetic` korzystają z osobnego,
+weryfikowanego pakietu Scenario Kinetic Film. Nie jest częścią 38 repozytoriów biblioteki Git.
+Źródło: https://www.scenario.com/explorations/kinetic-film/. Stan: lokalny adapter,
+przypięte sumy plików, testy i przykład; konto Scenario oraz media generatywne są osobne.
+
 Dotychczasowy skill filmowy: `.agents/skills/social-motion-studio/SKILL.md`. Mapę zadań pokaże `studio.py map`; właściwe ścieżki wybierze `studio.py route TYP`. Dodatkowo pobrano `remotion-official-skills` i `motion-video-skill`; sprawdzono renderowanie HTML. Brief ma pięć kategorii; pytaj tylko o brakujące decyzje. Reguły są w skills/intake/SKILL.md.
 
 | Zadanie | Źródło i ścieżka od `tools/repos/` |

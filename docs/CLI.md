@@ -17,6 +17,10 @@ Run `python -S studio.py --help` for the complete parser and subcommand help.
 | asset-add JOB --file FILE --source SOURCE --rights RIGHTS --purpose PURPOSE | Copy and hash an asset |
 | render-html JOB --name NAME | Lint, render with HyperFrames and probe |
 | render-hype JOB --scene source/index.hype --name NAME | Validate and render with the installed Hypermotion desktop/CLI, record provenance and probe |
+| kinetic setup --source PATH / doctor | Verify and cache the separately obtained pinned Kinetic Film package; inspect optional local dependencies |
+| kinetic prepare JOB [--example social-motion-agent] | Create source/kinetic/spec.js and an adapted job-local runtime without overwriting a composition |
+| kinetic demo [--render] [--res 720] [--samples 2] | New job reproducing the owner's current README film with supplied audio |
+| render-kinetic JOB --name NAME --res 1080 --samples 4 [--audio ASSET_ID] | Render Kinetic Film, enforce motion gates, record matching source/render receipt and probe |
 | render-assembly JOB | Assemble registered footage/stills with FFmpeg |
 | edit JOB fx --asset ID --name NAME --effect SPEC | Apply local FFmpeg effects |
 | probe JOB --render PATH | Check dimensions, duration, FPS and audio |

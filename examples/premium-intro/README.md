@@ -1,6 +1,7 @@
 # Premium intro: 30 sekund, 16:9
 
-[Obejrzyj gotowy film](../../docs/media/premium-intro.mp4).
+Archiwalne źródła intro. Bieżący film w README to [Kinetic Film demo](../kinetic-launch/README.md).
+Stary plik MP4 usunięto z aktualnego drzewa; historyczne wydanie v1.1.1 pozostaje osobne.
 
 Pokazówka Social Motion Agent: 1920 × 1080, 30 FPS, polski lektor, napisy, muzyka instrumentalna, generowana scenografia i autentyczne widoki skilli w Codexie.
 

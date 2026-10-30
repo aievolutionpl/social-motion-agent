@@ -18,3 +18,9 @@ Use python -S scripts/release_check.py before committing. Keep upstream sources 
 The bundled demo is synthetic and must never be represented as an approved client production.
 
 Exception authorized by owner on 2026-10-24: docs/media/premium-intro.mp4 and examples/premium-intro/ are public showcase deliverables, including approved generated narration. Other production outputs, voice models, account IDs and credentials remain excluded.
+
+Owner instruction on 2026-10-30 replaces the README film with docs/media/kinetic-launch.mp4 and
+examples/kinetic-launch/. Its publication is authorized; provenance and independent review limits remain recorded.
+For kinetic-launch, read skills/kinetic-launch/SKILL.md and docs/KINETIC_FILM.md. Use the pinned optional
+engine through kinetic setup/prepare and render-kinetic. Its source lives in a private runtime cache and
+job-local copies; do not vendor it under MIT. Never treat numeric motion gates as listening approval.

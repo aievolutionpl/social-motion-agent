@@ -43,7 +43,7 @@ class PremiumIntroTests(unittest.TestCase):
         self.assertEqual(before, (self.folder / 'brief.json').read_bytes())
 
     def test_published_video_must_match_integrity_manifest(self):
-        path = core.ROOT / 'docs/media/premium-intro.mp4'
+        path = core.ROOT / 'docs/media/kinetic-launch.mp4'
         raw = path.read_bytes()
         self.assertEqual(release_check.inspect(path, raw), [])
         self.assertIn('media missing or different from integrity manifest',

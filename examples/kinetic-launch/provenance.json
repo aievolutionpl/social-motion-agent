@@ -1,0 +1,19 @@
+{
+  "publication_authorized": "2026-10-30: owner requested permanent integration and replacement of README film with this demo.",
+  "source": "Owner-directed composition made with the supplied Scenario Kinetic Film engine. Workflow illustration, not a recording of agent execution.",
+  "engine": {
+    "url": "https://www.scenario.com/explorations/kinetic-film/",
+    "tree_sha256": "ef25940f1d5ba77772476f0ea608bae4c4b0e111a9700f91e1da312c712e3e5c",
+    "redistributed": false
+  },
+  "music": "Existing owner-published premium-intro instrumental, measured 119.99 BPM and retimed locally to 128 BPM. See examples/premium-intro/provenance.json.",
+  "sfx": "13 accents from owner-supplied SOUND EFFECTS library; source gain 0.25-0.32. Original source terms remain; documentation status in docs/MEDIA_RIGHTS.md.",
+  "narration": false,
+  "media_license": "Not automatically MIT. Owner authorizes this publication; independent source-license verification is not claimed.",
+  "review": {
+    "technical": "30s, 1280x720, 60 FPS, 1800 frames; full decode and native motion gates passed; -14 LUFS",
+    "sampled_visuals": "18 stills and 30 rendered frames inspected",
+    "full_playback_and_listening": "Not independently confirmed"
+  },
+  "video_sha256": "895eaa5b5a7d99fc280acc023e8012668c1a9e45b05b3096f6255bb32333d64c"
+}

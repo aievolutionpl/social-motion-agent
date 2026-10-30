@@ -1,0 +1,3 @@
+# Optional Kinetic Film renderer only; the core CLI remains standard-library Python.
+numpy>=2.2,<3
+opencv-python-headless>=4.11,<6
