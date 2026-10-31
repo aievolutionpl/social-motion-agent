@@ -1,6 +1,6 @@
 # Social Motion Agent: Kinetic Film demo
 
-The current README showcase: 30 seconds, Polish kinetic typography, 16:9, 1280×720 at 60 FPS,
+The current README showcase: 30 seconds, Polish kinetic typography, 16:9, 1920×1080 at 60 FPS,
 music and sound effects, no narrator. It illustrates brief → planning → scenes → render/review.
 It is not a recording of a real agent run.
 

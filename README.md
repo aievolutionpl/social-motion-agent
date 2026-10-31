@@ -1,6 +1,6 @@
 [![Social Motion Agent: Kinetic Film, 30 sekund](docs/images/kinetic-launch.jpg)](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)
 
-**[Obejrzyj film: 30 s · PL · 16:9 · muzyka i SFX](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)** · [Źródła i odtworzenie demo](examples/kinetic-launch/README.md)
+**[Obejrzyj film: 30 s · PL · 16:9 · 1080p 60 fps · muzyka i SFX](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)** · [Źródła i odtworzenie demo](examples/kinetic-launch/README.md)
 
 # Social Motion Agent
 
