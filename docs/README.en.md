@@ -1,6 +1,6 @@
 # Social Motion Agent
 
-[![Social Motion Agent: Kinetic Film workflow demo](images/kinetic-launch.jpg)](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)
+[![Social Motion Agent: Kinetic Film workflow demo — animated transitions](images/kinetic-launch.gif)](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)
 
 **[Watch the 30-second Kinetic Film demo](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)** · [Editable source](../examples/kinetic-launch/README.md)
 
