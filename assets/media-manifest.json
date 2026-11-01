@@ -1025,8 +1025,8 @@
     },
     {
       "path": "docs/media/kinetic-launch.mp4",
-      "bytes": 14758075,
-      "sha256": "895eaa5b5a7d99fc280acc023e8012668c1a9e45b05b3096f6255bb32333d64c",
+      "bytes": 22978075,
+      "sha256": "5cc0f98279483453d7f16b52e35a3206ee0a04cbe4a87c5bf7bb93b4a8605482",
       "provenance": "owner_authorized_kinetic_demo_2026_10_30",
       "rights": "See examples/kinetic-launch/provenance.json and docs/MEDIA_RIGHTS.md"
     },

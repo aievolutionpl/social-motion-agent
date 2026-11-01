@@ -108,3 +108,14 @@ def recipe(slug: str | None = None) -> dict:
     return {"slug": slug, "name": item.get("en"), "what": item.get("oneLinerEn"), "style": item.get("styleEn"),
             "structure": item.get("structureEn"), "duration": item.get("duration"), "steps": item.get("steps"),
             "avoid": item.get("avoid"), "prompts": item.get("promptsEn") or item.get("prompts"), "files": files}
+
+
+def presets(slug: str | None = None) -> dict:
+    """Built-in seekable styles, independent of the optional upstream catalog."""
+    data = json.loads((ROOT / "config/motion-presets.json").read_text(encoding="utf-8"))
+    if slug is None:
+        return data
+    item = next ( (style for style in data["styles"] if style["slug"] == slug), None)
+    if item is None:
+        raise ValueError(f"Nie ma presetu {slug!r}; użyj: studio.py motion presets")
+    return {**item, "example": "examples/motion-styles/index.html?style=" + slug}
