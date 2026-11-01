@@ -1,11 +1,12 @@
-"""Atlas 12 stylów wideo i wyszukiwarka 1100+ promptów (awesome-opus-5-5-video-styles + awesome-opus5-5-videos).
+"""Atlas 14 stylów wideo i wyszukiwarka 1100+ promptów.
 
 Łączy:
 - 12 kanonicznych receptur stylów (Style Lock Recipes) z HiAPIAI/awesome-opus-5-5-video-styles (CC BY 4.0)
 - 703 prompty kodowanego wideo z yihui-dev/awesome-opus5-5-videos (MIT)
 - 5-liniowy Direction i reguły ramp kolorystycznych z heydamir/unslop (CC BY 4.0)
 
-Działa również przed pobraniem submodułów (wbudowane receptury 12 stylów, kontrakty seek(t) i wzorce architektoniczne).
+Dwa autorskie profile explainerów adaptują kierunki dostarczone przez użytkownika.
+Działa również przed pobraniem submodułów (wbudowane receptury, kontrakty seek(t) i wzorce architektoniczne).
 Po pobraniu tools/repos/awesome-opus-5-5-video-styles oraz tools/repos/awesome-opus5-5-videos przeszukuje pełne bazy.
 """
 from __future__ import annotations
@@ -34,7 +35,7 @@ SUBAGENT_BLUEPRINT = {
     },
     "prompt_to_code_sections": {
         "inputs": "Wymagane stany UI, tekst, dane liczbowe z punktem odniesienia oraz tempo (BPM / czas trwania).",
-        "direction": "Styl z 12 kanonicznych receptur, rampa kolorów, typografia oraz jawna lista elementów zakazanych (Banned).",
+        "direction": "Styl z atlasu (12 kanonicznych + 2 explainery), rampa kolorów, typografia oraz jawna lista elementów zakazanych (Banned).",
         "structure": "Podział na takty/sekundy: co dzieje się w każdym bicie (akcja -> zmiana stanu -> czytelny hold).",
         "build": [
             "Jedna czysta funkcja czasu window.seek(t): zero CSS transitions w trakcie renderu, zero setTimeout, zero Math.random() między klatkami.",
@@ -370,7 +371,106 @@ STYLES: dict[str, dict] = {
     },
 }
 
+STYLES.update({
+    "isometric-line-art": {
+        "slug": "isometric-line-art",
+        "name": "Cinematic isometric line-art",
+        "summary": "Izometryczny rysunek techniczny: montaż części, przekroje i widoczne przepływy wyjaśniają działanie systemu.",
+        "style_recipe": (
+            "Style: cinematic isometric line-art explainer. Build recognizable subject-specific structures "
+            "in a consistent orthographic world. Draw silhouette, structure, then fine detail with distinct "
+            "stroke weights; hide rear edges except in deliberate cutaways. Assemble parts along meaningful "
+            "axes, reveal internals, then trace a material, energy or information flow from source to "
+            "destination and show its consequence. Connect compositions by a shared edge, route or camera "
+            "move. Use restrained accents for active states and readable labels; no generic wireframe cubes."
+        ),
+        "ramp": "ink", "theme": "dark", "fps": 30,
+        "recommended_tech": ["svg", "canvas", "gsap", "three.js"],
+        "tokens": {
+            "--bg-0": "#0C1726", "--bg-1": "#1A2A3A", "--surface": "#1A2A3A",
+            "--ink": "#F6F5EF", "--accent": "#38D8D2", "--line": "#A8B8C6",
+            "--signal-secondary": "#FFAF65"
+        },
+        "anti_slop": [
+            "Rozpoznawalna sylwetka i budowa obiektu przed podpisem; nie stosuj samych sześcianów lub splątanego wireframe.",
+            "Stałe osie i skala; ukryte krawędzie nie konkurują z konturem. Przekrój jest celową zmianą reprezentacji.",
+            "Przepływ ma źródło, trasę, cel i widoczny skutek; mechanizmy zachowują punkty obrotu i połączenia.",
+            "Kilka powiązanych zmian w kompozycji, spokojny moment na odczyt; bez losowego obrotu i dekoracyjnych sygnałów."
+        ],
+        "build_contract": (
+            "window.seek(t) deterministycznie wylicza projekcję, kamerę, montaż, przekrój, etykiety i przepływ. "
+            "Ujawniaj ścieżki według długości łuku; buforuj geometrię i długości. Zadbaj o kolejność warstw/occlusion. "
+            "Przy WebGL sprawdź szerokie linie i rozdzielczość viewportu zamiast zakładać obsługę gl.lineWidth."
+        ),
+        "reference": "skills/creative-director/references/explainer-styles.md",
+        "origin": "Social Motion adaptation of user-supplied creative direction; not an upstream Opus style",
+    },
+    "flat-vector": {
+        "slug": "flat-vector",
+        "name": "Premium flat-vector editorial explainer",
+        "summary": "Dynamiczne ilustracje 2D: płynne morfowanie kształtów, maski i powiązane zmiany stanu tłumaczą temat.",
+        "style_recipe": (
+            "Style: premium flat-vector editorial explainer. Construct original recognizable illustrations "
+            "from layered Bezier shapes, confident silhouettes, solid fills and purposeful details. Show "
+            "the explanation through component interactions and visible state changes. Carry a shape, "
+            "path or mask into the next idea; use meaningful split/recombine morphs with stable endpoints. "
+            "Stage quick structural changes, slower comprehension holds and overlapping secondary motion. "
+            "Keep a coherent 2D shape grammar, restrained camera and disciplined palette; no stock-icon slides."
+        ),
+        "ramp": "warm", "theme": "light", "fps": 30,
+        "recommended_tech": ["svg", "canvas", "gsap"],
+        "tokens": {
+            "--bg-0": "#F6F5EE", "--bg-1": "#ECEBE4", "--surface": "#F6F5EE",
+            "--ink": "#172235", "--accent": "#4667FF", "--line": "#73819A",
+            "--signal-secondary": "#16B99A"
+        },
+        "anti_slop": [
+            "Ruch pokazuje relację lub zmianę; tekst wspiera ilustrację. Bez zestawu ikon z wejściem i wyjściem.",
+            "Morf ma sens w opowieści i stabilne końce; bez skręcania kolejności punktów, samoprzecięć i bezkształtnych przejść.",
+            "Spójne krzywizny, kontury i proporcje; detale rozpoznawalne na telefonie. Postaci tylko gdy pomagają wyjaśnić temat.",
+            "Płaskie wypełnienia i celowe maski; bez szkła, ciężkiego 3D, ciągłego sprężynowania lub dekoracyjnej konfetti."
+        ],
+        "build_contract": (
+            "window.seek(t) deterministycznie wylicza ścieżki, maski, komponenty, etykiety i kamerę 2D. "
+            "Dopasuj topologię ścieżek i wstępnie oblicz próbki/interpolatory. Przy niezgodnej topologii "
+            "użyj osobnych części lub maski. Sprawdzaj klatki wewnątrz morfu oraz seek w dowolnej kolejności."
+        ),
+        "reference": "skills/creative-director/references/explainer-styles.md",
+        "origin": "Social Motion adaptation of user-supplied creative direction; not an upstream Opus style",
+    },
+})
+
 BUILTIN_EXEMPLARS: list[dict] = [
+    {
+        "slug": "isometric-line-art-mechanism",
+        "title": "Izometryczny explainer / cinematic isometric line-art mechanism",
+        "style": "isometric-line-art", "category": "explainer",
+        "tech_tags": ["svg", "canvas", "gsap", "three.js"],
+        "has_remake": False, "source": "social-motion-agent",
+        "highlights": ["Kontur → konstrukcja → detale → przekrój → przepływ → skutek; dobierz kolejność do tematu."],
+        "prompt": (
+            "Explain the configured topic using cinematic isometric line-art. Establish a recognizable "
+            "structure, assemble meaningful components, expose the relevant mechanism and follow a visible "
+            "flow to its consequence. Preserve spatial axes and hide rear edges. Tailor every beat to the "
+            "subject; use shared routes and camera reframing for continuity. Read the explainer-styles "
+            "reference and obey the job's duration, format, storyboard and audio settings."
+        ),
+    },
+    {
+        "slug": "flat-vector-connected-explanation",
+        "title": "Wektorowy explainer / flat-vector connected shape morphs",
+        "style": "flat-vector", "category": "explainer",
+        "tech_tags": ["svg", "canvas", "gsap"],
+        "has_remake": False, "source": "social-motion-agent",
+        "highlights": ["Ilustracja → interakcja → zmiana stanu → znaczący morf → nowa relacja; bez stałego szablonu scen."],
+        "prompt": (
+            "Explain the configured topic through original flat-vector editorial illustrations. Build "
+            "recognizable layered shapes, show a causal interaction, change the system state and carry "
+            "a meaningful shape into the next explanation with a controlled morph or mask. Vary quick "
+            "action with readable holds. Read the explainer-styles reference and obey the job's duration, "
+            "format, storyboard and audio settings; never substitute generic icon slides."
+        ),
+    },
     {
         "slug": "twoclipping-402193",
         "title": "Continuous UI Shape Morph on 120 BPM Beat Grid",
@@ -652,6 +752,8 @@ def show(ident: str, remake: bool = False) -> dict:
                     "Zastosuj tokeny z templates/frame-tokens.css i sprawdź wynik przez studio.py polish."
                 ),
             }
+            if style_info.get("reference"):
+                card["reference"] = style_info["reference"]
             if remake:
                 card["subagent_blueprint"] = SUBAGENT_BLUEPRINT
             return card

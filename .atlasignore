@@ -1,0 +1,20 @@
+.git/
+node_modules/
+.venv/
+venv/
+__pycache__/
+.cache/
+.ruff_cache/
+.serena/
+.council/
+output/
+tools/repos/
+tools/runtime/
+assets/
+SOUND EFFECTS/
+docs/media/
+docs/images/
+**/node_modules/
+**/__pycache__/
+**/.cache/
+examples/**/gsap.min.js

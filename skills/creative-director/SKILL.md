@@ -22,7 +22,7 @@ A site with a small animated feature remains a website; do not export a film unl
 When invoked as a specialized **Motion / Design Subagent** by a parent orchestrator (or when dividing a film across subagents), follow this 4-stage contract:
 
 1. **Stage 1 — Style Scout & 5-Line Direction:**
-   - Query `python -S studio.py styles list`, `studio.py styles recipe <style>` and `studio.py styles find <query>` to lock one of the **12 canonical coded-video styles** (`typography`, `productui`, `explainer`, `cinematic3d`, `handdrawn`, `collage`, `pixel`, `cartoon`, `lowpoly`, `generative`, `retro`, `photoreal`).
+   - Query `python -S studio.py styles list`, `studio.py styles recipe <style>` and `studio.py styles find <query>` to lock one of **14 coded-video styles**: the 12 canonical styles (`typography`, `productui`, `explainer`, `cinematic3d`, `handdrawn`, `collage`, `pixel`, `cartoon`, `lowpoly`, `generative`, `retro`, `photoreal`) plus `isometric-line-art` and `flat-vector`. For either new explainer direction, read [Explainer styles](references/explainer-styles.md); preserve its independent motion grammar and the job settings.
    - Write the **5-line Unslop Direction**: `Product`, `Character` (no template words like *clean/modern/sleek*), `World` (determines `data-ramp="graphite|warm|ink"`), `Moments` (1–2 rich elements while chrome stays quiet), and `Signature` (1 unique product detail).
 2. **Stage 2 — Deterministic Scene Coding (`window.seek(t)`):**
    - Implement scenes using `templates/frame-tokens.css` and `templates/motion-helpers.js` (`stepSpring`, `springTimeline`, `liquidSpan`, `bakeGlyphAtlas`, `drawGlyphs`, `drawHalftone`).
