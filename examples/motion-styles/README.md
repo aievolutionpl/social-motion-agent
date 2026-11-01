@@ -1,0 +1,5 @@
+# Built-in motion styles
+
+Serve the repository root with `python3 -m http.server 8000` and open `/examples/motion-styles/`. Use the selector or URL `?style=riso-print`, `?style=decollage-time-layers`, or `?style=optical-moire`. The slider and `window.seek(seconds)` draw an absolute frame; `window.selectStyle(slug)` changes style. Configurable values are in `config/motion-presets.json`, shared by the CLI and example. No animation plays automatically. The moiré pattern may cause visual discomfort; avoid rapid movement or flashing in production.
+
+These are original implementations inspired by ideas, not copied code or proof of a production renderer. Concept references: [Babel / Riso](https://lukekostohryz.com/babel), [Capitu title sequence](https://motionographer.com/2009/02/01/capitu-titles-2/), [Moiré](https://artiehinz.com/moire). The concise reference-priority and creative-handoff practice is independently written, inspired by [FrameCore Works Creative Studio](https://github.com/FrameCoreWorks/framecore-works-creative-studio/tree/ef54c252f294c4dd9e5ef0b4b203d955db49ad82) (Apache 2.0); no FrameCore text or code is included. Review asset rights separately.

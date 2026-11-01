@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Motion style laboratory</title>
+<style>body{margin:0;background:#191b1b;color:#fff;font:16px system-ui;display:grid;place-items:center;min-height:100vh}main{width:min(92vw,800px)}canvas{display:block;width:100%;height:auto}label{display:block;margin:1em 0}select,input{font:inherit}small{display:block;margin:1em 0}</style></head>
+<body><main><h1>Motion style laboratory</h1><label>Style <select id="style"></select></label><canvas id="frame" width="800" height="500"></canvas><label>Time <input id="time" type="range" min="0" max="10" step="0.01" value="0"><output id="clock">0.00 s</output></label><small>Drag to seek. Start a local HTTP server from the repository root; no external assets are used. Rapidly moving moiré patterns can cause visual discomfort.</small><p id="error" role="alert"></p></main>
+<script>
+(async () => {
+  const response = await fetch('../../config/motion-presets.json');
+  if (!response.ok) throw Error('Could not load presets: ' + response.status);
+  const presets = (await response.json()).styles;
+  const select = document.querySelector('#style'), slider = document.querySelector('#time');
+  const canvas = document.querySelector('#frame'), ctx = canvas.getContext('2d');
+  for (const p of presets) select.add(new Option(p.name,p.slug));
+  const initial = new URLSearchParams(location.search).get('style');
+  if (initial && !presets.some(p=>p.slug===initial)) throw Error('Unknown style: ' + initial);
+  if (initial) select.value = initial;
+  function draw(t) {
+    if (!Number.isFinite(t)) throw new TypeError('Time must be finite');
+    const p = presets.find(x=>x.slug===select.value), c=p.palette, a=p.parameters;
+    ctx.globalAlpha=1; ctx.globalCompositeOperation='source-over'; ctx.setTransform(1,0,0,1,0,0);
+    ctx.fillStyle=c[0]; ctx.fillRect(0,0,800,500);
+    if (p.slug==='riso-print') {
+      ctx.fillStyle=c[1]; ctx.fillRect(95+Math.sin(t*a.speed)*a.misregistration,85,315,300);
+      ctx.fillStyle=c[2]; ctx.globalAlpha=.78; ctx.beginPath(); ctx.arc(455+Math.cos(t*a.speed)*a.misregistration,250,165,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1;
+      ctx.fillStyle=c[0];
+      for(let y=110;y<360;y+=a.dot_spacing) for(let x=120;x<390;x+=a.dot_spacing) {ctx.beginPath();ctx.arc(x,y,2.2+1.1*Math.sin((x+y)*.04+t*a.speed),0,Math.PI*2);ctx.fill()}
+      ctx.fillStyle=c[3]; ctx.font='bold 54px sans-serif';ctx.fillText('PRINT / MOTION',145,440);
+    } else if (p.slug==='decollage-time-layers') {
+      for(let i=0;i<a.layers;i++) { const top=48+i*54, shift=Math.sin(t*a.speed+i*.65)*14; ctx.fillStyle=c[1+i%3];ctx.beginPath();ctx.moveTo(65+shift,top);ctx.lineTo(735+shift,top); for(let x=735;x>=65;x-=22) ctx.lineTo(x+shift,top+55+Math.sin(x*.05+i*2)*a.tear_depth*.35);ctx.closePath();ctx.fill(); }
+      ctx.fillStyle=c[0]; ctx.font='bold 56px sans-serif';ctx.fillText('TIME / LAYERS',155,275);
+    } else if (p.slug==='optical-moire') {
+      function lines(angle,offset,color){ctx.save();ctx.translate(400,250);ctx.rotate(angle);ctx.translate(offset,0);ctx.strokeStyle=color;ctx.lineWidth=a.line_width;ctx.beginPath();for(let x=-850;x<=850;x+=a.spacing){ctx.moveTo(x,-850);ctx.lineTo(x,850)}ctx.stroke();ctx.restore()}
+      lines(.10,0,c[1]);ctx.globalAlpha=.72;lines(-.10+Math.sin(t*a.speed)*.035,t*6,c[2]);ctx.globalAlpha=1;
+      ctx.fillStyle=c[0];ctx.fillRect(190,210,420,80);ctx.fillStyle=c[1];ctx.font='bold 42px sans-serif';ctx.fillText('OPTICAL / FIELD',215,263);
+    } else throw Error('No renderer for ' + p.slug);
+    document.querySelector('#clock').textContent=t.toFixed(2)+' s';
+  }
+  window.seek=draw;
+  window.selectStyle=(slug)=>{if(!presets.some(p=>p.slug===slug))throw Error('Unknown style: '+slug);select.value=slug;draw(Number(slider.value))};
+  select.addEventListener('change',()=>draw(Number(slider.value)));
+  slider.addEventListener('input',()=>draw(Number(slider.value)));
+  draw(0); window.motionReady=true;
+})().catch(error=>{document.querySelector('#error').textContent=error.message;console.error(error)});
+</script></body></html>

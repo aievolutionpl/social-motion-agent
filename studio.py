@@ -92,7 +92,7 @@ def main():
     p.add_argument("--limit", type=int, default=12)
     p.add_argument("--source")
     p = sub.add_parser("motion", help="Katalog 637 efektów ruchu: find, show, recipe (tools/repos/awesome-ai-motion)")
-    p.add_argument("action", choices=("find", "show", "recipe"))
+    p.add_argument("action", choices=("find", "show", "recipe", "presets"))
     p.add_argument("query", nargs="?", default="", help="find: fraza; show: slug efektu; recipe: slug receptury")
     p.add_argument("--purpose")
     p.add_argument("--medium")
@@ -230,6 +230,8 @@ def main():
                 emit(motion_catalog.find(args.query, args.purpose, args.medium, args.family, args.level, args.rendered, args.limit))
             elif args.action == "show":
                 emit(motion_catalog.show(args.query))
+            elif args.action == "presets":
+                emit(motion_catalog.presets(args.query or None))
             else:
                 emit(motion_catalog.recipe(args.query or None))
         elif args.command == "styles":

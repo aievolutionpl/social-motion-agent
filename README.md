@@ -4,11 +4,17 @@
 
 # Social Motion Agent
 
+**[🌐 Zobacz stronę Social Motion Agent](https://social-motion-agent-aiep.pages.dev/)**
+
 **Od briefu do dopracowanego filmu, strony lub animacji produktu.**
 
 Warsztat [AI EVOLUTION POLSKA](https://www.aievolutionpolska.pl/) dla agentów, którzy potrafią czytać pliki, pisać kod i uruchamiać narzędzia. Jeden nadrzędny skill prowadzi brief, kierunek, kompozycję i recenzję. **Kinetic Film** tworzy premiery produktów i teasery do rytmu muzyki; **HyperFrames** renderuje HTML/GSAP, a natywny **Hypermotion** ma osobny adapter. Style Atlas i Unslop pomagają dobrać wygląd oraz sprawdzić rezultat.
 
 [![CI](https://github.com/aievolutionpl/social-motion-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/aievolutionpl/social-motion-agent/actions/workflows/ci.yml) · [English](docs/README.en.md) · [Skill](skills/creative-director/SKILL.md) · [Konfiguracja agentów](docs/AGENT_SETUP.md) · [MIT — kod](LICENSE)
+
+## Nowe style motion
+
+Trzy eksperymentalne presety **Riso Print Motion**, **Décollage Time-Layers** i **Optical Moiré Interference** zawierają interaktywny przykład Canvas z deterministycznym `seek(t)`. Lista: `python -S studio.py motion presets`; podgląd i źródła inspiracji: [examples/motion-styles](examples/motion-styles/README.md). To przykłady, nie gotowe kompozycje HyperFrames.
 
 ## Daj zadanie agentowi
 

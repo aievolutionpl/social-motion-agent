@@ -366,7 +366,8 @@
       "outputs": [
         "wybrane efekty z parametrami i uzasadnieniem",
         "kroki receptury z czasem",
-        "scena zgodna z seek(t)"
+        "scena zgodna z seek(t)",
+        "built-in styles: studio.py motion presets [slug]; examples/motion-styles/index.html"
       ],
       "optional_skills": [
         "tools/repos/awesome-ai-motion/SKILL.md",
