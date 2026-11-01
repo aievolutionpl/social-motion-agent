@@ -4,6 +4,8 @@
 
 # Social Motion Agent
 
+**[🌐 Zobacz stronę Social Motion Agent](https://social-motion-agent-aiep.pages.dev/)**
+
 **Od briefu do dopracowanego filmu, strony lub animacji produktu.**
 
 Warsztat [AI EVOLUTION POLSKA](https://www.aievolutionpolska.pl/) dla agentów, którzy potrafią czytać pliki, pisać kod i uruchamiać narzędzia. Jeden nadrzędny skill prowadzi brief, kierunek, kompozycję i recenzję. **Kinetic Film** tworzy premiery produktów i teasery do rytmu muzyki; **HyperFrames** renderuje HTML/GSAP, a natywny **Hypermotion** ma osobny adapter. Style Atlas i Unslop pomagają dobrać wygląd oraz sprawdzić rezultat.
