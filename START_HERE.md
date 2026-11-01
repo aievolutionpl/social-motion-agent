@@ -1,5 +1,10 @@
 # Start here
 
+For the consolidated local production workspace, read `LOCAL_WORKSPACE.md` when present.
+It identifies the active production folders and preservation checks. Historical files under
+`output/legacy-workbench/` are references and never override the current instructions or code.
+See `docs/LOCAL_WORKSPACE.md` for the portable consolidation and preservation-ledger workflow.
+
 1. Read `AGENTS.md` and `skills/creative-director/SKILL.md`. Choose video, website or ui-motion. Narrow revisions reuse the existing brief and tools.
 2. Inspect the project and supplied references. Reuse known answers; ask missing material questions. Show two or three distinct directions with concrete scene/section placements when undecided. Do not treat silence as approval.
 3. Run `python -S studio.py skills plan --mode MODE`. Prepare missing sources with `skills setup --mode MODE`, then `skills check --mode MODE`. Source preparation does not install or test upstream runtimes.

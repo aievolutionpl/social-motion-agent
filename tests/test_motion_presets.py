@@ -3,6 +3,7 @@ import http.server
 import json
 import shutil
 import subprocess
+import sys
 import threading
 import unittest
 from pathlib import Path
@@ -11,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class MotionPresetTests(unittest.TestCase):
     def cli(self, *args):
-        return subprocess.run(['python3','-S',str(ROOT/'studio.py'),'motion','presets',*args], cwd=ROOT, text=True, capture_output=True)
+        return subprocess.run([sys.executable,'-S',str(ROOT/'studio.py'),'motion','presets',*args], cwd=ROOT, text=True, capture_output=True, encoding='utf-8')
 
     def test_registry_and_selection(self):
         result = self.cli()

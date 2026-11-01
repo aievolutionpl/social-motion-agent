@@ -29,7 +29,7 @@ Run `python -S studio.py --help` for the complete parser and subcommand help.
 | background IMAGE OUTPUT --duration SECONDS | Animate an image into a clip |
 | sfx build/find/check | Index and search your own licensed audio |
 | motion find/show/recipe | Extended catalogue, fetched as a pinned source or expanded in a full bundle |
-| styles list/recipe/find/show | 12 canonical Opus 5.5 video styles, 1,128 prompt exemplars and subagent `<inputs>/<direction>/<structure>/<build>/<gotchas>` blueprints |
+| styles list/recipe/find/show | 14 styles: 12 canonical Opus 5.5 styles plus `isometric-line-art` and `flat-vector` explainers; upstream prompt search and deterministic scene blueprints |
 | unslop-story OUTPUT [--title TITLE] [--ramp graphite\|warm\|ink] | Generate a deterministic 4-pass Before->After Redline Transformation Story HTML (`window.seek(t)`) |
 | polish HTML | Optional Playwright layout measurements and 4-pass Unslop DOM checks |
 

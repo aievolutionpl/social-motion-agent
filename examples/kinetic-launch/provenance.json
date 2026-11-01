@@ -11,11 +11,26 @@
   "narration": false,
   "media_license": "Not automatically MIT. Owner authorizes this publication; independent source-license verification is not claimed.",
   "review": {
-    "technical": "30s, 1280x720, 60 FPS, 1800 frames; full decode and native motion gates passed; -14 LUFS",
-    "sampled_visuals": "18 stills and 30 rendered frames inspected",
+    "technical": "Verified locally 2026-11-01: 30.000s, 1920x1080, 60 FPS, H.264 + AAC; full FFmpeg decode passed. Audio loudness was not remeasured.",
+    "sampled_visuals": "The earlier sampled-visual record is retained under previous_render; no new visual approval is implied by this integrity reconciliation.",
     "full_playback_and_listening": "Not independently confirmed"
   },
   "original_video_sha256": "895eaa5b5a7d99fc280acc023e8012668c1a9e45b05b3096f6255bb32333d64c",
   "video_sha256": "5cc0f98279483453d7f16b52e35a3206ee0a04cbe4a87c5bf7bb93b4a8605482",
-  "current_video_technical": "ffprobe: 30 seconds, 1920x1080, 60 fps, H.264/AAC. The review above refers to the original 720p render; current version full playback and listening not independently confirmed."
+  "current_video_technical": "30 seconds, 1920x1080, 60 fps, H.264/AAC; matching original render receipts and full local decode verified. The earlier 720p review is retained under previous_render. Full playback and listening are not independently confirmed.",
+  "previous_render": {
+    "video_sha256": "895eaa5b5a7d99fc280acc023e8012668c1a9e45b05b3096f6255bb32333d64c",
+    "review": {
+      "technical": "30s, 1280x720, 60 FPS, 1800 frames; full decode and native motion gates passed; -14 LUFS",
+      "sampled_visuals": "18 stills and 30 rendered frames inspected",
+      "full_playback_and_listening": "Not independently confirmed"
+    }
+  },
+  "local_integrity_reconciliation": {
+    "date": "2026-11-01",
+    "reason": "The 1080p MP4 and both matching render receipts were present locally, while the main manifest and example record still described the earlier 720p export.",
+    "matching_render_receipts": 2,
+    "producer": "kinetic-film",
+    "publication_action": "none; local consistency repair only"
+  }
 }

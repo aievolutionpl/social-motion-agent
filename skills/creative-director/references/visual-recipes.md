@@ -1,4 +1,4 @@
-# Visual recipe menu & 12 Opus 5.5 Style Locks
+# Visual recipe menu & Style Locks
 
 Choose by subject, evidence and viewing context. A recipe is a coherent starting point; it does not guarantee quality or reach. Do not combine several visual languages simply to demonstrate more capabilities.
 
@@ -11,13 +11,17 @@ Choose by subject, evidence and viewing context. A recipe is a coherent starting
 | Product demonstration | Real interface, faithful crops, a visible input and outcome | Action → state change → hold; occasional contextual zoom | Software, tutorials, explaining what the product does |
 | Documentary montage | Supplied footage, environment details, people and materials | Cuts follow the action or narration; motivated transitions | A place, process, craft or service with real footage |
 | Mechanism explainer | Simplified diagrams with stable labels and consistent shapes | Reveal cause before effect; keep the focal relationship visible | Technical education, workflows, system explanation |
+| Isometric line-art | Recognizable orthographic structures, layered technical strokes, explicit cutaways | Path-length drawing, precise assembly, routed flows and connected camera moves | Components, mechanisms, spatial systems; CLI `isometric-line-art` |
+| Flat-vector editorial | Original layered 2D illustrations, solid fills, coherent silhouettes | Meaningful shape morphs, masks, interactions and visible state changes | Concepts, choices, processes and comparisons; CLI `flat-vector` |
 | Data story | Truthful scales, units, sources, one highlighted finding | Build the chart, isolate the insight, retain a comparison baseline | Reports and evidence-based narratives |
 | Material product study | Accurate product silhouette, purposeful light, texture and close-ups | Controlled rotation/crop, stable detail holds, repeatable reveal | Physical products with usable imagery or a verified model |
 | Graphic poster sequence | Bold type, deliberate fields of color, limited motifs | Rhythmic composition changes and match cuts | Events, culture and brands whose identity supports the treatment |
 
-## 12 Canonical Coded-Video Styles (`studio.py styles`)
+## 14 Coded-Video Styles (`studio.py styles`)
 
 Adapted from `HiAPIAI/awesome-opus-5-5-video-styles` (CC BY 4.0) and `yihui-dev/awesome-opus5-5-videos` (MIT), paired with `unslop` neutral ramps (`heydamir/unslop`, CC BY 4.0). Because code-rendered video draws every frame in HTML/Canvas/SVG/Three.js, **you must lock the style explicitly** before writing scene code:
+
+The 12 upstream styles below are extended by two Social Motion profiles synthesized from user-supplied direction. Read [Explainer styles](explainer-styles.md) for selection, detailed choreography, production settings and review. These are independent options; keep one lead grammar per film.
 
 ```bash
 python -S studio.py styles list
@@ -30,6 +34,8 @@ python -S studio.py styles find "<query>" --style <style>
 | `typography` | `ink` (dark), 60 fps | One or two bold typefaces, huge words that snap, stretch, mask and wipe on the beat; strict grid; 2–3 colors with one electric accent; hard cuts every 0.5–1 s; no stock imagery. | Overflow-hidden line masks (`translateY(110% -> 0%)`) with `easeOut(3)` or `stepSpring`; min hold 0.5 s + 0.3 s/word. |
 | `productui` | `graphite` (dark/light), 60 fps | Crisp vector UI states, moving cursor clicking through one real flow, smooth spring easing, quiet chrome on a tinted ramp, one bright moment per screen. | Continuous shape morph via `springTimeline(t, keyframes)` and dual-edge `liquidSpan(t, keyframes)`. Never put `will-change` on camera-scaled containers. |
 | `explainer` | `warm` (dark/light), 30 fps | One idea per scene built step by step: axes draw on, values count up with `tabular-nums`, arrows point, labels fade in next to what they name; one highlight color. | SVG paths drawn via `stroke-dashoffset` from `progress(t, start, dur)`; cause revealed before effect. |
+| `isometric-line-art` | `ink` (dark; light variant possible), 30 fps suggested | Orthographic technical illustration, distinct silhouette/structural/detail strokes, assembly, cutaway and source-to-result flow. | `seek(t)` drives projection, arc-length reveals, pivots, occlusion and connected camera moves; cache geometry. |
+| `flat-vector` | `warm` (light), 30 fps suggested | Recognizable layered Bézier illustrations, solid fills, meaningful shape morphs, masks and connected state changes. | `seek(t)` drives precomputed path interpolation and 2D camera; incompatible paths use component morphs or masks. |
 | `cinematic3d` | `ink` (dark), 24 fps | Three.js/WebGL scene with PBR materials, one strong key light with soft shadows, depth of field, slow dolly/orbit camera, subtle film grain. | Camera position, lights and shader uniforms computed purely from `t` inside `window.seek(t)` with explicit `renderer.render(scene, camera)`. |
 | `handdrawn` | `warm` (light), 12 fps | Wobbly pencil/ink lines on off-white paper (`#f7f4ee`), deterministic line boil, ink black (`#1f1b16`) plus one accent (`#dc2626`). No gradients or glossy UI. | Quantized time `qt = Math.floor(t * 8) % 3` switching between 3 pre-computed SVG paths or `feTurbulence` seeds. |
 | `collage` | `warm` (light), 12 fps | Flat cut-out paper/photo pieces with torn edges, soft contact shadows and paper texture; stop-motion steps on twos (12 fps). | Quantize time inside `seek(t)`: `const qt = Math.floor(t * 12) / 12` so all transforms step on twos. |

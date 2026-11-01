@@ -13,9 +13,9 @@ import unslop_story
 
 
 class StyleAtlasTests(unittest.TestCase):
-    def test_list_styles_returns_all_twelve_canonical_styles(self):
+    def test_list_styles_preserves_canonical_styles_and_adds_two_explainers(self):
         report = style_atlas.list_styles()
-        self.assertEqual(report["total_styles"], 12)
+        self.assertEqual(report["total_styles"], 14)
         slugs = {item["slug"] for item in report["styles"]}
         self.assertEqual(
             slugs,
@@ -32,6 +32,8 @@ class StyleAtlasTests(unittest.TestCase):
                 "photoreal",
                 "pixel",
                 "retro",
+                "isometric-line-art",
+                "flat-vector",
             },
         )
         self.assertIn("subagent_blueprint", report)
@@ -49,9 +51,31 @@ class StyleAtlasTests(unittest.TestCase):
                 self.assertIn("inputs", sections)
                 self.assertIn("gotchas", sections)
         all_recipes = style_atlas.recipe()
-        self.assertEqual(len(all_recipes["styles"]), 12)
+        self.assertEqual(len(all_recipes["styles"]), 14)
         with self.assertRaises(ValueError):
             style_atlas.recipe("unknown-style")
+
+    def test_new_explainers_are_discoverable_without_upstream_sources(self):
+        with patch.object(style_atlas, "_load_style_markdown_entries", return_value=[]), \
+                patch.object(style_atlas, "_load_videos_json", return_value=[]):
+            for slug, query in (("isometric-line-art", "izometryczny"), ("flat-vector", "wektorowy")):
+                with self.subTest(style=slug):
+                    result = style_atlas.find(query, style=slug, category="explainer", tech="svg")
+                    self.assertEqual(result["total_matches"], 1)
+                    example = style_atlas.show(result["results"][0]["slug"], remake=True)
+                    rec = style_atlas.recipe(slug)
+                    self.assertEqual(example["style"], slug)
+                    self.assertEqual(example["source"], "social-motion-agent")
+                    self.assertFalse(example["has_remake"])
+                    self.assertEqual(example["build_contract"], rec["build_contract"])
+                    self.assertEqual(example["reference"], rec["reference"])
+                    self.assertTrue(rec["examples"])
+                    self.assertTrue((core.ROOT / rec["reference"]).is_file())
+                    self.assertIn("subagent_blueprint", example)
+            self.assertNotEqual(
+                style_atlas.recipe("isometric-line-art")["build_contract"],
+                style_atlas.recipe("flat-vector")["build_contract"],
+            )
 
     def test_find_and_show_work_with_offline_fallback_and_filters(self):
         found = style_atlas.find("spring", style="productui", limit=5)

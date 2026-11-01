@@ -1,6 +1,6 @@
 ---
 name: style-atlas
-description: Lock a distinct coded-video style from 12 canonical recipes (awesome-opus-5-5-video-styles), search 1100+ viral coded-video prompts (awesome-opus5-5-videos), and apply the 5-line Unslop Direction and 9-pass redline review (heydamir/unslop) before coding any HTML/Canvas/SVG/Three.js/GSAP scene.
+description: Lock a distinct coded-video style from 12 canonical recipes plus isometric-line-art and flat-vector explainer profiles, search 1100+ coded-video prompts, and apply the Unslop Direction and review before coding scenes.
 ---
 
 # Style Atlas & Unslop Subagent Guide
@@ -15,6 +15,8 @@ Models writing rendering code (HTML, Canvas, SVG, Three.js, GLSL, GSAP) drift in
 python -S studio.py styles list
 python -S studio.py styles recipe productui
 python -S studio.py styles recipe typography
+python -S studio.py styles recipe isometric-line-art
+python -S studio.py styles recipe flat-vector
 python -S studio.py styles find "saas launch" --style productui --limit 6
 python -S studio.py styles find "shader" --tech glsl --remake
 python -S studio.py styles show twoclipping-402193
@@ -25,6 +27,8 @@ The 12 canonical styles (`typography`, `productui`, `explainer`, `cinematic3d`, 
 - Recommended neutral ramp (`graphite`, `warm`, `ink`), theme (`dark`, `light`), FPS and tech stack
 - Exact CSS token overrides for `templates/frame-tokens.css`
 - Style-specific anti-slop rules and a deterministic `window.seek(t)` build contract
+
+Two independent local profiles extend this to **14 styles**: `isometric-line-art` (orthographic construction, cutaway, routed flows) and `flat-vector` (layered 2D illustration, meaningful morphs and masks). Read `skills/creative-director/references/explainer-styles.md` from the repository root. Their palettes/FPS are suggestions; use the actual job's subject, format, duration, audio and storyboard decision. They are not upstream Opus styles or pre-rendered examples.
 
 ## 2. Write the 5-line Unslop Direction
 

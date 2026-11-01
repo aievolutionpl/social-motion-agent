@@ -158,7 +158,8 @@
         "skills/motion-design/SKILL.md",
         ".agents/skills/motion-ui-polish/SKILL.md",
         ".agents/skills/motion-effect-picker/SKILL.md",
-        ".agents/skills/style-atlas/SKILL.md"
+        ".agents/skills/style-atlas/SKILL.md",
+        "skills/creative-director/references/explainer-styles.md"
       ],
       "outputs": [
         "film edukacyjny",
@@ -336,13 +337,14 @@
       ]
     },
     "styles": {
-      "purpose": "Dobór stylu wideo z 12 kanonicznych receptur Opus 5.5 i wyszukiwanie w 1128 promptach referencyjnych",
+      "purpose": "Dobór stylu wideo: 12 kanonicznych receptur Opus 5.5 + isometric-line-art i flat-vector; wyszukiwanie promptów referencyjnych",
       "engine": "HyperFrames for authored HTML motion; FFmpeg for footage assembly. Optional providers are configured separately.",
       "skills": [
         "skills/production/SKILL.md",
         "skills/motion-design/SKILL.md",
         ".agents/skills/style-atlas/SKILL.md",
-        "skills/creative-director/SKILL.md"
+        "skills/creative-director/SKILL.md",
+        "skills/creative-director/references/explainer-styles.md"
       ],
       "outputs": [
         "wybrany styl z tokenami i kontraktem renderowania",
