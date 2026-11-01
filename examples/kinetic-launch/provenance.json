@@ -15,5 +15,7 @@
     "sampled_visuals": "18 stills and 30 rendered frames inspected",
     "full_playback_and_listening": "Not independently confirmed"
   },
-  "video_sha256": "895eaa5b5a7d99fc280acc023e8012668c1a9e45b05b3096f6255bb32333d64c"
+  "original_video_sha256": "895eaa5b5a7d99fc280acc023e8012668c1a9e45b05b3096f6255bb32333d64c",
+  "video_sha256": "5cc0f98279483453d7f16b52e35a3206ee0a04cbe4a87c5bf7bb93b4a8605482",
+  "current_video_technical": "ffprobe: 30 seconds, 1920x1080, 60 fps, H.264/AAC. The review above refers to the original 720p render; current version full playback and listening not independently confirmed."
 }

@@ -40,6 +40,12 @@ When invoked as a specialized **Motion / Design Subagent** by a parent orchestra
 3. When the direction is open, present two or three distinct concepts with actual shot/section placements, asset needs and motion behavior. Recommend one. A compact styleboard or one representative frame is more useful than a list of adjectives. Wait for a requested choice; if the user delegated it, choose and explain in one sentence.
 4. Fix the direction in a short working note: 5-line Unslop Direction (`Product`, `Character`, `World`, `Moments`, `Signature`), selected Style Lock recipe, layout/type/color roles, motion grammar, asset sources, output profile and review criteria.
 
+## Reference priority and creative handoff
+
+Use explicit user constraints and approved project/brand assets first, then existing project decisions, then supplied references; external inspiration is last. Record conflicts rather than silently overriding a higher-priority source. For each reference, note its role (composition, motion, palette or subject), what to carry forward and what not to copy. Inspiration is not an asset license.
+
+Before implementation hand off: goal and audience; approved direction and references with priorities; scene/section placement and timing; asset sources and rights; engine and output format; acceptance checks and unresolved decisions. On return include actual artifact paths, checks performed, and limitations. This is a compact addition to the existing brief/storyboard and review, not a replacement.
+
 ## Prepare only the capabilities this job uses
 
 Read [Engines and setup](references/engines-and-setup.md). Locate the Social Motion Agent checkout by its `studio.py`, `config/routes.json` and `sources.lock.json`; do not derive it from an installed skill's location.

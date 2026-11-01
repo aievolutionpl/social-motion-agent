@@ -27,6 +27,8 @@ jobs:
           fi
           ffmpeg -version | head -n 1
       - run: npm ci --ignore-scripts
+      - name: Install Chromium for motion pixel tests
+        run: npx playwright install --with-deps chromium
       - run: python -S -B -m unittest discover -s tests -v
       - name: Restore complete source library
         if: matrix.python == '3.13'

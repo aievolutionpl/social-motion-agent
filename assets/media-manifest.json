@@ -1025,8 +1025,8 @@
     },
     {
       "path": "docs/media/kinetic-launch.mp4",
-      "bytes": 14758075,
-      "sha256": "895eaa5b5a7d99fc280acc023e8012668c1a9e45b05b3096f6255bb32333d64c",
+      "bytes": 22978075,
+      "sha256": "5cc0f98279483453d7f16b52e35a3206ee0a04cbe4a87c5bf7bb93b4a8605482",
       "provenance": "owner_authorized_kinetic_demo_2026_10_30",
       "rights": "See examples/kinetic-launch/provenance.json and docs/MEDIA_RIGHTS.md"
     },
@@ -1039,8 +1039,8 @@
     },
     {
       "path": "docs/images/kinetic-launch.jpg",
-      "bytes": 50972,
-      "sha256": "9f6ee795319b47145365875d8a85207038fc9b20219dfcd2e92448a0c5fd2dec",
+      "bytes": 40218,
+      "sha256": "1c47696479bec52203c7539ea052e32e393126c04d5bf27e4c22d25f2f3d230f",
       "provenance": "owner_authorized_kinetic_demo_2026_10_30",
       "rights": "See examples/kinetic-launch/provenance.json and docs/MEDIA_RIGHTS.md"
     }

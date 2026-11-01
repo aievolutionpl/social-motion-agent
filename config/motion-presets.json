@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "styles": [
+    {
+      "slug": "riso-print",
+      "name": "Riso Print Motion",
+      "palette": [
+        "#f3e8cf",
+        "#e34147",
+        "#235ab8",
+        "#202022"
+      ],
+      "parameters": {
+        "dot_spacing": 12,
+        "misregistration": 5,
+        "speed": 0.8
+      },
+      "idea_source": "https://lukekostohryz.com/babel"
+    },
+    {
+      "slug": "decollage-time-layers",
+      "name": "Décollage Time-Layers",
+      "palette": [
+        "#eae0cc",
+        "#d85b32",
+        "#29374a",
+        "#e0b643"
+      ],
+      "parameters": {
+        "layers": 7,
+        "tear_depth": 22,
+        "speed": 0.7
+      },
+      "idea_source": "https://motionographer.com/2009/02/01/capitu-titles-2/"
+    },
+    {
+      "slug": "optical-moire",
+      "name": "Optical Moiré Interference",
+      "palette": [
+        "#f6f1e3",
+        "#142f35",
+        "#e75535"
+      ],
+      "parameters": {
+        "spacing": 12,
+        "line_width": 3,
+        "speed": 0.5
+      },
+      "idea_source": "https://artiehinz.com/moire"
+    }
+  ]
+}
