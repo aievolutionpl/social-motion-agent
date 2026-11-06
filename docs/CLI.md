@@ -16,6 +16,8 @@ Run `python -S studio.py --help` for the complete parser and subcommand help.
 | check JOB --stage STAGE | Evidence checks for brief/research/storyboard/assets/preview/final |
 | asset-add JOB --file FILE --source SOURCE --rights RIGHTS --purpose PURPOSE | Copy and hash an asset |
 | render-html JOB --name NAME | Lint, render with HyperFrames and probe |
+| walk-talk prepare JOB --mode footage\|recording\|ai | Create editable walking-presenter shot, text and sound plans without provider calls |
+| walk-talk compose JOB | Compose registered full-length footage, optional aligned alpha foreground, timed captions and hero words into HyperFrames sources |
 | render-hype JOB --scene source/index.hype --name NAME | Validate and render with the installed Hypermotion desktop/CLI, record provenance and probe |
 | kinetic setup --source PATH / doctor | Verify and cache the separately obtained pinned Kinetic Film package; inspect optional local dependencies |
 | kinetic prepare JOB [--example social-motion-agent] | Create source/kinetic/spec.js and an adapted job-local runtime without overwriting a composition |

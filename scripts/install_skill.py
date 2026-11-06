@@ -1,4 +1,4 @@
-"""Install the self-contained Creative Director skill, preserving existing skills."""
+"""Install a portable local skill, preserving existing installations."""
 from __future__ import annotations
 
 import argparse
@@ -11,6 +11,7 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 NAME = "creative-director"
+SKILLS = (NAME, "kinetic-walk-talk")
 
 
 def default_destination(agent: str) -> Path:
@@ -31,16 +32,18 @@ def inventory(folder: Path) -> dict[str, str]:
     return result
 
 
-def install(destination: Path, *, execute: bool = False, source: Path | None = None) -> dict:
-    source = source or ROOT / "skills" / NAME
+def install(destination: Path, *, execute: bool = False, source: Path | None = None, name: str = NAME) -> dict:
+    if name not in SKILLS:
+        raise ValueError("Unknown portable skill")
+    source = source or ROOT / "skills" / name
     files = inventory(source)
     if "SKILL.md" not in files:
         raise ValueError("Missing skill entrypoint")
     destination = destination.expanduser().resolve()
-    target = destination / NAME
+    target = destination / name
     if target.is_symlink() or (hasattr(target, "is_junction") and target.is_junction()):
         raise ValueError("Refusing to install through a skill link")
-    result = {"skill": NAME, "destination": str(target), "files": len(files),
+    result = {"skill": name, "destination": str(target), "files": len(files),
               "executed": False, "network_calls": 0}
     if target.exists():
         if target.is_dir() and inventory(target) == files:
@@ -50,8 +53,8 @@ def install(destination: Path, *, execute: bool = False, source: Path | None = N
         return dict(result, status="planned")
     destination.mkdir(parents=True, exist_ok=True)
     # Stage a complete package before exposing it to the agent's skill index.
-    with tempfile.TemporaryDirectory(prefix=".creative-director-", dir=destination) as temp:
-        staged = Path(temp) / NAME
+    with tempfile.TemporaryDirectory(prefix="." + name + "-", dir=destination) as temp:
+        staged = Path(temp) / name
         shutil.copytree(source, staged)
         if inventory(staged) != files:
             raise ValueError("Installed files differ from the source package")
@@ -64,11 +67,12 @@ def install(destination: Path, *, execute: bool = False, source: Path | None = N
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--agent", choices=("codex", "claude", "hermes"), default="codex")
+    parser.add_argument("--skill", choices=SKILLS, default=NAME)
     parser.add_argument("--dest", type=Path, help="Explicit skill parent directory; overrides the agent profile")
     parser.add_argument("--execute", action="store_true", help="Copy files; default only reports the plan")
     args = parser.parse_args()
     try:
-        print(json.dumps(install(args.dest or default_destination(args.agent), execute=args.execute), indent=2))
+        print(json.dumps(install(args.dest or default_destination(args.agent), execute=args.execute, name=args.skill), indent=2))
         return 0
     except (OSError, ValueError) as exc:
         print(str(exc))

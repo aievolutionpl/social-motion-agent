@@ -12,6 +12,7 @@ Turn a real subject into a coherent visual experience, then verify the result in
 | Request | Mode | Read next |
 | --- | --- | --- |
 | Reel, explainer, launch film, tutorial, edited footage | `video` | [Video direction](references/video-direction.md) |
+| Walking presenter, kinetic captions or text behind a person | `video` | Route `kinetic-walk-talk`; read `skills/kinetic-walk-talk/SKILL.md` from the checkout |
 | Landing page, product website, substantial website redesign / unslopping | `website` | [Website design](references/website-design.md) |
 | Animate a supplied Figma frame, screenshot, product mockup or unslop redline story | `ui-motion` | [UI to motion](references/ui-to-motion.md) |
 

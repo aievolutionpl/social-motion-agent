@@ -4,6 +4,11 @@ Uruchom `python -S scripts/bootstrap_library.py`, aby pobrać wszystkie 38 przyp
 
 ## Punkty wejścia agenta
 
+Rolki z chodzącym prezenterem: **`skills/kinetic-walk-talk/SKILL.md`**, trasa `kinetic-walk-talk`.
+`studio.py walk-talk prepare/compose` przygotowuje plan i kompozycję HyperFrames z małymi podpisami,
+dużymi hasłami, opcjonalną warstwą sylwetki z alfą i gotowym miksem. Nagrania realne, materiał AI
+i montaż istniejących ujęć mają osobne wskazówki. [Workflow](../docs/KINETIC_WALK_TALK.md).
+
 Nadrzędny skill: `skills/creative-director/SKILL.md` (film, strona, UI motion; 10 modułów czytanych na żądanie). Dobór i przygotowanie źródeł: `studio.py skills plan/setup/check --mode video|website|ui-motion`.
 
 Premiery typograficzne: **`skills/kinetic-launch/SKILL.md`**, trasa `kinetic-launch`.

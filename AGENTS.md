@@ -6,6 +6,9 @@ Use the compound skill's brief, art direction, anti-slop, humanizer and review m
 Preserve the target project's framework, brand and user choices. Do not inherit upstream aesthetic bans or animation quotas. Website work stays in its target project; it does not require a video job or renderer.
 Hypermotion and HyperFrames are different tools. Video preparation includes pinned Hypermotion skills. Native .hype work additionally requires verified Hypermotion desktop/CLI and a short export test. Never claim GitHub access installs a runtime, or silently replace a requested engine.
 Use existing Python job records, evidence gates and render adapters. Keep provider code isolated.
+For walking-presenter reels with kinetic captions or text behind the subject, use route
+kinetic-walk-talk and read skills/kinetic-walk-talk/SKILL.md. Its walk-talk prepare/compose
+commands build editable local sources; footage generation and alpha segmentation are separate.
 Do not search a parent workspace for credentials, brand profiles, voices or customer media.
 New films: intake → research → storyboard → assets/composition → preview → review → package.
 For films use studio.py new and keep all production artifacts in output/jobs/<id>/.

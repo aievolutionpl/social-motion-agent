@@ -1,0 +1,4 @@
+interface:
+  display_name: "Kinetic Walk & Talk"
+  short_description: "Rolki z ruchem kamery i kinetycznymi napisami"
+  default_prompt: "Użyj $kinetic-walk-talk, aby stworzyć rolkę z chodzącym prezenterem, kinetycznymi napisami i zsynchronizowanym dźwiękiem."

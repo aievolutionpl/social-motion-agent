@@ -14,6 +14,13 @@ Warsztat [AI EVOLUTION POLSKA](https://www.aievolutionpolska.pl/) dla agentów, 
 
 ## Nowe style motion
 
+**Kinetic Walk & Talk** dodaje rolki z chodzącym prezenterem, małymi podpisami i dużymi
+animowanymi hasłami, także za sylwetką. Trasa `kinetic-walk-talk` obejmuje plan nagrania,
+prompty do czystych ujęć AI, kompozycję warstw i plan dźwięku. Lokalne `walk-talk prepare`
+i `walk-talk compose` tworzą edytowalne źródła HyperFrames z dostarczonych mediów;
+generowanie ujęć i segmentacja korzystają z osobno dostępnych narzędzi.
+[Skill](skills/kinetic-walk-talk/SKILL.md) · [Instrukcja i przykład JSON](docs/KINETIC_WALK_TALK.md).
+
 Trzy eksperymentalne presety **Riso Print Motion**, **Décollage Time-Layers** i **Optical Moiré Interference** zawierają interaktywny przykład Canvas z deterministycznym `seek(t)`. Lista: `python -S studio.py motion presets`; podgląd i źródła inspiracji: [examples/motion-styles](examples/motion-styles/README.md). To przykłady, nie gotowe kompozycje HyperFrames.
 
 ## Daj zadanie agentowi
@@ -33,6 +40,7 @@ Dla strony podaj ofertę, odbiorcę i główną akcję. Dla animacji UI wskaż i
 | Zadanie | Proces | Wynik |
 | --- | --- | --- |
 | **Film**: Reels, Shorts, premiera, explainer, tutorial | Brief → kierunek → storyboard → kompozycja → render → recenzja | MP4, źródła, materiały i dowody kontroli |
+| **Kinetic Walk & Talk**: pionowa rolka z prezenterem | Ujęcia → czasy słów → podpisy i hasła → sylwetka alpha → miks → render i recenzja | MP4 9:16, edytowalny HTML i plan produkcyjny |
 | **Kinetic launch**: teaser i premiera z dużą typografią | Brief → beat sheet → spec.js → motion blur → kontrola ruchu i recenzja | MP4 16:9, edytowalna kompozycja, audio i dowody renderu |
 | **Strona**: landing page, produkt, poprawa istniejącego projektu | Oferta → układ → typografia i obrazy → implementacja → przegląd w przeglądarce | Działający projekt w jego obecnym stacku |
 | **UI motion**: pokaz produktu, animowana makieta, sekcja strony | Zgodność statyczna → akcja i rezultat → ruch → kontrola formatu | Animacja na stronie albo film zgodnie z briefem |

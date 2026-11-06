@@ -15,6 +15,13 @@ These are story functions, not fixed percentages of duration. An explanation may
 
 ## Pick a visual grammar
 
+For a presenter walking toward a retreating camera with kinetic captions, choose route
+`kinetic-walk-talk` and read `skills/kinetic-walk-talk/SKILL.md` from the checkout.
+Its local `walk-talk prepare/compose` workflow separates footage, word-timed small captions,
+large hero words, aligned foreground alpha and a premixed soundtrack. AI footage generation
+and moving-person segmentation depend on separately available tools. This is a vertical
+presenter production route; `kinetic-launch` remains the separate beat-led launch-film engine.
+
 For explanatory films, consider the two independent [explainer styles](explainer-styles.md): `isometric-line-art` for spatial mechanisms, assembly/cutaways and visible flows; `flat-vector` for connected 2D illustration, shape morphs and changing relationships. Query `studio.py styles recipe <slug>`, then read that reference. Choose by what the viewer needs to understand; retain the job's timing, format, audio and approval decisions.
 
 Use one of the [visual recipes](visual-recipes.md), or define an equivalent grammar from the brand. Record framing, typography roles, image treatment, color relationships and movement. Establish repeated elements that orient the viewer, then vary scale, viewpoint or composition for new information.

@@ -392,6 +392,23 @@
         "tools/repos/awesome-motion-design-agent-skills/skills/web-motion-auditor/SKILL.md"
       ]
     },
+    "kinetic-walk-talk": {
+      "purpose": "Pionowa rolka z chodzącym prezenterem: kinetyczne napisy, tekst za sylwetką, zoomy i punktowy sound design",
+      "engine": "HyperFrames for local footage/text/alpha compositing; FFmpeg for base editing and premixed audio. AI footage and segmentation require separately available tools.",
+      "skills": [
+        "skills/kinetic-walk-talk/SKILL.md",
+        "skills/production/SKILL.md",
+        "SOUND EFFECTS/README.md"
+      ],
+      "outputs": [
+        "shot list or clean AI footage prompts",
+        "editable source/walk-talk.json and source/index.html",
+        "word-timed captions and separate hero typography",
+        "sound cue sheet and actual mix",
+        "MP4 9:16 with normal render provenance and review"
+      ],
+      "optional_skills": []
+    },
     "kinetic-launch": {
       "purpose": "Premiera produktu lub teaser z duza typografia, kamera 3D i cieciami na siatce beatow",
       "engine": "kinetic-film: pinned optional Scenario Kinetic Film; local Chromium and FFmpeg with temporal motion blur",

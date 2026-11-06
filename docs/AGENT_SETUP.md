@@ -14,6 +14,9 @@ A GitHub connector may expose only reads. It does not provide a terminal, render
 python -S scripts/install_skill.py --agent codex
 python -S scripts/install_skill.py --agent codex --execute
 
+# Walking presenter reels with kinetic captions
+python -S scripts/install_skill.py --skill kinetic-walk-talk --agent codex --execute
+
 # Choose the host you use
 python -S scripts/install_skill.py --agent claude --execute
 python -S scripts/install_skill.py --agent hermes --execute
@@ -29,6 +32,10 @@ python -S scripts/install_skill.py --dest .claude/skills --execute
 | Hermes | `~/.hermes/skills` | `HERMES_HOME` |
 
 `--dest` overrides the parent. Identical packages are reused; differing packages are preserved and never overwritten. Compare changes and choose a separate destination or manage the existing installation. A staged copy prevents partial references becoming visible.
+
+`--skill` defaults to `creative-director`; select `kinetic-walk-talk` for the portable
+presenter-reel skill with its style, production and reference-analysis guides. The canonical
+local workflow is documented in [Kinetic Walk & Talk](KINETIC_WALK_TALK.md).
 
 Use `$creative-director` in Codex or the named skill in your host's interface. Hermes exposes it as `/creative-director`. Start a new session or use the host's supported refresh if its index is cached. An installation test verifies files, not every version of every agent product.
 

@@ -18,6 +18,11 @@ Typography-led launch or teaser: `studio.py route kinetic-launch`, `skills/kinet
 Use `kinetic prepare JOB` and `render-kinetic JOB`; the optional engine has its own motion checks and
 16:9 composition contract. Do not silently substitute HyperFrames or claim UI polish covers its 3D layers.
 
+Walking presenter, kinetic captions and text behind the subject: `studio.py route kinetic-walk-talk`,
+`skills/kinetic-walk-talk/SKILL.md` and `docs/KINETIC_WALK_TALK.md`. Create a 9:16 job with
+`--kind kinetic-walk-talk`, then use `walk-talk prepare JOB --mode footage|recording|ai`.
+`walk-talk compose JOB` builds HyperFrames sources from registered footage and real text timings.
+
 Use `studio.py resume JOB` for incomplete film stages. Films stay in `output/jobs/<id>/`; websites stay in their target project. Never fabricate answers, rights, connectivity or review.
 
 Portable installation: `docs/AGENT_SETUP.md`. All 38 upstream sources: `scripts/bootstrap_library.py`; the full collection is optional for the first render and focused skill paths. Use `python -S studio.py styles list` and `python -S studio.py unslop-story` for Opus 5.5 video styles and Before->After UI transformation stories.

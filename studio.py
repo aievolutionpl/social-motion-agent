@@ -25,6 +25,7 @@ import unslop_story
 import environment
 import creative_skills
 import kinetic_adapter
+import walk_talk
 
 
 def emit(value):
@@ -49,6 +50,13 @@ def doctor():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
+    p = sub.add_parser("walk-talk", help="Prepare and compose vertical presenter reels; no paid generation")
+    ws = p.add_subparsers(dest="walk_talk_action", required=True)
+    wp = ws.add_parser("prepare", help="Create editable script/timing/shot/sound planning files")
+    wp.add_argument("job")
+    wp.add_argument("--mode", choices=walk_talk.MODES, default="footage")
+    wp = ws.add_parser("compose", help="Compose registered base footage, optional alpha foreground and timed text")
+    wp.add_argument("job")
     p = sub.add_parser("demo", help="Create the bundled synthetic HyperFrames launch film")
     p.add_argument("--format", choices=core.FORMATS, default="16:9")
     p.add_argument("--render", action="store_true")
@@ -169,7 +177,10 @@ def main():
         p.add_argument("--render", required=True, help="Ścieżka względem katalogu produkcji")
     args = parser.parse_args()
     try:
-        if args.command == "demo":
+        if args.command == "walk-talk":
+            folder = job_path(args.job)
+            emit(walk_talk.prepare(folder, args.mode) if args.walk_talk_action == "prepare" else walk_talk.compose(folder))
+        elif args.command == "demo":
             from demo import create_demo
             folder = create_demo(args.format)
             result = {"job": str(folder), "synthetic_demo": True, "reviewed": False}
@@ -221,7 +232,7 @@ def main():
         elif args.command == "find":
             tokens = args.query.casefold().split()
             entries = core.read(core.ROOT / "skills/catalog.json")["entries"]
-            entries = [*entries, kinetic_adapter.catalog_entry()]
+            entries = [*entries, kinetic_adapter.catalog_entry(), walk_talk.catalog_entry()]
             found = [item for item in entries if item["kind"] != "fixture" and (not args.source or item["source"] == args.source) and
                      all(token in " ".join(str(item.get(key, "")) for key in ("name", "description", "source", "path")).casefold() for token in tokens)]
             emit({"total_matches": len(found), "entries": found[:max(1, min(args.limit, 100))]})
