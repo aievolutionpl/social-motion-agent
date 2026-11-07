@@ -11,7 +11,7 @@ remain available. See [setup and production commands](KINETIC_FILM.md).
 
 **From brief to a crafted video, website or animated product interface.** An open-source workshop by AI EVOLUTION POLSKA for coding agents with file and tool access.
 
-Start with [Creative Director](../skills/creative-director/SKILL.md), the portable compound skill. Its 10 reference modules cover brief/art direction, video direction, websites, UI motion, visual recipes, anti-slop, a Polish/English humanizer, engines, review and source provenance. It reuses known answers and asks only missing material questions. Directions describe real section/shot placements before a substantial build.
+Start with [Creative Director](../skills/creative-director/SKILL.md), the portable compound skill. Its 12 reference modules cover brief/art direction, video direction, motion-not-slides (structural slideshow test, style brief, 10 style directions, 19 opener concepts via `studio.py directions`), explainer styles, websites, UI motion, visual recipes, anti-slop, a Polish/English humanizer, engines, review and source provenance. It reuses known answers and asks only missing material questions. Directions describe real section/shot placements before a substantial build.
 
 ## Three modes
 

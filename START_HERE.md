@@ -27,4 +27,6 @@ Use `studio.py resume JOB` for incomplete film stages. Films stay in `output/job
 
 Portable installation: `docs/AGENT_SETUP.md`. All 38 upstream sources: `scripts/bootstrap_library.py`; the full collection is optional for the first render and focused skill paths. Use `python -S studio.py styles list` and `python -S studio.py unslop-story` for Opus 5.5 video styles and Before->After UI transformation stories.
 
-Built-in motion presets: `python -S studio.py motion presets` or `python -S studio.py motion presets riso-print`. From the repository root run `python3 -m http.server 8000` and open `http://localhost:8000/examples/motion-styles/`. Select a style and seek with the slider or `window.seek(seconds)`; these are canvas examples, not HyperFrames compositions or approved productions. See `examples/motion-styles/README.md`.
+Openers, promos and coded explainers: read `skills/creative-director/references/motion-not-slides.md`, draft the style brief with `python -S studio.py directions brief --for "..."` and run `python -S studio.py motion lint FILE.html` before `polish`.
+
+Built-in motion presets (13): `python -S studio.py motion presets` or `python -S studio.py motion presets grainy-gradient`. From the repository root run `python3 -m http.server 8000` and open `http://localhost:8000/examples/motion-styles/`. Select a style and seek with the slider or `window.seek(seconds)`; these are canvas examples, not HyperFrames compositions or approved productions. See `examples/motion-styles/README.md`.

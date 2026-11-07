@@ -26,7 +26,7 @@ When invoked as a specialized **Motion / Design Subagent** by a parent orchestra
    - Query `python -S studio.py styles list`, `studio.py styles recipe <style>` and `studio.py styles find <query>` to lock one of **14 coded-video styles**: the 12 canonical styles (`typography`, `productui`, `explainer`, `cinematic3d`, `handdrawn`, `collage`, `pixel`, `cartoon`, `lowpoly`, `generative`, `retro`, `photoreal`) plus `isometric-line-art` and `flat-vector`. For either new explainer direction, read [Explainer styles](references/explainer-styles.md); preserve its independent motion grammar and the job settings.
    - Write the **5-line Unslop Direction**: `Product`, `Character` (no template words like *clean/modern/sleek*), `World` (determines `data-ramp="graphite|warm|ink"`), `Moments` (1–2 rich elements while chrome stays quiet), and `Signature` (1 unique product detail).
 2. **Stage 2 — Deterministic Scene Coding (`window.seek(t)`):**
-   - Implement scenes using `templates/frame-tokens.css` and `templates/motion-helpers.js` (`stepSpring`, `springTimeline`, `liquidSpan`, `bakeGlyphAtlas`, `drawGlyphs`, `drawHalftone`).
+   - Implement scenes using `templates/frame-tokens.css` and `templates/motion-helpers.js` (`stepSpring`, `springTimeline`, `liquidSpan`, `bakeGlyphAtlas`, `drawGlyphs`, `drawHalftone`, plus `shotCamera`/`frameOn`/`cameraTransform` for shot-size camera moves, `grainOffset`, `enterExit` and `directionalBlur`).
    - Every visual state must be a pure function of time `t` inside `window.seek(t)`: no CSS transitions during capture, no timers, no `Math.random()` in the frame loop, and no `will-change` on containers scaled by the camera.
 3. **Stage 3 — 9-Pass Unslop Redline & Polish Gate:**
    - Audit and fix in strict order: `1. Spacing (4px grid)` → `2. Color (1 ramp, quiet chrome, 1 accent)` → `3. Icons (no emoji)` → `4. Copy (no !!, no hype, numbers with comparison baseline)` → `5. Type (400-600 weights, tabular-nums)` → `6. Layout` → `7. Details (nested radius: inner = outer - padding >= 4)` → `8. Visuals` → `9. Motion`.
@@ -69,6 +69,8 @@ Hypermotion and HyperFrames are different products. If Hypermotion is requested,
 Make the hero/first screen, one key scene, or the supplied UI's accurate still first. Check hierarchy, crop and readability at the target size before building the whole sequence. Extend the same visual system through the remaining sections/scenes; change layout when the content requires it.
 
 Use [Visual recipes](references/visual-recipes.md) and `python -S studio.py styles` to choose a starting composition, Style Lock recipe and motion vocabulary. Use the smallest specialist set that improves the result: one lead mode, one art direction, then audio, captions, data or capture guidance only when needed.
+
+For openers, promos, kinetic typography and explainers built as HTML/Canvas scenes, or a draft that feels like a slideshow, read [Motion, not slides](references/motion-not-slides.md): structural test, style brief with structure fingerprint, and `studio.py directions` menus (10 style directions, 19 opener concepts, 6 explainer modes). Run `studio.py motion lint <scene.html>` before `polish`.
 
 For words, captions and narration, read [Humanizer](references/humanizer.md). For generic composition, UI slop or motion problems, read [Anti-slop review](references/anti-slop.md).
 

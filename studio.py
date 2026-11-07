@@ -19,6 +19,8 @@ from edit_bridge import OPS as EDIT_OPS, edit as run_edit
 import backgrounds_catalog
 import bg_video
 import motion_catalog
+import motion_directions
+import motion_lint
 import sfx_catalog
 import style_atlas
 import unslop_story
@@ -99,15 +101,21 @@ def main():
     p.add_argument("query")
     p.add_argument("--limit", type=int, default=12)
     p.add_argument("--source")
-    p = sub.add_parser("motion", help="Katalog 637 efektów ruchu: find, show, recipe (tools/repos/awesome-ai-motion)")
-    p.add_argument("action", choices=("find", "show", "recipe", "presets"))
-    p.add_argument("query", nargs="?", default="", help="find: fraza; show: slug efektu; recipe: slug receptury")
+    p = sub.add_parser("motion", help="Katalog 637 efektów ruchu: find, show, recipe; presets; lint HTML (film, nie slajdy)")
+    p.add_argument("action", choices=("find", "show", "recipe", "presets", "lint"))
+    p.add_argument("query", nargs="?", default="", help="find: fraza; show: slug efektu; recipe: slug receptury; lint: plik HTML")
     p.add_argument("--purpose")
     p.add_argument("--medium")
     p.add_argument("--family")
     p.add_argument("--level")
     p.add_argument("--rendered", action="store_true", help="tylko efekty z gotowym klipem i szablonem HTML")
     p.add_argument("--limit", type=int, default=12)
+    p = sub.add_parser("directions", help="Menu kierunków motion: 10 stylów, 19 konceptów openerów, 6 explainerów, tło, przejścia; brief i porównanie odcisków")
+    p.add_argument("action", choices=("list", "show", "brief", "compare"))
+    p.add_argument("query", nargs="*", help="list: menu; show: slug lub numer konceptu; compare: dwa odciski struktury")
+    p.add_argument("--for", dest="subject", default="", help="brief: produkt, odbiorca, nastrój")
+    p.add_argument("--kind", choices=("opener", "explainer"), default="opener")
+    p.add_argument("--previous", help="brief: odcisk poprzedniego filmu do porównania")
     p = sub.add_parser("styles", help="Atlas 14 stylów (12 Opus + 2 explainery): list, recipe, find, show")
     p.add_argument("action", choices=("list", "recipe", "find", "show"))
     p.add_argument("query", nargs="?", default="", help="recipe: slug stylu; find: fraza; show: ID promptu")
@@ -243,8 +251,27 @@ def main():
                 emit(motion_catalog.show(args.query))
             elif args.action == "presets":
                 emit(motion_catalog.presets(args.query or None))
+            elif args.action == "lint":
+                if not args.query:
+                    raise ValueError("Podaj plik HTML: studio.py motion lint scena.html")
+                report = motion_lint.lint(Path(args.query))
+                emit(report)
+                return int(not report["passed"])
             else:
                 emit(motion_catalog.recipe(args.query or None))
+        elif args.command == "directions":
+            if args.action == "list":
+                emit(motion_directions.list_menus(args.query[0] if args.query else None))
+            elif args.action == "show":
+                if len(args.query) != 1:
+                    raise ValueError("Podaj jeden slug, np. studio.py directions show grainy-gradient")
+                emit(motion_directions.show(args.query[0]))
+            elif args.action == "brief":
+                emit(motion_directions.brief(args.subject or " ".join(args.query), args.kind, args.previous))
+            else:
+                if len(args.query) != 2:
+                    raise ValueError("Podaj dwa odciski w cudzysłowie: 'koncept · sceny · obiekty · otwarcie · zakończenie'")
+                emit(motion_directions.compare(*args.query))
         elif args.command == "styles":
             if args.action == "list":
                 emit(style_atlas.list_styles())

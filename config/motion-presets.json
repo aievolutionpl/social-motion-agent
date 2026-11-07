@@ -47,6 +47,179 @@
         "speed": 0.5
       },
       "idea_source": "https://artiehinz.com/moire"
+    },
+    {
+      "slug": "grainy-gradient",
+      "name": "Grainy Gradient Pass-Through",
+      "palette": [
+        "#0d0b1f",
+        "#ff7a3d",
+        "#3d6bff",
+        "#ffd2a8"
+      ],
+      "parameters": {
+        "layers": 6,
+        "speed": 0.09,
+        "rotation_speed": 0.05,
+        "grain": 0.22,
+        "grain_fps": 12
+      },
+      "idea_source": "https://github.com/bangtutorial/bang-motion",
+      "direction": "grainy-gradient"
+    },
+    {
+      "slug": "poster-color-block",
+      "name": "Poster Color-Block Slam",
+      "palette": [
+        "#f2ec3d",
+        "#ff4b2b",
+        "#1b3bff",
+        "#111111"
+      ],
+      "parameters": {
+        "bpm": 90,
+        "overshoot": 1.7
+      },
+      "idea_source": "https://github.com/bangtutorial/bang-motion",
+      "direction": "poster-color-block"
+    },
+    {
+      "slug": "flat-pop",
+      "name": "Flat Pop with Photo Cutouts",
+      "palette": [
+        "#fff7ea",
+        "#ff5fa2",
+        "#2d5bff",
+        "#ffcf33",
+        "#1a1a1a"
+      ],
+      "parameters": {
+        "beat": 0.9,
+        "sticker_count": 5,
+        "pop_overshoot": 1.7
+      },
+      "idea_source": "https://github.com/bangtutorial/bang-motion",
+      "direction": "flat-pop-photo"
+    },
+    {
+      "slug": "visual-journalism",
+      "name": "Visual Journalism Explainer",
+      "palette": [
+        "#0b0b0b",
+        "#f5f5f0",
+        "#ffe600",
+        "#ff3b30"
+      ],
+      "parameters": {
+        "grain": 0.18,
+        "push": 0.12,
+        "annotation_seconds": 0.9
+      },
+      "idea_source": "https://github.com/bangtutorial/bang-motion",
+      "direction": "visual-journalism"
+    },
+    {
+      "slug": "vintage-sketch",
+      "name": "Vintage Sketch Engraving",
+      "palette": [
+        "#efe1c1",
+        "#3b2a1a",
+        "#a4462a",
+        "#b8913a"
+      ],
+      "parameters": {
+        "hatch_spacing": 6,
+        "draw_seconds": 3,
+        "grain": 0.12
+      },
+      "idea_source": "https://github.com/bangtutorial/bang-motion",
+      "direction": "vintage-sketch"
+    },
+    {
+      "slug": "cartoon-collage",
+      "name": "Cartoon Collage Glide",
+      "palette": [
+        "#f4ead7",
+        "#2b2b2b",
+        "#ff6b4a",
+        "#3fb6a8",
+        "#ffc94a"
+      ],
+      "parameters": {
+        "cutouts": 4,
+        "land_bounce": 1.2,
+        "grain": 0.1
+      },
+      "idea_source": "https://github.com/bangtutorial/bang-motion",
+      "direction": "cartoon-collage"
+    },
+    {
+      "slug": "white-catalog",
+      "name": "White Catalog Cutouts",
+      "palette": [
+        "#ffffff",
+        "#e9e9e9",
+        "#111111",
+        "#ffe94d",
+        "#2f6bff"
+      ],
+      "parameters": {
+        "grid": 40,
+        "items": 3,
+        "highlight_seconds": 0.6
+      },
+      "idea_source": "https://github.com/bangtutorial/bang-motion",
+      "direction": "white-catalog"
+    },
+    {
+      "slug": "brutalist-mono",
+      "name": "Brutalist Mono Hard Cuts",
+      "palette": [
+        "#f2f2f2",
+        "#0a0a0a",
+        "#ff3d00"
+      ],
+      "parameters": {
+        "cols": 8,
+        "cut_every": 0.8,
+        "type_cps": 6
+      },
+      "idea_source": "https://github.com/bangtutorial/bang-motion",
+      "direction": "brutalist-mono"
+    },
+    {
+      "slug": "luxury-dark",
+      "name": "Luxury Dark Light Sweep",
+      "palette": [
+        "#07070a",
+        "#c9a45c",
+        "#f3e6c4",
+        "#2a2014"
+      ],
+      "parameters": {
+        "sweep_period": 4,
+        "depth_layers": 3,
+        "tracking_open": 10
+      },
+      "idea_source": "https://github.com/bangtutorial/bang-motion",
+      "direction": "luxury-dark"
+    },
+    {
+      "slug": "continuous-action",
+      "name": "Continuous Action Explainer",
+      "palette": [
+        "#e8f1ff",
+        "#1e2a4a",
+        "#ff7a2f",
+        "#38c172"
+      ],
+      "parameters": {
+        "speed": 220,
+        "sign_every_km": 1,
+        "whip_seconds": 0.36
+      },
+      "idea_source": "https://github.com/bangtutorial/bang-motion",
+      "direction": "continuous-action"
     }
   ]
 }
