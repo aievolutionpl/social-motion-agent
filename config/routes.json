@@ -134,7 +134,8 @@
         "skills/motion-design/SKILL.md",
         ".agents/skills/motion-ui-polish/SKILL.md",
         ".agents/skills/motion-effect-picker/SKILL.md",
-        ".agents/skills/style-atlas/SKILL.md"
+        ".agents/skills/style-atlas/SKILL.md",
+        "skills/creative-director/references/motion-not-slides.md"
       ],
       "outputs": [
         "master",
@@ -159,7 +160,8 @@
         ".agents/skills/motion-ui-polish/SKILL.md",
         ".agents/skills/motion-effect-picker/SKILL.md",
         ".agents/skills/style-atlas/SKILL.md",
-        "skills/creative-director/references/explainer-styles.md"
+        "skills/creative-director/references/explainer-styles.md",
+        "skills/creative-director/references/motion-not-slides.md"
       ],
       "outputs": [
         "film edukacyjny",
@@ -234,7 +236,8 @@
         "skills/motion-design/SKILL.md",
         ".agents/skills/motion-ui-polish/SKILL.md",
         ".agents/skills/motion-effect-picker/SKILL.md",
-        ".agents/skills/style-atlas/SKILL.md"
+        ".agents/skills/style-atlas/SKILL.md",
+        "skills/creative-director/references/motion-not-slides.md"
       ],
       "outputs": [
         "film lub loop",
@@ -344,12 +347,14 @@
         "skills/motion-design/SKILL.md",
         ".agents/skills/style-atlas/SKILL.md",
         "skills/creative-director/SKILL.md",
-        "skills/creative-director/references/explainer-styles.md"
+        "skills/creative-director/references/explainer-styles.md",
+        "skills/creative-director/references/motion-not-slides.md"
       ],
       "outputs": [
         "wybrany styl z tokenami i kontraktem renderowania",
         "szkielet <inputs>/<direction>/<structure>/<build>/<gotchas> dla podagenta",
-        "scena HTML zgodna z window.seek(t) i polish_check"
+        "scena HTML zgodna z window.seek(t) i polish_check",
+        "10 kierunków motion i 19 konceptów openerów: studio.py directions brief --for TEXT"
       ],
       "optional_skills": [
         "tools/repos/unslop/skills/unslop/SKILL.md"
@@ -361,13 +366,15 @@
       "skills": [
         "skills/production/SKILL.md",
         "skills/motion-design/SKILL.md",
-        ".agents/skills/motion-effect-picker/SKILL.md"
+        ".agents/skills/motion-effect-picker/SKILL.md",
+        "skills/creative-director/references/motion-not-slides.md"
       ],
       "outputs": [
         "wybrane efekty z parametrami i uzasadnieniem",
         "kroki receptury z czasem",
         "scena zgodna z seek(t)",
-        "built-in styles: studio.py motion presets [slug]; examples/motion-styles/index.html"
+        "built-in styles: studio.py motion presets [slug]; examples/motion-styles/index.html",
+        "kierunek i style brief: studio.py directions list|show|brief|compare; statyczny test: studio.py motion lint FILE.html"
       ],
       "optional_skills": [
         "tools/repos/awesome-ai-motion/SKILL.md",

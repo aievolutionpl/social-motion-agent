@@ -6,6 +6,8 @@ GSAP retains the license shipped in its npm package; consult it before redistrib
 FFmpeg is installed separately; its license depends on build configuration.
 All 38 sources in sources.lock.json are pinned Git submodules, restored by scripts/bootstrap_library.py. Original license files remain inside each checkout. Their individual licenses apply; a missing detected license is not a permissive grant.
 Creative Director references and the Opus 5.5 Style Atlas / Unslop story tools adapt methodologies and style recipes from heydamir/unslop (Damir Sokolovsky, CC BY 4.0), HiAPIAI/awesome-opus-5-5-video-styles (HiAPI, CC BY 4.0), and yihui-dev/awesome-opus5-5-videos (Yihui Dev, MIT); full notices and license texts are in skills/creative-director/licenses/ and skills/creative-director/references/sources.md.
+
+The Motion-not-slides reference, motion direction menus (config/motion-directions.json, studio.py directions), the static motion lint and ten direction-based canvas presets adapt ideas from bangtutorial/bang-motion (Bang Tutorial, MIT) at commit c1aa65e921c970d858705fcb4a53a8294d1a4131; the text and code are rewritten and the license is in skills/creative-director/licenses/bang-motion-MIT.txt.
 README illustrations were created with OpenAI's built-in image generator; prompts are in docs/IMAGE_PROMPTS.md.
 AI EVOLUTION POLSKA branding is attribution, not a grant of trademark rights. No client media is distributed. The included original sound/background library was supplied by the owner with explicit redistribution authorization; see docs/MEDIA_RIGHTS.md. It is not relicensed under MIT. Font OFL license texts are in assets/fonts/licenses/.
 

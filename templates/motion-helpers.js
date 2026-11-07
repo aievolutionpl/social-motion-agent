@@ -3,7 +3,9 @@
    Źródła i inspiracje:
    - awesome-ai-motion (MIT): easingi zgodne z GSAP (power3.out, back.out, elastic.out)
    - awesome-opus5-5-videos (MIT): zamknięte sprężyny skokowe (stepSpring, springTimeline, liquidSpan)
-   - unslop by Damir Sokolovsky (@heydamir, CC BY 4.0): deterministyczne traktowania obrazu (bakeGlyphAtlas, drawGlyphs, drawHalftone) */
+   - unslop by Damir Sokolovsky (@heydamir, CC BY 4.0): deterministyczne traktowania obrazu (bakeGlyphAtlas, drawGlyphs, drawHalftone)
+   - bang-motion by Bang Tutorial (MIT): idee rigu ujęć kamery, żywego ziarna i asymetrycznego rytmu wejść/wyjść
+     (shotCamera, cameraTransform, grainOffset, enterEase/exitEase, directionalBlur), napisane od nowa jako czyste funkcje t */
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
 /* postęp 0..1 odcinka [start, start + duration] w chwili t */
 const progress = (t, start, duration) => clamp01((t - start) / duration);
@@ -130,4 +132,58 @@ const drawHalftone = (ctx, baked, { inkColor = "#ededed" } = {}) => {
     ctx.fill();
   }
   ctx.restore();
+};
+
+/* ---------- Rig ujęć kamery: wide ↔ medium close-up ↔ close-up jako czysta funkcja t ----------
+   keys: [{ t, s, x, y, ease? }] — s = skala, (x, y) = punkt ostrości w koordynatach świata.
+   Między kluczami: ease z klucza docelowego (domyślnie powerN.inOut). Oddech kamery (breathe)
+   to tylko warstwa bazowa; "zoom in-out" to zmiana wielkości ujęcia do elementu, który właśnie mówi. */
+const shotCamera = (t, keys, { breathe = 0, breatheRate = 0.7 } = {}) => {
+  let cam = { s: keys[0].s, x: keys[0].x, y: keys[0].y };
+  for (let i = 1; i < keys.length; i++) {
+    const a = keys[i - 1], b = keys[i];
+    if (t <= b.t) {
+      const p = (b.ease || easeInOut(3))(progress(t, a.t, Math.max(1e-6, b.t - a.t)));
+      cam = { s: lerp(a.s, b.s, p), x: lerp(a.x, b.x, p), y: lerp(a.y, b.y, p) };
+      break;
+    }
+    cam = { s: b.s, x: b.x, y: b.y };
+  }
+  cam.s *= 1 + breathe * Math.sin(t * breatheRate);
+  return cam;
+};
+
+/* Przelicz kamerę na translate/scale świata W×H; krawędź świata nigdy nie wychodzi w kadr (overscan). */
+const cameraTransform = (cam, width, height) => {
+  const s = Math.max(1, cam.s);
+  const tx = Math.min(0, Math.max(width - width * s, width / 2 - cam.x * s));
+  const ty = Math.min(0, Math.max(height - height * s, height / 2 - cam.y * s));
+  return { tx, ty, s, css: `translate(${tx}px, ${ty}px) scale(${s})` };
+};
+
+/* Kadr na element: skala, przy której element wypełnia `fill` kadru (close-up ~0.6, medium ~0.35). */
+const frameOn = (rect, fill, width, height) => ({
+  s: Math.max(1, Math.min((width * fill) / rect.w, (height * fill) / rect.h)),
+  x: rect.x + rect.w / 2,
+  y: rect.y + rect.h / 2,
+});
+
+/* Żywe ziarno bez losowości: przesunięcie kafla szumu skacze fps razy na sekundę, wyliczone z t. */
+const grainOffset = (t, fps = 12, range = 64) => {
+  const k = Math.floor(t * fps);
+  const wrap = (v) => (((v % range) + range) % range) - range / 2;
+  return { x: wrap(k * 37), y: wrap(k * 61) };
+};
+
+/* Asymetryczny rytm: wejście wolniej i stanowczo (0.7–1.3 s, power4.out), wyjście szybko (0.35–0.55 s, power2.in). */
+const enterEase = easeOut(4);
+const exitEase = easeIn(2);
+const enterExit = (t, tIn, tOut, { inDur = 0.9, outDur = 0.45 } = {}) =>
+  t < tOut ? enterEase(progress(t, tIn, inDur)) : 1 - exitEase(progress(t, tOut, outDur));
+
+/* Kierunkowy motion blur dla feGaussianBlur stdDeviation="x y": rozmycie wzdłuż ruchu, nie we wszystkie strony.
+   amount 0..1 (np. 1 - enterEase(p) przy wejściu); horizontal=false dla ruchu pionowego. Zdejmij filtr przy 0. */
+const directionalBlur = (amount, { max = 30, horizontal = true, ratio = 0.08 } = {}) => {
+  const v = clamp01(amount) * max;
+  return horizontal ? `${v.toFixed(2)} ${(v * ratio).toFixed(2)}` : `${(v * ratio).toFixed(2)} ${v.toFixed(2)}`;
 };

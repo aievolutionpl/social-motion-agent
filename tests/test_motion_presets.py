@@ -18,7 +18,15 @@ class MotionPresetTests(unittest.TestCase):
         result = self.cli()
         self.assertEqual(result.returncode, 0, result.stderr)
         styles = json.loads(result.stdout)['styles']
-        self.assertEqual({s['slug'] for s in styles}, {'riso-print','decollage-time-layers','optical-moire'})
+        expected = {'riso-print','decollage-time-layers','optical-moire','grainy-gradient','poster-color-block','flat-pop',
+                    'visual-journalism','vintage-sketch','cartoon-collage','white-catalog','brutalist-mono','luxury-dark','continuous-action'}
+        self.assertEqual({s['slug'] for s in styles}, expected)
+        directions = json.loads((ROOT/'config/motion-directions.json').read_text(encoding='utf-8'))
+        known = {d['slug'] for menu in ('style_directions','explainer_modes') for d in directions[menu]}
+        for style in styles:
+            if 'direction' in style:
+                self.assertIn(style['direction'], known, style['slug'])
+                self.assertTrue(style['idea_source'].startswith('https://'))
         for style in styles:
             selected = self.cli(style['slug'])
             self.assertEqual(selected.returncode, 0, selected.stderr)
