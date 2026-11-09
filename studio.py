@@ -28,6 +28,7 @@ import environment
 import creative_skills
 import kinetic_adapter
 import walk_talk
+import director_suite
 
 
 def emit(value):
@@ -59,6 +60,16 @@ def main():
     wp.add_argument("--mode", choices=walk_talk.MODES, default="footage")
     wp = ws.add_parser("compose", help="Compose registered base footage, optional alpha foreground and timed text")
     wp.add_argument("job")
+    p = sub.add_parser("director", help="Beat sheets, upstream handoffs, narration cues and point-to-edit feedback")
+    p.add_argument("action", choices=("plan", "qa", "handoff", "captions", "feedback", "feedback-list"))
+    p.add_argument("job")
+    p.add_argument("--profile", choices=director_suite.PROFILES, default="launch")
+    p.add_argument("--alignment", help="Job-relative existing alignment JSON for captions")
+    p.add_argument("--at", type=float, help="Feedback time in seconds")
+    p.add_argument("--x", type=float, help="Feedback horizontal location normalized to 0..1")
+    p.add_argument("--y", type=float, help="Feedback vertical location normalized to 0..1")
+    p.add_argument("--comment", help="Point-specific change request")
+    p.add_argument("--overwrite", action="store_true", help="Explicitly replace generated files")
     p = sub.add_parser("demo", help="Create the bundled synthetic HyperFrames launch film")
     p.add_argument("--format", choices=core.FORMATS, default="16:9")
     p.add_argument("--render", action="store_true")
@@ -188,6 +199,24 @@ def main():
         if args.command == "walk-talk":
             folder = job_path(args.job)
             emit(walk_talk.prepare(folder, args.mode) if args.walk_talk_action == "prepare" else walk_talk.compose(folder))
+        elif args.command == "director":
+            folder = job_path(args.job)
+            if args.action == "plan":
+                emit(director_suite.plan(folder, args.profile, overwrite=args.overwrite))
+            elif args.action == "qa":
+                emit(director_suite.analyze(folder, args.profile))
+            elif args.action == "handoff":
+                emit(director_suite.handoff(folder, args.profile, overwrite=args.overwrite))
+            elif args.action == "captions":
+                if not args.alignment:
+                    raise ValueError("Provide --alignment source/alignment.json (measured word times)")
+                emit(director_suite.captions(folder, args.alignment, overwrite=args.overwrite))
+            elif args.action == "feedback":
+                if any(value is None for value in (args.at, args.x, args.y, args.comment)):
+                    raise ValueError("Provide --at SECONDS --x 0..1 --y 0..1 --comment TEXT")
+                emit(director_suite.point_feedback(folder, args.at, args.x, args.y, args.comment))
+            else:
+                emit(director_suite.list_feedback(folder))
         elif args.command == "demo":
             from demo import create_demo
             folder = create_demo(args.format)
