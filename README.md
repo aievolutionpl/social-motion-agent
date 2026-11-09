@@ -1,41 +1,67 @@
 # Social Motion Agent
 
-[![Social Motion Agent: editorial motion loop](docs/images/editorial-loop.gif)](docs/media/editorial-loop.mp4)
+![Social Motion Agent — neonowy laptop z osią montażu](docs/images/social-motion-agent-neon.jpg)
 
-**[Obejrzyj demo · 8 s · bez dźwięku](docs/media/editorial-loop.mp4)** · [Źródła i odtworzenie](examples/editorial-loop/README.md)
+Social Motion Agent daje twojemu agentowi workflow do montażu filmów, tworzenia motion designu i przygotowania podglądu do poprawek. Działa w środowisku z dostępem do plików i terminala, np. w Codexie, Claude Code lub Hermesie.
 
-Wybierz kierunek. Zobacz podgląd. Powiedz, co poprawić. Agent prowadzi kolejną wersję.
+[Szybki start](#szybki-start-z-agentem) · [Możliwości](#co-możesz-zrobić) · [Skille i efekty](#ile-jest-skilli-i-efektów) · [Instalacja skilla](#zainstaluj-przenośny-skill) · [English](docs/README.en.md)
 
-[Start](#szybki-start-z-agentem) · [Style](#nowe-style-motion) · [Instalacja](#wyrenderuj-pierwszy-film) · [Jakość](#jakość-jako-część-procesu)
+**[Zobacz stronę projektu](https://social-motion-agent-aiep.pages.dev/)** · [Creative Director](skills/creative-director/SKILL.md) · [Konfiguracja agentów](docs/AGENT_SETUP.md) · [Licencja kodu MIT](LICENSE)
 
-**[🌐 Zobacz stronę Social Motion Agent](https://social-motion-agent-aiep.pages.dev/)**
+[![Animowane demo procesu montażu](docs/images/editorial-loop.gif)](docs/media/editorial-loop.mp4)
 
-**Od briefu do dopracowanego filmu, strony lub animacji produktu.**
-
-Warsztat [AI EVOLUTION POLSKA](https://www.aievolutionpolska.pl/) dla agentów, którzy potrafią czytać pliki, pisać kod i uruchamiać narzędzia. Jeden nadrzędny skill prowadzi brief, kierunek, kompozycję i recenzję. **Kinetic Film** tworzy premiery produktów i teasery do rytmu muzyki; **HyperFrames** renderuje HTML/GSAP, a natywny **Hypermotion** ma osobny adapter. Style Atlas i Unslop pomagają dobrać wygląd oraz sprawdzić rezultat.
-
-[![CI](https://github.com/aievolutionpl/social-motion-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/aievolutionpl/social-motion-agent/actions/workflows/ci.yml) · [English](docs/README.en.md) · [Skill](skills/creative-director/SKILL.md) · [Konfiguracja agentów](docs/AGENT_SETUP.md) · [MIT — kod](LICENSE)
+[Obejrzyj demo · 8 s · bez dźwięku](docs/media/editorial-loop.mp4) · [Jak odtworzyć demo](examples/editorial-loop/README.md). GIF ilustruje proces. Banery są grafikami koncepcyjnymi.
 
 ## Szybki start z agentem
 
-Otwórz repo w agencie z terminalem i wklej:
-
-> Przeczytaj AGENTS.md i START_HERE.md. Przygotuj lokalne zależności przez scripts/quickstart.py --browser, sprawdź brakujące narzędzia i uruchom testowy render. Chcę krótki film o [temat]. Najpierw zapytaj o styl i brakujące elementy briefu. Pokaż 2–3 konkretne kierunki, poleć jeden i poczekaj na mój wybór. Po podglądzie zapytaj, co zostawić, co zmienić i jak oceniam styl, tempo oraz czytelność. Zaproponuj konkretne ulepszenia następnej wersji.
+1. Pobierz repozytorium i otwórz jego folder w agencie. Do lokalnego renderowania potrzebujesz Pythona 3.11+, Node.js 22+ z npm oraz FFmpeg i ffprobe.
+2. Uruchom komendę poniżej albo zleć ją agentowi. Skrypt przygotuje przypięte zależności, pobierze Chromium i uruchomi próbny render z materiałów dołączonych do repo.
+3. Podaj agentowi cel, format, długość i ścieżki do materiałów. Przy nowym filmie agent proponuje 2–3 kierunki wizualne i czeka na wybór przed renderem. Po podglądzie pyta, co zachować i co zmienić.
 
 ```bash
+git clone https://github.com/aievolutionpl/social-motion-agent.git
+cd social-motion-agent
 python -S scripts/quickstart.py --browser --smoke
 ```
 
-Komenda ponownie wykorzystuje zgodne zależności, instaluje brakujące przez zablokowane wersje npm, pobiera Chromium i uruchamia demo. Wymaga Python 3.11+, Node 22+, npm oraz FFmpeg/ffprobe. Braki systemowe zgłasza agentowi; opcjonalne silniki i konta usług mają osobną konfigurację. Sam dostęp do GitHub nie uruchamia instalacji.
+**Prompt do wklejenia**
 
-| Etap | Co dostajesz |
+> Przeczytaj AGENTS.md, START_HERE.md i skills/creative-director/SKILL.md. Zmontuj 20-sekundową rolkę 9:16 z ujęć w folderze media/. Zaproponuj dwa style i pokaż, jak w każdym otworzysz film. Po moim wyborze przygotuj storyboard, dodaj czytelne polskie napisy i wyrenderuj podgląd MP4. Obejrzyj obraz, odsłuchaj dźwięk i zapytaj, co poprawić.
+
+Skill główny to **Creative Director**. Możesz używać go bezpośrednio z otwartego repo albo [zainstalować w profilu agenta](#zainstaluj-przenośny-skill). Do produkcji filmu nadal potrzebujesz roboczej kopii repo. [Zasady pracy z podglądem i feedbackiem](skills/creative-director/references/feedback-loop.md).
+
+## Co możesz zrobić
+
+| Zadanie | Przykładowy wynik |
 | --- | --- |
-| Kierunek | Pytanie o styl, 2–3 propozycje, rekomendacja i reprezentatywny kadr |
-| Podgląd | Film oraz krótka ocena mocnych i słabych momentów |
-| Feedback | Co zachować, co zmienić, opcjonalne oceny 1–5 |
-| Poprawka | Nowa wersja, lista zmian i 2–3 pomysły dalszego rozwoju |
+| Zmontować własne ujęcia | Rolka lub Short z cięciami, napisami, muzyką i efektami dźwiękowymi |
+| Zrobić teaser produktu | Motion graphics z dużą animowaną typografią, przejściami i ruchem zsynchronizowanym z muzyką |
+| Przygotować tutorial lub demo aplikacji | Plan nagrania ekranu, podpisy i animowane wskazówki prowadzące widza po interfejsie |
+| Zrobić rolkę z prezenterem | Napisy zsynchronizowane z mową, animowane hasła i tekst za sylwetką przy dostępnej masce alfa |
+| Animować interfejs lub stronę | Działająca animacja w projekcie webowym albo pokaz produktu w MP4 |
 
-[Zasady wyboru stylu i feedbacku](skills/creative-director/references/feedback-loop.md). GIF jest syntetyczną ilustracją procesu, nie nagraniem działającego edytora.
+HyperFrames renderuje lokalne kompozycje HTML/GSAP. Natywne projekty `.hype` wymagają osobnej instalacji Hypermotion. Generowanie ujęć AI, lektora lub masek zależy od dostępnych narzędzi i materiałów. Do synchronizacji napisów słowo po słowie potrzebujesz rzeczywistych znaczników czasu. [Instrukcja produkcji](docs/PRODUCTION.md) · [Providerzy](docs/PROVIDERS.md).
+
+## Ile jest skilli i efektów
+
+| Co liczysz | Ile | Co zawiera |
+| --- | ---: | --- |
+| Lokalne skille i punkty wejścia | **12** | 14 plików `SKILL.md`, w tym dwa dodatkowe odsyłacze do Creative Director i Kinetic Walk & Talk |
+| Przypięte repozytoria rozszerzeń | **38** | Zewnętrzne paczki ze skillami, recepturami, szablonami i przykładami |
+| Katalog efektów ruchu | **637 efektów i 11 receptur** | Zewnętrzny katalog do doboru efektów. Niektóre wpisy mają przykładowy klip i szablon HTML |
+| Efekty dźwiękowe w repo | **126** | Pliki WAV i MP3. Przed wykorzystaniem sprawdź [status praw do mediów](docs/MEDIA_RIGHTS.md) |
+| Lokalne presety i atlas stylów | **13 presetów Canvas i 14 stylów atlasu** | Presety pokazują ruch w przeglądarce, a atlas pomaga wybrać kierunek filmu |
+
+Aby pobrać sam katalog efektów i znaleźć przykłady, uruchom z katalogu głównego repo:
+
+```bash
+git submodule update --init tools/repos/awesome-ai-motion
+python -S studio.py motion find "zoom" --limit 5
+python -S studio.py motion presets
+python -S studio.py styles list
+```
+
+[Indeks skilli i rozszerzeń](skills/INDEX.md) · [Przegląd biblioteki](docs/LIBRARY.md)
 
 <details>
 <summary><strong>Katalog możliwości i ścieżek produkcji</strong></summary>
@@ -81,19 +107,7 @@ Komendy przygotowują edytowalne źródła i kontrolę planu, **nie instalują g
 
 </details>
 
-## Daj zadanie agentowi
-
-> Przeczytaj AGENTS.md i skills/kinetic-launch/SKILL.md. Chcę 30-sekundowy teaser w stylu Kinetic Film. Użyj trasy kinetic-launch, zachowaj mój brief i przygotuj sceny na siatce beatów. Wyrenderuj podgląd, sprawdź ruch, obraz i dźwięk. Bez publikacji ani płatnych generacji bez zgody.
-
-[Poprzedni film Kinetic](docs/media/kinetic-launch.mp4) pokazuje workflow od briefu do kontroli: duża typografia, kamera CSS 3D, motion blur i lokalny miks. To animowana ilustracja procesu, nie nagranie wykonania agenta. Odtworzenie używa dostarczonego audio. [Konfiguracja Kinetic Film](docs/KINETIC_FILM.md).
-
-Otwórz repo w Codexie, Claude Code, Hermesie lub innym agencie z plikami i terminalem:
-
-> Przeczytaj AGENTS.md, START_HERE.md i skills/creative-director/SKILL.md. Chcę 20-sekundowy film mojego produktu w pionie. Wykorzystaj informacje, które już podałem, i zapytaj o brakujące decyzje. Pokaż dwa konkretne kierunki wizualne. Przygotuj potrzebne skille, storyboard i draft, potem sprawdź obraz, dźwięk i napisy. Nie publikuj ani nie uruchamiaj płatnych generacji bez zgody.
-
-Dla strony podaj ofertę, odbiorcę i główną akcję. Dla animacji UI wskaż interfejs oraz to, czy ma działać na stronie, czy trafić do MP4. Samo połączenie GitHub udostępnia źródła; wykonanie projektu wymaga środowiska pracy z odpowiednimi narzędziami.
-
-## Jeden skill i dobór ścieżki
+## Ścieżki produkcji
 
 | Zadanie | Proces | Wynik |
 | --- | --- | --- |
@@ -185,6 +199,8 @@ python -S studio.py kinetic demo --render --res 720 --samples 2
 Kinetic Film jest opcjonalnym silnikiem pobieranym osobno od autora. `kinetic setup` sprawdza sumy plików i tworzy lokalny cache, a `render-kinetic` zachowuje karty produkcji, kontrolę dynamiki i dowody zgodności źródeł z MP4. Bieżące kompozycje Kinetic są poziome 16:9; pion wymaga osobnego układu. [Pełny workflow](docs/KINETIC_FILM.md).
 
 **HyperFrames** renderuje lokalne HTML/GSAP. **Hypermotion** jest osobną aplikacją z projektami `.hype`, CLI i MCP. Agent pobiera jego skille, a przed natywnym eksportem sprawdza runtime i krótki render. Nie zamienia po cichu silnika wskazanego przez użytkownika. [Hypermotion — konfiguracja](docs/HYPERMOTION.md).
+
+![Grafika koncepcyjna — oś montażu i pomarańczowa wstęga](docs/images/social-motion-agent-studio.jpg)
 
 ![Rzeczywisty fragment demonstracyjnego renderu](docs/images/demo.gif)
 
