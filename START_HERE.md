@@ -12,7 +12,8 @@ See `docs/LOCAL_WORKSPACE.md` for the portable consolidation and preservation-le
 5. For films, install Python 3.11+, Node 22+ with npm, FFmpeg/ffprobe. Run `python -S studio.py setup`, then `python -S studio.py doctor`. Setup installs locked Node dependencies, not system runtimes. Doctor is offline and does not inspect accounts.
 6. Try `python -S studio.py demo --format 9:16 --render` for HyperFrames. For the current README film, prepare the optional engine as in `docs/KINETIC_FILM.md`, then run `python -S studio.py kinetic demo --render --res 720 --samples 2`. Both use supplied materials, not paid generation. First render may need Chromium.
 7. For original films, use `studio.py new`, fill real intake/research/storyboard and follow `docs/PRODUCTION.md`. HyperFrames is the local HTML renderer. Native Hypermotion requires verified desktop/CLI and a short export test; see `docs/HYPERMOTION.md`. Never silently substitute a requested engine.
-8. Review actual frames and audio or the running website. New video sources require a new render receipt. Probe, review and package the same file. A successful encoder is not creative approval.
+8. For an existing storyboard, consider `python -S studio.py director plan JOB --profile explainer|demo|launch` and `director qa`. Read `docs/DIRECTOR_SUITE.md`: optional Argo/Explainroo/Huashu handoffs are not themselves renders. Measured word cues can produce SRT, and point feedback is a pending change request, not a finished edit.
+9. Review actual frames and audio or the running website. New video sources require a new render receipt. Probe, review and package the same file. A successful encoder is not creative approval.
 
 Typography-led launch or teaser: `studio.py route kinetic-launch`, `skills/kinetic-launch/SKILL.md`.
 Use `kinetic prepare JOB` and `render-kinetic JOB`; the optional engine has its own motion checks and

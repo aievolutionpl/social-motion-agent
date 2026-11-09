@@ -17,6 +17,12 @@ Run `python -S studio.py --help` for the complete parser and subcommand help.
 | asset-add JOB --file FILE --source SOURCE --rights RIGHTS --purpose PURPOSE | Copy and hash an asset |
 | render-html JOB --name NAME | Lint, render with HyperFrames and probe |
 | walk-talk prepare JOB --mode footage\|recording\|ai | Create editable walking-presenter shot, text and sound plans without provider calls |
+| director plan JOB --profile explainer\|demo\|launch | Compute editable beat-sheet JSON/Markdown from a validated storyboard |
+| director qa JOB --profile PROFILE | Editorial storyboard warnings only; does not inspect MP4 or sound |
+| director handoff JOB --profile PROFILE | Generate Explainroo/Argo/OM editorial project scaffolds under source/interchange |
+| director captions JOB --alignment source/alignment.json | Convert real aligned word timestamps into scene cues and UTF-8 SRT |
+| director feedback JOB --at SEC --x 0..1 --y 0..1 --comment TEXT | Queue location-specific feedback against scene/time; no automatic edit |
+| director feedback-list JOB | Read queued feedback |
 | walk-talk compose JOB | Compose registered full-length footage, optional aligned alpha foreground, timed captions and hero words into HyperFrames sources |
 | render-hype JOB --scene source/index.hype --name NAME | Validate and render with the installed Hypermotion desktop/CLI, record provenance and probe |
 | kinetic setup --source PATH / doctor | Verify and cache the separately obtained pinned Kinetic Film package; inspect optional local dependencies |
