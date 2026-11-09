@@ -21,3 +21,5 @@ __pycache__/
 examples/**/gsap.min.js
 .DS_Store
 Thumbs.db
+
+/examples/editorial-loop/node_modules/

@@ -1043,6 +1043,13 @@
       "sha256": "1c47696479bec52203c7539ea052e32e393126c04d5bf27e4c22d25f2f3d230f",
       "provenance": "owner_authorized_kinetic_demo_2026_10_30",
       "rights": "See examples/kinetic-launch/provenance.json and docs/MEDIA_RIGHTS.md"
+    },
+    {
+      "path": "docs/media/editorial-loop.mp4",
+      "bytes": 179832,
+      "sha256": "fb926e03eb7ea528f1ab284317f1ba6da2e30e5725e1c4669e33f9464ec4a226",
+      "provenance": "original_synthetic_canvas_showcase",
+      "rights": "Original geometric graphics, MIT source; system font rendering, no bundled font or audio. See examples/editorial-loop/README.md."
     }
   ]
 }

@@ -1,8 +1,12 @@
-[![Social Motion Agent: Kinetic Film, 30 sekund — animowane przejścia](docs/images/kinetic-launch.gif)](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)
-
-**[Obejrzyj film: 30 s · PL · 16:9 · 1080p 60 fps · muzyka i SFX](https://github.com/aievolutionpl/social-motion-agent/raw/refs/heads/main/docs/media/kinetic-launch.mp4)** · [Źródła i odtworzenie demo](examples/kinetic-launch/README.md)
-
 # Social Motion Agent
+
+[![Social Motion Agent: editorial motion loop](docs/images/editorial-loop.gif)](docs/media/editorial-loop.mp4)
+
+**[Obejrzyj demo · 8 s · bez dźwięku](docs/media/editorial-loop.mp4)** · [Źródła i odtworzenie](examples/editorial-loop/README.md)
+
+Wybierz kierunek. Zobacz podgląd. Powiedz, co poprawić. Agent prowadzi kolejną wersję.
+
+[Start](#szybki-start-z-agentem) · [Style](#nowe-style-motion) · [Instalacja](#wyrenderuj-pierwszy-film) · [Jakość](#jakość-jako-część-procesu)
 
 **[🌐 Zobacz stronę Social Motion Agent](https://social-motion-agent-aiep.pages.dev/)**
 
@@ -11,6 +15,30 @@
 Warsztat [AI EVOLUTION POLSKA](https://www.aievolutionpolska.pl/) dla agentów, którzy potrafią czytać pliki, pisać kod i uruchamiać narzędzia. Jeden nadrzędny skill prowadzi brief, kierunek, kompozycję i recenzję. **Kinetic Film** tworzy premiery produktów i teasery do rytmu muzyki; **HyperFrames** renderuje HTML/GSAP, a natywny **Hypermotion** ma osobny adapter. Style Atlas i Unslop pomagają dobrać wygląd oraz sprawdzić rezultat.
 
 [![CI](https://github.com/aievolutionpl/social-motion-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/aievolutionpl/social-motion-agent/actions/workflows/ci.yml) · [English](docs/README.en.md) · [Skill](skills/creative-director/SKILL.md) · [Konfiguracja agentów](docs/AGENT_SETUP.md) · [MIT — kod](LICENSE)
+
+## Szybki start z agentem
+
+Otwórz repo w agencie z terminalem i wklej:
+
+> Przeczytaj AGENTS.md i START_HERE.md. Przygotuj lokalne zależności przez scripts/quickstart.py --browser, sprawdź brakujące narzędzia i uruchom testowy render. Chcę krótki film o [temat]. Najpierw zapytaj o styl i brakujące elementy briefu. Pokaż 2–3 konkretne kierunki, poleć jeden i poczekaj na mój wybór. Po podglądzie zapytaj, co zostawić, co zmienić i jak oceniam styl, tempo oraz czytelność. Zaproponuj konkretne ulepszenia następnej wersji.
+
+```bash
+python -S scripts/quickstart.py --browser --smoke
+```
+
+Komenda ponownie wykorzystuje zgodne zależności, instaluje brakujące przez zablokowane wersje npm, pobiera Chromium i uruchamia demo. Wymaga Python 3.11+, Node 22+, npm oraz FFmpeg/ffprobe. Braki systemowe zgłasza agentowi; opcjonalne silniki i konta usług mają osobną konfigurację. Sam dostęp do GitHub nie uruchamia instalacji.
+
+| Etap | Co dostajesz |
+| --- | --- |
+| Kierunek | Pytanie o styl, 2–3 propozycje, rekomendacja i reprezentatywny kadr |
+| Podgląd | Film oraz krótka ocena mocnych i słabych momentów |
+| Feedback | Co zachować, co zmienić, opcjonalne oceny 1–5 |
+| Poprawka | Nowa wersja, lista zmian i 2–3 pomysły dalszego rozwoju |
+
+[Zasady wyboru stylu i feedbacku](skills/creative-director/references/feedback-loop.md). GIF jest syntetyczną ilustracją procesu, nie nagraniem działającego edytora.
+
+<details>
+<summary><strong>Katalog możliwości i ścieżek produkcji</strong></summary>
 
 ## Nowe style motion
 
@@ -51,11 +79,13 @@ Komendy przygotowują edytowalne źródła i kontrolę planu, **nie instalują g
 
 [Pełna instrukcja i ograniczenia](docs/DIRECTOR_SUITE.md) · [Skill](skills/director-suite/SKILL.md).
 
+</details>
+
 ## Daj zadanie agentowi
 
 > Przeczytaj AGENTS.md i skills/kinetic-launch/SKILL.md. Chcę 30-sekundowy teaser w stylu Kinetic Film. Użyj trasy kinetic-launch, zachowaj mój brief i przygotuj sceny na siatce beatów. Wyrenderuj podgląd, sprawdź ruch, obraz i dźwięk. Bez publikacji ani płatnych generacji bez zgody.
 
-Film na górze pokazuje workflow od briefu do kontroli: duża typografia, kamera CSS 3D, motion blur i lokalny miks. To animowana ilustracja procesu, nie nagranie wykonania agenta. Odtworzenie używa dostarczonego audio. [Konfiguracja Kinetic Film](docs/KINETIC_FILM.md).
+[Poprzedni film Kinetic](docs/media/kinetic-launch.mp4) pokazuje workflow od briefu do kontroli: duża typografia, kamera CSS 3D, motion blur i lokalny miks. To animowana ilustracja procesu, nie nagranie wykonania agenta. Odtworzenie używa dostarczonego audio. [Konfiguracja Kinetic Film](docs/KINETIC_FILM.md).
 
 Otwórz repo w Codexie, Claude Code, Hermesie lub innym agencie z plikami i terminalem:
 

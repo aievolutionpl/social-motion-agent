@@ -11,6 +11,7 @@ For walking-presenter reels with kinetic captions or text behind the subject, us
 kinetic-walk-talk and read skills/kinetic-walk-talk/SKILL.md. Its walk-talk prepare/compose
 commands build editable local sources; footage generation and alpha segmentation are separate.
 Do not search a parent workspace for credentials, brand profiles, voices or customer media.
+For every new film, follow skills/creative-director/references/feedback-loop.md: ask about style, show concrete options before rendering, and request likes/dislikes plus optional ratings after each preview. Reuse explicit answers and delegated choices. Run scripts/quickstart.py --browser for local dependencies; do not confuse dependency readiness with a successful render.
 New films: intake → research → storyboard → assets/composition → preview → review → package.
 For films use studio.py new and keep all production artifacts in output/jobs/<id>/.
 Write source/index.html for HyperFrames; use paused GSAP timelines and local assets.
@@ -28,3 +29,5 @@ examples/kinetic-launch/. Its publication is authorized; provenance and independ
 For kinetic-launch, read skills/kinetic-launch/SKILL.md and docs/KINETIC_FILM.md. Use the pinned optional
 engine through kinetic setup/prepare and render-kinetic. Its source lives in a private runtime cache and
 job-local copies; do not vendor it under MIT. Never treat numeric motion gates as listening approval.
+
+Owner request on 2026-11-09 authorizes the synthetic silent README showcase under examples/editorial-loop/, docs/images/editorial-loop.gif and docs/media/editorial-loop.mp4. This is an illustration, not a screen recording or approved client production.

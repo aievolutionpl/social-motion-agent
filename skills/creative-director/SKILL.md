@@ -34,6 +34,8 @@ When invoked as a specialized **Motion / Design Subagent** by a parent orchestra
 4. **Stage 4 — Render, Probe & Evidence Handoff:**
    - Render via `studio.py render-html` or `render-assembly`, run `probe` and `sheet`, and return a structured JSON/Markdown summary with the output path, SHA-256, verified checks and any open limitations.
 
+Read [Style choice and feedback loop](references/feedback-loop.md) for every new film and every preview handoff.
+
 ## Begin with context and a useful choice
 
 1. Inspect the current project, its instructions, brand, existing components and supplied assets. Preserve working architecture and explicit visual choices. Record what imagery, footage and evidence actually exist.

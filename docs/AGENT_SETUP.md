@@ -52,3 +52,9 @@ For websites, preserve the framework and use available browser tools. Taste's op
 ## Verification scope
 
 Tests cover mode routing, pinned sources, installer completeness/idempotency, preservation of edits and failure cleanup. Behavioral evaluations exercise realistic briefs. These do not certify live Codex, Claude Code, Hermes, Hypermotion desktop or paid provider sessions. Report actual checks in each production.
+
+## Guided first run and feedback
+
+For local film requests, the agent should run `python -S scripts/quickstart.py --browser --smoke` from the checkout. It reuses matching dependencies, restores missing locked packages, prepares Chromium and verifies a bundled render. Python 3.11+, Node 22+/npm and FFmpeg/ffprobe must be available first. Missing runtimes are reported; optional engines and provider accounts are not silently installed. Use the environment’s supported package manager under existing authorization, then recheck.
+
+Every new film follows [style choice and feedback](../skills/creative-director/references/feedback-loop.md): ask about style, show distinct directions, honor an explicit delegated choice, preview, request likes/dislikes and optional ratings, then implement the selected improvements.
