@@ -2,21 +2,21 @@
 
 ![Social Motion Agent — neonowy laptop z osią montażu](docs/images/social-motion-agent-neon.jpg)
 
-Social Motion Agent daje twojemu agentowi workflow do montażu filmów, tworzenia motion designu i przygotowania podglądu do poprawek. Działa w środowisku z dostępem do plików i terminala, np. w Codexie, Claude Code lub Hermesie.
+Daj agentowi nagrania i opisz, jaki film chcesz zrobić. Agent zaproponuje styl, przygotuje montaż i pokaże ci podgląd MP4. Ty wybierasz kierunek i decydujesz, co poprawić.
 
-[Szybki start](#szybki-start-z-agentem) · [Możliwości](#co-możesz-zrobić) · [Skille i efekty](#ile-jest-skilli-i-efektów) · [Instalacja skilla](#zainstaluj-przenośny-skill) · [English](docs/README.en.md)
-
-**[Zobacz stronę projektu](https://social-motion-agent-aiep.pages.dev/)** · [Creative Director](skills/creative-director/SKILL.md) · [Konfiguracja agentów](docs/AGENT_SETUP.md) · [Licencja kodu MIT](LICENSE)
-
-[![Animowane demo procesu montażu](docs/images/editorial-loop.gif)](docs/media/editorial-loop.mp4)
-
-[Obejrzyj demo · 8 s · bez dźwięku](docs/media/editorial-loop.mp4) · [Jak odtworzyć demo](examples/editorial-loop/README.md). GIF ilustruje proces. Banery są grafikami koncepcyjnymi.
+[Szybki start](#szybki-start-z-agentem) · [Możliwości](#co-możesz-zrobić) · [Skille i efekty](#ile-jest-skilli-i-efektów) · [Współtworzenie](#autor-licencja-i-współtworzenie) · [English](docs/README.en.md)
 
 ## Szybki start z agentem
 
-1. Pobierz repozytorium i otwórz jego folder w agencie. Do lokalnego renderowania potrzebujesz Pythona 3.11+, Node.js 22+ z npm oraz FFmpeg i ffprobe.
-2. Uruchom komendę poniżej albo zleć ją agentowi. Skrypt przygotuje przypięte zależności, pobierze Chromium i uruchomi próbny render z materiałów dołączonych do repo.
-3. Podaj agentowi cel, format, długość i ścieżki do materiałów. Przy nowym filmie agent proponuje 2–3 kierunki wizualne i czeka na wybór przed renderem. Po podglądzie pyta, co zachować i co zmienić.
+1. **Otwórz repo w agencie.** Skopiuj adres `https://github.com/aievolutionpl/social-motion-agent.git` i poproś Codexa, Claude Code lub Hermesa z terminalem o pobranie repo. Jeśli masz już kopię, otwórz jej folder.
+2. **Daj mu materiały i zadanie.** Udostępnij nagrania w folderze projektu i wskaż ich ścieżkę. Powiedz, gdzie ma trafić film, ile ma trwać i czego potrzebujesz, np. polskich napisów.
+3. **Wybierz styl i obejrzyj podgląd.** Agent proponuje 2–3 kierunki, jeśli styl jest jeszcze otwarty. Po wyborze przygotowuje plan scen i wersję MP4. Uwagi możesz podać z czasem, np. „w 00:04 powiększ napis”.
+
+**Pierwszy prompt do wklejenia**
+
+> Pobierz https://github.com/aievolutionpl/social-motion-agent.git, jeśli nie masz jeszcze kopii. Przeczytaj START_HERE.md i przygotuj narzędzia do lokalnego renderowania. Zmontuj 20-sekundową rolkę 9:16 z nagrań w folderze `media/`. Dodaj polskie napisy. Najpierw pokaż mi dwa pomysły na otwarcie filmu i poczekaj na mój wybór. Potem przygotuj podgląd MP4 i podaj ścieżkę do pliku.
+
+Jeśli chcesz tylko sprawdzić, czy wszystko działa, uruchom próbny render na dołączonych materiałach. Możesz też zlecić ten krok agentowi. Potrzebujesz Pythona 3.11+, Node.js 22+ z npm oraz FFmpeg i ffprobe.
 
 ```bash
 git clone https://github.com/aievolutionpl/social-motion-agent.git
@@ -24,11 +24,13 @@ cd social-motion-agent
 python -S scripts/quickstart.py --browser --smoke
 ```
 
-**Prompt do wklejenia**
+**Jak działa skill?** [Creative Director](skills/creative-director/SKILL.md) to instrukcja, z której agent korzysta, żeby dobrać narzędzia i poprowadzić pracę. Możesz zacząć z otwartej kopii repo. [Instalacja skilla w profilu agenta](#zainstaluj-przenośny-skill) przydaje się, gdy chcesz wywoływać go także z innych projektów.
 
-> Przeczytaj AGENTS.md, START_HERE.md i skills/creative-director/SKILL.md. Zmontuj 20-sekundową rolkę 9:16 z ujęć w folderze media/. Zaproponuj dwa style i pokaż, jak w każdym otworzysz film. Po moim wyborze przygotuj storyboard, dodaj czytelne polskie napisy i wyrenderuj podgląd MP4. Obejrzyj obraz, odsłuchaj dźwięk i zapytaj, co poprawić.
+**Brief → wybór stylu → plan scen → podgląd MP4 → twoje uwagi → gotowy film.**
 
-Skill główny to **Creative Director**. Możesz używać go bezpośrednio z otwartego repo albo [zainstalować w profilu agenta](#zainstaluj-przenośny-skill). Do produkcji filmu nadal potrzebujesz roboczej kopii repo. [Zasady pracy z podglądem i feedbackiem](skills/creative-director/references/feedback-loop.md).
+[![Animowane demo procesu montażu](docs/images/editorial-loop.gif)](docs/media/editorial-loop.mp4)
+
+[Obejrzyj demo · 8 s · bez dźwięku](docs/media/editorial-loop.mp4) · [Jak odtworzyć demo](examples/editorial-loop/README.md) · [Strona projektu](https://social-motion-agent-aiep.pages.dev/)
 
 ## Co możesz zrobić
 
@@ -62,50 +64,6 @@ python -S studio.py styles list
 ```
 
 [Indeks skilli i rozszerzeń](skills/INDEX.md) · [Przegląd biblioteki](docs/LIBRARY.md)
-
-<details>
-<summary><strong>Katalog możliwości i ścieżek produkcji</strong></summary>
-
-## Nowe style motion
-
-**Kinetic Walk & Talk** dodaje rolki z chodzącym prezenterem, małymi podpisami i dużymi
-animowanymi hasłami, także za sylwetką. Trasa `kinetic-walk-talk` obejmuje plan nagrania,
-prompty do czystych ujęć AI, kompozycję warstw i plan dźwięku. Lokalne `walk-talk prepare`
-i `walk-talk compose` tworzą edytowalne źródła HyperFrames z dostarczonych mediów;
-generowanie ujęć i segmentacja korzystają z osobno dostępnych narzędzi.
-[Skill](skills/kinetic-walk-talk/SKILL.md) · [Instrukcja i przykład JSON](docs/KINETIC_WALK_TALK.md).
-
-**Motion, nie slajdy** — 13 deterministycznych stylów Canvas z `seek(t)` w laboratorium [examples/motion-styles](examples/motion-styles/README.md): Riso Print, Décollage, Optical Moiré oraz 10 nowych kierunków: **Grainy Gradient**, **Poster Color-Block**, **Flat Pop z wycinkami zdjęć**, **Visual Journalism**, **Vintage Sketch**, **Cartoon Collage**, **White Catalog**, **Brutalist Mono**, **Luxury Dark** i **Continuous Action**. Do tego:
-
-- `python -S studio.py directions brief --for "aplikacja AI dla studentów"` — szkielet style briefu, 3 kandydackie koncepty z menu 19 konceptów openerów i 3 kierunki stylu z 10;
-- `python -S studio.py directions compare "FP1" "FP2"` — czy nowy film różni się strukturą od poprzedniego (odcisk: koncept · sceny · obiekty · otwarcie · zakończenie);
-- `python -S studio.py motion lint scena.html` — mechaniczny test „to film, nie prezentacja” i kontraktu renderu (losowość, zegar, `window.seek`, sekcje przełączane opacity, kicker+tytuł+body, autoplay wideo, przejścia CSS);
-- moduł [Motion, not slides](skills/creative-director/references/motion-not-slides.md) oraz helpery kamery ujęć, żywego ziarna i asymetrycznego rytmu w `templates/motion-helpers.js`.
-
-Idee zaadaptowane z [bangtutorial/bang-motion](https://github.com/bangtutorial/bang-motion) (MIT), tekst i kod napisane od nowa. Presety to przykłady, nie gotowe kompozycje HyperFrames.
-
-## Director Suite: 3 nowe ścieżki produkcji
-
-Z [Explainroo](https://github.com/vincentsch/explainroo), [Argo](https://github.com/shreyaskarnik/argo) i [Huashu Motion](https://github.com/alchaincyf/huashu-motion) zaadaptowaliśmy praktyczne wzorce, bez kopiowania obcych silników do repo:
-
-- **Explainer:** szkic Explainroo, lokalne napisy SRT i zdarzenia zsynchronizowane z **rzeczywistymi** czasami słów z alignera. Polski lektor wymaga nagrania lub zewnętrznego TTS.
-- **Product demo:** szkic Playwright + Argo (manifest scen, markery narracji, overlay), do uzupełnienia prawdziwymi akcjami i uruchomienia w środowisku testowym.
-- **Motion launch:** beat sheet, kontrola rytmu scen i komentarze do konkretnej sekundy oraz współrzędnych kadru. Handoff do Huashu Motion nie udaje gotowego projektu `om`.
-
-```bash
-# Po utworzeniu joba i zapisaniu jego storyboard.json
-python -S studio.py director plan output/jobs/ID --profile launch
-python -S studio.py director qa output/jobs/ID --profile launch
-python -S studio.py director handoff output/jobs/ID --profile demo
-python -S studio.py director captions output/jobs/ID --alignment source/alignment.json
-python -S studio.py director feedback output/jobs/ID --at 4.2 --x 0.6 --y 0.3 --comment "Powiększ CTA"
-```
-
-Komendy przygotowują edytowalne źródła i kontrolę planu, **nie instalują generatorów wideo, nie renderują i nie zatwierdzają automatycznie jakości**. Dla eksportów używaj `--overwrite` tylko gdy chcesz zastąpić pliki z własnymi poprawkami.
-
-[Pełna instrukcja i ograniczenia](docs/DIRECTOR_SUITE.md) · [Skill](skills/director-suite/SKILL.md).
-
-</details>
 
 ## Ścieżki produkcji
 
@@ -206,6 +164,50 @@ Kinetic Film jest opcjonalnym silnikiem pobieranym osobno od autora. `kinetic se
 
 [Kinetic Film 30 s ze źródłami](examples/kinetic-launch/README.md) · [Showcase 36 s](examples/showcase/README.md) · [HyperFrames](docs/HYPERFRAMES.md)
 
+<details>
+<summary><strong>Katalog możliwości i ścieżek produkcji</strong></summary>
+
+## Nowe style motion
+
+**Kinetic Walk & Talk** dodaje rolki z chodzącym prezenterem, małymi podpisami i dużymi
+animowanymi hasłami, także za sylwetką. Trasa `kinetic-walk-talk` obejmuje plan nagrania,
+prompty do czystych ujęć AI, kompozycję warstw i plan dźwięku. Lokalne `walk-talk prepare`
+i `walk-talk compose` tworzą edytowalne źródła HyperFrames z dostarczonych mediów;
+generowanie ujęć i segmentacja korzystają z osobno dostępnych narzędzi.
+[Skill](skills/kinetic-walk-talk/SKILL.md) · [Instrukcja i przykład JSON](docs/KINETIC_WALK_TALK.md).
+
+**Motion, nie slajdy** — 13 deterministycznych stylów Canvas z `seek(t)` w laboratorium [examples/motion-styles](examples/motion-styles/README.md): Riso Print, Décollage, Optical Moiré oraz 10 nowych kierunków: **Grainy Gradient**, **Poster Color-Block**, **Flat Pop z wycinkami zdjęć**, **Visual Journalism**, **Vintage Sketch**, **Cartoon Collage**, **White Catalog**, **Brutalist Mono**, **Luxury Dark** i **Continuous Action**. Do tego:
+
+- `python -S studio.py directions brief --for "aplikacja AI dla studentów"` — szkielet style briefu, 3 kandydackie koncepty z menu 19 konceptów openerów i 3 kierunki stylu z 10;
+- `python -S studio.py directions compare "FP1" "FP2"` — czy nowy film różni się strukturą od poprzedniego (odcisk: koncept · sceny · obiekty · otwarcie · zakończenie);
+- `python -S studio.py motion lint scena.html` — mechaniczny test „to film, nie prezentacja” i kontraktu renderu (losowość, zegar, `window.seek`, sekcje przełączane opacity, kicker+tytuł+body, autoplay wideo, przejścia CSS);
+- moduł [Motion, not slides](skills/creative-director/references/motion-not-slides.md) oraz helpery kamery ujęć, żywego ziarna i asymetrycznego rytmu w `templates/motion-helpers.js`.
+
+Idee zaadaptowane z [bangtutorial/bang-motion](https://github.com/bangtutorial/bang-motion) (MIT), tekst i kod napisane od nowa. Presety to przykłady, nie gotowe kompozycje HyperFrames.
+
+## Director Suite: 3 nowe ścieżki produkcji
+
+Z [Explainroo](https://github.com/vincentsch/explainroo), [Argo](https://github.com/shreyaskarnik/argo) i [Huashu Motion](https://github.com/alchaincyf/huashu-motion) zaadaptowaliśmy praktyczne wzorce, bez kopiowania obcych silników do repo:
+
+- **Explainer:** szkic Explainroo, lokalne napisy SRT i zdarzenia zsynchronizowane z **rzeczywistymi** czasami słów z alignera. Polski lektor wymaga nagrania lub zewnętrznego TTS.
+- **Product demo:** szkic Playwright + Argo (manifest scen, markery narracji, overlay), do uzupełnienia prawdziwymi akcjami i uruchomienia w środowisku testowym.
+- **Motion launch:** beat sheet, kontrola rytmu scen i komentarze do konkretnej sekundy oraz współrzędnych kadru. Handoff do Huashu Motion nie udaje gotowego projektu `om`.
+
+```bash
+# Po utworzeniu joba i zapisaniu jego storyboard.json
+python -S studio.py director plan output/jobs/ID --profile launch
+python -S studio.py director qa output/jobs/ID --profile launch
+python -S studio.py director handoff output/jobs/ID --profile demo
+python -S studio.py director captions output/jobs/ID --alignment source/alignment.json
+python -S studio.py director feedback output/jobs/ID --at 4.2 --x 0.6 --y 0.3 --comment "Powiększ CTA"
+```
+
+Komendy przygotowują edytowalne źródła i kontrolę planu, **nie instalują generatorów wideo, nie renderują i nie zatwierdzają automatycznie jakości**. Dla eksportów używaj `--overwrite` tylko gdy chcesz zastąpić pliki z własnymi poprawkami.
+
+[Pełna instrukcja i ograniczenia](docs/DIRECTOR_SUITE.md) · [Skill](skills/director-suite/SKILL.md).
+
+</details>
+
 ## Jakość jako część procesu
 
 Każdy film ma osobny katalog `output/jobs/<id>/`. Render jest powiązany z SHA pliku i stanem źródeł z chwili renderowania. Nowa kompozycja wymaga nowego renderu; ponowny `probe` nie zatwierdzi starych klatek jako nowego projektu. Kontrola długości obrazu zapobiega maskowaniu brakujących klatek przez audio.
@@ -228,4 +230,8 @@ Sekrety pochodzą z własnego środowiska, produkcje są ignorowane przez Git. R
 
 [Pełny ZIP v1.1.1](https://github.com/aievolutionpl/social-motion-agent/releases/download/v1.1.1/social-motion-agent-v1.1.1-full.zip) to archiwalne wydanie z 34 źródłami. **Nie zawiera Creative Director ani obecnych poprawek** — użyj aktualnego checkoutu. Nowy pełny ZIP wymaga osobnego zbudowania i publikacji.
 
-Projekt niezależny od autorów użytych narzędzi; nie sugeruje ich poparcia. [Współtworzenie](CONTRIBUTING.md).
+## Autor, licencja i współtworzenie
+
+Social Motion Agent stworzyło [AI Evolution Polska](https://www.aievolutionpolska.pl/). Kod udostępniamy na otwartej [licencji MIT](LICENSE). Możesz pobrać projekt, zrobić własny fork, dostosować kod do siebie i udostępniać ulepszenia z zachowaniem informacji o prawach autorskich i treści licencji. Media i zewnętrzne narzędzia mają [osobne warunki](docs/MEDIA_RIGHTS.md).
+
+**Pull requesty są mile widziane.** Masz poprawkę, nowy efekt, preset albo przykład użycia? Zrób fork, wprowadź zmianę na osobnej gałęzi i otwórz pull request. Napisz krótko, co zmieniasz i jak to sprawdziłeś. Przy zmianie wizualnej dołącz podgląd na syntetycznych materiałach. [Zasady współtworzenia](CONTRIBUTING.md).
