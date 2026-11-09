@@ -4,6 +4,9 @@ Uruchom `python -S scripts/bootstrap_library.py`, aby pobrać wszystkie 38 przyp
 
 ## Punkty wejścia agenta
 
+**Director Suite (Explainroo / Argo / Huashu Motion):** `skills/director-suite/SKILL.md` i `docs/DIRECTOR_SUITE.md`. Dla istniejącego joba z prawdziwym storyboardem użyj `studio.py director plan/qa/handoff/captions/feedback`. Handoffs są szkicami integracji, nie zainstalowanym silnikiem ani zaakceptowanym renderem.
+
+
 Rolki z chodzącym prezenterem: **`skills/kinetic-walk-talk/SKILL.md`**, trasa `kinetic-walk-talk`.
 `studio.py walk-talk prepare/compose` przygotowuje plan i kompozycję HyperFrames z małymi podpisami,
 dużymi hasłami, opcjonalną warstwą sylwetki z alfą i gotowym miksem. Nagrania realne, materiał AI
