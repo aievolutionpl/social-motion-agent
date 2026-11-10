@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "source": {
+    "name": "Video ShotCraft",
+    "repository": "https://github.com/Vincentwei1021/video-shotcraft",
+    "license": "Apache-2.0",
+    "usage": "Reference recipes only. No upstream source code or media copied."
+  },
+  "gallery": "examples/shotcraft-motion/index.html",
+  "shots": [
+    {
+      "id": "flying-words",
+      "category": "typography",
+      "description": "Kinetyczny hook z hasłami",
+      "tags": [
+        "hook",
+        "launch",
+        "educational"
+      ],
+      "preview": true,
+      "source": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/shots/typography/flying-words.md",
+      "warning": "Nie zasłaniaj produktu; weryfikuj kontrast i czas czytania."
+    },
+    {
+      "id": "carousel-3d",
+      "category": "ui-entrance",
+      "description": "Karuzela cech i wariantów produktu",
+      "tags": [
+        "product",
+        "ecommerce",
+        "app"
+      ],
+      "preview": true,
+      "source": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/shots/ui-entrance/carousel-3d.md",
+      "warning": "Tekst i ceny muszą pozostać czytelne; ostrożny tilt."
+    },
+    {
+      "id": "card-flock-tumble",
+      "category": "transition",
+      "description": "Karty przelatują i układają się w kolejne ujęcie",
+      "tags": [
+        "transition",
+        "product",
+        "launch"
+      ],
+      "preview": true,
+      "source": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/shots/transition/card-flock-tumble.md",
+      "warning": "Jedna wyrazista zmiana; bez zbędnych błysków."
+    },
+    {
+      "id": "value-stagger-gradient",
+      "category": "ui-entrance",
+      "description": "Kaskadowe wejście prawdziwych wartości",
+      "tags": [
+        "data",
+        "kpi",
+        "social"
+      ],
+      "preview": true,
+      "source": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/shots/ui-entrance/value-stagger-gradient.md",
+      "warning": "Nie generuj fałszywych wyników ani metryk."
+    },
+    {
+      "id": "before-after-slider-scrub",
+      "category": "data",
+      "description": "Odsłonięcie stanu przed/po",
+      "tags": [
+        "comparison",
+        "editing",
+        "web"
+      ],
+      "preview": true,
+      "source": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/shots/data/before-after-slider-scrub.md",
+      "warning": "Ten sam kadr, uczciwe porównanie; oznacz symulacje."
+    },
+    {
+      "id": "deck-deal-flyin",
+      "category": "ui-entrance",
+      "description": "Szybka prezentacja zbioru funkcji",
+      "tags": [
+        "saas",
+        "features",
+        "launch"
+      ],
+      "preview": false,
+      "source": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/shots/ui-entrance/deck-deal-flyin.md",
+      "warning": "Zachowaj jedną dominującą dynamikę."
+    },
+    {
+      "id": "page-waterfall-wall",
+      "category": "ui-entrance",
+      "description": "Przelot przez prawdziwe ekrany aplikacji",
+      "tags": [
+        "web",
+        "app",
+        "showcase"
+      ],
+      "preview": false,
+      "source": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/shots/ui-entrance/page-waterfall-wall.md",
+      "warning": "Wymaga zatwierdzonych screenshotów, anonimizacja danych."
+    },
+    {
+      "id": "draw-svg-trace",
+      "category": "ui-entrance",
+      "description": "Rysowane trajektorie i procesy",
+      "tags": [
+        "explainer",
+        "automation",
+        "education"
+      ],
+      "preview": false,
+      "source": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/shots/ui-entrance/draw-svg-trace.md",
+      "warning": "Grafika ma wyjaśniać proces, nie udawać wyniku."
+    },
+    {
+      "id": "chart-live-moves",
+      "category": "data",
+      "description": "Dynamiczna prezentacja wykresów",
+      "tags": [
+        "data",
+        "report",
+        "education"
+      ],
+      "preview": false,
+      "source": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/shots/data/chart-live-moves.md",
+      "warning": "Skale, jednostki i liczby muszą mieć źródło."
+    },
+    {
+      "id": "type-rhythm-sync",
+      "category": "typography",
+      "description": "Napisy osadzone w rytmie muzyki",
+      "tags": [
+        "music",
+        "launch",
+        "reel"
+      ],
+      "preview": false,
+      "source": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/shots/typography/type-rhythm-sync.md",
+      "warning": "Najpierw pomiar uderzeń, potem cięcia."
+    }
+  ],
+  "sequences": {
+    "product-reel": {
+      "title": "Premium product reel",
+      "format": "9:16",
+      "purpose": "Reels, ads, ecommerce",
+      "scenes": [
+        {
+          "shot": "flying-words",
+          "seconds": 2.5,
+          "goal": "hook"
+        },
+        {
+          "shot": "carousel-3d",
+          "seconds": 3.5,
+          "goal": "features"
+        },
+        {
+          "shot": "before-after-slider-scrub",
+          "seconds": 4,
+          "goal": "demonstration"
+        },
+        {
+          "shot": "value-stagger-gradient",
+          "seconds": 2.5,
+          "goal": "proof only if validated"
+        },
+        {
+          "shot": "brand-lockup",
+          "seconds": 2.5,
+          "goal": "CTA"
+        }
+      ]
+    },
+    "app-launch": {
+      "title": "App launch showcase",
+      "format": "16:9",
+      "purpose": "Product/SaaS demo",
+      "scenes": [
+        {
+          "shot": "flying-words",
+          "seconds": 2.5,
+          "goal": "problem"
+        },
+        {
+          "shot": "page-waterfall-wall",
+          "seconds": 4,
+          "goal": "real interface"
+        },
+        {
+          "shot": "deck-deal-flyin",
+          "seconds": 3,
+          "goal": "feature set"
+        },
+        {
+          "shot": "card-flock-tumble",
+          "seconds": 2.5,
+          "goal": "bridge to outcome"
+        },
+        {
+          "shot": "brand-lockup",
+          "seconds": 3,
+          "goal": "CTA"
+        }
+      ]
+    },
+    "education-explainer": {
+      "title": "Education / automation explainer",
+      "format": "4:5",
+      "purpose": "Social education",
+      "scenes": [
+        {
+          "shot": "flying-words",
+          "seconds": 3,
+          "goal": "problem"
+        },
+        {
+          "shot": "draw-svg-trace",
+          "seconds": 4.5,
+          "goal": "mechanism"
+        },
+        {
+          "shot": "chart-live-moves",
+          "seconds": 4.5,
+          "goal": "verified evidence or labelled schematic"
+        },
+        {
+          "shot": "brand-lockup",
+          "seconds": 3,
+          "goal": "one clear action"
+        }
+      ]
+    },
+    "kinetic-teaser": {
+      "title": "Kinetic teaser",
+      "format": "9:16",
+      "purpose": "Events / announcements",
+      "scenes": [
+        {
+          "shot": "flying-words",
+          "seconds": 3,
+          "goal": "hook"
+        },
+        {
+          "shot": "type-rhythm-sync",
+          "seconds": 4,
+          "goal": "message on measured beat"
+        },
+        {
+          "shot": "card-flock-tumble",
+          "seconds": 4,
+          "goal": "reveal"
+        },
+        {
+          "shot": "brand-lockup",
+          "seconds": 4,
+          "goal": "CTA hold"
+        }
+      ]
+    }
+  }
+}
