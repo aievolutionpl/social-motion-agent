@@ -1,5 +1,25 @@
 # ShotCraft Motion Pack | Social Motion Agent
 
+## Implementation status (this repository)
+
+- **10 curated reference shots** in `config/shotcraft-recipes.json`, each linked to the upstream source.
+- **5 interactive Canvas previews** in `examples/shotcraft-motion/index.html`, seekable and deterministic; not production video renderers.
+- **4 frame-accurate storyboard sequences** in `studio.py shotcraft plan`, with explicit missing-assets and evidence warnings.
+- **One actual 15-second GSAP/HyperFrames composition source** at `examples/shotcraft-motion/film/index.html`. Uses synthetic typography/cards and no licensed external media, so it can be edited into a new production after brand and material replacement. A CI lint gate checks renderer syntax when the runtime is installed; a final MP4 and review still require an explicit render and QA.
+
+Quick try:
+
+```bash
+python -S studio.py shotcraft list
+python -S studio.py shotcraft plan app-launch --duration 15 --fps 30 --brand "Brand" --cta "Visit"
+python -m http.server 8000  # Open /examples/shotcraft-motion/
+npm ci
+node scripts/prepare-example.mjs
+node node_modules/hyperframes/bin/hyperframes.mjs lint examples/shotcraft-motion/film
+```
+
+
+
 A curated, **reference-based** extension for premium product demos and social video. Inspired by [Video ShotCraft](https://github.com/Vincentwei1021/video-shotcraft) by Vincentwei1021. This document is original integration guidance, **not copied source code**. Source assets and implementations remain upstream under their respective licenses (Video ShotCraft: Apache-2.0); do not relicense upstream assets as this repository's own work.
 
 ## Production contract
