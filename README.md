@@ -1,8 +1,14 @@
 # Social Motion Agent
 
-![Social Motion Agent — neonowy laptop z osią montażu](docs/images/social-motion-agent-neon.jpg)
+![Social Motion Agent — materiały, wybór stylu, montaż i feedback](docs/images/motion-agent-workflow.png)
 
-Daj agentowi nagrania i opisz, jaki film chcesz zrobić. Agent zaproponuje styl, przygotuje montaż i pokaże ci podgląd MP4. Ty wybierasz kierunek i decydujesz, co poprawić.
+*Ilustracja koncepcyjna wygenerowana AI. Pokazuje proces współpracy, nie zrzut działającej aplikacji.*
+
+**Twój partner do montażu i motion designu — od pomysłu do filmu, który możesz obejrzeć, ocenić i dopracować.**
+
+Daj agentowi nagrania, zdjęcia lub temat. Social Motion Agent pomaga wybrać opowieść, styl, rytm i dźwięk, a potem prowadzi montaż oraz tworzenie animowanych scen. Przed produkcją pokazuje konkretne kierunki i tłumaczy, co każdy z nich da twojemu filmowi.
+
+Ty decydujesz, co zachować i co zmienić. Agent przygotowuje źródła, renderuje podgląd, sprawdza wynik i wprowadza uzgodnione poprawki.
 
 [Szybki start](#szybki-start-z-agentem) · [Możliwości](#co-możesz-zrobić) · [Skille i efekty](#ile-jest-skilli-i-efektów) · [Współtworzenie](#autor-licencja-i-współtworzenie) · [English](docs/README.en.md)
 
@@ -31,6 +37,47 @@ python -S scripts/quickstart.py --browser --smoke
 [![Animowane demo procesu montażu](docs/images/editorial-loop.gif)](docs/media/editorial-loop.mp4)
 
 [Obejrzyj demo · 8 s · bez dźwięku](docs/media/editorial-loop.mp4) · [Jak odtworzyć demo](examples/editorial-loop/README.md) · [Strona projektu](https://social-motion-agent-aiep.pages.dev/)
+
+## Jak pracuje z tobą agent
+
+1. **Poznaje materiał i cel.** Sprawdza dostępne ujęcia, format i kontekst. Pyta tylko o brakujące informacje; przy kolejnej poprawce pamięta ustalony kierunek.
+2. **Pokazuje różne pomysły.** Na przykład montaż oparty na prawdziwych ujęciach, editorial collage albo teaser z kinetyczną typografią. Opisuje otwarcie, ruch, dźwięk, potrzebne assety i kompromisy. Rekomenduje jedną opcję, ale możesz wybrać inną lub oddać mu wybór.
+3. **Sprawdza kierunek na jednej scenie.** Reprezentatywny fragment pozwala ocenić design, czytelność, przejście i próbkę dźwięku przed rozbudową całości.
+4. **Buduje film.** Najpierw historia i rough cut, potem typografia, motion, przejścia, napisy oraz miks dostępnych nagrań, muzyki i efektów. Styl wynika z tematu i marki.
+5. **Pokazuje podgląd i proponuje poprawki.** Możesz napisać „zostaw kolory, skróć otwarcie, w 00:04 pokaż produkt”. Agent wiąże uwagi z konkretną wersją, zachowuje poprzedni eksport i sprawdza nowy render.
+
+W demo produktu ruch pokazuje **akcję i jej rezultat**. W explainerze obraz pomaga zrozumieć mechanizm. W rolce z nagrań montaż daje pierwszeństwo dobrym ujęciom i zrozumiałej mowie. Efekty mają wzmacniać historię.
+
+**Przykładowe zlecenie**
+
+> Z tych nagrań przygotuj 20-sekundową rolkę 9:16. Zaproponuj trzy różne kierunki, opisz pierwsze ujęcie, tempo, typografię i dźwięk. Zarekomenduj jeden. Po moim wyborze pokaż krótką scenę próbną, potem rough cut. Zachowuj wersje i po każdym podglądzie proponuj konkretne poprawki.
+
+Agent może przygotować pakiet rozmowy również przez CLI:
+
+```bash
+python -S studio.py directions session --for "rolka o nowej kolekcji" --mode footage
+python -S studio.py directions session --for "demo aplikacji" --mode product
+python -S studio.py directions session --for "jak działa magazyn energii" --mode explainer
+```
+
+Komenda zwraca propozycje i strukturę pracy; agent dopasowuje je po obejrzeniu materiałów. Nie analizuje automatycznie nagrań ani nie zatwierdza decyzji za ciebie. [Workflow montażysty](skills/creative-director/references/editor-session.md) · [Analiza inspiracji i zakres rozbudowy](docs/EDITOR_UPGRADE_RESEARCH.md).
+
+**Dźwięk i materiały:** agent planuje warstwy głosu, muzyki, atmosfery i SFX, korzysta z dostępnych plików oraz sprawdza końcowy miks, jeśli ma narzędzia do odsłuchu. Brakujący asset, lektor lub licencja pozostają jawnie oznaczone. Generowanie przez zewnętrzne usługi wymaga dostępnego narzędzia i odpowiedniej autoryzacji. Nie każda sesja ma dostęp do tych samych providerów.
+
+## Narzędzia lokalnego montażysty
+
+Nowe `studio.py editor` łączy sześć etapów pracy:
+
+| Funkcja | Co otrzymujesz |
+|---|---|
+| `inventory` | Metadane, miniatury, wykryte granice scen i fragmenty ciszy |
+| `directions` | Trzy porównywalne styleframe’y SVG w proporcjach filmu |
+| `preferences` | Preferencje tego projektu z historią i źródłem decyzji |
+| `plan` | Edytowalny timeline, kontrolę zakresów klipów i kopię poprzedniej wersji |
+| `review` | Dwie wersje filmu, komentarze z czasem i miejscem w kadrze, eksport JSON |
+| `qa` | Kontrolę dekodowania, formatu, czasu, obecności audio oraz podejrzanych czarnych i zamrożonych fragmentów |
+
+[Instrukcja i przykłady](docs/EDITOR_WORKSPACE.md). Miniatury i styleframe’y pomagają podjąć decyzję; agent nadal ogląda materiał, dopasowuje projekt i zbiera feedback. Komentarze z podglądu importuje przez `feedback-import`. Automatyczny raport nie zastępuje oceny designu ani odsłuchu.
 
 ## Co możesz zrobić
 
@@ -75,7 +122,7 @@ python -S studio.py styles list
 | **Strona**: landing page, produkt, poprawa istniejącego projektu | Oferta → układ → typografia i obrazy → implementacja → przegląd w przeglądarce | Działający projekt w jego obecnym stacku |
 | **UI motion**: pokaz produktu, animowana makieta, sekcja strony | Zgodność statyczna → akcja i rezultat → ruch → kontrola formatu | Animacja na stronie albo film zgodnie z briefem |
 
-`creative-director` ma **12 modułów referencyjnych**: brief i kierunek, reżyserię wideo, **motion, nie slajdy**, style explainerów, web design, animację UI, receptury wizualne, **anti-slop**, **humanizer PL/EN**, dobór narzędzi, recenzję oraz źródła. Agent czyta tylko potrzebne moduły.
+`creative-director` ma **14 modułów referencyjnych**: brief i kierunek, reżyserię wideo, **motion, nie slajdy**, style explainerów, web design, animację UI, receptury wizualne, **anti-slop**, **humanizer PL/EN**, dobór narzędzi, recenzję oraz źródła. Agent czyta tylko potrzebne moduły.
 
 - **Kierunek przed kodem:** dwie lub trzy propozycje pokazują konkretny obraz, typografię, rytm i miejsce użycia; w razie potrzeby styleboard lub reprezentatywną scenę.
 - **Pytania bez powtarzania:** znane odpowiedzi trafiają do briefu; pytania dotyczą brakujących decyzji. Drobna poprawka nie zaczyna produkcji od nowa.
@@ -98,6 +145,40 @@ Do explainerów dostępne są też dwa niezależne kierunki: **`isometric-line-a
 | Dotychczasowa biblioteka motion | Kinetic type, audio, mapy, wykresy, 3D, tutoriale i montaż |
 
 Wersje i licencje: [sources.lock.json](sources.lock.json). Oryginalne licencje zostają zachowane. Brief, istniejąca marka i dostępność mają pierwszeństwo przed stylistycznymi domyślnościami upstream — bez obowiązkowych zakazów kolorów i liczby animacji.
+
+## Jakie style animacji są wbudowane?
+
+**13 działających presetów Canvas** możesz obejrzeć i przewijać w lokalnym laboratorium. To demonstracje ruchu i punkty wyjścia do scen; agent dopasowuje je do filmu i kontraktu renderowania HyperFrames.
+
+| Rodzina | Wbudowane presety | Zastosowanie |
+|---|---|---|
+| Druk i materia | Riso Print, Décollage Time-Layers, Vintage Sketch Engraving | Papier, warstwy, ilustracje i charakter druku |
+| Rytm i kolor | Optical Moiré, Grainy Gradient, Poster Color-Block | Opener, abstrakcyjny ruch, mocne akcenty |
+| Fotografia i collage | Flat Pop, Cartoon Collage | Wycinanki, produkt, lekki storytelling |
+| Wyjaśnianie | Visual Journalism, White Catalog, Continuous Action | Czytelne mechanizmy, porównania, sekwencje przyczynowe |
+| Kontrast i światło | Brutalist Mono, Luxury Dark | Typografia, zdecydowane cięcia, subtelne światło |
+
+**14 receptur art direction** w atlasie: kinetic typography, product UI, explainer, cinematic 3D, hand-drawn, collage, pixel, cartoon, low-poly, generative, retro, photoreal, isometric line-art i flat vector. Receptura opisuje kierunek; nie oznacza zainstalowanego silnika 3D ani dostępnego generatora wideo.
+
+Dodatkowo menu koncepcji zawiera **19 otwarć/promosów i 6 trybów explainerów**. Dobór wynika z celu filmu i twojego feedbacku — nie trzeba mieszać wszystkich efektów w jednej produkcji.
+
+```bash
+python -S studio.py motion presets
+python -S studio.py styles list
+python -S studio.py directions list
+```
+
+Lokalny eksport HTML/GSAP prowadzi **HyperFrames**. Agent buduje deterministyczne sceny, sprawdza rzeczywiste klatki i eksport MP4. Przykłady Canvas oraz receptury wymagają dopasowania przed użyciem w produkcji.
+
+## Instrukcja dla agenta, który otwiera repo
+
+Zacznij od [START_HERE.md](START_HERE.md) i [AGENTS.md](AGENTS.md), następnie przeczytaj [Creative Director](skills/creative-director/SKILL.md). Praktyczna mapa poleceń i granic możliwości: [AGENT_WORKFLOW.md](docs/AGENT_WORKFLOW.md).
+
+1. Sprawdź aktualne pliki, stan joba, materiały i istniejące ustalenia.
+2. Przy nowym filmie pokaż różne kierunki; przy poprawce zachowaj wybrany styl. Uwzględnij jawne „wybierz za mnie”.
+3. Sprawdź lokalne narzędzia, przygotuj tylko potrzebne zależności i pracuj w `output/jobs/<id>/`.
+4. Zbuduj scenę próbną, następnie rough cut i pełną kompozycję z dostępnym dźwiękiem.
+5. Renderuj, oglądaj, sprawdzaj i zbieraj feedback przypisany do konkretnej wersji. Nie utożsamiaj udanego eksportu z akceptacją użytkownika.
 
 ## Przygotuj potrzebne skille
 

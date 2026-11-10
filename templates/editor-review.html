@@ -1,0 +1,14 @@
+<!doctype html><html lang="pl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Review filmu</title>
+<style>body{max-width:1000px;margin:30px auto;padding:20px;background:#14191e;color:#f5f0e9;font:17px system-ui}video{width:100%;max-height:65vh;background:black}button,textarea{font:inherit;padding:12px;margin:8px 0}textarea{width:95%}li{margin:12px 0}button{cursor:pointer}#status{color:#d7ff85}</style>
+<h1>Obejrzyj. Zaznacz. Dopracuj.</h1><p>Kliknij w kadr, aby zatrzymać film i zaznaczyć miejsce uwagi. Komentarze dotyczą aktualnej wersji. Eksportuj je przed zmianą urządzenia.</p><!--VIDEOS-->
+<p id="point">Punkt: środek kadru</p><label for="comment">Co zachować lub poprawić?</label><textarea id="comment" maxlength="2000"></textarea><button id="add">Dodaj uwagę</button> <button id="export">Eksportuj komentarze JSON</button><p role="status" id="status"></p><ol id="comments"></ol>
+<script>
+const payload=/*PAYLOAD*/;
+const video=document.querySelector('#video'), text=document.querySelector('#comment'), list=document.querySelector('#comments'), status=document.querySelector('#status');
+const key='social-motion-review:'+payload.sha256; let comments=[],x=.5,y=.5;
+try{comments=JSON.parse(localStorage.getItem(key)||'[]');if(!Array.isArray(comments))comments=[]}catch(e){status.textContent='Pamięć przeglądarki niedostępna; eksportuj komentarze.'}
+function show(){list.replaceChildren();for(const c of comments){const li=document.createElement('li');li.textContent=`${c.at.toFixed(2)} s — ${c.text}`;list.append(li)}}show();
+video.addEventListener('click',e=>{video.pause();const r=video.getBoundingClientRect(),ratio=video.videoWidth/video.videoHeight;if(!Number.isFinite(ratio))return;const w=Math.min(r.width,r.height*ratio),h=w/ratio,left=r.left+(r.width-w)/2,top=r.top+(r.height-h)/2;x=Math.max(0,Math.min(1,(e.clientX-left)/w));y=Math.max(0,Math.min(1,(e.clientY-top)/h));document.querySelector('#point').textContent=`${video.currentTime.toFixed(2)} s · ${(100*x).toFixed(0)}%, ${(100*y).toFixed(0)}%`;});
+document.querySelector('#add').onclick=()=>{if(!text.value.trim())return;comments.push({at:video.currentTime,x,y,text:text.value.trim()});try{localStorage.setItem(key,JSON.stringify(comments));status.textContent='Zapisano w tej przeglądarce.'}catch(e){status.textContent='Eksportuj JSON, aby zachować uwagi.'}text.value='';show()};
+document.querySelector('#export').onclick=()=>{const a=document.createElement('a'),url=URL.createObjectURL(new Blob([JSON.stringify({...payload,comments},null,2)],{type:'application/json'}));a.href=url;a.download='feedback-'+payload.sha256.slice(0,12)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+</script></html>
