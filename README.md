@@ -166,7 +166,7 @@ python3 -m http.server 8000
 # Otwórz: http://localhost:8000/examples/shotcraft-motion/
 ```
 
-**[Galeria i instrukcja](examples/shotcraft-motion/README.md)** · **[Receptury, zastosowania i scenariusze](docs/SHOTCRAFT_MOTION_PACK.md)** · **[Kod przeglądarkowego demo](examples/shotcraft-motion/index.html)**
+**[Galeria i instrukcja](examples/shotcraft-motion/README.md)** (w tym osobny przykład 15-sekundowej kompozycji GSAP/HyperFrames) · **[Receptury, zastosowania i scenariusze](docs/SHOTCRAFT_MOTION_PACK.md)** · **[Kod przeglądarkowego demo](examples/shotcraft-motion/index.html)**
 
 ## Jakie style animacji są wbudowane?
 
