@@ -32,6 +32,20 @@ python -S studio.py shotcraft plan product-reel --duration 15 --fps 30 --brand "
 
 See [ShotCraft Motion Pack](../../docs/SHOTCRAFT_MOTION_PACK.md) for shot source links, mappings and constraints. The Python storyboard is a safe planning artifact: it does **not** automatically generate a usable HyperFrames scene or import videos. Use the existing Creative Director, production route and final QA for delivery.
 
+## Editable 15-second film template
+
+`film/index.html` is a **separate real GSAP/HyperFrames composition**, with four timeline scenes: flying words, 3D cards, staggered process bars, and a final brand hold. It uses placeholders and no real customer performance data. Prepare its local GSAP dependency:
+
+```bash
+npm ci
+node scripts/prepare-example.mjs
+node node_modules/hyperframes/bin/hyperframes.mjs lint examples/shotcraft-motion/film
+# Actual full video (verify generated output and rights before distribution):
+node node_modules/hyperframes/bin/hyperframes.mjs render examples/shotcraft-motion/film --output /tmp/shotcraft-demo.mp4 --fps 30 --quality draft --workers 1 --no-browser-gpu
+```
+
+This example is an editable implementation pattern, **not** a finished approved customer campaign. Linting alone is not proof of a successful full render, audiovisual review or publication readiness.
+
 ## Testing
 
 ```bash
