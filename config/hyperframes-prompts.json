@@ -1,0 +1,484 @@
+{
+  "schema_version": 1,
+  "source": {
+    "file_name": "30_promptow_Remotion.md",
+    "sha256": "8fc06591bd2966f3b8862e275c33d4a5b3ac09240241c901bfa8a4511ba9d676",
+    "provided_by": "user",
+    "note": "Etykiety Inspiracja/Autorski pochodzą z pliku użytkownika. Nie potwierdzają odczytu ani autorstwa artykułu Ultra Skills. Plik nie zawiera obrazów."
+  },
+  "contract": "Zbuduj tę scenę dla HyperFrames jako source/index.html istniejącego joba. Użyj HTML/CSS/SVG/Canvas i lokalnego GSAP; przy wymaganym prawdziwym 3D użyj lokalnego Three.js, po sprawdzeniu dostępności zależności. Nie dodawaj React ani Remotion. Zachowaj format, fps i długość zatwierdzonego joba; jeśli nie ustalono inaczej, zaproponuj 1080×1920, 30 fps i czas z briefu. Teksty, dane, paletę i ścieżki lokalnych assetów umieść w jednym obiekcie CONFIG. Brak materiału oznacz jako placeholder; nie wymyślaj danych ani praw do assetów.\nUtwórz gsap.timeline({paused:true}) i zarejestruj go jako window.__timelines.main. Zdefiniuj window.seek(t), które ogranicza czas do długości sceny i odtwarza cały stan niezależnie od historii wywołań. Przy Canvas/Three.js samodzielnie oblicz pełny stan z t; do osi GSAP dodaj onUpdate wywołujący tę samą funkcję renderAt(tl.time()), aby capture HyperFrames i ręczne seek dawały ten sam obraz. Zarejestruj data-composition-id=\"main\", data-start=\"0\", data-duration, data-width, data-height i data-fps zgodne z jobem. Zablokuj start do załadowania lokalnych fontów, tekstur i modeli.\nPrzedziały klatek w briefie są inkluzywne przy 30 fps; start=f/30, koniec=(f+1)/30. Przy innym fps zachowaj czas w sekundach. Ostatnie 10 klatek przy 30 fps pozostaw nieruchome; jeśli tekst nie mieści się w czasie czytania, zaproponuj dłuższą scenę zamiast przyspieszać go bez pytania. Wszystkie przejścia licz z czasu; bez autoplay, CSS transitions, setTimeout, requestAnimationFrame jako zegara eksportu, Date.now ani losowania w pętli renderu. Losowy układ wylicz raz ze stałym seedem.\nPracuj na zatwierdzonym kierunku albo pokaż użytkownikowi warianty i zaczekaj na wybór; jawna delegacja wystarcza. Nie dodawaj muzyki ani SFX bez źródła. Renderuj przez python -S studio.py render-html JOB --name NOWA_WERSJA; zachowaj istniejące intake, storyboard, assety i bramki jakości. Sprawdź klatki 0, środek, ostatnią oraz fazy przejść; sprawdź seek w kolejności 0 → środek → koniec → 0. Obejrzyj rzeczywisty MP4, dopiero potem opisz wynik. Nie deklaruj zgodności na podstawie samego HTML.",
+  "items": [
+    {
+      "id": "hf-01",
+      "title": "Makieta miasta",
+      "category": "3d",
+      "duration_sec": 3,
+      "fps": 30,
+      "frames": 90,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "CEL",
+        "START"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Makieta miasta”. Czas bazowy: 3 s (90 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Na kremowej makiecie z matowymi budynkami narysuj kobaltową trasę od [START] do [CEL]. Klatki 0–19 najazd kamery, 20–65 rysowanie trasy po krzywej, 66–79 pinezka i etykieta. Prowadź linię tuż nad ulicą.\n\nAdaptacja i kontrola: Krzywą trasy oblicz raz; reveal przez drawRange lub shader uniform. Sprawdź kolizję z ulicą i czy podpis celu pozostaje w kadrze.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-02",
+      "title": "Globus połączeń",
+      "category": "3d",
+      "duration_sec": 3,
+      "fps": 30,
+      "frames": 90,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "MIASTA",
+        "ZASIĘG"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Globus połączeń”. Czas bazowy: 3 s (90 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Zbuduj grafitowy globus z konturami lądów i punktami [MIASTA]. Klatki 0–19 obrót globu, 20–65 rysowanie łuków od miasta bazowego, 66–79 podpis [ZASIĘG]. Chowaj etykiety punktów za kulą.\n\nAdaptacja i kontrola: Pozycje miast wyznacz z rzeczywistych współrzędnych. Ukrywaj podpis, gdy normalna punktu jest odwrócona od kamery; nie rysuj połączeń przez wnętrze kuli.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-03",
+      "title": "Hologram produktu",
+      "category": "3d",
+      "duration_sec": 3,
+      "fps": 30,
+      "frames": 90,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "MODEL"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Hologram produktu”. Czas bazowy: 3 s (90 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Pokaż [MODEL] nad czarną podstawą z błękitnym światłem. Klatki 0–19 uruchom podstawę, 20–58 skanuj bryłę od dołu do góry, 59–79 wyświetl trzy opisane punkty. W razie braku modelu użyj bryły zastępczej.\n\nAdaptacja i kontrola: Skanowanie steruj uniformem wysokości. Utrzymaj opis na osobnej warstwie czytelnego DOM; placeholder musi być podpisany jako model zastępczy.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-04",
+      "title": "Obrót produktu",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "MODEL",
+        "NAZWA"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Obrót produktu”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Umieść [MODEL] na neutralnej podstawce. Klatki 0–10 oświetl bryłę, 11–42 obróć produkt o 120°, 43–49 pokaż [NAZWA]. Zatrzymaj produkt na ujęciu trzy czwarte.\n\nAdaptacja i kontrola: Kąt obrotu wylicz bez akumulacji znormalizowanym postępem; orbit controls wyłącz na czas capture. W ostatnich klatkach zatrzymaj też światło.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-05",
+      "title": "Papierowy paragon",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "POZYCJE",
+        "SUMA"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Papierowy paragon”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Wysuń z drukarki kremową taśmę z [POZYCJE] i [SUMA]. Klatki 0–12 zapal kontrolkę, 13–36 wysuń papier i odsłaniaj tekst wraz z nim, 37–49 wygnij koniec i podświetl sumę. Użyj tekstury na deformowanej siatce.\n\nAdaptacja i kontrola: Deformuj siatkę zawsze względem zachowanych pozycji bazowych, nigdy względem poprzedniej klatki. Teksturę paragonu generuj z CONFIG raz po załadowaniu fontu.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-06",
+      "title": "Góra lodowa",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "UKRYTE",
+        "WIDOCZNE"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Góra lodowa”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Zbuduj lodową bryłę z dwiema strefami i półprzezroczystą taflą. Klatki 0–13 pokaż wierzchołek [WIDOCZNE], 14–37 zjedź kamerą pod wodę, 38–49 odsłoń [UKRYTE]. Nadaj obu strefom odrębne odcienie.\n\nAdaptacja i kontrola: Kamera, poziom wody i odsłonięcie obu podpisów muszą wynikać z tej samej osi czasu. Sprawdź sortowanie przezroczystości; czytelność ważniejsza od fizycznej refrakcji.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-07",
+      "title": "Rozłożony produkt",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Autorski",
+      "inputs": [
+        "PRODUKT"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Rozłożony produkt”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Podziel [PRODUKT] na warstwy. Klatki 0–10 pokaż złożoną bryłę, 11–36 rozsuń części wzdłuż jednej osi, 37–49 połącz trzy części z etykietami. Utrzymaj wspólną oś i stały kąt kamery.\n\nAdaptacja i kontrola: Dla części modelu zapisz pozycje bazowe i odległości rozsunięcia. Etykiety prowadź do rzutowanych środków części; nie sugeruj prawdziwej konstrukcji bez danych.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-08",
+      "title": "Warstwowy teren",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Autorski",
+      "inputs": [
+        "OBSZAR",
+        "PUNKT"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Warstwowy teren”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Zbuduj cztery warstwy terenu o wspólnym konturze [OBSZAR]. Klatki 0–12 unieś podstawę, 13–35 dosuń poziomice, 36–49 wysuń znacznik [PUNKT]. Użyj ortograficznego widoku pod kątem.\n\nAdaptacja i kontrola: Poziomice muszą zachować wspólny kontur; jeżeli obszar jest fikcyjny, nazwij go schematem. Użyj kamery ortograficznej i stabilnego rzutu.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-09",
+      "title": "Robot składa się z modułów",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Autorski",
+      "inputs": [
+        "KOLOR",
+        "NAZWA"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Robot składa się z modułów”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Użyj prostych brył dla korpusu, kół i ramienia. Klatki 0–11 wprowadź podstawę, 12–30 dołącz korpus i ramię, 31–49 rozświetl oko i wykonaj krótki ukłon. Udostępnij [KOLOR] i [NAZWA].\n\nAdaptacja i kontrola: Każdy moduł ma bazowy transform i własny przedział wejścia. Ukłon wylicz analitycznie; finał bez niekończącego się pulsowania.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-10",
+      "title": "Portal z ramą",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Autorski",
+      "inputs": [
+        "OBRAZ"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Portal z ramą”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Ustaw grafitową ramę, w której pojawi się [OBRAZ]. Klatki 0–12 narysuj obwód, 13–35 przesuń kamerę ku otworowi, 36–49 rozszerz obraz na cały kadr. Zsynchronizuj krawędzie maski z ramą.\n\nAdaptacja i kontrola: Obraz portalu i maskę podłącz do wspólnego postępu; kontroluj piksele krawędzi w połowie przejścia, nie tylko na początku i końcu.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-11",
+      "title": "Wstęga przez szklane klatki",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Autorski",
+      "inputs": [
+        "LOGO"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Wstęga przez szklane klatki”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Rozmieść trzy szklane ramki w głębi. Klatki 0–10 pokaż ich krawędzie, 11–40 poprowadź kobaltową wstęgę po krzywej przez wszystkie ramki, 41–49 zatrzymaj kamerę na [LOGO]. Zachowaj odstęp wstęgi od szkła.\n\nAdaptacja i kontrola: Próbkuj krzywą raz, oblicz stałe ramy wstęgi, a następnie odsłaniaj geometrię. Sprawdź kolejność szkła oraz wstęgi w środku ruchu.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-12",
+      "title": "Stos pudełek",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Autorski",
+      "inputs": [
+        "ETYKIETY"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Stos pudełek”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Zbuduj trzy matowe pudełka z [ETYKIETY]. Klatki 0–12 wprowadź podstawę, 13–35 ustaw pozostałe pudełka ze sprężystym dojazdem, 36–49 obróć kamerę, by ujawnić etykiety. Każde pudełko ma osobny kolor.\n\nAdaptacja i kontrola: Zastosuj deterministyczną sprężynę analityczną albo GSAP back.out zamiast symulacji fizyki. Nie dopuść do przenikania pudełek podczas dojazdu.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-13",
+      "title": "Widok przez obiektyw",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Autorski",
+      "inputs": [
+        "OBRAZ"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Widok przez obiektyw”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Ułóż pierścienie obiektywu wokół [OBRAZ]. Klatki 0–13 przesuń kamerę między pierścieniami, 14–34 domknij i otwórz sześciolistkową przysłonę, 35–49 wyostrz obraz. Zgraj ostrość z otwarciem przysłony.\n\nAdaptacja i kontrola: Listki przysłony i fokus mają wspólny parametr. Ogranicz blur do obrazu, nie etykiet; sprawdź render WebGL bez GPU, jeśli tak działa środowisko.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-14",
+      "title": "Połączenie dwóch modułów",
+      "category": "3d",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Autorski",
+      "inputs": [
+        "SYSTEM A",
+        "SYSTEM B"
+      ],
+      "implementation": "Three.js + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Połączenie dwóch modułów”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nThree.js osadzony w HTML HyperFrames, bez React. Ustaw dwie ceramiczne bryły opisane [SYSTEM A] i [SYSTEM B]. Klatki 0–15 obróć bryły, 16–35 zsuń złącza po jednej osi, 36–49 poprowadź impuls świetlny przez styk. Utrzymaj podgląd połączenia w finale.\n\nAdaptacja i kontrola: Pozycja złączy na końcu ma być dokładnie zgodna, bez snapu. Impuls to osobna maska lub emisyjny obiekt sterowany czasem.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-15",
+      "title": "Składająca się gazeta",
+      "category": "paper",
+      "duration_sec": 3,
+      "fps": 30,
+      "frames": 90,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "TYTUŁ",
+        "ZDJĘCIE"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Składająca się gazeta”. Czas bazowy: 3 s (90 klatek przy 30 fps).\nSVG i CSS. Użyj kremowego papieru i trzykolumnowej siatki. Klatki 0–18 rozłóż arkusze, 19–42 wsuń kolumny, 43–62 odsłoń [ZDJĘCIE], 63–79 złóż [TYTUŁ] słowo po słowie. Dodaj subtelną fakturę druku.\n\nAdaptacja i kontrola: Użyj wrapperów overflow:hidden i transform-origin na grzbietach. Faktura papieru ma stałą pozycję, a tekst i zdjęcie wymagają lokalnych źródeł.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-16",
+      "title": "Szwajcarski plakat",
+      "category": "paper",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "DATA",
+        "MIEJSCE",
+        "TYTUŁ"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Szwajcarski plakat”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nSVG i CSS. Zbuduj asymetryczną siatkę na jasnym tle. Klatki 0–12 wprowadź czerwony moduł, 13–35 przesuń [TYTUŁ] pod maską, 36–49 dosuń [DATA] i [MIEJSCE] do linii siatki. Zachowaj duże marginesy.\n\nAdaptacja i kontrola: Pozycje wylicz z jednej siatki. Animuj transform wrappera tytułu, nie font-size; sprawdź polskie znaki i zawijanie przy docelowym formacie.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-17",
+      "title": "Rysunek techniczny jedną linią",
+      "category": "paper",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "OBIEKT"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Rysunek techniczny jedną linią”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nSVG. Przygotuj ciągłą ścieżkę obrysu [OBIEKT] na granatowym papierze. Klatki 0–32 odsłaniaj linię przez stroke-dashoffset, 33–42 dorysuj linie wymiarowe, 43–49 pokaż oznaczenia. Długości opisów podaj w CONFIG.\n\nAdaptacja i kontrola: Zmierz getTotalLength po gotowości SVG; ustaw dasharray i dashoffset od stanu bazowego przy każdym seek. Nie fabrykuj wymiarów obiektu.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-18",
+      "title": "Flipbook",
+      "category": "paper",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "OBIEKT"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Flipbook”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nCSS 3D. Ułóż papierowe kartki z sześcioma fazami ruchu [OBIEKT]. Klatki 0–10 pokaż okładkę, 11–42 przewracaj kartki wokół grzbietu, 43–49 odsłoń końcową ilustrację. Ukryj tył każdej kartki podczas obrotu.\n\nAdaptacja i kontrola: Każda kartka ma stały indeks, z-index i kąt wyliczany z czasu. Użyj backface-visibility:hidden; sprawdź przewijanie wstecz i seam przy 90 stopniach.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-19",
+      "title": "Malowanie tuszem",
+      "category": "paper",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "MOTYW"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Malowanie tuszem”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nSVG. Przygotuj pociągnięcia dla [MOTYW]. Klatki 0–14 pokaż pierwszą plamę, 15–38 odsłoń kreski maskami, 39–49 dodaj drobne rozlania i czerwony podpis. Trzymaj fakturę nieruchomo względem papieru.\n\nAdaptacja i kontrola: Maski tuszu buduj z ustalonych ścieżek. Fakturę i rozlania generuj raz; nie zmieniaj szumu co klatkę.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-20",
+      "title": "Kolaż z wycinanek",
+      "category": "paper",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Autorski",
+      "inputs": [
+        "HASŁO",
+        "ZDJĘCIE"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Kolaż z wycinanek”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nCSS i SVG. Zbuduj trzy papierowe kształty i wycięty obrys [ZDJĘCIE]. Klatki 0–12 rozłóż tło, 13–33 wsuwaj warstwy z różnych kierunków, 34–49 przyklej [HASŁO] na taśmie. Cienie prowadź pod jednym kątem.\n\nAdaptacja i kontrola: Przytnij przezroczyste marginesy assetu i zapisz punkt zaczepienia. Zachowaj jedną logikę światła; nie animuj samego elementu video, jeśli materiał jest klipem.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-21",
+      "title": "Pieczątka na papierze",
+      "category": "paper",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Autorski",
+      "inputs": [
+        "NAPIS"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Pieczątka na papierze”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nSVG i CSS. Ustaw [NAPIS] na drewnianej pieczątce. Klatki 0–17 przybliż pieczątkę do papieru, 18–23 odciśnij napis i lekko odkształć kartkę, 24–49 podnieś pieczątkę, zostawiając ślad z ubytkami tuszu.\n\nAdaptacja i kontrola: Odcisk pojawia się wyłącznie w momencie kontaktu. Ubytki tuszu są stałe; deformacja papieru wraca do neutralnej pozycji przed finałem.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-22",
+      "title": "Wykres wyrasta poza skalę",
+      "category": "data",
+      "duration_sec": 3,
+      "fps": 30,
+      "frames": 90,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "DANE"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Wykres wyrasta poza skalę”. Czas bazowy: 3 s (90 klatek przy 30 fps).\nSVG. Wykreśl [DANE] jako słupki. Klatki 0–20 wprowadź skalę, 21–55 podnieś pierwsze słupki, 56–79 przeskaluj oś i wszystkie słupki, gdy ostatnia wartość przekroczy dotychczasowe maksimum. Pokaż wartość bez zaokrąglania.\n\nAdaptacja i kontrola: Oś i każdy słupek używają tej samej funkcji skali w każdej klatce. Zachowaj prawdziwe jednostki, wartości i punkt odniesienia; nie przycinaj danych.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-23",
+      "title": "Rój pomocników",
+      "category": "data",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "AGENTY",
+        "ZADANIE"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Rój pomocników”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nSVG. Umieść [ZADANIE] pośrodku, a wokół niego ikony [AGENTY]. Klatki 0–12 rozprosz punkty, 13–34 sprowadź je po krzywych, 35–49 zmieniaj statusy z pracy na gotowe. Zastosuj stały seed dla układu.\n\nAdaptacja i kontrola: Rozkład początkowy wynika ze stałego seeda; ścieżki i statusy wylicz z CONFIG i czasu. To ilustracja procesu, nie dowód wykonania zadań przez agentów.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-24",
+      "title": "Kalendarz 30 dni",
+      "category": "data",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "DNI UKOŃCZONE"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Kalendarz 30 dni”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nSVG lub CSS Grid. Ułóż dni 1–30 w siatce siedmiu kolumn. Klatki 0–11 pokaż siatkę, 12–43 zaznaczaj kolejne pozycje z [DNI UKOŃCZONE], 44–49 pokaż licznik wynikający z danych. Dodaj etykietę stanu oprócz koloru.\n\nAdaptacja i kontrola: Licznik oblicz z unikalnych prawidłowych dni 1–30. Stan opisuj ikoną/tekstem obok koloru; powtórne seek nie może zwiększać licznika.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-25",
+      "title": "Tablica odlotów",
+      "category": "ui-type",
+      "duration_sec": 3,
+      "fps": 30,
+      "frames": 90,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "CEL",
+        "GODZINA",
+        "STATUS"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Tablica odlotów”. Czas bazowy: 3 s (90 klatek przy 30 fps).\nCSS 3D. Zbuduj wiersze [GODZINA], [CEL], [STATUS] ze znaków podzielonych na połówki. Klatki 0–14 pokaż stan początkowy, 15–65 obracaj połówki od lewej do prawej, 66–79 podświetl finalny status. Użyj fontu monospace.\n\nAdaptacja i kontrola: Przygotuj wszystkie połówki znaków z góry. Indeks znaku i fazę obrotu wylicz z czasu, nie z interwału; sprawdź znikanie tylnych powierzchni.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-26",
+      "title": "Suwak przed i po",
+      "category": "ui-type",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "PO",
+        "PRZED"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Suwak przed i po”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nCSS. Nałóż [PRZED] i [PO] w identycznym kadrze. Klatki 0–10 pokaż pierwszy obraz, 11–49 przesuń separator od 85% do 15% szerokości, odsłaniając drugi przez clip-path. Przesuwaj uchwyt i maskę tą samą wartością.\n\nAdaptacja i kontrola: Wspólna zmienna postępu steruje uchwytem i clip-path; oba obrazy muszą mieć identyczny fit i crop. Podpisz PRZED/PO oraz źródła.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-27",
+      "title": "Ekran blokady",
+      "category": "ui-type",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "GODZINA",
+        "POWIADOMIENIE",
+        "TAPETA"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Ekran blokady”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nCSS. Na tle [TAPETA] pokaż [GODZINA] i kartę [POWIADOMIENIE]. Klatki 0–13 rozświetl ekran, 14–35 wprowadź kartę sprężystym ruchem, 36–49 pokaż jej drugi wiersz. Użyj ciemnego półprzezroczystego tła pod tekstem.\n\nAdaptacja i kontrola: Godzinę odczytaj z CONFIG, nie z zegara systemu. Zbuduj ilustrację powiadomienia bez prywatnych danych; nie udawaj prawdziwego systemowego zrzutu.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-28",
+      "title": "Typografia z impaktem",
+      "category": "ui-type",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "DOPISEK",
+        "HASŁO"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Typografia z impaktem”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nCSS. Ułóż maksymalnie trzy słowa [HASŁO] dużą, zwartą czcionką. Wprowadź słowa w klatkach 6, 16 i 26. Każde ląduje z krótkim przekroczeniem docelowej skali i powrotem. W 38–49 odsłoń [DOPISEK].\n\nAdaptacja i kontrola: Overshoot nie może obcinać liter poza kadrem. Każde słowo otrzymuje stabilny stan początkowy; dopisek potrzebuje rzeczywistego czasu czytania.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-29",
+      "title": "Słowo z pyłu",
+      "category": "ui-type",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "SŁOWO"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Słowo z pyłu”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nCanvas lub SVG. Wyznacz punkty docelowe z maski [SŁOWO]. Klatki 0–12 pokaż rozproszone cząstki, 13–39 sprowadź je do liter po zakrzywionych torach, 40–49 dołóż pełny tekst pod maską. Rozmieszczenie cząstek ma być powtarzalne.\n\nAdaptacja i kontrola: Poczekaj na font, rasteryzuj maskę słowa raz, zapisz punkty i startowe pozycje z seedem. Pozycje wylicz analitycznie; finał zastąp ostrą warstwą tekstu.",
+      "status": "recipe_not_rendered"
+    },
+    {
+      "id": "hf-30",
+      "title": "Terminal w landing page",
+      "category": "ui-type",
+      "duration_sec": 2,
+      "fps": 30,
+      "frames": 60,
+      "source_label": "Inspiracja",
+      "inputs": [
+        "CTA",
+        "KOMENDA",
+        "NAGŁÓWEK",
+        "OBRAZ"
+      ],
+      "implementation": "HTML/SVG/Canvas + GSAP + HyperFrames",
+      "prompt": "Zbuduj efekt „Terminal w landing page”. Czas bazowy: 2 s (60 klatek przy 30 fps).\nCSS i SVG. Klatki 0–17 wpisz [KOMENDA] w terminalu, 18–34 przekształć ramę w okno przeglądarki, 35–49 odsłoń [NAGŁÓWEK], [OBRAZ] i [CTA]. Trzymaj wspólną ramkę obu stanów, żeby przejście było płynne.\n\nAdaptacja i kontrola: Zachowaj jeden wrapper ramy; indeks wpisywanego znaku i reveal UI zależą od czasu. Komenda jest tekstem ilustracji, nigdy poleceniem do wykonania.",
+      "status": "recipe_not_rendered"
+    }
+  ]
+}

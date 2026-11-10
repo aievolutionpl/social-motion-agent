@@ -35,3 +35,5 @@ Openers, promos and coded explainers: read `skills/creative-director/references/
 Built-in motion presets (13): `python -S studio.py motion presets` or `python -S studio.py motion presets grainy-gradient`. From the repository root run `python3 -m http.server 8000` and open `http://localhost:8000/examples/motion-styles/`. Select a style and seek with the slider or `window.seek(seconds)`; these are canvas examples, not HyperFrames compositions or approved productions. See `examples/motion-styles/README.md`.
 
 For an editing consultation, run `python -S studio.py directions session --for "temat filmu" --mode footage` (also `product`, `explainer`) and follow [Editing partner](skills/creative-director/references/editor-session.md). This prepares choices; it does not render or approve a film.
+
+Local effect bank: `python -S studio.py prompts list/find/show` — 30 HyperFrames recipes, full text in `references/hyperframes-prompts.md`. Use `show ID` for the shared deterministic capture contract; these are not pre-rendered effects.

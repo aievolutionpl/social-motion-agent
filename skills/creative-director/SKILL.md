@@ -89,3 +89,7 @@ Report what was built, where the user can view it, what was actually verified an
 ## Sources
 
 This skill is an authored synthesis with selected upstream design methods, not a concatenation of upstream prompts. Read [Sources and adaptation](references/sources.md) when updating or redistributing it. Licenses for adapted MIT and CC BY 4.0 guidance travel in `licenses/`.
+
+## Local HyperFrames prompt bank
+
+Use `python -S studio.py prompts list` or `prompts find "tusz"` for 30 offline effect recipes. `prompts show hf-01` returns the complete shared HyperFrames build contract plus the effect-specific prompt. Read `references/hyperframes-prompts.md` from the repository for the full catalogue; when installed outside the checkout locate the repository first. These are implementation briefs, not rendered assets. Preserve the user's approved job format and timing. Offer relevant options rather than executing all prompts. For 3D verify local Three.js before building; no React Three Fiber or Remotion runtime is needed. Build one representative scene, validate time seeking and the actual export, and collect feedback. Source inspiration labels are user-supplied and do not establish independently verified upstream provenance.

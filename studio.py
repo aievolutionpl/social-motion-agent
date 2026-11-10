@@ -30,6 +30,7 @@ import kinetic_adapter
 import walk_talk
 import director_suite
 import editor_workspace
+import prompt_bank
 
 
 def emit(value):
@@ -54,6 +55,10 @@ def doctor():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
+    p = sub.add_parser("prompts", help="30 offline HyperFrames implementation recipes")
+    p.add_argument("action", choices=("list", "find", "show"))
+    p.add_argument("query", nargs="?", default="")
+    p.add_argument("--category", choices=("3d", "paper", "data", "ui-type"))
     p = sub.add_parser("editor", help="Media inventory, visual choices, preferences, edit plan, review and export QA")
     p.add_argument("action", choices=("inventory", "directions", "preferences", "plan", "review", "feedback-import", "qa"))
     p.add_argument("job")
@@ -204,7 +209,9 @@ def main():
         p.add_argument("--render", required=True, help="Ścieżka względem katalogu produkcji")
     args = parser.parse_args()
     try:
-        if args.command == "editor":
+        if args.command == "prompts":
+            emit(prompt_bank.query(args.action, args.query, args.category))
+        elif args.command == "editor":
             folder = job_path(args.job)
             action = args.action
             if action in ("inventory", "directions"):

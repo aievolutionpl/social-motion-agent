@@ -34,3 +34,5 @@ Choose style from the brief, not from a starter's default colors. The 13 Canvas 
 Run relevant tests after code changes. Full suite: python -S -B -m unittest discover -s tests -v. Node browser pixel tests accept PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH for an installed Chromium, otherwise Playwright's managed browser is used. This overrides the executable only, never test assertions. Python browser suites need the virtual environment without -S.
 
 For every delivered film: inspect representative and transition frames, watch timing, listen to encoded audio when available, run probe and QA, record limits. Technical QA does not establish typography or aesthetic quality. Browser comments stay local until exported/imported. Offer specific revisions; mark them implemented only after inspecting the new render. Paid requests and publication require authorization; do not infer them from a creative brief.
+
+Local effect bank: `python -S studio.py prompts list/find/show` — 30 HyperFrames recipes, full text in `references/hyperframes-prompts.md`. Use `show ID` for the shared deterministic capture contract; these are not pre-rendered effects.

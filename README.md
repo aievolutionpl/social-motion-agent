@@ -170,6 +170,19 @@ python -S studio.py directions list
 
 Lokalny eksport HTML/GSAP prowadzi **HyperFrames**. Agent buduje deterministyczne sceny, sprawdza rzeczywiste klatki i eksport MP4. Przykłady Canvas oraz receptury wymagają dopasowania przed użyciem w produkcji.
 
+## 30 promptów efektów dla HyperFrames
+
+Baza lokalnych przepisów obejmuje **14 scen 3D**, **7 efektów tuszu i papieru**, **3 animacje danych** oraz **6 efektów UI i typografii**. Między innymi: makieta miasta, globus połączeń, hologram, rozłożony produkt, gazeta, flipbook, rysunek techniczny, tablica odlotów, suwak przed/po i słowo z pyłu.
+
+```bash
+python -S studio.py prompts list
+python -S studio.py prompts list --category paper
+python -S studio.py prompts find "globus"
+python -S studio.py prompts show hf-02
+```
+
+[Pełna baza promptów](references/hyperframes-prompts.md). `show` zwraca wspólny kontrakt HyperFrames i szczegóły efektu: timing, wymagane dane i kontrolę jakości. To przepisy do zbudowania i sprawdzenia, **nie 30 gotowych animacji**. Sceny 3D wymagają lokalnego Three.js; parametry filmu i wybór stylu pozostają pod kontrolą użytkownika.
+
 ## Instrukcja dla agenta, który otwiera repo
 
 Zacznij od [START_HERE.md](START_HERE.md) i [AGENTS.md](AGENTS.md), następnie przeczytaj [Creative Director](skills/creative-director/SKILL.md). Praktyczna mapa poleceń i granic możliwości: [AGENT_WORKFLOW.md](docs/AGENT_WORKFLOW.md).
