@@ -71,6 +71,17 @@ class ShotCraftTests(unittest.TestCase):
         self.assertNotEqual(self.cli("plan", "not-a-sequence").returncode, 0)
         self.assertNotEqual(self.cli("show", "not-an-effect").returncode, 0)
 
+    def test_hyperframes_film_lint_optional(self):
+        cli = ROOT / "node_modules/hyperframes/bin/hyperframes.mjs"
+        if not shutil.which("node") or not cli.is_file():
+            self.skipTest("HyperFrames runtime is not installed")
+        prepare = subprocess.run(["node", str(ROOT / "scripts/prepare-example.mjs")],
+                                 cwd=ROOT, text=True, capture_output=True, timeout=30)
+        self.assertEqual(prepare.returncode, 0, prepare.stdout + "\n" + prepare.stderr)
+        result = subprocess.run(["node", str(cli), "lint", str(ROOT / "examples/shotcraft-motion/film")],
+                                cwd=ROOT, text=True, capture_output=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stdout + "\n" + result.stderr)
+
     def test_gallery_pixels_optional(self):
         if not shutil.which("node"):
             self.skipTest("Node is not installed")
