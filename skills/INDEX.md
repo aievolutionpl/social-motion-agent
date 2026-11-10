@@ -2,6 +2,10 @@
 
 Uruchom `python -S scripts/bootstrap_library.py`, aby pobrać wszystkie 38 przypiętych źródeł. Lokalny rdzeń działa również bez rozszerzeń. Katalog zawiera oryginalne skille, recipes, szablony i fixtures, nie tylko samodzielne integracje.
 
+## ShotCraft Motion Pack
+
+Opcjonalny skill **[shotcraft-motion](shotcraft-motion/SKILL.md)** dodaje 10 wybranych technik ujęć, 5 interaktywnych podglądów Canvas i 4 struktury filmów. Dostęp przez `studio.py shotcraft list/show/plan/validate` oraz [laboratorium](../examples/shotcraft-motion/README.md). To warstwa wyboru i planowania: podglądy nie są samodzielnym silnikiem renderowania MP4. Właściwe ujęcie musi być zaadaptowane do HyperFrames/GSAP albo osobnej zweryfikowanej kompozycji Remotion.
+
 ## Punkty wejścia agenta
 
 **Director Suite (Explainroo / Argo / Huashu Motion):** `skills/director-suite/SKILL.md` i `docs/DIRECTOR_SUITE.md`. Dla istniejącego joba z prawdziwym storyboardem użyj `studio.py director plan/qa/handoff/captions/feedback`. Handoffs są szkicami integracji, nie zainstalowanym silnikiem ani zaakceptowanym renderem.
