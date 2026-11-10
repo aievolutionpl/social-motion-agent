@@ -117,3 +117,39 @@ def compare(first: str, second: str) -> dict:
             "concept_changed": concept_changed,
             "distinct": concept_changed or len(different) >= 3,
             "rule": "distinct = different concept, or >= 3 of 5 parts different; lexical check, review the rundown too"}
+
+
+def session(subject: str, kind: str = "footage") -> dict:
+    """Offline discussion packet, not an approved plan or automated media analysis."""
+    if not subject.strip():
+        raise ValueError("Podaj temat filmu przez --for")
+    profiles = {
+        "footage": [
+            ("Historia z materiałów", "Najmocniejszy autentyczny moment", "Rough cut dialogu, J/L cuts i B-roll zakrywający cięcia", "Głos i atmosfera; muzyka poniżej mowy", "Potrzebuje dobrych ujęć i selekcji; mniej dekoracyjnych efektów"),
+            ("Editorial collage", "Detal produktu z krótkim podpisem", "Wycinanki, match cuts, maski i typografia prowadząca uwagę", "Rytm muzyki, pojedyncze akcenty cięć", "Wymaga zdjęć lub klipów o odpowiedniej rozdzielczości"),
+            ("Kinetic teaser", "Jedna mocna fraza powiązana z ujęciem", "Kontrast skali, kontrolowane przyspieszenia, pauza na rezultat", "Akcent kulminacji i przestrzeń na końcową informację", "Więcej energii kosztem szczegółowego wyjaśnienia")],
+        "product": [
+            ("Prawdziwe demo", "Problem widoczny w istniejącym interfejsie", "Akcja użytkownika → zmiana stanu → czytelny rezultat", "Dyskretne potwierdzenia akcji, opcjonalna narracja", "Wymaga nagrania lub dostępu do aplikacji"),
+            ("Ilustracja produktu", "Duży charakterystyczny fragment UI", "Stały obiekt, zmiana danych i kadru bez skoków tekstu", "Minimalny motyw z jednym akcentem rezultatu", "Mockup trzeba oznaczyć jako ilustrację, nie działający produkt"),
+            ("Historia korzyści", "Konkretna sytuacja odbiorcy", "Kontekst → funkcja → jej praktyczny efekt", "Narracja prowadzi montaż; muzyka wspiera emocję", "Potrzebuje potwierdzonych informacji i materiałów kontekstowych")],
+        "explainer": [
+            ("Mechanizm krok po kroku", "Przedmiot lub proces do wyjaśnienia", "Elementy pozostają w scenie i pokazują związki przyczynowe", "Narracja z pauzami na zrozumienie", "Wymaga weryfikacji faktów i czytelnych etykiet"),
+            ("Visual journalism", "Pytanie oraz źródłowy obraz lub dane", "Zdjęcia, zaznaczenia i porównania na wspólnej osi", "Spokojny podkład, pierwszeństwo głosu", "Potrzebne źródła danych i prawa do zdjęć"),
+            ("Flat vector story", "Jedna wizualna metafora tematu", "Obiekty transformują się, zamiast znikać między slajdami", "Lekki rytm i celowe efekty obiektów", "Metafora nie może zniekształcać faktów")]
+    }
+    if kind not in profiles:
+        raise ValueError("Tryb sesji: footage, product lub explainer")
+    return {
+        "schema_version": 1, "subject": subject.strip(), "mode": kind,
+        "status": "proposal", "approval": None,
+        "note": "To menu rozmowy. Agent dopasowuje sceny do materiałów; komenda nie ogląda plików ani nie wybiera za użytkownika.",
+        "questions_if_unknown": ["Dla kogo i jaki rezultat?", "Długość, format i miejsce publikacji?", "Materiały, marka i referencje?", "Głos, muzyka, napisy i preferencje dźwięku?", "Który kierunek wybierasz lub czy delegujesz wybór?"],
+        "options": [dict(id=str(i+1), name=n, first_frame=f, editing=m, audio=a, tradeoff=t)
+                    for i, (n,f,m,a,t) in enumerate(profiles[kind])],
+        "recommendation": "Agent rekomenduje jedną opcję po sprawdzeniu briefu i dostępnych materiałów, podając powód.",
+        "working_files": ["direction.md", "edit-plan.md", "audio-cues.md", "feedback.md"],
+        "edit_plan_columns": ["timeline_in", "timeline_out", "source_asset", "source_in", "source_out", "purpose", "action_and_result", "transition", "audio_cue", "acceptance"],
+        "preview_steps": ["Zatwierdzony kierunek lub jawna delegacja", "Reprezentatywna scena i próbka dźwięku", "Rough cut całej historii", "Motion i miks", "Nowy render, kontrola obrazu/dźwięku, feedback", "Akceptacja konkretnej wersji i istniejące bramki pack"],
+        "feedback": {"version_sha": None, "keep": [], "change": [], "ratings_optional": ["style", "pacing", "clarity"], "acceptance": None},
+        "checks": ["Nie wymyślaj timecode ani analizy mediów", "Nie oznaczaj placeholderów jako gotowych assetów", "Nie traktuj cue sheet jako gotowego miksu", "Nie renderuj całego filmu w oczekiwaniu na wybór", "Zachowaj poprzednią wersję i odnotuj zakres zmian"]
+    }

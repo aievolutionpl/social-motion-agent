@@ -201,7 +201,7 @@ class KineticPlatformTests(unittest.TestCase):
         provenance = core.read(core.ROOT / "examples/kinetic-launch/provenance.json")
         self.assertEqual(core.sha(core.ROOT / "docs/media/kinetic-launch.mp4"), provenance["video_sha256"])
         readme = (core.ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn("kinetic-launch", readme.splitlines()[0])
+        self.assertIn("(examples/kinetic-launch/README.md)", readme)
         self.assertNotIn("docs/media/premium-intro.mp4", readme)
 
     def test_local_skill_is_searchable_with_actual_integrity(self):

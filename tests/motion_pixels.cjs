@@ -4,7 +4,7 @@ const crypto = require('node:crypto');
 const path = require('node:path');
 const slugs = require(path.join(__dirname, '..', 'config', 'motion-presets.json')).styles.map(s => s.slug);
 (async()=>{
- const browser=await chromium.launch({headless:true});
+ const browser=await chromium.launch({headless:true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? {executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH} : {})});
  try {
   const page=await browser.newPage();
   const errors=[]; page.on('pageerror',e=>errors.push(e.message));

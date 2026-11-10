@@ -2,7 +2,7 @@ const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
 const crypto=require('node:crypto');
 (async()=>{
- const browser=await chromium.launch({headless:true});
+ const browser=await chromium.launch({headless:true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? {executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH} : {})});
  try{
   const page=await browser.newPage({viewport:{width:1080,height:1920},deviceScaleFactor:1});
   const errors=[];page.on('pageerror',error=>errors.push(error.message));

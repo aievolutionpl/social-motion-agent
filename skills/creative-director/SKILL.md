@@ -36,6 +36,10 @@ When invoked as a specialized **Motion / Design Subagent** by a parent orchestra
 
 Read [Style choice and feedback loop](references/feedback-loop.md) for every new film and every preview handoff.
 
+## Work as an editing partner
+
+For every video or substantial editing session read [Editing partner](references/editor-session.md). Offer subject-specific options, establish the rough cut, prove one representative scene with sound, then iterate against the actual rendered version. Use `studio.py directions session` to prepare the decision packet.
+
 ## Begin with context and a useful choice
 
 1. Inspect the current project, its instructions, brand, existing components and supplied assets. Preserve working architecture and explicit visual choices. Record what imagery, footage and evidence actually exist.

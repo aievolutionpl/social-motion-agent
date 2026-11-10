@@ -29,6 +29,7 @@ import creative_skills
 import kinetic_adapter
 import walk_talk
 import director_suite
+import editor_workspace
 
 
 def emit(value):
@@ -53,6 +54,12 @@ def doctor():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
+    p = sub.add_parser("editor", help="Media inventory, visual choices, preferences, edit plan, review and export QA")
+    p.add_argument("action", choices=("inventory", "directions", "preferences", "plan", "review", "feedback-import", "qa"))
+    p.add_argument("job")
+    p.add_argument("--source", help="Job-relative JSON update/import")
+    p.add_argument("--render", help="Job-relative rendered video")
+    p.add_argument("--previous", help="Job-relative previous version for comparison")
     p = sub.add_parser("walk-talk", help="Prepare and compose vertical presenter reels; no paid generation")
     ws = p.add_subparsers(dest="walk_talk_action", required=True)
     wp = ws.add_parser("prepare", help="Create editable script/timing/shot/sound planning files")
@@ -122,10 +129,11 @@ def main():
     p.add_argument("--rendered", action="store_true", help="tylko efekty z gotowym klipem i szablonem HTML")
     p.add_argument("--limit", type=int, default=12)
     p = sub.add_parser("directions", help="Menu kierunków motion: 10 stylów, 19 konceptów openerów, 6 explainerów, tło, przejścia; brief i porównanie odcisków")
-    p.add_argument("action", choices=("list", "show", "brief", "compare"))
+    p.add_argument("action", choices=("list", "show", "brief", "compare", "session"))
     p.add_argument("query", nargs="*", help="list: menu; show: slug lub numer konceptu; compare: dwa odciski struktury")
     p.add_argument("--for", dest="subject", default="", help="brief: produkt, odbiorca, nastrój")
     p.add_argument("--kind", choices=("opener", "explainer"), default="opener")
+    p.add_argument("--mode", choices=("footage", "product", "explainer"), default="footage", help="session: rodzaj pracy montażowej")
     p.add_argument("--previous", help="brief: odcisk poprzedniego filmu do porównania")
     p = sub.add_parser("styles", help="Atlas 14 stylów (12 Opus + 2 explainery): list, recipe, find, show")
     p.add_argument("action", choices=("list", "recipe", "find", "show"))
@@ -196,7 +204,25 @@ def main():
         p.add_argument("--render", required=True, help="Ścieżka względem katalogu produkcji")
     args = parser.parse_args()
     try:
-        if args.command == "walk-talk":
+        if args.command == "editor":
+            folder = job_path(args.job)
+            action = args.action
+            if action in ("inventory", "directions"):
+                result = getattr(editor_workspace, action)(folder)
+            elif action in ("preferences", "plan"):
+                result = getattr(editor_workspace, action)(folder, args.source)
+            elif action == "feedback-import":
+                if not args.source:
+                    raise ValueError("Provide --source")
+                result = editor_workspace.import_feedback(folder, args.source)
+            else:
+                if not args.render:
+                    raise ValueError("Provide --render")
+                result = (editor_workspace.review(folder, args.render, args.previous) if action == "review"
+                          else editor_workspace.quality(folder, args.render))
+            emit(result)
+            return int(action == "qa" and not result["technical_passed"])
+        elif args.command == "walk-talk":
             folder = job_path(args.job)
             emit(walk_talk.prepare(folder, args.mode) if args.walk_talk_action == "prepare" else walk_talk.compose(folder))
         elif args.command == "director":
@@ -295,6 +321,8 @@ def main():
                 if len(args.query) != 1:
                     raise ValueError("Podaj jeden slug, np. studio.py directions show grainy-gradient")
                 emit(motion_directions.show(args.query[0]))
+            elif args.action == "session":
+                emit(motion_directions.session(args.subject or " ".join(args.query), args.mode))
             elif args.action == "brief":
                 emit(motion_directions.brief(args.subject or " ".join(args.query), args.kind, args.previous))
             else:

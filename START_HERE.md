@@ -33,3 +33,5 @@ Portable installation: `docs/AGENT_SETUP.md`. All 38 upstream sources: `scripts/
 Openers, promos and coded explainers: read `skills/creative-director/references/motion-not-slides.md`, draft the style brief with `python -S studio.py directions brief --for "..."` and run `python -S studio.py motion lint FILE.html` before `polish`.
 
 Built-in motion presets (13): `python -S studio.py motion presets` or `python -S studio.py motion presets grainy-gradient`. From the repository root run `python3 -m http.server 8000` and open `http://localhost:8000/examples/motion-styles/`. Select a style and seek with the slider or `window.seek(seconds)`; these are canvas examples, not HyperFrames compositions or approved productions. See `examples/motion-styles/README.md`.
+
+For an editing consultation, run `python -S studio.py directions session --for "temat filmu" --mode footage` (also `product`, `explainer`) and follow [Editing partner](skills/creative-director/references/editor-session.md). This prepares choices; it does not render or approve a film.

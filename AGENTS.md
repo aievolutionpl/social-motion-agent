@@ -31,3 +31,5 @@ engine through kinetic setup/prepare and render-kinetic. Its source lives in a p
 job-local copies; do not vendor it under MIT. Never treat numeric motion gates as listening approval.
 
 Owner request on 2026-11-09 authorizes the synthetic silent README showcase under examples/editorial-loop/, docs/images/editorial-loop.gif and docs/media/editorial-loop.mp4. This is an illustration, not a screen recording or approved client production.
+
+Video editing sessions: read skills/creative-director/references/editor-session.md. Use studio.py directions session --for SUBJECT --mode footage|product|explainer for an unapproved discussion packet. Tailor options to inspected assets, retain real user choices, and review both picture and encoded sound.
