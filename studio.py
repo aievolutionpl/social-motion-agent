@@ -19,6 +19,7 @@ from edit_bridge import OPS as EDIT_OPS, edit as run_edit
 import backgrounds_catalog
 import bg_video
 import motion_catalog
+import shotcraft_pack
 import motion_directions
 import motion_lint
 import sfx_catalog
@@ -124,6 +125,13 @@ def main():
     p.add_argument("query")
     p.add_argument("--limit", type=int, default=12)
     p.add_argument("--source")
+    p = sub.add_parser("shotcraft", help="ShotCraft: gallery, curated shot recipes and frame-accurate storyboards")
+    p.add_argument("action", choices=("list", "show", "plan", "validate"))
+    p.add_argument("query", nargs="?", default="", help="Shot ID for show or sequence ID for plan")
+    p.add_argument("--duration", type=float, default=15, help="Storyboard length in seconds (5-120)")
+    p.add_argument("--fps", type=int, default=30, help="24, 25, 30, 50 or 60")
+    p.add_argument("--brand", default="", help="Brand name; never inferred")
+    p.add_argument("--cta", default="", help="User-approved CTA")
     p = sub.add_parser("motion", help="Katalog 637 efektów ruchu: find, show, recipe; presets; lint HTML (film, nie slajdy)")
     p.add_argument("action", choices=("find", "show", "recipe", "presets", "lint"))
     p.add_argument("query", nargs="?", default="", help="find: fraza; show: slug efektu; recipe: slug receptury; lint: plik HTML")
@@ -306,6 +314,15 @@ def main():
             found = [item for item in entries if item["kind"] != "fixture" and (not args.source or item["source"] == args.source) and
                      all(token in " ".join(str(item.get(key, "")) for key in ("name", "description", "source", "path")).casefold() for token in tokens)]
             emit({"total_matches": len(found), "entries": found[:max(1, min(args.limit, 100))]})
+        elif args.command == "shotcraft":
+            if args.action == "list":
+                emit(shotcraft_pack.list_shots())
+            elif args.action == "show":
+                emit(shotcraft_pack.show(args.query))
+            elif args.action == "validate":
+                emit(shotcraft_pack.validate())
+            else:
+                emit(shotcraft_pack.plan(args.query, args.duration, args.fps, args.brand, args.cta))
         elif args.command == "motion":
             if args.action == "find":
                 emit(motion_catalog.find(args.query, args.purpose, args.medium, args.family, args.level, args.rendered, args.limit))

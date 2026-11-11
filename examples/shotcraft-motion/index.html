@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>ShotCraft Motion Lab | Social Motion Agent</title>
+<style>
+:root{--bg:#080a0f;--surface:#11151f;--line:#333945;--fg:#f3f5f8;--muted:#a5aec0;--accent:#8ca5ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% 5%,#1f233d 0,transparent 45%),var(--bg);color:var(--fg);font:15px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1250px;margin:auto;padding:38px 22px 60px}.eyebrow{color:#9db1ef;letter-spacing:.19em;font-weight:700;font-size:12px}.header{display:flex;justify-content:space-between;gap:26px;align-items:end;margin-bottom:28px}
+h1{font-size:clamp(33px,4vw,58px);line-height:1.08;letter-spacing:-.052em;margin:10px 0 14px}h2{font-size:20px;letter-spacing:-.025em;margin:0 0 10px}
+p{margin:0;color:var(--muted);max-width:690px}a{color:#aac0ff}.pill{display:inline-block;border:1px solid #434a5b;border-radius:999px;padding:8px 13px;color:#d6dbed;white-space:nowrap;font-size:13px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:16px}.screen,.sidebar,.bottom{border:1px solid var(--line);background:#0d1019;border-radius:19px;overflow:hidden}
+.screen{padding:13px}.screenhead{display:flex;justify-content:space-between;align-items:center;padding:6px 8px 15px;font-size:12px;color:var(--muted)}.screenhead span:first-child{letter-spacing:.12em;text-transform:uppercase}
+canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:11px;background:#141622}
+.controls{display:flex;align-items:center;gap:14px;padding:19px 5px 7px}.controls button{background:#dce4ff;color:#15192b;border:0;border-radius:9px;font-weight:750;cursor:pointer;padding:10px 16px}
+input[type=range]{flex:1;min-width:0;accent-color:#a8bbff}output{min-width:43px;color:#d9e1f2;font-variant-numeric:tabular-nums}
+.sidebar{padding:20px}.sidebar p{font-size:13px;margin:4px 0 20px}.shotnav{display:grid;gap:9px;margin:18px 0}
+.shotnav button{text-align:left;cursor:pointer;width:100%;border:1px solid #303848;border-radius:11px;background:#171c29;color:#d5deee;padding:12px;font:inherit;transition:background .15s}
+.shotnav button[aria-pressed=true]{border-color:#93abf9;background:#27324d;color:white}.shotnav button small{display:block;color:#a4b2d0;font-size:11px}
+.detail{border-top:1px solid #313b4c;padding-top:16px;font-size:13px}.detail strong{color:#f0f4ff}
+.bottom{margin-top:16px;padding:19px 22px}.bottom p{font-size:13px}.bottom code{color:#dce6ff;background:#222838;padding:2px 5px;border-radius:4px}
+@media(max-width:880px){.layout{grid-template-columns:1fr}.header{display:block}.pill{margin-top:14px}.sidebar{padding:16px}.shotnav{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style></head>
+<body>
+<main>
+<div class="header">
+<div><div class="eyebrow">AI EVOLUTION POLSKA / MOTION LAB</div><h1>ShotCraft<br>Motion Pack.</h1><p>Pięć oryginalnych, interaktywnych demonstracji ruchu. Każda klatka wynika z wybranego czasu. Obejrzyj, przewiń i wybierz technikę do swojego filmu.</p></div>
+<span class="pill">5 seekable previews · Zero API</span>
+</div>
+<div class="layout">
+<section class="screen">
+<div class="screenhead"><span>Live frame preview</span><span id="frameInfo">800 × 450 · concept demo</span></div>
+<canvas id="scene" width="960" height="540" aria-label="Animowany podgląd wybranego efektu" role="img"></canvas>
+<div class="controls"><button id="play" type="button" aria-label="Odtwórz lub zatrzymaj animację">▶ Play</button><input id="seek" type="range" min="0" max="5" step=".01" value="0" aria-label="Moment animacji w sekundach"><output id="time" for="seek">0.00 s</output></div>
+</section>
+<aside class="sidebar"><div class="eyebrow">SHOT LIBRARY</div><h2>Wybierz efekt</h2><p>Każdy efekt pokazuje konkretną funkcję w spocie. Nie łącz wszystkich naraz.</p>
+<div class="shotnav" id="nav"></div><div class="detail"><strong id="chosen">Ładowanie...</strong><p id="description"></p><p id="caution"></p><a id="source" href="https://github.com/Vincentwei1021/video-shotcraft">Oryginalna receptura ujęcia</a></div>
+</aside>
+</div>
+<section class="bottom"><h2>Jak użyć tego w agencie?</h2><p><code>python -S studio.py shotcraft list</code> pokazuje katalog. <code>python -S studio.py shotcraft plan product-reel --duration 15 --brand "Twoja marka" --cta "Sprawdź ofertę"</code> tworzy plan klatka po klatce. Podglądy są autorskimi demonstracjami Canvas inspirowanymi recepturami Video ShotCraft, a nie gotowymi renderami Remotion lub HyperFrames.</p></section>
+</main>
+<script>
+(async()=>{
+"use strict";
+const canvas=document.getElementById("scene"),ctx=canvas.getContext("2d"),seek=document.getElementById("seek"),time=document.getElementById("time");
+const W=960,H=540,D=5;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const p=(t,a,d)=>clamp((t-a)/d);
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const smooth=x=>{x=clamp(x);return x*x*(3-2*x)};
+const mix=(a,b,x)=>a+(b-a)*x;
+const rect=(x,y,w,h,r,fill,stroke)=>{ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke()}};
+const text=(v,x,y,size=24,color="#fff",weight=700,align="left")=>{ctx.fillStyle=color;ctx.font=weight+" "+size+"px system-ui,sans-serif";ctx.textAlign=align;ctx.fillText(v,x,y);ctx.textAlign="left"};
+const label=(v,x,y)=>text(v,x,y,14,"#aebbd2",650);
+const glow=(x,y,r,color)=>{let g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,color);g.addColorStop(1,"#00000000");ctx.fillStyle=g;ctx.fillRect(x-r,y-r,2*r,2*r)};
+const base=(title,sub)=>{ctx.fillStyle="#0b0d15";ctx.fillRect(0,0,W,H);glow(570,180,460,"#3d498c66");text(title,55,76,29,"#f4f5ff",800);label(sub,56,104);ctx.strokeStyle="#2d344b";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(55,128);ctx.lineTo(906,128);ctx.stroke()};
+const card=(x,y,w,h,title,sub,accent,scale=1,angle=0,opacity=1)=>{
+ctx.save();ctx.translate(x,y);ctx.rotate(angle);ctx.scale(scale,scale);ctx.globalAlpha=opacity;
+ctx.shadowColor="#000000aa";ctx.shadowBlur=24;ctx.shadowOffsetY=19;rect(-w/2,-h/2,w,h,18,"#191e2d","#56607a");ctx.shadowBlur=0;ctx.shadowOffsetY=0;
+rect(-w/2+13,-h/2+13,w-26,h*.53,12,accent);
+glow(0,-h*.22,140,"#ffffff33");
+rect(-w/2+20,h*.15,w*.35,6,3,"#7c859f");rect(-w/2+20,h*.24,w*.53,6,3,"#515f79");
+text(title,-w/2+20,h*.4,Math.max(13,w*.077),"#fff",800);
+if(sub)text(sub,-w/2+20,h*.49,Math.max(10,w*.043),"#b9c6dd",550);
+ctx.restore()};
+function carousel(t){
+base("Product collection","CAROUSEL 3D / feature highlights");
+const q=smooth(p(t,.5,3.5));const cols=["#ff4976","#675bfa","#24acd7","#eeac4b"];const titles=["CREATE","DESIGN","PUBLISH","GROW"];
+for(let i=3;i>=0;i--){let rel=i-1.5-q*.8;let dep=Math.abs(rel);card(480+rel*207,319+dep*13,230,300,titles[i],"CARD 0"+(i+1),cols[i],Math.max(.55,1-dep*.16),rel*.09,1)}
+text("ONE IDEA · MANY WAYS",480,515,16,"#c8d2ec",750,"center");
+}
+function flock(t){
+base("From chaos to clarity","CARD FLOCK / transition choreography");
+const q=ease(p(t,.35,3.3));for(let i=0;i<12;i++){
+const a=i*2.39996;const outerX=480+Math.cos(a)*(225+i%3*35),outerY=320+Math.sin(a)*(120+i%4*15);
+const row=i%4,col=Math.floor(i/4);const dstX=306+row*116,dstY=225+col*75;
+const x=mix(outerX,dstX,q),y=mix(outerY,dstY,q);
+ctx.save();ctx.translate(x,y);ctx.rotate((1-q)*Math.sin(i*3)*.5);ctx.globalAlpha=mix(.65,1,q);
+rect(-50,-31,100,62,11,["#ff4a8d","#7d72ed","#43b8d9"][i%3]);rect(-35,-14,52,7,3,"#fff8");rect(-35,1,68,5,2,"#ffffff66");ctx.restore();}
+if(q>.9)text("Everything aligns.",480,510,20,"#d9e2fa",700,"center");
+}
+function words(t){
+base("Words as motion","FLYING WORDS / kinetic typography");
+const arr=[["IDEAS",275,270],["BECOME",515,270],["MOTION",480,365]];
+arr.forEach(([word,x,y],i)=>{let q=ease(p(t,.45+i*.55,1.15));let sx=[-170,1150,440][i],sy=[80,70,590][i];let xx=mix(sx,x,q),yy=mix(sy,y,q),ang=(1-q)*([-.3,.25,-.15][i]);
+ctx.save();ctx.translate(xx,yy);ctx.rotate(ang);ctx.globalAlpha=clamp(q*1.7);text(word,0,0,i===2?102:70,i===2?"#a0b5ff":"#ffffff",900,"center");ctx.restore();});
+glow(480,355,170,"#7c58ff33");if(t>=3.7)text("MAKE THE MESSAGE MOVE.",480,475,18,"#bdcbea",650,"center");
+}
+function values(t){
+base("A clear sequence","VALUE STAGGER / abstract process, no invented metrics");
+const names=["PLAN","CREATE","REVIEW","SHIP"],cols=["#4772f8","#6854e6","#ab53d4","#e15bbb"];
+for(let i=0;i<4;i++){let a=ease(p(t,.35+i*.4,1.25)),x=190+i*196,h=mix(8,[140,205,160,230][i],a);
+glow(x,440-h,95,cols[i]+"66");let g=ctx.createLinearGradient(x,440-h,x,440);g.addColorStop(0,cols[i]);g.addColorStop(1,"#29213c");rect(x-50,440-h,100,h,16,g);
+text(String(i+1).padStart(2,"0"),x,420-h,25,"#f9f9fc",850,"center");text(names[i],x,482,18,"#ccd3e6",750,"center");}
+}
+function comparison(t){
+base("Before / after","BEFORE-AFTER / synthetic UI comparison, not a client result");
+function scene(modern){
+ctx.fillStyle=modern?"#1b2635":"#29282b";ctx.fillRect(135,145,700,340);
+rect(155,163,660,45,8,modern?"#243852":"#463e46");
+text(modern?"PROJECT OVERVIEW":"untitled - copy 3",178,193,19,modern?"#ffffff":"#c1b6bf",750);
+for(let i=0;i<4;i++){let x=165+i*159,y=248+(modern?0:(i%2)*20),h=modern?147:90+i%3*27;
+rect(x,y,144,h,9,modern?"#344b69":"#564955");rect(x+14,y+16,modern?78:100,10,3,modern?"#8ecbff":"#b2a1aa");
+rect(x+14,y+44,modern?102:70,9,3,modern?"#6c8cac":"#8f8089");}
+}
+scene(false);
+ctx.save();let split=mix(260,760,smooth(p(t,.35,3.9)));ctx.beginPath();ctx.rect(135,143,split-135,347);ctx.clip();scene(true);ctx.restore();
+ctx.strokeStyle="#e3e9ff";ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(split,143);ctx.lineTo(split,490);ctx.stroke();
+rect(split-28,305,56,46,23,"#f1f3ff");text("↔",split,335,23,"#1a2541",700,"center");
+text("BEFORE",170,513,15,"#e8c6c8",800);text("AFTER",770,513,15,"#b7d2f7",800,"right");
+}
+const renderers={"carousel-3d":carousel,"card-flock-tumble":flock,"flying-words":words,"value-stagger-gradient":values,"before-after-slider-scrub":comparison};
+let shots=[],selected="carousel-3d",playing=false,raf=0,baseClock=0,baseTime=0;
+function draw(seconds){const t=clamp(Number(seconds)||0,0,D);seek.value=t.toFixed(2);time.textContent=t.toFixed(2)+" s";ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,W,H);(renderers[selected]||carousel)(t);ctx.restore();return t;}
+function stop(){playing=false;cancelAnimationFrame(raf);document.getElementById("play").textContent="▶ Play"}
+function choose(id){if(!renderers[id])throw Error("Unknown demo "+id);stop();selected=id;const s=shots.find(v=>v.id===id);document.querySelectorAll(".shotnav button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.id===id)));document.getElementById("chosen").textContent=s.description;document.getElementById("description").textContent=s.category+" · original Canvas concept";document.getElementById("caution").textContent=s.warning;document.getElementById("source").href=s.source;draw(0);history.replaceState(null,"","?shot="+encodeURIComponent(id)+"&t=0")}
+window.seek=seconds=>{stop();return draw(seconds)};
+window.selectShot=choose;
+seek.addEventListener("input",()=>{stop();draw(seek.value)});
+document.getElementById("play").addEventListener("click",()=>{if(playing){stop();return}playing=true;baseTime=Number(seek.value);baseClock=performance.now();document.getElementById("play").textContent="Ⅱ Pause";const tick=now=>{if(!playing)return;let t=baseTime+(now-baseClock)/1000;if(t>D){stop();draw(D);return}draw(t);raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick)});
+try{const response=await fetch("../../config/shotcraft-recipes.json");if(!response.ok)throw Error("Cannot load registry: "+response.status);
+shots=(await response.json()).shots.filter(s=>s.preview);const nav=document.getElementById("nav");
+for(const s of shots){if(!renderers[s.id])throw Error("Missing renderer: "+s.id);const button=document.createElement("button");button.type="button";button.dataset.id=s.id;button.innerHTML="<strong></strong><small></small>";button.querySelector("strong").textContent=s.id;button.querySelector("small").textContent=s.category;button.addEventListener("click",()=>choose(s.id));nav.appendChild(button)}
+const params=new URLSearchParams(location.search),requested=params.get("shot");choose(renderers[requested]?requested:shots[0].id);const initial=Number(params.get("t"));if(Number.isFinite(initial))draw(initial);
+window.shotcraftReady=true;
+}catch(error){document.getElementById("chosen").textContent="Cannot load gallery";document.getElementById("description").textContent=String(error);window.shotcraftReady=false;}
+})();
+</script>
+</body>
+</html>

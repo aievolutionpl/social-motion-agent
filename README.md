@@ -146,6 +146,28 @@ Do explainerów dostępne są też dwa niezależne kierunki: **`isometric-line-a
 
 Wersje i licencje: [sources.lock.json](sources.lock.json). Oryginalne licencje zostają zachowane. Brief, istniejąca marka i dostępność mają pierwszeństwo przed stylistycznymi domyślnościami upstream — bez obowiązkowych zakazów kolorów i liczby animacji.
 
+## ShotCraft Motion Pack: nowe ujęcia i interaktywne demo
+
+Nowy moduł **[ShotCraft Motion Pack](skills/shotcraft-motion/SKILL.md)** dodaje **10 wybranych receptur ujęć** inspirowanych biblioteką [Video ShotCraft](https://github.com/Vincentwei1021/video-shotcraft) oraz **5 autorskich podglądów Canvas**. Katalog obejmuje karuzelę 3D, przelatujące karty, kinetyczne słowa, animacje etapów, suwak przed/po, demonstracje aplikacji, wykresy i wiele więcej.
+
+Podglądy są działającymi demonstracjami animacji (przewijanie czasu, odtwarzanie, niezależny wybór efektu); pozostałe receptury są źródłami do adaptacji. **To nie jest pięć automatycznie renderowalnych presetów MP4.** Właściwa produkcja odbywa się w istniejącym silniku po dostosowaniu ujęć i kontroli jakości.
+
+```bash
+# Lista efektów i czterech struktur filmów
+python -S studio.py shotcraft list
+# Parametry i oryginalny przepis
+python -S studio.py shotcraft show carousel-3d
+# 15 sekund pionowego spotu, plan klatka po klatce
+python -S studio.py shotcraft plan product-reel --duration 15 --fps 30 --brand "Twoja marka" --cta "Sprawdź ofertę"
+# Kontrola spójności katalogu
+python -S studio.py shotcraft validate
+# Galeria: uruchom w katalogu repo
+python3 -m http.server 8000
+# Otwórz: http://localhost:8000/examples/shotcraft-motion/
+```
+
+**[Galeria i instrukcja](examples/shotcraft-motion/README.md)** (w tym osobny przykład 15-sekundowej kompozycji GSAP/HyperFrames) · **[Receptury, zastosowania i scenariusze](docs/SHOTCRAFT_MOTION_PACK.md)** · **[Kod przeglądarkowego demo](examples/shotcraft-motion/index.html)**
+
 ## Jakie style animacji są wbudowane?
 
 **13 działających presetów Canvas** możesz obejrzeć i przewijać w lokalnym laboratorium. To demonstracje ruchu i punkty wyjścia do scen; agent dopasowuje je do filmu i kontraktu renderowania HyperFrames.
