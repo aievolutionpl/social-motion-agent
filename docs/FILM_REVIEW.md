@@ -16,7 +16,7 @@ Wynik zawiera do trzech różnych cytatów, czas wejścia i wyjścia, powód dob
 
 ## Pełne wersje
 
-Polecenia `render-assembly`, `render-html`, `render-hype`, `render-kinetic`, edycja z poprawnym eksportem i `demo --render` zwracają ścieżkę `variants.gallery`. W jednym katalogu są trzy pełne MP4 i przenośny plik `index.html`. Wersja autorska zachowuje montaż źródłowy, kinetyczna dodaje rytmiczne ruchy kamery, a studyjna pokazuje cały obraz na oddzielnym, miękko poruszającym się planie. Każda zachowuje długość i dźwięk mastera. Przy ponowieniu renderu istniejące galerie pozostają dostępne.
+Polecenia `render-assembly`, `render-html`, `render-hype`, `render-kinetic`, edycja z poprawnym eksportem i `demo --render` zwracają ścieżkę `variants.gallery`. W jednym katalogu są trzy pełne MP4 i przenośny plik `index.html`. Reportaż zachowuje montaż źródłowy. Wersja kinetyczna zestawia pełne ujęcie z rytmicznym zbliżeniem detalu w sąsiednim panelu. W pionowych filmach panel pojawia się na dole. Wersja studyjna pokazuje obraz na miękkim, ruchomym tle. Każda zachowuje długość i dźwięk mastera. Przy ponowieniu renderu istniejące galerie pozostają dostępne.
 
 ```bash
 python -S studio.py variants build JOB --render renders/master.mp4

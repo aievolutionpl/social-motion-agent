@@ -13,17 +13,33 @@ from editor_workspace import probe
 from footage_selects import shortlist
 from style_feedback import STYLES, collection, summary
 
-RECIPE_VERSION = 2
+RECIPE_VERSION = 3
 
 
 def video_filter(style, width, height, fps, frames, treatment):
     fit = (f"scale={width}:{height}:force_original_aspect_ratio=decrease,"
            f"pad={width}:{height}:(ow-iw)/2:(oh-ih)/2,setsar=1,fps={fps}")
     if style == "kinetic":
-        # Small, periodic camera pushes keep the cut and its speech in sync.
-        zoom, period = {"gentle": (.025, 2.5), "energetic": (.085, 1.0)}.get(treatment, (.055, 1.5))
-        fit += (f",zoompan=z='1+{zoom}*pow(sin(on*PI/({fps}*{period})),2)':"
-                f"x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={width}x{height}:fps={fps}")
+        # Keep the whole composition legible. A second panel tracks a detail
+        # from the same shot, so both views and the original audio stay in sync.
+        wide = width >= height
+        span = width if wide else height
+        strip = max(2, int(span * .22) // 2 * 2)
+        if span > strip:
+            lead_w, lead_h = (width - strip, height) if wide else (width, height - strip)
+            detail_w, detail_h = (strip, height) if wide else (width, strip)
+            zoom, period = {"gentle": (.04, 2.5), "energetic": (.23, 1.0)}.get(treatment, (.14, 1.5))
+            rule = max(1, round(min(width, height) * .003))
+            divider = f"w={rule}:h=ih" if wide else f"w=iw:h={rule}"
+            stack = "hstack" if wide else "vstack"
+            fit = (f"split=2[whole][detail];[whole]scale={lead_w}:{lead_h}:force_original_aspect_ratio=decrease,"
+                   f"pad={lead_w}:{lead_h}:(ow-iw)/2:(oh-ih)/2:color=0x101419,setsar=1,fps={fps}[lead];"
+                   f"[detail]scale={detail_w}:{detail_h}:force_original_aspect_ratio=increase,"
+                   f"crop={detail_w}:{detail_h}:(iw-ow)*0.35:(ih-oh)*0.43,setsar=1,fps={fps},"
+                   f"zoompan=z='1+{zoom}*pow(sin(on*PI/({fps}*{period})),2)':"
+                   f"x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={detail_w}x{detail_h}:fps={fps},"
+                   f"eq=saturation=.28:contrast=1.10,drawbox=x=0:y=0:{divider}:color=white@0.55:t=fill[inset];"
+                   f"[lead][inset]{stack}=inputs=2:shortest=1,setsar=1")
     elif style == "studio":
         fraction = {"large": .92, "small": .70}.get(treatment, .82)
         card_w, card_h = [max(2, int(size * fraction) // 2 * 2) for size in (width, height)]

@@ -75,9 +75,14 @@ class FilmWorkflowTests(unittest.TestCase):
         footage_selects.index(self.job, asset["id"], transcript="notes/decode.json")
         choice = footage_selects.shortlist(self.job, "cena")["candidates"][0]
         self.assertEqual((choice["quote"],choice["clip"]["in_sec"]), ("Cena to 20 złotych.", 1))
+        portrait = core.read(self.job / "job.json")
+        portrait.update(width=108, height=192, format="9:16")
+        core.write(self.job / "job.json", portrait)
         result = film_variants.render_set(self.job, openings=True, query="cena")
-        _, manifest = style_feedback.collection(self.job, result["collection"])
+        directory, manifest = style_feedback.collection(self.job, result["collection"])
         self.assertEqual(len(manifest["variants"]), 3)
+        picture = editor.probe(directory / "kinetic.mp4")["streams"][0]
+        self.assertEqual((picture["width"], picture["height"]), (108, 192))
         self.assertEqual(manifest["variants"][0]["source"]["start"], 1)
         self.assertTrue(all(v["duration"] <= 3.15 for v in manifest["variants"]))
 
