@@ -100,17 +100,27 @@ def assemble(folder: Path) -> Path:
             args += ["-i", str(assets[voice])]
         if music:
             args += ["-stream_loop", "-1", "-i", str(assets[music])]
-        if voice and music:
-            filters += ["[1:a]aresample=48000,apad,asplit=2[vo][sc]",
-                        f"[2:a]aresample=48000,volume={gain}[bg]",
-                        "[bg][sc]sidechaincompress=threshold=0.03:ratio=8:attack=15:release=250[duck]",
-                        "[vo][duck]amix=inputs=2:duration=longest:normalize=0[mix]"]
-        else:
-            volume = 1 if voice else gain
-            filters += [f"[1:a]aresample=48000,volume={volume},apad[mix]"]
+        # Build the complete foreground first. Camera dialogue and a separate
+        # voice-over both lower the music, including across silent cutaways.
+        foreground = []
         if preserve_audio:
-            filters = [value.replace("[mix]", "[overlay]") for value in filters]
-            filters += ["[0:a][overlay]amix=inputs=2:duration=longest:normalize=0[mix]"]
+            foreground.append("[0:a]")
+        if voice:
+            foreground.append("[1:a]")
+        if len(foreground) == 2:
+            filters.append("".join(foreground) + "amix=inputs=2:duration=longest:normalize=0[spoken]")
+            foreground = ["[spoken]"]
+        if music:
+            music_input = 2 if voice else 1
+            filters.append(f"[{music_input}:a]aresample=48000,volume={gain}[bed]")
+            if foreground:
+                filters += [foreground[0] + "aresample=48000,apad,asplit=2[dialogue][key]",
+                            "[bed][key]sidechaincompress=threshold=0.03:ratio=8:attack=15:release=250[duck]",
+                            "[dialogue][duck]amix=inputs=2:duration=longest:normalize=0[mix]"]
+            else:
+                filters.append("[bed]apad[mix]")
+        else:
+            filters.append(foreground[0] + "aresample=48000,apad[mix]")
         filters += ["[mix]loudnorm=I=-14:TP=-1.5:LRA=11[a]"]
         run([*args, "-filter_complex", ";".join(filters), "-map", "0:v:0", "-map", "[a]",
              "-c:v", "copy", "-c:a", "aac", "-ar", "48000", "-b:a", "192k", "-t", str(duration),

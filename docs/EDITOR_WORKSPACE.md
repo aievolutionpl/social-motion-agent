@@ -1,5 +1,7 @@
 # Editor workspace
 
+For the three-film gallery, spoken selects, profile ratings and moving openings see [Film review](FILM_REVIEW.md).
+
 Six local tools support the editing conversation. They use existing jobs, registered assets and renderers. Python standard library + FFmpeg/ffprobe are required; HTML review needs a browser. No account or paid provider is required.
 
 Use `JOB` below as the existing `output/jobs/<id>` path. Register files first with `studio.py asset-add --help`; originals are copied into the job and source/rights remain in assets.json.
@@ -71,4 +73,4 @@ Import validates the render hash, duration and normalized coordinates. Imported 
 python -S studio.py editor qa JOB --render renders/current.mp4
 ```
 
-Decodes the full export, compares dimensions/duration with the job, checks required audio and reports black/frozen intervals and volume statistics. Exit 1 means a technical mismatch; decode errors also fail. Report is bound to SHA. Black/freeze events are review candidates: deliberate holds and black transitions may be correct. This does not establish text clipping, caption readability, true-peak compliance or subjective quality; those remain explicit visual/audio checks. Existing probe/review/pack gates still apply.
+Decodes the full export, compares dimensions/duration with the job, checks required audio and reports black/frozen intervals, volume statistics, integrated LUFS and measured true peak. Exit 1 means a technical mismatch; decode errors also fail. Report is bound to SHA. Black/freeze events are review candidates: deliberate holds and black transitions may be correct. This does not establish text clipping, caption readability or subjective quality; those remain explicit visual/audio checks. Existing probe/review/pack gates still apply.

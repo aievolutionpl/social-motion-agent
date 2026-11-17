@@ -64,7 +64,7 @@ def routes() -> dict:
 
 
 def create_job(title: str, kind: str, aspect: str, duration: float, language: str,
-               base: Path | None = None) -> Path:
+               base: Path | None = None, *, style_profile: str = "local") -> Path:
     if kind not in routes() or aspect not in FORMATS:
         raise ValueError("Nieznana ścieżka produkcji lub proporcje")
     if not math.isfinite(duration) or duration <= 0:
@@ -80,7 +80,7 @@ def create_job(title: str, kind: str, aspect: str, duration: float, language: st
     write(folder / "job.json", {"schema_version": 1, "id": identifier, "title": title,
           "kind": kind, "format": aspect, "width": width, "height": height,
           "fps": 30, "duration_sec": duration, "language": language,
-          "state": "intake", "created_at": now(), "history": [], "render": None})
+          "state": "intake", "style_profile": style_profile, "created_at": now(), "history": [], "render": None})
     questions = [
         ("Jaki jeden efekt ma wywołać film?", ["Wyjaśnić temat", "Zainteresować ofertą", "Pokazać rezultat", "Opowiedzieć historię"]),
         ("Do kogo konkretnie mówimy?", ["Nowi odbiorcy bez wiedzy", "Obecni klienci lub widzowie", "Specjaliści", "Osoby gotowe do zakupu"]),

@@ -13,7 +13,7 @@ For walking-presenter reels with kinetic captions or text behind the subject, us
 kinetic-walk-talk and read skills/kinetic-walk-talk/SKILL.md. Its walk-talk prepare/compose
 commands build editable local sources; footage generation and alpha segmentation are separate.
 Do not search a parent workspace for credentials, brand profiles, voices or customer media.
-For every new film, follow skills/creative-director/references/feedback-loop.md: ask about style, show concrete options before rendering, and request likes/dislikes plus optional ratings after each preview. Reuse explicit answers and delegated choices. Run scripts/quickstart.py --browser for local dependencies; do not confuse dependency readiness with a successful render.
+For every new film follow skills/creative-director/references/feedback-loop.md and docs/FILM_REVIEW.md. Use studio.py plan with the brief, inspect profile feedback, render three full styles and serve their HTML gallery. Record chat feedback with variants rate. Show footage-based openings first when requested. Reuse explicit answers and delegated choices. Run scripts/quickstart.py --browser for local dependencies; do not confuse dependency readiness with a successful render.
 New films: intake → research → storyboard → assets/composition → preview → review → package.
 For films use studio.py new and keep all production artifacts in output/jobs/<id>/.
 Write source/index.html for HyperFrames; use paused GSAP timelines and local assets.

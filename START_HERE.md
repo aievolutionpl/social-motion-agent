@@ -7,6 +7,8 @@ See `docs/LOCAL_WORKSPACE.md` for the portable consolidation and preservation-le
 
 For a first local video session, the agent runs `python -S scripts/quickstart.py --browser` (add `--smoke` to verify a demo render). Missing system prerequisites are reported explicitly. Read [style and feedback contract](skills/creative-director/references/feedback-loop.md).
 
+For a film, start with `studio.py plan "BRIEF"`. Use the returned route and the viewer's local style profile. Open the three-film HTML gallery returned by the render. See [Film review](docs/FILM_REVIEW.md) for spoken selects, moving openings, feedback and editable ShotCraft scenes.
+
 1. Read `AGENTS.md` and `skills/creative-director/SKILL.md`. Choose video, website or ui-motion. Narrow revisions reuse the existing brief and tools.
 2. Inspect the project and supplied references. Reuse known answers; ask missing material questions. Show two or three distinct directions with concrete scene/section placements when undecided. Do not treat silence as approval.
 3. Run `python -S studio.py skills plan --mode MODE`. Prepare missing sources with `skills setup --mode MODE`, then `skills check --mode MODE`. Source preparation does not install or test upstream runtimes.

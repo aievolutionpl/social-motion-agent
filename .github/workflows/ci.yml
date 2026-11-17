@@ -56,6 +56,8 @@ jobs:
             output/jobs/**/technical.json
             output/jobs/**/notes/hyperframes-*.log
             output/jobs/**/renders/*.mp4
+            output/jobs/**/previews/films-*/index.html
+            output/jobs/**/previews/films-*/*.mp4
           retention-days: 7
 
   browser-layout:

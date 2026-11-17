@@ -7,6 +7,10 @@ description: "Design and produce distinctive websites, motion videos and animate
 
 Turn a real subject into a coherent visual experience, then verify the result in its actual medium. This is the portable creative entry point and **subagent orchestrator** for Social Motion Agent, usable by Codex, Claude Code, Antigravity, Hermes and other agents that can read Markdown and work with files. A GitHub connection gives access to sources; it does not install a renderer or prove that a tool works.
 
+## Film generation and human review
+
+In the checkout run `python -S studio.py plan "BRIEF"`, then follow its route, missing inputs and next commands. Use the viewer or series profile for this job. Read the returned style order and comments before editing. Select spoken takes with `studio.py selects`. When the user wants a choice of openings, render actual footage through `variants openings`. Render the film once through the normal CLI and open the returned three full-length styles. Run the returned local `serve` command and give the user its URL. Ratings and comments from the page and `variants rate` share the same store. Record comments as spoken and apply them to subsequent work with that profile. See `docs/FILM_REVIEW.md` in the checkout.
+
 ## Select the work
 
 | Request | Mode | Read next |
