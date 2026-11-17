@@ -56,7 +56,7 @@ def compose(folder, recipe, spec_path, overwrite=False):
     audio = ""
     if spec.get("audio"):
         name = source_file(spec["audio"], (".wav", ".mp3", ".m4a", ".aac", ".ogg"))
-        audio = f'<audio id="score" src="{name}" data-start="0" data-duration="{job["duration_sec"]}" data-track-index="2"></audio>'
+        audio = f'<audio id="score" class="clip" src="{name}" data-start="0" data-duration="{job["duration_sec"]}" data-track-index="2"></audio>'
     template = (core.ROOT / "templates/shotcraft-scene.html").read_text(encoding="utf-8")
     settings = {"RECIPE": recipe, "WIDTH": job["width"], "HEIGHT": job["height"], "DURATION": job["duration_sec"],
                 "FPS": job["fps"], "BACKGROUND": colors[0], "FOREGROUND": colors[1], "ACCENT": colors[2],

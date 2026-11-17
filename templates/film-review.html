@@ -29,10 +29,14 @@ button{padding:9px 15px;min-height:42px;border:1px solid var(--accent);border-ra
 button:disabled{opacity:.5;cursor:default}
 .status{display:block;color:var(--muted);font-size:.85rem;margin:6px 0;min-height:1.3em}
 footer{margin:20px 0}.export{background:transparent;color:var(--accent)}
+.general{max-width:760px;margin-top:26px}.general label{font-size:1.18rem}
 @media(max-width:820px){.grid{grid-template-columns:1fr}article{max-width:650px;width:100%;margin:auto}}
 </style>
 <header><span class="mark" aria-hidden="true"></span>Social Motion</header>
 <main><h1><!--TITLE--></h1><p id="intro"></p><div class="grid" id="grid"></div>
+<section class="general"><label for="general-note">Uwagi do całego filmu</label>
+<textarea id="general-note" maxlength="2000"></textarea><button type="button" id="general-save">Zapisz uwagi do filmu</button>
+<span class="status" id="general-status" role="status"></span></section>
 <footer><button class="export" id="export" type="button">Pobierz opinie dla agenta</button>
 <span class="status" id="info" role="status"></span></footer></main>
 <template id="card"><article><h2></h2><video controls preload="metadata" playsinline></video>
@@ -44,6 +48,7 @@ footer{margin:20px 0}.export{background:transparent;color:var(--accent)}
 const film = /*FILMS*/;
 const storageKey = "social-motion:" + film.job_id + ":" + film.id;
 const rows = new Map();
+const general = {note:document.getElementById("general-note"), status:document.getElementById("general-status"), pending:Promise.resolve()};
 let online = false;
 function localRead() {
   try { return JSON.parse(localStorage.getItem(storageKey) || "{}") || {}; } catch { return {}; }
@@ -70,18 +75,23 @@ function remember(row) {
   persist();
   return entry;
 }
+function send(row, payload, committed) {
+  if (!online) { row.status.textContent = "Opinia w przeglądarce. Pobierz ją dla agenta."; return; }
+  row.pending = row.pending.catch(()=>{}).then(async () => {
+    const res = await fetch("feedback",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    if (!res.ok) throw Error();
+    committed();
+  }).catch(()=>{ row.status.textContent="Nie udało się przekazać opinii agentowi. Możesz pobrać ją jako plik."; });
+}
 function save(row) {
   const entry = remember(row);
   if (!entry.stars && !entry.note) { row.status.textContent = "Dodaj ocenę lub komentarz."; return; }
-  if (!online) { row.status.textContent = "Opinia w przeglądarce. Pobierz ją dla agenta."; return; }
-  row.pending = row.pending.catch(()=>{}).then(async () => {
-    const res = await fetch("feedback",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({ratings:[entry]})});
-    if (!res.ok) throw Error();
+  send(row,{ratings:[entry]},()=>{
     if (JSON.stringify(values(row)) === JSON.stringify(entry)) {
       draft[entry.style] = {...entry, dirty:false}; persist();
       row.status.textContent = "Zapisano dla agenta.";
     }
-  }).catch(()=>{ row.status.textContent="Zapis lokalny nie powiódł się. Możesz pobrać opinie."; });
+  });
 }
 function makeCard(item, saved) {
   const article = document.getElementById("card").content.firstElementChild.cloneNode(true);
@@ -109,13 +119,16 @@ async function start() {
   document.getElementById("intro").textContent=film.kind==="openings" ?
     "Porównaj otwarcia i zaznacz, który kierunek ma dostać pełną wersję." :
     "Obejrzyj trzy wersje filmu. Możesz ocenić każdą gwiazdkami lub zostawić komentarz.";
-  let fromAgent={};
+  let fromAgent={}, generalFromAgent="";
   if (/^https?:$/.test(location.protocol)) {
     try {
       const response=await fetch("feedback",{cache:"no-store"});
       if(response.ok) {
         const data=await response.json();
-        if(data.gallery===film.id){ online=true; fromAgent=Object.fromEntries(data.ratings.map(x=>[x.style,x])); }
+        if(data.gallery===film.id){
+          online=true; fromAgent=Object.fromEntries(data.ratings.map(x=>[x.style,x]));
+          generalFromAgent=data.general_note || "";
+        }
       }
     } catch { /* This HTML can be opened as a portable gallery. */ }
   }
@@ -123,13 +136,30 @@ async function start() {
     const local=draft[item.style]||{};
     makeCard(item, local.dirty ? local : fromAgent[item.style]||local);
   }
+  general.note.value=online && !draft.general?.dirty ? generalFromAgent : draft.general?.note || "";
+  general.note.addEventListener("input",()=>{
+    draft.general={note:general.note.value, dirty:true}; persist();
+    general.status.textContent="Naciśnij Zapisz uwagi do filmu.";
+  });
+  document.getElementById("general-save").onclick=()=>{
+    const note=general.note.value.trim();
+    draft.general={note, dirty:true}; persist();
+    send(general,{general_note:note},()=>{
+      if(general.note.value.trim()===note){
+        draft.general={note, dirty:false}; persist();
+        general.status.textContent="Zapisano dla agenta.";
+      }
+    });
+  };
   document.getElementById("info").textContent=online ?
-    "Zapisane oceny są dostępne agentowi." : "Otwierasz galerię jako plik. Po ocenie pobierz opinie i przekaż JSON agentowi.";
+    "Zapisane oceny są dostępne agentowi." : "Po ocenie pobierz plik JSON i przekaż go agentowi.";
 }
 document.getElementById("export").onclick=()=>{
   const ratings=Array.from(rows.values(),values).filter(v=>v.stars||v.note);
-  if (!ratings.length){document.getElementById("info").textContent="Dodaj pierwszą opinię.";return;}
-  const blob=new Blob([JSON.stringify({job_id:film.job_id,gallery:film.id,ratings},null,2)],{type:"application/json"});
+  const payload={job_id:film.job_id,gallery:film.id,ratings};
+  if(general.note.value.trim() || draft.general) payload.general_note=general.note.value.trim();
+  if (!ratings.length && payload.general_note===undefined){document.getElementById("info").textContent="Dodaj pierwszą opinię.";return;}
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
   const url=URL.createObjectURL(blob), link=document.createElement("a");
   link.href=url;link.download="feedback-"+film.id+".json";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 };

@@ -1,5 +1,8 @@
 import hashlib
 import json
+from contextlib import contextmanager
+from functools import partial
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import shutil
 import subprocess
@@ -16,9 +19,22 @@ import film_plan
 import film_review_server
 import film_variants
 import footage_selects
+import hyperframes_adapter
 import shotcraft_compose
 import studio_core as core
 import style_feedback
+
+
+@contextmanager
+def static_site(folder):
+    with ThreadingHTTPServer(("127.0.0.1", 0), partial(SimpleHTTPRequestHandler, directory=str(folder))) as server:
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        try:
+            yield f"http://127.0.0.1:{server.server_port}/index.html"
+        finally:
+            server.shutdown()
+            thread.join()
 
 
 class FilmWorkflowTests(unittest.TestCase):
@@ -38,6 +54,13 @@ class FilmWorkflowTests(unittest.TestCase):
                         "-af", "volume=0:enable='gte(t,2)'", "-t", "4", "-c:v", "libx264", "-threads", "1",
                         "-c:a", "aac", str(path)], check=True)
         return core.register_asset(self.job, path, "synthetic", "test", "review")
+
+    def browser(self, *args):
+        if not shutil.which("node") or not (core.ROOT / "node_modules/playwright").is_dir():
+            self.skipTest("Install the pinned Playwright to exercise the browser")
+        result = subprocess.run(["node", str(core.ROOT / "tests/film_review_browser.cjs"), *map(str, args)],
+                                cwd=core.ROOT, capture_output=True, text=True, timeout=60)
+        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_brief_and_real_source_selects(self):
         plan = film_plan.plan("20-sekundowa rolka z idącym prezenterem i tekstem za sylwetką")
@@ -77,7 +100,7 @@ class FilmWorkflowTests(unittest.TestCase):
             frame = subprocess.check_output(["ffmpeg","-v","error","-ss","1","-i",str(path),"-frames:v","1",
                                              "-f","rawvideo","-pix_fmt","rgb24","-threads","1","-"])
             frames.append(hashlib.sha256(frame).digest())
-            self.assertAlmostEqual(variant["duration"], 4, places=1)
+            self.assertAlmostEqual(variant["duration"], 4, places=2, msg=variant["style"])
         self.assertEqual(len(set(frames)), 3)
         item = next(v for v in manifest["variants"] if v["style"] == "studio")
         vote = {"style":"studio", "sha256":item["sha256"], "stars":5}
@@ -104,8 +127,41 @@ class FilmWorkflowTests(unittest.TestCase):
         self.assertEqual(prefs["style_order"][0], "studio")
         self.assertEqual(prefs["comments"][0]["note"], "Zachowaj tempo")
         self.assertEqual(style_feedback.summary(self.job.parent,"someone-else")["comments"], [])
+        self.assertEqual(film_variants.render_set(self.job, "renders/test.mp4")["collection"], batch["collection"])
         with self.assertRaises(ValueError):
             style_feedback.save(self.job, batch["collection"], [dict(vote,sha256="old")], "chat")
+
+    def test_browser_feedback_export_and_next_film(self):
+        asset = self.footage()
+        master = "renders/first.mp4"
+        shutil.copyfile(self.job / asset["path"], self.job / master)
+        core.record_render(self.job, master, core.fingerprint(self.job), "test")
+        batch = film_variants.render_set(self.job, master)
+        export = self.job / "notes/from-browser.json"
+        with film_review_server.make_server(self.job, batch["collection"]) as server:
+            thread = threading.Thread(target=server.serve_forever, daemon=True)
+            thread.start()
+            try:
+                with static_site((self.job / batch["gallery"]).parent) as static:
+                    self.browser("gallery", f"http://127.0.0.1:{server.server_port}/", static, export)
+            finally:
+                server.shutdown()
+                thread.join()
+        directory, manifest = style_feedback.collection(self.job, batch["collection"])
+        self.assertEqual(style_feedback.current(self.job, manifest)["general_note"], "Dłuższe pauzy")
+        style_feedback.import_file(self.job, manifest["id"], "notes/from-browser.json")
+        self.assertEqual(style_feedback.current(self.job, manifest)["general_note"], "Jaśniejsze tło")
+        next_job = core.create_job("Drugi film", "shorts", "16:9", 4, "pl", self.job.parent, style_profile="tester")
+        next_spec = core.read(next_job / "job.json")
+        next_spec.update(width=192, height=108, fps=15)
+        core.write(next_job / "job.json", next_spec)
+        shutil.copyfile(self.job / master, next_job / master)
+        core.record_render(next_job, master, core.fingerprint(next_job), "test")
+        next_batch = film_variants.render_set(next_job, master)
+        _, next_manifest = style_feedback.collection(next_job, next_batch["collection"])
+        studio = next_manifest["variants"][0]
+        self.assertEqual((studio["style"], studio["treatment"]), ("studio", "large"))
+        self.assertNotEqual(studio["sha256"], core.sha(directory / "studio.mp4"))
 
     def test_camera_dialogue_ducks_the_bed_in_encoded_audio(self):
         import array
@@ -145,9 +201,14 @@ class FilmWorkflowTests(unittest.TestCase):
             with self.subTest(recipe=recipe):
                 result = shotcraft_compose.compose(self.job,recipe,spec,overwrite=True)
                 rendered_source = (self.job/result["source"]).read_text(encoding="utf-8")
-                self.assertIn('class="'+recipe+'"',rendered_source)
+                self.assertIn('class="clip '+recipe+'"',rendered_source)
                 self.assertNotIn("@@DURATION@@",rendered_source)
                 self.assertIn("window.__timelines",rendered_source)
+                lint = subprocess.run(hyperframes_adapter.command("lint", (self.job / result["source"]).parent),
+                                      text=True, capture_output=True, timeout=60)
+                self.assertEqual(lint.returncode, 0, lint.stdout + lint.stderr)
+                with static_site((self.job / result["source"]).parent) as static:
+                    self.browser("scene", static)
         with self.assertRaises(ValueError):
             shotcraft_compose.compose(self.job,"flying-words",spec)
 

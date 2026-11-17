@@ -12,16 +12,16 @@
 .divider{position:absolute;top:0;bottom:0;width:.45cqw;left:0;background:@@ACCENT@@}
 </style><script src="./shotcraft-gsap.min.js"></script></head>
 <body><main id="root" data-composition-id="main" data-start="0" data-duration="@@DURATION@@" data-width="@@WIDTH@@" data-height="@@HEIGHT@@" data-fps="@@FPS@@">
-<section id="stage" class="@@RECIPE@@" data-start="0" data-duration="@@DURATION@@" data-track-index="1">@@LAYERS@@</section>@@AUDIO@@</main>
+<section id="stage" class="clip @@RECIPE@@" data-start="0" data-duration="@@DURATION@@" data-track-index="1">@@LAYERS@@</section>@@AUDIO@@</main>
 <script>
 const duration=@@DURATION@@;
 const timeline=gsap.timeline({paused:true});
 const stage=document.getElementById("stage");
-if (stage.className==="flying-words") {
+if (stage.classList.contains("flying-words")) {
   const words=stage.querySelectorAll(".word");
   words.forEach((word,i)=>timeline.fromTo(word,{opacity:0,yPercent:90,rotation:-6},
     {opacity:1,yPercent:0,rotation:0,duration:duration*.28,ease:"power3.out"},duration*.42*i/Math.max(1,words.length-1)));
-} else if (stage.className==="carousel-3d") {
+} else if (stage.classList.contains("carousel-3d")) {
   const cards=stage.querySelectorAll(".panel"), step=duration/cards.length;
   cards.forEach((card,i)=>{
     timeline.set(card,{opacity:i===0?1:0},0);
@@ -31,10 +31,10 @@ if (stage.className==="flying-words") {
 } else {
   const after=stage.querySelectorAll(".panel")[1];
   timeline.fromTo(after,{clipPath:"inset(0 100% 0 0)"},{clipPath:"inset(0 0% 0 0)",duration:duration*.65,ease:"power2.inOut"},duration*.17);
-  timeline.fromTo(".divider",{left:"0%"},{left:"100%",duration:duration*.65,ease:"power2.inOut"},duration*.17);
+  timeline.fromTo(".divider",{x:0},{x:@@WIDTH@@,duration:duration*.65,ease:"power2.inOut"},duration*.17);
 }
 timeline.to({hold:0},{hold:1,duration:duration},0);
 window.__timelines={main:timeline};
-window.seek=(seconds)=>timeline.seek(Math.max(0,Math.min(duration,seconds)),false);
+window.seek=(seconds)=>{timeline.seek(Math.max(0,Math.min(duration,seconds)),false);};
 window.seek(0);
 </script></body></html>

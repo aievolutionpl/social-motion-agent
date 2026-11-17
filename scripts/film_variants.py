@@ -13,34 +13,39 @@ from editor_workspace import probe
 from footage_selects import shortlist
 from style_feedback import STYLES, collection, summary
 
-RECIPE_VERSION = 1
+RECIPE_VERSION = 2
 
 
-def video_filter(style, width, height, fps):
+def video_filter(style, width, height, fps, frames, treatment):
     fit = (f"scale={width}:{height}:force_original_aspect_ratio=decrease,"
            f"pad={width}:{height}:(ow-iw)/2:(oh-ih)/2,setsar=1,fps={fps}")
     if style == "kinetic":
         # Small, periodic camera pushes keep the cut and its speech in sync.
-        fit += (f",zoompan=z='1+0.055*pow(sin(on*PI/({fps}*1.5)),2)':"
+        zoom, period = {"gentle": (.025, 2.5), "energetic": (.085, 1.0)}.get(treatment, (.055, 1.5))
+        fit += (f",zoompan=z='1+{zoom}*pow(sin(on*PI/({fps}*{period})),2)':"
                 f"x='iw/2-iw/zoom/2':y='ih/2-ih/zoom/2':d=1:s={width}x{height}:fps={fps}")
     elif style == "studio":
-        card_w, card_h = max(2, int(width * .82) // 2 * 2), max(2, int(height * .82) // 2 * 2)
+        fraction = {"large": .92, "small": .70}.get(treatment, .82)
+        card_w, card_h = [max(2, int(size * fraction) // 2 * 2) for size in (width, height)]
         fit = (f"split=2[plate][subject];[plate]scale={width}:{height}:force_original_aspect_ratio=increase,"
                f"crop={width}:{height},gblur=sigma=18,eq=brightness=-0.12[matte];"
                f"[subject]scale={card_w}:{card_h}:force_original_aspect_ratio=decrease,"
                f"pad={card_w}:{card_h}:(ow-iw)/2:(oh-ih)/2[card];"
                f"[matte][card]overlay=x='(W-w)/2':y='(H-h)/2+H*.018*sin(t*1.4)',setsar=1,fps={fps}")
-    return "[0:v:0]" + fit + ",format=yuv420p[v]"
+    # Some FFmpeg versions drop the last frame when fps receives EOF. Hold that
+    # frame if needed, then trim to the actual source frame count.
+    return "[0:v:0]" + fit + f",tpad=stop_mode=clone:stop=2,trim=end_frame={frames},format=yuv420p[v]"
 
 
-def encode(source, target, style, width, height, fps, start=None, duration=None):
+def encode(source, target, style, width, height, fps, duration, start, treatment):
     args = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin", "-n", "-filter_complex_threads", "1"]
     if start is not None:
         args += ["-ss", str(start)]
     args += ["-i", str(source)]
-    if duration is not None:
+    if start is not None:
         args += ["-t", str(duration)]
-    args += ["-filter_complex", video_filter(style, width, height, fps), "-map", "[v]", "-map", "0:a:0?",
+    frames = max(1, round(duration * fps))
+    args += ["-filter_complex", video_filter(style, width, height, fps, frames, treatment), "-map", "[v]", "-map", "0:a?",
              "-c:v", "libx264", "-threads", "2", "-preset", "veryfast", "-crf", "19",
              "-c:a", "aac" if start is not None else "copy", "-movflags", "+faststart", str(target)]
     subprocess.run(args, check=True, timeout=3600)
@@ -86,14 +91,21 @@ def opening_sources(folder, query):
 
 def render_set(folder, master=None, *, openings=False, query=""):
     job = core.read(folder / "job.json")
-    preference = summary(folder.parent, job.get("style_profile", "local"))
+    preference = summary(folder.parent, job.get("style_profile", "local"), exclude_job=job["id"])
     fp = core.fingerprint(folder)
     if openings:
         sources = opening_sources(folder, query)
         factor = min(1, 540 / max(job["width"], job["height"]))
         width, height = [max(2, int(n * factor) // 2 * 2) for n in (job["width"], job["height"])]
     else:
-        master = master or job.get("render")
+        if master is None:
+            master = job.get("render")
+            parts = Path(master).parts if master else ()
+            if len(parts) == 3 and parts[0] == "previews" and parts[1].startswith("films-"):
+                _, previous = collection(folder, parts[1])
+                selected = next((v for v in previous["variants"] if v["file"] == parts[2]), None)
+                if selected:
+                    master = selected["source"]["asset"]
         if not master:
             raise ValueError("Render a master before building the three films")
         src = core.local(folder, master)
@@ -103,9 +115,13 @@ def render_set(folder, master=None, *, openings=False, query=""):
         checksum = core.sha(src)
         if receipt.get("fingerprint") != fp or receipt.get("render_sha256") != checksum:
             raise ValueError("Master no longer matches its render receipt")
-        sources = [{"asset": src.relative_to(folder).as_posix(), "sha256": checksum}] * 3
+        picture = next(s for s in probe(src)["streams"] if s["codec_type"] == "video")
+        duration = core.video_duration(picture)
+        if not duration or abs(duration - job["duration_sec"]) > max(.15, 2 / job["fps"]):
+            raise ValueError("Master picture duration does not match the brief")
+        sources = [{"asset": src.relative_to(folder).as_posix(), "sha256": checksum, "duration": duration}] * 3
         width, height = job["width"], job["height"]
-    key_data = [RECIPE_VERSION, fp, sources, preference["profile"], preference["style_order"], width, height]
+    key_data = [RECIPE_VERSION, fp, sources, preference["profile"], preference["treatments"], width, height]
     digest = hashlib.sha256(json.dumps(key_data, sort_keys=True).encode()).hexdigest()[:20]
     key = ("openings-" if openings else "films-") + digest
     dest = core.local(folder, "previews/" + key, exists=False)
@@ -116,22 +132,23 @@ def render_set(folder, master=None, *, openings=False, query=""):
             for (style, label), item in zip(STYLES.items(), sources):
                 path = core.local(folder, item["asset"])
                 target = temp / (style + ".mp4")
+                treatment = preference["treatments"].get(style, "default")
                 if style == "editorial" and not openings:
                     shutil.copyfile(path, target)
                 else:
-                    encode(path, target, style, width, height, job["fps"], item.get("start"), item.get("duration"))
+                    encode(path, target, style, width, height, job["fps"], item["duration"], item.get("start"), treatment)
                 info = probe(target)
                 picture = next(stream for stream in info["streams"] if stream["codec_type"] == "video")
-                expected = item.get("duration", job["duration_sec"])
+                expected = item["duration"]
                 if ((picture["width"], picture["height"]) != (width, height)
-                        or abs(core.video_duration(picture) - expected) > max(.15, 2 / job["fps"])):
+                        or abs(core.video_duration(picture) - expected) > .51 / job["fps"] + 1e-5):
                     raise ValueError("Incomplete variant: " + style)
                 checksum = core.sha(target)
                 if not openings:
                     core.record_render(folder, target.relative_to(folder).as_posix(), fp,
                                        f"film-variants/{RECIPE_VERSION}/{style} from {item['sha256']}")
                 versions.append({"style": style, "label": label, "file": target.name, "sha256": checksum,
-                                 "duration": core.video_duration(picture), "source": item})
+                                 "duration": core.video_duration(picture), "source": item, "treatment": treatment})
             if core.fingerprint(folder) != fp or any(core.sha(core.local(folder, i["asset"])) != i["sha256"] for i in sources):
                 raise ValueError("Sources changed during review render")
             versions.sort(key=lambda item: preference["style_order"].index(item["style"]))
@@ -157,7 +174,7 @@ def render_set(folder, master=None, *, openings=False, query=""):
     return {"gallery": (dest / "index.html").relative_to(folder).as_posix(), "collection": key,
             "films": [str((dest / v["file"]).relative_to(folder).as_posix()) for v in manifest["variants"]],
             "serve": ["python", "-S", "studio.py", "variants", "serve", str(folder), "--collection", key],
-            "preferred_style": preference["style_order"][0], "reviewed": False}
+            "preferred_style": manifest["variants"][0]["style"], "reviewed": False}
 
 
 def after_render(folder, result):

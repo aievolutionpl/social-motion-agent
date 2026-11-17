@@ -28,7 +28,7 @@ def add_parsers(sub):
         if name in ("serve", "rate", "import", "use"):
             action.add_argument("--collection", required=True)
         if name in ("rate", "use"):
-            action.add_argument("--style", choices=style_feedback.STYLES, required=True)
+            action.add_argument("--style", choices=style_feedback.STYLES, required=name == "use")
         if name == "rate":
             action.add_argument("--stars", type=int, choices=range(1, 6))
             action.add_argument("--note")
@@ -67,6 +67,10 @@ def run(args, job_path, emit):
         film_review_server.run(folder, args.collection, args.port)
     elif args.action == "import":
         emit(style_feedback.import_file(folder, args.collection, args.source))
+    elif args.action == "rate" and not args.style:
+        if args.stars is not None or not args.note or not args.note.strip():
+            raise ValueError("Provide --style to rate a version, or --note for a comment on all versions")
+        emit(style_feedback.save(folder, args.collection, [], "chat", general_note=args.note))
     else:
         directory, manifest = style_feedback.collection(folder, args.collection)
         variant = next(v for v in manifest["variants"] if v["style"] == args.style)

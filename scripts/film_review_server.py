@@ -42,7 +42,8 @@ def make_server(folder, key, port=0):
                 body = json.loads(self.rfile.read(size))
                 if not isinstance(body, dict):
                     raise ValueError("Expected an object")
-                result = style_feedback.save(folder, key, body["ratings"], "html")
+                result = style_feedback.save(folder, key, body.get("ratings", []), "html",
+                                             general_note=body.get("general_note"))
             except (ValueError, KeyError, TypeError, OSError) as error:
                 return self.send_json(400, {"error": str(error)})
             self.send_json(200, result)
@@ -58,7 +59,7 @@ def make_server(folder, key, port=0):
                 return self.send_error(403)
             path = urlsplit(self.path).path
             if path == "/feedback":
-                return self.send_json(200, {"gallery": key, "ratings": style_feedback.current(folder, manifest)}, head)
+                return self.send_json(200, style_feedback.current(folder, manifest), head)
             if path in ("/", "/index.html"):
                 name, mime = "index.html", "text/html; charset=utf-8"
             elif path in videos:

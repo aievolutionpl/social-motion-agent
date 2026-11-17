@@ -23,11 +23,12 @@ python -S studio.py variants build JOB --render renders/master.mp4
 python -S studio.py variants serve JOB --collection GALLERY_ID
 ```
 
-Agent uruchamia polecenie `serve` zwrócone z galerią, przekazuje lokalny adres użytkownikowi i pozostawia proces na czas oceny. Odtwarzacze obsługują przewijanie. Gwiazdki 1–5 zapisują się po kliknięciu, komentarz po wybraniu „Zapisz opinię”. Przy otwarciu HTML jako pliku można pobrać opinie w JSON. Skopiuj plik do katalogu produkcji i zaimportuj go. Do przeniesienia podglądu na inne urządzenie skopiuj cały katalog galerii.
+Agent uruchamia polecenie `serve` zwrócone z galerią, przekazuje lokalny adres użytkownikowi i pozostawia proces na czas oceny. Odtwarzacze obsługują przewijanie. Gwiazdki 1–5 zapisują się po kliknięciu, komentarz po wybraniu „Zapisz opinię”. Pole „Uwagi do całego filmu” służy do przekazania wskazówek wspólnych dla trzech wersji. Przy otwarciu HTML jako pliku można pobrać opinie w JSON. Skopiuj plik do katalogu produkcji i zaimportuj go. Do przeniesienia podglądu na inne urządzenie skopiuj cały katalog galerii.
 
 ```bash
 python -S studio.py variants import JOB --collection GALLERY_ID --source notes/feedback.json
 python -S studio.py variants rate JOB --collection GALLERY_ID --style studio --stars 5 --note "Zachowaj szeroki kadr"
+python -S studio.py variants rate JOB --collection GALLERY_ID --note "Zostaw dłuższe pauzy między wypowiedziami"
 python -S studio.py variants prefer JOB
 python -S studio.py variants use JOB --collection GALLERY_ID --style studio
 ```
@@ -37,6 +38,8 @@ Uwaga przekazana w rozmowie może zawierać sam tekst. Zapisuj rzeczywiste słow
 ## Jak agent korzysta z opinii
 
 Domyślny profil `local` służy osobie korzystającej z danej kopii studia. Na wspólnej instalacji przy tworzeniu filmu podaj odrębny `--profile` dla osoby lub serii. Oceny i komentarze są zapisywane w lokalnej bazie SQLite w ignorowanym katalogu produkcji. Ponowny zapis aktualizuje ocenę tej samej wersji. Profil porządkuje kierunki na podstawie dotychczasowych gwiazdek i udostępnia agentowi ostatnie komentarze przy `plan`, `new` i `variants prefer`. Przy nowym filmie zastosuj zapisane wskazówki w montażu, o ile pasują do bieżącego briefu.
+
+W kolejnym filmie renderer automatycznie stosuje też kilka dosłownych wskazówek. „Mniej zbliżeń” i „więcej zbliżeń” zmieniają siłę i rytm ruchu kamery w wersji kinetycznej. „Większy kadr” i „mniejszy kadr” zmieniają rozmiar obrazu w wersji studyjnej. Pozostałe uwagi, np. o pauzach, muzyce czy napisach, agent dostaje w oryginalnym brzmieniu podczas planowania montażu.
 
 ## Edytowalne sceny ShotCraft
 
