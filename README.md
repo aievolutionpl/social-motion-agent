@@ -64,6 +64,10 @@ Komenda zwraca propozycje i strukturę pracy; agent dopasowuje je po obejrzeniu 
 
 **Dźwięk i materiały:** agent planuje warstwy głosu, muzyki, atmosfery i SFX, korzysta z dostępnych plików oraz sprawdza końcowy miks, jeśli ma narzędzia do odsłuchu. Brakujący asset, lektor lub licencja pozostają jawnie oznaczone. Generowanie przez zewnętrzne usługi wymaga dostępnego narzędzia i odpowiedniej autoryzacji. Nie każda sesja ma dostęp do tych samych providerów.
 
+## Trzy filmy do oceny
+
+Po renderze agent pokazuje jedną galerię HTML z trzema pełnymi wersjami i dźwiękiem. Możesz kliknąć gwiazdki, wpisać komentarz albo powiedzieć agentowi, co zachować. Zapisane preferencje pomagają przy następnym filmie. Z surowego nagrania można wcześniej porównać trzy krótkie otwarcia wybrane na podstawie wypowiedzi. [Galeria, wybór ujęć i polecenia](docs/FILM_REVIEW.md).
+
 ## Narzędzia lokalnego montażysty
 
 Nowe `studio.py editor` łączy sześć etapów pracy:

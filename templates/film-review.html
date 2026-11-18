@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title><!--TITLE--> · Social Motion</title>
+<style>
+:root{color-scheme:light;--ink:#18231f;--muted:#44534c;--line:#cbd2ca;--accent:#195c41}
+*{box-sizing:border-box}
+body{margin:0;background:#f6f7f2;color:var(--ink);font:16px/1.5 "Inter",system-ui,sans-serif}
+header,main{max-width:1480px;margin:auto;padding:20px clamp(16px,4vw,64px)}
+header{font-weight:700;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.mark{width:23px;height:18px;border-left:5px solid var(--accent);border-right:5px solid var(--accent);transform:skew(-12deg)}
+.mark::after{display:block;content:"";width:5px;height:18px;background:var(--accent);margin:auto}
+h1{font-size:clamp(2rem,4vw,3.8rem);line-height:1.1;letter-spacing:-.045em;margin:.45em 0 .2em;overflow-wrap:anywhere}
+p{color:var(--muted);margin:.4rem 0 1.35rem}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,28px)}
+article{min-width:0;background:white;border:1px solid var(--line);border-radius:14px;padding:14px}
+h2{font-size:1.35rem;margin:4px 0 12px}
+video{display:block;width:100%;max-height:55vh;background:#101715;object-fit:contain;border-radius:8px}
+fieldset{border:0;padding:0;margin:14px 0 6px}
+legend,label[for]{font-weight:600}
+.stars{display:flex;gap:2px}
+.star{position:relative;display:grid;place-items:center;width:44px;height:44px;font-size:29px;color:#738078;cursor:pointer}
+.star input{position:absolute;opacity:0}
+.star:has(input:focus-visible),button:focus-visible,textarea:focus-visible{outline:3px solid #117b4e;outline-offset:2px;border-radius:4px}
+.filled{color:#936200}
+textarea{display:block;margin:6px 0 10px;width:100%;min-height:64px;padding:9px;resize:vertical;border:1px solid #89958c;border-radius:5px;font:inherit}
+button{padding:9px 15px;min-height:42px;border:1px solid var(--accent);border-radius:6px;background:var(--accent);color:white;font:inherit;font-weight:600;font-size:.9rem;cursor:pointer}
+button:disabled{opacity:.5;cursor:default}
+.status{display:block;color:var(--muted);font-size:.85rem;margin:6px 0;min-height:1.3em}
+footer{margin:20px 0}.export{background:transparent;color:var(--accent)}
+.general{max-width:760px;margin-top:26px}.general label{font-size:1.18rem}
+@media(max-width:820px){.grid{grid-template-columns:1fr}article{max-width:650px;width:100%;margin:auto}}
+</style>
+<header><span class="mark" aria-hidden="true"></span>Social Motion</header>
+<main><h1><!--TITLE--></h1><p id="intro"></p><div class="grid" id="grid"></div>
+<section class="general"><label for="general-note">Uwagi do całego filmu</label>
+<textarea id="general-note" maxlength="2000"></textarea><button type="button" id="general-save">Zapisz uwagi do filmu</button>
+<span class="status" id="general-status" role="status"></span></section>
+<footer><button class="export" id="export" type="button">Pobierz opinie dla agenta</button>
+<span class="status" id="info" role="status"></span></footer></main>
+<template id="card"><article><h2></h2><video controls preload="metadata" playsinline></video>
+<fieldset><legend>Ocena stylu</legend><div class="stars"></div></fieldset>
+<label class="note-label">Co zachować lub zmienić?</label><textarea maxlength="2000"></textarea>
+<button type="button">Zapisz opinię</button><span class="status" role="status"></span></article></template>
+<script>
+"use strict";
+const film = /*FILMS*/;
+const storageKey = "social-motion:" + film.job_id + ":" + film.id;
+const rows = new Map();
+const general = {note:document.getElementById("general-note"), status:document.getElementById("general-status"), pending:Promise.resolve()};
+let online = false;
+function localRead() {
+  try { return JSON.parse(localStorage.getItem(storageKey) || "{}") || {}; } catch { return {}; }
+}
+let draft = localRead();
+function persist() {
+  try { localStorage.setItem(storageKey, JSON.stringify(draft)); } catch { /* Download stays available. */ }
+}
+function paint(row, value) {
+  for (const radio of row.article.querySelectorAll("input")) {
+    radio.checked = Number(radio.value) === value.stars;
+    const filled = Number(radio.value) <= (value.stars || 0);
+    radio.parentElement.classList.toggle("filled", filled);
+    radio.nextElementSibling.textContent = filled ? "★" : "☆";
+  }
+}
+function values(row) {
+  const chosen = row.article.querySelector("input:checked");
+  return {style:row.item.style, sha256:row.item.sha256, stars:chosen ? Number(chosen.value) : null, note:row.note.value.trim()};
+}
+function remember(row) {
+  const entry = values(row);
+  draft[entry.style] = {...entry, dirty:true};
+  persist();
+  return entry;
+}
+function send(row, payload, committed) {
+  if (!online) { row.status.textContent = "Opinia w przeglądarce. Pobierz ją dla agenta."; return; }
+  row.pending = row.pending.catch(()=>{}).then(async () => {
+    const res = await fetch("feedback",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    if (!res.ok) throw Error();
+    committed();
+  }).catch(()=>{ row.status.textContent="Nie udało się przekazać opinii agentowi. Możesz pobrać ją jako plik."; });
+}
+function save(row) {
+  const entry = remember(row);
+  if (!entry.stars && !entry.note) { row.status.textContent = "Dodaj ocenę lub komentarz."; return; }
+  send(row,{ratings:[entry]},()=>{
+    if (JSON.stringify(values(row)) === JSON.stringify(entry)) {
+      draft[entry.style] = {...entry, dirty:false}; persist();
+      row.status.textContent = "Zapisano dla agenta.";
+    }
+  });
+}
+function makeCard(item, saved) {
+  const article = document.getElementById("card").content.firstElementChild.cloneNode(true);
+  article.querySelector("h2").textContent = item.label;
+  const video = article.querySelector("video");
+  video.src = item.file; video.setAttribute("aria-label", item.label);
+  video.addEventListener("play",()=>{for(const other of document.querySelectorAll("video")) if(other!==video) other.pause();});
+  const note = article.querySelector("textarea");
+  note.id = "note-"+item.style; article.querySelector(".note-label").htmlFor = note.id;
+  const row = {item, article, note, status:article.querySelector(".status"), pending:Promise.resolve()};
+  for(let n=1;n<=5;n++){
+    const label=document.createElement("label"); label.className="star";
+    const radio=document.createElement("input"); radio.type="radio"; radio.name="rating-"+item.style;
+    radio.value=String(n); radio.setAttribute("aria-label",n+" z 5, "+item.label);
+    const icon=document.createElement("span"); icon.setAttribute("aria-hidden","true");
+    label.append(radio,icon); article.querySelector(".stars").append(label);
+    radio.addEventListener("change",()=>{paint(row,values(row)); save(row);});
+  }
+  note.value=saved.note||""; paint(row,saved);
+  note.addEventListener("input",()=>{remember(row); row.status.textContent="Naciśnij Zapisz opinię.";});
+  article.querySelector("button").addEventListener("click",()=>save(row));
+  rows.set(item.style,row); document.getElementById("grid").append(article);
+}
+async function start() {
+  document.getElementById("intro").textContent=film.kind==="openings" ?
+    "Porównaj otwarcia i zaznacz, który kierunek ma dostać pełną wersję." :
+    "Obejrzyj trzy wersje filmu. Możesz ocenić każdą gwiazdkami lub zostawić komentarz.";
+  let fromAgent={}, generalFromAgent="";
+  if (/^https?:$/.test(location.protocol)) {
+    try {
+      const response=await fetch("feedback",{cache:"no-store"});
+      if(response.ok) {
+        const data=await response.json();
+        if(data.gallery===film.id){
+          online=true; fromAgent=Object.fromEntries(data.ratings.map(x=>[x.style,x]));
+          generalFromAgent=data.general_note || "";
+        }
+      }
+    } catch { /* This HTML can be opened as a portable gallery. */ }
+  }
+  for (const item of film.variants) {
+    const local=draft[item.style]||{};
+    makeCard(item, local.dirty ? local : fromAgent[item.style]||local);
+  }
+  general.note.value=online && !draft.general?.dirty ? generalFromAgent : draft.general?.note || "";
+  general.note.addEventListener("input",()=>{
+    draft.general={note:general.note.value, dirty:true}; persist();
+    general.status.textContent="Naciśnij Zapisz uwagi do filmu.";
+  });
+  document.getElementById("general-save").onclick=()=>{
+    const note=general.note.value.trim();
+    draft.general={note, dirty:true}; persist();
+    send(general,{general_note:note},()=>{
+      if(general.note.value.trim()===note){
+        draft.general={note, dirty:false}; persist();
+        general.status.textContent="Zapisano dla agenta.";
+      }
+    });
+  };
+  document.getElementById("info").textContent=online ?
+    "Zapisane oceny są dostępne agentowi." : "Po ocenie pobierz plik JSON i przekaż go agentowi.";
+}
+document.getElementById("export").onclick=()=>{
+  const ratings=Array.from(rows.values(),values).filter(v=>v.stars||v.note);
+  const payload={job_id:film.job_id,gallery:film.id,ratings};
+  if(general.note.value.trim() || draft.general) payload.general_note=general.note.value.trim();
+  if (!ratings.length && payload.general_note===undefined){document.getElementById("info").textContent="Dodaj pierwszą opinię.";return;}
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob), link=document.createElement("a");
+  link.href=url;link.download="feedback-"+film.id+".json";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+start();
+</script></html>

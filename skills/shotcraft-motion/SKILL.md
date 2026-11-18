@@ -7,6 +7,8 @@ description: Curated shot director and frame-accurate storyboard planning for sh
 
 Optional **production-planning** layer for [Social Motion Agent](../../README.md), not a replacement for Creative Director or HyperFrames. The agent may use the 10 curated Video ShotCraft motion references; five have original deterministic browser preview implementations in this repository.
 
+Use `studio.py shotcraft compose RECIPE --job JOB --spec source/scene.json` for flying-words, carousel-3d, or before-after-slider-scrub. The result is an editable HyperFrames composition using registered assets. Render it with `studio.py render-html` and show the three-film review gallery.
+
 ## Start with an actual brief
 Read [Creative Director](../creative-director/SKILL.md), the existing [feedback loop](../creative-director/references/feedback-loop.md), and [ShotCraft guide](../../docs/SHOTCRAFT_MOTION_PACK.md). Reuse all known details and any user-selected style. For an open direction, offer two or three distinct, concrete approaches before a substantial production build. If the user explicitly delegates creative choices, make them without blocking.
 

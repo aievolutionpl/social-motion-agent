@@ -90,6 +90,8 @@ def inventory(folder):
         items.append(item)
     report = {'items': items, 'created_at': core.now(), 'semantic_analysis': False,
               'missing': ['No registered assets'] if not items else []}
+    from footage_selects import shortlist
+    report['spoken_selects'] = shortlist(folder)['candidates']
     save(folder, dest.relative_to(folder).as_posix() + '/inventory.json', report)
     cards = []
     for item in items:
@@ -196,9 +198,16 @@ def quality(folder, render):
     audio = any(s['codec_type'] == 'audio' for s in info['streams'])
     cmd = ['ffmpeg', '-hide_banner', '-nostdin', '-i', str(source), '-vf', 'blackdetect=d=0.2:pix_th=0.10,freezedetect=n=-50dB:d=2']
     if audio:
-        cmd += ['-af', 'volumedetect']
+        cmd += ['-af', 'volumedetect,ebur128=peak=true:framelog=verbose']
     result = run(cmd + ['-f', 'null', '-'])
     events = [line.strip() for line in result.stderr.splitlines() if any(k in line for k in ('black_start:', 'freeze_start:', 'freeze_end:', 'freeze_duration:', 'max_volume:', 'mean_volume:'))]
+    loudness = {}
+    if audio:
+        summary = result.stderr.rsplit('Summary:', 1)[-1]
+        for key, pattern in (('integrated_lufs', r'I:\s*([-+]?\d+(?:\.\d+)?) LUFS'),
+                             ('true_peak_dbtp', r'Peak:\s*([-+]?\d+(?:\.\d+)?) dBFS')):
+            match = re.search(pattern, summary)
+            loudness[key] = float(match.group(1)) if match else None
     job = core.read(folder / 'job.json')
     failures = []
     if (video['width'], video['height']) != (job['width'], job['height']):
@@ -207,9 +216,9 @@ def quality(folder, render):
         failures.append('Duration differs from job')
     if core.read(folder / 'brief.json').get('audio_required') and not audio:
         failures.append('Required audio missing')
-    report = {'render': render, 'sha256': core.sha(source), 'decode_passed': True, 'failures': failures,
+    report = {'render': render, 'sha256': core.sha(source), 'decode_passed': True, 'failures': failures, 'encoded_loudness': loudness,
               'events_to_review': events, 'technical_passed': not failures, 'creative_approval': False,
-              'not_checked': ['Text clipping/OCR', 'Caption reading speed', 'Speech intelligibility', 'True-peak loudness', 'Art direction'],
+              'not_checked': ['Text clipping/OCR', 'Caption reading speed', 'Speech intelligibility', 'Art direction'],
               'note': 'Black/frozen frames can be intentional; volume maxima are not proof of clipping.'}
     save(folder, 'notes/quality-' + report['sha256'] + '.json', report)
     return report

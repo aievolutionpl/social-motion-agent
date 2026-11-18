@@ -9,6 +9,7 @@ import json
 import math
 from functools import lru_cache
 from pathlib import Path
+from shotcraft_compose import RECIPES
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "config" / "shotcraft-recipes.json"
@@ -57,7 +58,7 @@ def list_shots() -> dict:
     data = catalog()
     return {
         "shots": [{"id": s["id"], "category": s["category"], "description": s["description"],
-                   "preview": s["preview"]} for s in data["shots"]],
+                   "preview": s["preview"], "composable": s["id"] in RECIPES} for s in data["shots"]],
         "sequences": [{"id": slug, "title": seq["title"], "format": seq["format"]}
                       for slug, seq in data["sequences"].items()],
         "gallery": data["gallery"],

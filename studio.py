@@ -32,6 +32,10 @@ import walk_talk
 import director_suite
 import editor_workspace
 import prompt_bank
+import film_commands
+import film_plan
+import film_variants
+import shotcraft_compose
 
 
 def emit(value):
@@ -56,6 +60,7 @@ def doctor():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
+    film_commands.add_parsers(sub)
     p = sub.add_parser("prompts", help="30 offline HyperFrames implementation recipes")
     p.add_argument("action", choices=("list", "find", "show"))
     p.add_argument("query", nargs="?", default="")
@@ -126,7 +131,10 @@ def main():
     p.add_argument("--limit", type=int, default=12)
     p.add_argument("--source")
     p = sub.add_parser("shotcraft", help="ShotCraft: gallery, curated shot recipes and frame-accurate storyboards")
-    p.add_argument("action", choices=("list", "show", "plan", "validate"))
+    p.add_argument("action", choices=("list", "show", "plan", "validate", "compose"))
+    p.add_argument("--job", help="Target job for an editable composition")
+    p.add_argument("--spec", help="Job-relative JSON with words or registered image IDs")
+    p.add_argument("--overwrite", action="store_true")
     p.add_argument("query", nargs="?", default="", help="Shot ID for show or sequence ID for plan")
     p.add_argument("--duration", type=float, default=15, help="Storyboard length in seconds (5-120)")
     p.add_argument("--fps", type=int, default=30, help="24, 25, 30, 50 or 60")
@@ -182,9 +190,11 @@ def main():
     p.add_argument("--no-upstream", action="store_true")
     p = sub.add_parser("new", help="Załóż produkcję; nie uruchamia usług ani generacji")
     p.add_argument("title")
-    p.add_argument("--kind", choices=core.routes(), required=True)
-    p.add_argument("--format", choices=core.FORMATS, default="16:9")
-    p.add_argument("--duration", type=float, required=True)
+    p.add_argument("--kind", choices=core.routes())
+    p.add_argument("--brief", help="Film brief for route selection; defaults to title")
+    p.add_argument("--profile", default="local", help="Local viewer or series whose feedback guides this job")
+    p.add_argument("--format", choices=core.FORMATS)
+    p.add_argument("--duration", type=float)
     p.add_argument("--language", default="pl")
     for name in ("resume", "pack"):
         p = sub.add_parser(name)
@@ -217,6 +227,8 @@ def main():
         p.add_argument("--render", required=True, help="Ścieżka względem katalogu produkcji")
     args = parser.parse_args()
     try:
+        if args.command in ("plan", "selects", "variants"):
+            return film_commands.run(args, job_path, emit)
         if args.command == "prompts":
             emit(prompt_bank.query(args.action, args.query, args.category))
         elif args.command == "editor":
@@ -264,7 +276,7 @@ def main():
             result = {"job": str(folder), "synthetic_demo": True, "reviewed": False}
             if args.render:
                 from hyperframes_adapter import render
-                result.update(render(folder, "demo", "draft"))
+                result.update(film_variants.after_render(folder, render(folder, "demo", "draft")))
             emit(result)
             return int(args.render and not result["probe_passed"])
         elif args.command == "kinetic":
@@ -280,7 +292,7 @@ def main():
                 folder = kinetic_adapter.demo()
                 result = {"job": str(folder), "reviewed": False, "paid_generation": False}
                 if args.render:
-                    result.update(kinetic_adapter.render(folder, "kinetic-demo", args.res, args.samples))
+                    result.update(film_variants.after_render(folder, kinetic_adapter.render(folder, "kinetic-demo", args.res, args.samples)))
                 emit(result)
                 return int(args.render and not result["probe_passed"])
         elif args.command == "map":
@@ -321,6 +333,10 @@ def main():
                 emit(shotcraft_pack.show(args.query))
             elif args.action == "validate":
                 emit(shotcraft_pack.validate())
+            elif args.action == "compose":
+                if not args.job or not args.spec:
+                    raise ValueError("Provide --job and --spec")
+                emit(shotcraft_compose.compose(job_path(args.job), args.query, args.spec, args.overwrite))
             else:
                 emit(shotcraft_pack.plan(args.query, args.duration, args.fps, args.brand, args.cta))
         elif args.command == "motion":
@@ -387,8 +403,13 @@ def main():
                 print(result.stderr[-1500:], file=sys.stderr)
             return result.returncode
         elif args.command == "new":
-            folder = core.create_job(args.title, args.kind, args.format, args.duration, args.language)
-            emit({"job": str(folder), "next": "Przeczytaj skills/intake/SKILL.md; wykorzystaj znane odpowiedzi i zapytaj o brakujące decyzje. Potem research."})
+            brief = args.brief or args.title
+            plan = film_plan.plan(brief, kind=args.kind, profile=args.profile)
+            duration = args.duration if args.duration is not None else plan["duration_sec"]
+            folder = core.create_job(args.title, plan["route"], args.format or plan["format"], duration,
+                                     args.language, style_profile=args.profile)
+            emit({"job": str(folder), "plan": film_plan.plan(brief, folder),
+                  "next": "Uzupełnij znane decyzje, zarejestruj materiały i przygotuj trzy wersje."})
         else:
             folder = job_path(args.job)
             if args.command == "check":
@@ -412,26 +433,26 @@ def main():
             elif args.command == "render-html":
                 from hyperframes_adapter import render
                 result = render(folder, args.name, args.quality)
-                emit(result)
+                emit(film_variants.after_render(folder, result))
                 return int(not result["probe_passed"])
             elif args.command == "render-kinetic":
                 result = kinetic_adapter.render(folder, args.name, args.res, args.samples, args.audio)
-                emit(result)
+                emit(film_variants.after_render(folder, result))
                 return int(not result["probe_passed"])
             elif args.command == "render-assembly":
                 errors = core.check_job(folder, "assets")
                 if errors:
                     raise ValueError("\n".join(errors))
-                emit({"render": str(assemble(folder)), "reviewed": False})
+                emit(film_variants.after_render(folder, {"render": str(assemble(folder)), "reviewed": False}))
             elif args.command == "render-hype":
                 from hypermotion_adapter import render
                 result = render(folder, args.name, args.scene)
-                emit(result)
+                emit(film_variants.after_render(folder, result))
                 return int(not result["probe_passed"])
             elif args.command == "edit":
                 result = run_edit(folder, args.op, args.asset, args.name, args.spec, args.effect,
                                   shlex.split(args.vstudio_args))
-                emit(result)
+                emit(film_variants.after_render(folder, result))
                 return int(not result["probe_passed"])
             elif args.command == "probe":
                 result = core.probe_job(folder, args.render)

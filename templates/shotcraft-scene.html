@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><title>ShotCraft</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:@@BACKGROUND@@;color:@@FOREGROUND@@}
+#root{position:relative;overflow:hidden;width:@@WIDTH@@px;height:@@HEIGHT@@px;container-type:size}
+#stage{position:absolute;inset:0;display:flex;flex-wrap:wrap;align-content:center;justify-content:center;gap:1.8cqw;perspective:160cqw}
+.word{font:750 clamp(24px,10cqmin,180px)/1.06 system-ui,sans-serif;letter-spacing:-.045em;overflow-wrap:anywhere;max-width:92%}
+.word:last-child{color:@@ACCENT@@}
+.panel{position:absolute;inset:9% 12%;display:grid;place-items:center;transform-style:preserve-3d}
+.panel img{display:block;width:100%;height:100%;object-fit:contain}
+#stage.before-after-slider-scrub .panel{inset:0}
+.divider{position:absolute;top:0;bottom:0;width:.45cqw;left:0;background:@@ACCENT@@}
+</style><script src="./shotcraft-gsap.min.js"></script></head>
+<body><main id="root" data-composition-id="main" data-start="0" data-duration="@@DURATION@@" data-width="@@WIDTH@@" data-height="@@HEIGHT@@" data-fps="@@FPS@@">
+<section id="stage" class="clip @@RECIPE@@" data-start="0" data-duration="@@DURATION@@" data-track-index="1">@@LAYERS@@</section>@@AUDIO@@</main>
+<script>
+const duration=@@DURATION@@;
+const timeline=gsap.timeline({paused:true});
+const stage=document.getElementById("stage");
+if (stage.classList.contains("flying-words")) {
+  const words=stage.querySelectorAll(".word");
+  words.forEach((word,i)=>timeline.fromTo(word,{opacity:0,yPercent:90,rotation:-6},
+    {opacity:1,yPercent:0,rotation:0,duration:duration*.28,ease:"power3.out"},duration*.42*i/Math.max(1,words.length-1)));
+} else if (stage.classList.contains("carousel-3d")) {
+  const cards=stage.querySelectorAll(".panel"), step=duration/cards.length;
+  cards.forEach((card,i)=>{
+    timeline.set(card,{opacity:i===0?1:0},0);
+    if(i)timeline.fromTo(card,{opacity:0,xPercent:60,rotationY:-32,scale:.84},{opacity:1,xPercent:0,rotationY:0,scale:1,duration:step*.42,ease:"power2.out",immediateRender:false},i*step);
+    if(i<cards.length-1)timeline.to(card,{opacity:0,xPercent:-50,rotationY:30,scale:.86,duration:step*.39,ease:"power2.in"},(i+.86)*step);
+  });
+} else {
+  const after=stage.querySelectorAll(".panel")[1];
+  timeline.fromTo(after,{clipPath:"inset(0 100% 0 0)"},{clipPath:"inset(0 0% 0 0)",duration:duration*.65,ease:"power2.inOut"},duration*.17);
+  timeline.fromTo(".divider",{x:0},{x:@@WIDTH@@,duration:duration*.65,ease:"power2.inOut"},duration*.17);
+}
+timeline.to({hold:0},{hold:1,duration:duration},0);
+window.__timelines={main:timeline};
+window.seek=(seconds)=>{timeline.seek(Math.max(0,Math.min(duration,seconds)),false);};
+window.seek(0);
+</script></body></html>
